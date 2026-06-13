@@ -8,44 +8,102 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Fullstack Accelerator — fullstack.vvsk.in</title>
-    <style>/* copied styles from root home-template.html */:root{--brand:#0078d4;--muted:#666;--card:#fff}body{font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;margin:0;color:#222;background:#f7f9fb}.container{max-width:1100px;margin:0 auto;padding:28px}header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}.logo{display:flex;align-items:center;gap:12px}.logo .mark{width:42px;height:42px;background:var(--brand);border-radius:8px;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}h1{margin:8px 0 6px;font-size:28px}p.lead{color:var(--muted);margin:0 0 18px}.hero{background:linear-gradient(180deg,#fff,#fbfcfe);padding:26px;border-radius:12px;box-shadow:0 6px 20px rgba(18,38,63,0.06)}.controls{display:flex;gap:12px;margin-top:14px}.cta{background:var(--brand);color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none}.search{flex:1;display:flex}.search input{flex:1;padding:10px 12px;border-radius:8px;border:1px solid #e6eef8}.courses-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:20px}.course-card{background:var(--card);padding:16px;border-radius:10px;box-shadow:0 6px 18px rgba(18,38,63,0.04);display:flex;flex-direction:column;gap:10px}.course-card h3{margin:0;font-size:16px}.course-meta{color:var(--muted);font-size:13px}.course-topics{margin-top:8px;font-size:13px;color:#444}footer{margin:36px 0 12px;color:var(--muted);font-size:13px}@media (max-width:560px){h1{font-size:22px}}</style>
+    <style>
+      :root{--brand:#0057b7;--accent:#00b894;--muted:#6b7280;--card:#fff;--bg:#f4f7fb}
+      html,body{height:100%}
+      body{font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;margin:0;color:#0f1724;background:var(--bg)}
+      .site{max-width:1200px;margin:0 auto;padding:28px}
+      header.site-header{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+      .brand{display:flex;align-items:center;gap:12px}
+      .brand .logo-mark{width:48px;height:48px;background:linear-gradient(135deg,var(--brand),#2b6cb0);border-radius:10px;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px}
+      .brand .title{font-weight:700;font-size:18px}
+      nav.main-nav{display:flex;gap:14px;align-items:center}
+      nav.main-nav a{color:var(--muted);text-decoration:none;font-size:14px}
+      .actions{display:flex;gap:10px;align-items:center}
+      .btn{background:var(--brand);color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;font-size:14px}
+
+      .hero{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:center;background:linear-gradient(180deg,#fff,#f9fbff);padding:28px;border-radius:14px;box-shadow:0 10px 30px rgba(2,6,23,0.06);margin-top:18px}
+      .hero h1{margin:0;font-size:28px;color:#07203a}
+      .hero p.lead{color:var(--muted);margin:12px 0 18px;font-size:15px}
+      .hero .search{display:flex;gap:8px}
+      .search input{flex:1;padding:12px;border-radius:10px;border:1px solid #e6eef8}
+      .hero-cta{display:flex;flex-direction:column;gap:12px}
+
+      .stats{display:flex;gap:12px;margin-top:12px}
+      .stat{background:#fff;padding:10px;border-radius:10px;box-shadow:0 6px 18px rgba(2,6,23,0.04);text-align:center}
+      .stat .n{font-weight:700;color:#07203a}
+
+      .courses-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:22px}
+      .course-card{background:#fff;padding:18px;border-radius:12px;box-shadow:0 8px 26px rgba(2,6,23,0.04);display:flex;flex-direction:column;gap:12px}
+      .course-card .meta{color:var(--muted);font-size:13px}
+      .course-card h3{margin:0;font-size:18px}
+      .course-card .desc{color:#334155;font-size:14px}
+      .course-card .actions{margin-top:auto;display:flex;gap:8px}
+
+      footer.site-footer{margin-top:34px;padding:18px 0;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;align-items:center}
+
+      @media (max-width:880px){ .hero{grid-template-columns:1fr} .hero-illustration{display:none} }
+    </style>
   </head>
   <body>
-    <div class="container">
-      <header>
-        <div class="logo">
-          <div class="mark">FA</div>
+    <div class="site">
+      <header class="site-header">
+        <div class="brand">
+          <div class="logo-mark">FA</div>
           <div>
-            <div style="font-weight:700">Fullstack Accelerator</div>
-            <div style="font-size:12px;color:var(--muted)">fullstack.vvsk.in — learn fullstack from fundamentals to projects</div>
+            <div class="title">Fullstack Accelerator</div>
+            <div style="font-size:12px;color:var(--muted)">Learn fullstack — fundamentals to projects</div>
           </div>
         </div>
-        <nav>
-          <a href="#courses" style="color:var(--muted);text-decoration:none">Courses</a>
-        </nav>
+        <div style="display:flex;align-items:center;gap:12px">
+          <nav class="main-nav">
+            <a href="#courses">Courses</a>
+            <a href="#projects">Projects</a>
+            <a href="#about">About</a>
+          </nav>
+          <div class="actions">
+            <a class="btn" href="#login">Sign in</a>
+          </div>
+        </div>
       </header>
 
-      <section class="hero">
-        <h1>Learn fullstack development — curated paths, hands-on projects, and assessments</h1>
-        <p class="lead">Structured learning paths (Fullstack, MERN, MEAN) with topic-level quizzes, exercises, and project-based milestones. Use the search to find courses or topics quickly.</p>
-        <div class="controls">
-          <div class="search">
-            <input id="home-search" placeholder="Search courses or topics (example: Java, React, Node)" />
+      <section class="hero" aria-labelledby="home-heading">
+        <div>
+          <h1 id="home-heading">Learn practical fullstack development — built for builders</h1>
+          <p class="lead">Guided paths, hands-on projects, and short topic quizzes to validate learning. Pick a path, complete topic exercises, and ship projects.</p>
+          <div class="hero-cta">
+            <div class="search"><input id="home-search" placeholder="Search courses, topics, or skills (e.g. Java, React, REST)" /></div>
+            <div style="display:flex;gap:8px">
+              <a class="btn" href="#courses">Browse paths</a>
+              <a class="btn" style="background:var(--accent)" href="#projects">Start a project</a>
+            </div>
+            <div class="stats">
+              <div class="stat"><div class="n">21</div><div class="label">Topics</div></div>
+              <div class="stat"><div class="n">1</div><div class="label">Courses</div></div>
+              <div class="stat"><div class="n">100+</div><div class="label">Exercises</div></div>
+            </div>
           </div>
-          <a class="cta" href="#courses">Browse courses</a>
+        </div>
+        <div class="hero-illustration">
+          <!-- Illustration or promo card -->
+          <div style="background:linear-gradient(180deg,#eef8ff,#ffffff);border-radius:12px;padding:18px;text-align:center;box-shadow:0 8px 24px rgba(2,6,23,0.04)">
+            <img src="/assets/illustration-learning.svg" alt="Learning illustration" style="max-width:100%;height:160px;object-fit:contain"/>
+            <div style="margin-top:12px;font-weight:700;color:#07203a">Start building real projects</div>
+            <div style="font-size:13px;color:var(--muted)">Follow tracks, take quizzes, and unlock assessments.</div>
+          </div>
         </div>
       </section>
 
       <section id="courses">
-        <h2 style="margin-top:22px">Available courses</h2>
-        <div id="courses-grid" class="courses-grid">
+        <div class="courses-grid" id="courses-grid">
           <!-- course cards injected here -->
         </div>
         <div id="no-courses" style="display:none;color:var(--muted);margin-top:12px">No courses found.</div>
       </section>
 
-      <footer>
-        <div>© <span id="year"></span> Fullstack Accelerator — curated by vstechapps</div>
+      <footer class="site-footer">
+        <div>© <span id="year"></span> Fullstack Accelerator — curated by <a href="https://vvsk.in" target="_blank" rel="noopener">vvskchaitanya</a></div>
+        <div style="color:var(--muted)">Built with care • <a href="#privacy">Privacy</a></div>
       </footer>
     </div>
 
@@ -67,10 +125,15 @@
             link.textContent = c.title || c.id;
             title.appendChild(link);
             el.appendChild(title);
-            const meta = document.createElement('div'); meta.className='course-meta'; meta.textContent = c.id || '';
+            const meta = document.createElement('div'); meta.className='meta'; meta.textContent = c.id || '';
             el.appendChild(meta);
-            const topics = document.createElement('div'); topics.className='course-topics'; topics.textContent = 'Topics: (loaded on course page)';
-            el.appendChild(topics);
+            // descriptive placeholder (no topics list)
+            const desc = document.createElement('div'); desc.className='desc'; desc.textContent = c.description || '';
+            el.appendChild(desc);
+            const actions = document.createElement('div'); actions.className='actions';
+            const open = document.createElement('a'); open.className='btn'; open.href = p + '/index.html'; open.textContent='Open course';
+            actions.appendChild(open);
+            el.appendChild(actions);
             grid.appendChild(el);
           });
         }).catch(()=>{ document.getElementById('no-courses').style.display='block'; });
