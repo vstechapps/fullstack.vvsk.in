@@ -1,5 +1,5 @@
 {
-  "scannedAt": "2026-06-13T19:47:46.914Z",
+  "scannedAt": "2026-06-13T19:51:29.218Z",
   "coursesRoot": "C:\\Users\\HP\\Documents\\GitHub\\fullstack.vvsk.in\\docs\\courses",
   "courses": [
     {
@@ -155,7 +155,7 @@
           "quizErrors": []
         }
       ],
-      "courseJsonWritten": true
+      "courseJsonWritten": false
     }
   ]
 }

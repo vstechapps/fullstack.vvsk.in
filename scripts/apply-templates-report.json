@@ -6,8 +6,8 @@
         {
           "file": "docs\\courses\\java\\index.html",
           "result": {
-            "wrote": false,
-            "reason": "identical"
+            "wrote": true,
+            "reason": "overwritten"
           }
         },
         {
@@ -20,141 +20,141 @@
         {
           "file": "docs\\courses\\java\\02-install\\index.html",
           "result": {
-            "wrote": true,
-            "reason": "overwritten"
+            "wrote": false,
+            "reason": "identical"
           }
         },
         {
           "file": "docs\\courses\\java\\03-syntax\\index.html",
           "result": {
-            "wrote": true,
-            "reason": "overwritten"
+            "wrote": false,
+            "reason": "identical"
           }
         },
         {
           "file": "docs\\courses\\java\\04-types\\index.html",
           "result": {
-            "wrote": true,
-            "reason": "overwritten"
+            "wrote": false,
+            "reason": "identical"
           }
         },
         {
           "file": "docs\\courses\\java\\05-control\\index.html",
           "result": {
-            "wrote": true,
-            "reason": "overwritten"
+            "wrote": false,
+            "reason": "identical"
           }
         },
         {
           "file": "docs\\courses\\java\\06-oo\\index.html",
           "result": {
-            "wrote": true,
-            "reason": "overwritten"
+            "wrote": false,
+            "reason": "identical"
           }
         },
         {
           "file": "docs\\courses\\java\\07-inheritance\\index.html",
           "result": {
-            "wrote": true,
-            "reason": "overwritten"
+            "wrote": false,
+            "reason": "identical"
           }
         },
         {
           "file": "docs\\courses\\java\\08-polymorphism\\index.html",
           "result": {
-            "wrote": true,
-            "reason": "overwritten"
+            "wrote": false,
+            "reason": "identical"
           }
         },
         {
           "file": "docs\\courses\\java\\09-exceptions\\index.html",
           "result": {
-            "wrote": true,
-            "reason": "overwritten"
+            "wrote": false,
+            "reason": "identical"
           }
         },
         {
           "file": "docs\\courses\\java\\10-collections\\index.html",
           "result": {
-            "wrote": true,
-            "reason": "overwritten"
+            "wrote": false,
+            "reason": "identical"
           }
         },
         {
           "file": "docs\\courses\\java\\11-streams\\index.html",
           "result": {
-            "wrote": true,
-            "reason": "overwritten"
+            "wrote": false,
+            "reason": "identical"
           }
         },
         {
           "file": "docs\\courses\\java\\12-lambdas\\index.html",
           "result": {
-            "wrote": true,
-            "reason": "overwritten"
+            "wrote": false,
+            "reason": "identical"
           }
         },
         {
           "file": "docs\\courses\\java\\13-io\\index.html",
           "result": {
-            "wrote": true,
-            "reason": "overwritten"
+            "wrote": false,
+            "reason": "identical"
           }
         },
         {
           "file": "docs\\courses\\java\\14-concurrency\\index.html",
           "result": {
-            "wrote": true,
-            "reason": "overwritten"
+            "wrote": false,
+            "reason": "identical"
           }
         },
         {
           "file": "docs\\courses\\java\\15-networking\\index.html",
           "result": {
-            "wrote": true,
-            "reason": "overwritten"
+            "wrote": false,
+            "reason": "identical"
           }
         },
         {
           "file": "docs\\courses\\java\\16-modules\\index.html",
           "result": {
-            "wrote": true,
-            "reason": "overwritten"
+            "wrote": false,
+            "reason": "identical"
           }
         },
         {
           "file": "docs\\courses\\java\\17-jvm\\index.html",
           "result": {
-            "wrote": true,
-            "reason": "overwritten"
+            "wrote": false,
+            "reason": "identical"
           }
         },
         {
           "file": "docs\\courses\\java\\18-security\\index.html",
           "result": {
-            "wrote": true,
-            "reason": "overwritten"
+            "wrote": false,
+            "reason": "identical"
           }
         },
         {
           "file": "docs\\courses\\java\\19-testing\\index.html",
           "result": {
-            "wrote": true,
-            "reason": "overwritten"
+            "wrote": false,
+            "reason": "identical"
           }
         },
         {
           "file": "docs\\courses\\java\\20-build\\index.html",
           "result": {
-            "wrote": true,
-            "reason": "overwritten"
+            "wrote": false,
+            "reason": "identical"
           }
         },
         {
           "file": "docs\\courses\\java\\21-deployment\\index.html",
           "result": {
-            "wrote": true,
-            "reason": "overwritten"
+            "wrote": false,
+            "reason": "identical"
           }
         }
       ]

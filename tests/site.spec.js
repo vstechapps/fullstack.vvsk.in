@@ -18,6 +18,26 @@ test.describe('site smoke navigation', () => {
     await expect(page.locator('h1')).toBeVisible();
     const courseUrl = page.url();
 
+    // 2a. Test header "All courses" link on course index
+    const allCoursesLink = page.locator('header a:has-text("All courses")');
+    await expect(allCoursesLink).toBeVisible();
+    await allCoursesLink.click();
+    await page.waitForLoadState('networkidle');
+    expect(page.url()).toContain('/index.html');
+
+    // Navigate back to course
+    await page.goto(courseUrl, { waitUntil: 'networkidle' });
+
+    // 2b. Test hero "Browse all courses" button on course index
+    const browseAllCoursesBtn = page.locator('.hero a.button:has-text("Browse all courses")');
+    await expect(browseAllCoursesBtn).toBeVisible();
+    await browseAllCoursesBtn.click();
+    await page.waitForLoadState('networkidle');
+    expect(page.url()).toContain('/index.html');
+
+    // Navigate back to course
+    await page.goto(courseUrl, { waitUntil: 'networkidle' });
+
     // 3. Navigate to first topic (01-intro)
     const topicLink = page.locator('a[href*="01-"]').first();
     await expect(topicLink).toBeVisible();

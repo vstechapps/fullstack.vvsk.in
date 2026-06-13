@@ -166,8 +166,8 @@ function safeWrite(targetPath, content, opts){
   const old = readFileUtf(targetPath);
   if (old === content){ return { wrote: false, reason: 'identical' }; }
   if (!force){ return { wrote: false, reason: 'differs (use --force to overwrite)' }; }
-  // force write: back up existing
-  if (!dryRun){ fs.copyFileSync(targetPath, targetPath + '.bak'); writeFileUtf(targetPath, content); }
+  // force write
+  if (!dryRun){ writeFileUtf(targetPath, content); }
   return { wrote: !dryRun, reason: 'overwritten' };
 }
 
