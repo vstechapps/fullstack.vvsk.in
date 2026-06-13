@@ -41,6 +41,15 @@ function readTitleFromHtml(filePath) {
   return null;
 }
 
+function readTitleFromMarkdown(filePath) {
+  try {
+    const txt = fs.readFileSync(filePath, 'utf8');
+    const m = txt.match(/^\s*#\s+(.+)$/m);
+    if (m) return m[1].trim();
+  } catch (e) {}
+  return null;
+}
+
 function validateQuizJson(q, filePath) {
   const errors = [];
   if (!q || typeof q !== 'object') {
@@ -98,7 +107,17 @@ function scan() {
     for (const t of topics) {
       const tPath = path.join(coursePath, t);
       const tIndex = path.join(tPath, 'index.html');
-      const tTitle = exists(tIndex) ? readTitleFromHtml(tIndex) || t : t;
+      const mdPath = path.join(tPath, 'topic.md');
+      let tTitle = null;
+      if (exists(mdPath)) {
+        tTitle = readTitleFromMarkdown(mdPath);
+      }
+      if (!tTitle && exists(tIndex)) {
+        tTitle = readTitleFromHtml(tIndex);
+      }
+      if (!tTitle) {
+        tTitle = t;
+      }
       const quizPath = path.join(tPath, 'quiz.json');
       const topicMeta = { id: t, title: tTitle, path: path.relative(repoRoot, tPath), quiz: exists(quizPath) ? path.relative(repoRoot, quizPath) : null, quizErrors: [] };
       if (exists(quizPath)) {

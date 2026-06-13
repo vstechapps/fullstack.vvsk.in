@@ -1,5 +1,5 @@
 {
-  "scannedAt": "2026-06-13T18:42:39.956Z",
+  "scannedAt": "2026-06-13T19:47:46.914Z",
   "coursesRoot": "C:\\Users\\HP\\Documents\\GitHub\\fullstack.vvsk.in\\docs\\courses",
   "courses": [
     {
@@ -9,147 +9,147 @@
       "topics": [
         {
           "id": "01-intro",
-          "title": "01 - 01 - 01 - Introduction",
+          "title": "Introduction to Java",
           "path": "docs\\courses\\java\\01-intro",
           "quiz": "docs\\courses\\java\\01-intro\\quiz.json",
           "quizErrors": []
         },
         {
           "id": "02-install",
-          "title": "02 - 02 - 02 - Installation",
+          "title": "Installation",
           "path": "docs\\courses\\java\\02-install",
           "quiz": "docs\\courses\\java\\02-install\\quiz.json",
           "quizErrors": []
         },
         {
           "id": "03-syntax",
-          "title": "03 - 03 - 03 - Syntax",
+          "title": "Syntax",
           "path": "docs\\courses\\java\\03-syntax",
           "quiz": "docs\\courses\\java\\03-syntax\\quiz.json",
           "quizErrors": []
         },
         {
           "id": "04-types",
-          "title": "04 - 04 - 04 - Types",
+          "title": "Types",
           "path": "docs\\courses\\java\\04-types",
           "quiz": "docs\\courses\\java\\04-types\\quiz.json",
           "quizErrors": []
         },
         {
           "id": "05-control",
-          "title": "05 - 05 - 05 - Control Flow",
+          "title": "Control Flow",
           "path": "docs\\courses\\java\\05-control",
           "quiz": "docs\\courses\\java\\05-control\\quiz.json",
           "quizErrors": []
         },
         {
           "id": "06-oo",
-          "title": "06 - 06 - 06 - Object Oriented Basics",
+          "title": "Object Oriented Basics",
           "path": "docs\\courses\\java\\06-oo",
           "quiz": "docs\\courses\\java\\06-oo\\quiz.json",
           "quizErrors": []
         },
         {
           "id": "07-inheritance",
-          "title": "07 - 07 - 07 - Inheritance",
+          "title": "Inheritance",
           "path": "docs\\courses\\java\\07-inheritance",
           "quiz": "docs\\courses\\java\\07-inheritance\\quiz.json",
           "quizErrors": []
         },
         {
           "id": "08-polymorphism",
-          "title": "08 - 08 - 08 - Polymorphism",
+          "title": "Polymorphism",
           "path": "docs\\courses\\java\\08-polymorphism",
           "quiz": "docs\\courses\\java\\08-polymorphism\\quiz.json",
           "quizErrors": []
         },
         {
           "id": "09-exceptions",
-          "title": "09 - 09 - 09 - Exceptions",
+          "title": "Exceptions",
           "path": "docs\\courses\\java\\09-exceptions",
           "quiz": "docs\\courses\\java\\09-exceptions\\quiz.json",
           "quizErrors": []
         },
         {
           "id": "10-collections",
-          "title": "10 - 10 - 10 - Collections",
+          "title": "Collections",
           "path": "docs\\courses\\java\\10-collections",
           "quiz": "docs\\courses\\java\\10-collections\\quiz.json",
           "quizErrors": []
         },
         {
           "id": "11-streams",
-          "title": "11 - 11 - 11 - Streams",
+          "title": "Streams",
           "path": "docs\\courses\\java\\11-streams",
           "quiz": "docs\\courses\\java\\11-streams\\quiz.json",
           "quizErrors": []
         },
         {
           "id": "12-lambdas",
-          "title": "12 - 12 - 12 - Lambdas",
+          "title": "Lambdas",
           "path": "docs\\courses\\java\\12-lambdas",
           "quiz": "docs\\courses\\java\\12-lambdas\\quiz.json",
           "quizErrors": []
         },
         {
           "id": "13-io",
-          "title": "13 - 13 - 13 - I/O",
+          "title": "I/O",
           "path": "docs\\courses\\java\\13-io",
           "quiz": "docs\\courses\\java\\13-io\\quiz.json",
           "quizErrors": []
         },
         {
           "id": "14-concurrency",
-          "title": "14 - 14 - 14 - Concurrency",
+          "title": "Concurrency",
           "path": "docs\\courses\\java\\14-concurrency",
           "quiz": "docs\\courses\\java\\14-concurrency\\quiz.json",
           "quizErrors": []
         },
         {
           "id": "15-networking",
-          "title": "15 - 15 - 15 - Networking",
+          "title": "Networking",
           "path": "docs\\courses\\java\\15-networking",
           "quiz": "docs\\courses\\java\\15-networking\\quiz.json",
           "quizErrors": []
         },
         {
           "id": "16-modules",
-          "title": "16 - 16 - 16 - Modules",
+          "title": "Modules",
           "path": "docs\\courses\\java\\16-modules",
           "quiz": "docs\\courses\\java\\16-modules\\quiz.json",
           "quizErrors": []
         },
         {
           "id": "17-jvm",
-          "title": "17 - 17 - 17 - JVM Internals",
+          "title": "JVM Internals",
           "path": "docs\\courses\\java\\17-jvm",
           "quiz": "docs\\courses\\java\\17-jvm\\quiz.json",
           "quizErrors": []
         },
         {
           "id": "18-security",
-          "title": "18 - 18 - 18 - Security",
+          "title": "Security",
           "path": "docs\\courses\\java\\18-security",
           "quiz": "docs\\courses\\java\\18-security\\quiz.json",
           "quizErrors": []
         },
         {
           "id": "19-testing",
-          "title": "19 - 19 - 19 - Testing",
+          "title": "Testing",
           "path": "docs\\courses\\java\\19-testing",
           "quiz": "docs\\courses\\java\\19-testing\\quiz.json",
           "quizErrors": []
         },
         {
           "id": "20-build",
-          "title": "20 - 20 - 20 - Build & Tooling",
+          "title": "Build & Tooling",
           "path": "docs\\courses\\java\\20-build",
           "quiz": "docs\\courses\\java\\20-build\\quiz.json",
           "quizErrors": []
         },
         {
           "id": "21-deployment",
-          "title": "21 - 21 - 21 - Deployment",
+          "title": "Deployment",
           "path": "docs\\courses\\java\\21-deployment",
           "quiz": "docs\\courses\\java\\21-deployment\\quiz.json",
           "quizErrors": []

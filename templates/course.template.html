@@ -43,7 +43,8 @@
             if(!data || !data.topics) return; const list = document.getElementById('topic-list'); list.innerHTML = '';
             data.topics.forEach(t=>{
               const d = document.createElement('div'); d.className='topic-item';
-              d.innerHTML = `<div class="topic-title"><a href="${t.path.replace(/\\/g,'/')}">${t.title || t.id}</a></div>` + (t.description?`<div>${t.description}</div>`:'');
+              const topicUrl = t.id + '/index.html';
+              d.innerHTML = `<div class="topic-title"><a href="${topicUrl}">${t.title || t.id}</a></div>` + (t.description?`<div>${t.description}</div>`:'');
               list.appendChild(d);
             });
           }).catch(()=>{});

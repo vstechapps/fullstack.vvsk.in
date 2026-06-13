@@ -13,8 +13,8 @@
         {
           "file": "docs\\courses\\java\\01-intro\\index.html",
           "result": {
-            "wrote": true,
-            "reason": "overwritten"
+            "wrote": false,
+            "reason": "identical"
           }
         },
         {
@@ -163,8 +163,8 @@
   "home": {
     "file": "docs\\index.html",
     "result": {
-      "wrote": true,
-      "reason": "overwritten"
+      "wrote": false,
+      "reason": "identical"
     }
   }
 }

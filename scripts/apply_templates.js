@@ -11,6 +11,7 @@
 const fs = require('fs');
 const path = require('path');
 const child = require('child_process');
+const { marked } = require('marked');
 
 const repoRoot = path.resolve(__dirname, '..');
 const templatesDir = path.join(repoRoot, 'templates');
@@ -44,32 +45,71 @@ function computeQuizIncludeForTopic(topicFolder){ // topicFolder absolute path t
 
 function renderTemplateString(tpl, replacements){ return tpl.replace(/{{\s*([A-Z0-9_]+)\s*}}/g, (_, k)=> (k in replacements ? replacements[k] : '')); }
 
+function extractAndStripTitle(mdContent) {
+  let title = null;
+  const lines = mdContent.split(/\r?\n/);
+  const cleanLines = [];
+  let foundTitle = false;
+  for (const line of lines) {
+    if (!foundTitle && line.trim().startsWith('# ')) {
+      title = line.trim().substring(2).trim();
+      foundTitle = true;
+    } else {
+      cleanLines.push(line);
+    }
+  }
+  return { title, content: cleanLines.join('\n') };
+}
+
 function applyTopicTemplate(coursePath, topicName, topicsList, options){
   const topicFolder = path.join(coursePath, topicName);
   const tpl = loadTemplate('topic');
+  
   // derive values
   const parts = topicName.split('-');
   const number = parts[0];
   const slug = parts.slice(1).join('-') || topicName;
-  // try to find an existing title in index.html if present
-  const indexPath = path.join(topicFolder, 'index.html');
+  
+  // Try to load and compile topic.md
+  const mdPath = path.join(topicFolder, 'topic.md');
   let title = null;
-  if (exists(indexPath)) title = inferTitleFromHtml(indexPath);
+  let topicContentHtml = '';
+  
+  if (exists(mdPath)) {
+    try {
+      const mdContent = readFileUtf(mdPath);
+      const parsed = extractAndStripTitle(mdContent);
+      title = parsed.title;
+      topicContentHtml = marked.parse(parsed.content);
+    } catch (e) {
+      console.error(`Failed to compile markdown for ${topicName}:`, e.message);
+    }
+  }
+  
+  // Fallback title inference if not found in markdown
+  const indexPath = path.join(topicFolder, 'index.html');
+  if (!title && exists(indexPath)) title = inferTitleFromHtml(indexPath);
   if (!title) title = `${number} - ${humanizeSlug(topicName)}`;
 
-  // compute prev/next
+  // compute prev/next pointing correctly using parent folder relative syntax
   const idx = topicsList.indexOf(topicName);
-  const prev = idx > 0 ? topicsList[idx-1] : '../index.html';
-  const next = idx >=0 && idx < topicsList.length-1 ? topicsList[idx+1] : '../index.html';
+  const prev = idx > 0 ? `../${topicsList[idx-1]}/index.html` : '../index.html';
+  const next = idx >= 0 && idx < topicsList.length-1 ? `../${topicsList[idx+1]}/index.html` : '../index.html';
 
   const quizInclude = computeQuizIncludeForTopic(topicFolder);
+  const quizPath = path.join(topicFolder, 'quiz.json');
+  const quizButtonHtml = exists(quizPath)
+    ? `<div class="section"><a class="quiz-btn" href="#" data-quiz="quiz.json">Take Quiz</a></div>`
+    : '';
 
   const replacements = {
     TOPIC_NUMBER: number,
     TOPIC_SLUG: slug,
     TOPIC_TITLE: title,
     PREV_FOLDER: prev,
-    NEXT_FOLDER: next
+    NEXT_FOLDER: next,
+    TOPIC_CONTENT: topicContentHtml,
+    QUIZ_BUTTON: quizButtonHtml
   };
 
   let out = renderTemplateString(tpl, replacements);
