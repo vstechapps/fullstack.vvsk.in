@@ -11,6 +11,7 @@ on:
       - 'docs/**'
       - 'templates/**'
       - 'scripts/**'
+  workflow_dispatch: {}
 
 jobs:
   apply-templates:
@@ -26,11 +27,20 @@ jobs:
         with:
           node-version: '18'
 
+      # Dry-run for pull requests and non-main pushes (safe preview)
+      - name: Run apply_templates (dry-run)
+        if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref != 'refs/heads/main')
+        run: |
+          node scripts/apply_templates.js --dry-run
+
+      # Actual apply only on manual dispatch or push to main
       - name: Run apply_templates (apply changes)
+        if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
         run: |
           node scripts/apply_templates.js --apply --force
 
-      - name: Commit changes if any
+      - name: Commit changes if any (only runs when apply step ran)
+        if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
