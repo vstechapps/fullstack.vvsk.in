@@ -1,0 +1,10 @@
+{
+  "title": "Quiz: Collections",
+  "timeLimitSeconds": 0,
+  "shuffleQuestions": true,
+  "questions": [
+    { "id": "q1", "type": "single", "question": "Which collection allows duplicates and preserves insertion order?", "options": [{"id":"a","text":"ArrayList"},{"id":"b","text":"HashSet"},{"id":"c","text":"HashMap"}], "correctOptions": ["a"], "explanation": "ArrayList allows duplicates and preserves order." },
+    { "id": "q2", "type": "single", "question": "Which collection type prevents duplicates?", "options": [{"id":"a","text":"Set"},{"id":"b","text":"List"},{"id":"c","text":"Queue"}], "correctOptions": ["a"], "explanation": "Sets do not allow duplicate elements." },
+    { "id": "q3", "type": "single", "question": "Which structure maps keys to values?", "options": [{"id":"a","text":"Map"},{"id":"b","text":"List"},{"id":"c","text":"Set"}], "correctOptions": ["a"], "explanation": "Map stores key-value pairs." }
+  ]
+}

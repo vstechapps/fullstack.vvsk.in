@@ -1,0 +1,10 @@
+{
+  "title": "Quiz: Build & Tooling",
+  "timeLimitSeconds": 0,
+  "shuffleQuestions": true,
+  "questions": [
+    { "id": "q1", "type": "single", "question": "Which build tool uses pom.xml?", "options": [{"id":"a","text":"Maven"},{"id":"b","text":"Gradle"},{"id":"c","text":"Ant"}], "correctOptions": ["a"], "explanation": "Maven uses pom.xml" },
+    { "id": "q2", "type": "single", "question": "Which tool uses build.gradle?", "options": [{"id":"a","text":"Gradle"},{"id":"b","text":"Maven"},{"id":"c","text":"Make"}], "correctOptions": ["a"], "explanation": "Gradle uses build.gradle" },
+    { "id": "q3", "type": "single", "question": "Which command runs tests in Maven?", "options": [{"id":"a","text":"mvn test"},{"id":"b","text":"gradle test"},{"id":"c","text":"java -test"}], "correctOptions": ["a"], "explanation": "Use mvn test for Maven projects." }
+  ]
+}

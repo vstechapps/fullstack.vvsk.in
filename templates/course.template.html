@@ -1,0 +1,54 @@
+<!doctype html>
+<!-- Course landing template (moved to templates/course.template.html) -->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{{COURSE_TITLE}}</title>
+    <style>/* styles copied from course-template.html */body{font-family:Arial,Helvetica,sans-serif;line-height:1.6;padding:24px;max-width:980px;margin:auto;color:#222}header{display:flex;justify-content:space-between;align-items:center}.hero{background:#f4f6f8;padding:18px;border-radius:8px;margin:18px 0}.topics{margin-top:20px}.topic-item{padding:12px;border:1px solid #e6e6e6;border-radius:6px;margin-bottom:8px}.topic-title{font-weight:700}.meta{color:#666;font-size:0.9em}a.button{display:inline-block;padding:10px 14px;background:#0078d4;color:#fff;border-radius:6px;text-decoration:none}</style>
+  </head>
+  <body>
+    <header>
+      <div><a href="../index.html">◀ All courses</a></div>
+      <div><strong>{{COURSE_TITLE}}</strong></div>
+    </header>
+
+    <section class="hero">
+      <h1>{{COURSE_TITLE}}</h1>
+      <p class="meta">Course ID: <code>{{COURSE_ID}}</code></p>
+      <p>{{COURSE_DESCRIPTION}}</p>
+      <p><a class="button" href="../index.html">Browse all courses</a></p>
+    </section>
+
+    <section class="topics">
+      <h2>Topics covered</h2>
+      <div id="topic-list">
+        {{TOPICS}}
+      </div>
+    </section>
+
+    <section class="about">
+      <h2>About this course</h2>
+      <p>Provide a short course overview, prerequisites, estimated time, and learning outcomes here.</p>
+    </section>
+
+    <footer style="margin-top:40px;font-size:0.9em;color:#666">
+      <p>Course landing pages should link to ordered topic folders (NN-slug) and include a `course.json` for metadata when possible.</p>
+    </footer>
+
+    <script>
+      (function(){
+        try{
+          fetch('course.json',{cache:'no-store'}).then(r=>{ if(!r.ok) return; return r.json() }).then(data=>{
+            if(!data || !data.topics) return; const list = document.getElementById('topic-list'); list.innerHTML = '';
+            data.topics.forEach(t=>{
+              const d = document.createElement('div'); d.className='topic-item';
+              d.innerHTML = `<div class="topic-title"><a href="${t.path.replace(/\\/g,'/')}">${t.title || t.id}</a></div>` + (t.description?`<div>${t.description}</div>`:'');
+              list.appendChild(d);
+            });
+          }).catch(()=>{});
+        }catch(e){}
+      })();
+    </script>
+  </body>
+</html>

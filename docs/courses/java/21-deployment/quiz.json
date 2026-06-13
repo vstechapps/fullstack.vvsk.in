@@ -1,0 +1,10 @@
+{
+  "title": "Quiz: Deployment",
+  "timeLimitSeconds": 0,
+  "shuffleQuestions": true,
+  "questions": [
+    { "id": "q1", "type": "single", "question": "Which packaging format is common for Java apps?", "options": [{"id":"a","text":"JAR"},{"id":"b","text":"EXE"},{"id":"c","text":"APK"}], "correctOptions": ["a"], "explanation": "Java applications are commonly packaged as JARs." },
+    { "id": "q2", "type": "single", "question": "Which tool can build a Docker image?", "options": [{"id":"a","text":"Docker CLI"},{"id":"b","text":"Maven only"},{"id":"c","text":"Gradle only"}], "correctOptions": ["a"], "explanation": "Docker CLI or build pipelines create images." },
+    { "id": "q3", "type": "single", "question": "Which environment commonly hosts Java webapps?", "options": [{"id":"a","text":"Application servers/containers"},{"id":"b","text":"Database servers"},{"id":"c","text":"Local file system"}], "correctOptions": ["a"], "explanation": "App servers host web applications." }
+  ]
+}

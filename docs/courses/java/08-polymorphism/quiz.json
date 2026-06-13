@@ -1,0 +1,10 @@
+{
+  "title": "Quiz: Polymorphism",
+  "timeLimitSeconds": 0,
+  "shuffleQuestions": true,
+  "questions": [
+    { "id": "q1", "type": "single", "question": "Polymorphism lets you treat objects of different classes how?", "options": [{"id":"a","text":"Through a common type"},{"id":"b","text":"By copying code"},{"id":"c","text":"By serializing them"}], "correctOptions": ["a"], "explanation": "Use a common interface or superclass to treat different objects uniformly." },
+    { "id": "q2", "type": "single", "question": "Which language feature allows runtime method selection?", "options": [{"id":"a","text":"Dynamic dispatch"},{"id":"b","text":"Static binding"},{"id":"c","text":"Compile-time linking"}], "correctOptions": ["a"], "explanation": "Dynamic dispatch selects method implementation at runtime." },
+    { "id": "q3", "type": "single", "question": "Which construct supports polymorphism in Java?", "options": [{"id":"a","text":"Interfaces"},{"id":"b","text":"Primitive types"},{"id":"c","text":"Packages"}], "correctOptions": ["a"], "explanation": "Interfaces are commonly used for polymorphism." }
+  ]
+}

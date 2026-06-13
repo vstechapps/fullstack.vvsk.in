@@ -1,0 +1,10 @@
+{
+  "title": "Quiz: Modules",
+  "timeLimitSeconds": 0,
+  "shuffleQuestions": true,
+  "questions": [
+    { "id": "q1", "type": "single", "question": "What file defines a module?", "options": [{"id":"a","text":"module-info.java"},{"id":"b","text":"module.xml"},{"id":"c","text":"module.json"}], "correctOptions": ["a"], "explanation": "module-info.java declares module metadata." },
+    { "id": "q2", "type": "single", "question": "Which keyword exports packages from a module?", "options": [{"id":"a","text":"exports"},{"id":"b","text":"public"},{"id":"c","text":"open"}], "correctOptions": ["a"], "explanation": "exports declares packages visible to other modules." },
+    { "id": "q3", "type": "single", "question": "Which keyword declares module dependencies?", "options": [{"id":"a","text":"requires"},{"id":"b","text":"uses"},{"id":"c","text":"imports"}], "correctOptions": ["a"], "explanation": "requires lists module dependencies." }
+  ]
+}

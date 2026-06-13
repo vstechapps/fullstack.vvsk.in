@@ -1,0 +1,10 @@
+{
+  "title": "Quiz: Object Oriented Basics",
+  "timeLimitSeconds": 0,
+  "shuffleQuestions": true,
+  "questions": [
+    { "id": "q1", "type": "single", "question": "What do you call an instance of a class?", "options": [{"id":"a","text":"object"},{"id":"b","text":"module"},{"id":"c","text":"package"}], "correctOptions": ["a"], "explanation": "An instance of a class is an object." },
+    { "id": "q2", "type": "single", "question": "Which keyword restricts direct access to fields?", "options": [{"id":"a","text":"private"},{"id":"b","text":"public"},{"id":"c","text":"open"}], "correctOptions": ["a"], "explanation": "private restricts visibility." },
+    { "id": "q3", "type": "single", "question": "Where do you usually put behavior in OOP?", "options": [{"id":"a","text":"methods"},{"id":"b","text":"folders"},{"id":"c","text":"packages"}], "correctOptions": ["a"], "explanation": "Methods contain behavior." }
+  ]
+}

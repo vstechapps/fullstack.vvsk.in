@@ -1,0 +1,79 @@
+<!doctype html>
+<!--
+  Topic template for Java course.
+  Variables an automation/AI should replace:
+    {{TOPIC_NUMBER}}  -> two-digit number (01..99)
+    {{TOPIC_SLUG}}    -> folder name after the numeric prefix, e.g. intro
+    {{TOPIC_TITLE}}   -> human-friendly title
+    {{PREV_FOLDER}}   -> previous topic folder name or ../index.html for course index
+    {{NEXT_FOLDER}}   -> next topic folder name or ../index.html for course index
+
+  Use this template to create consistent topic pages. Keep structure and IDs to allow automated linking.
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{{TOPIC_NUMBER}} - {{TOPIC_TITLE}}</title>
+    <style>
+      body{font-family:Arial,Helvetica,sans-serif;line-height:1.5;padding:24px;max-width:900px;margin:auto}
+      header{display:flex;justify-content:space-between;align-items:center}
+      nav a{margin:0 8px}
+      .section{margin:20px 0}
+      .quiz-btn{display:inline-block;padding:10px 14px;background:#0078d4;color:#fff;border-radius:6px;text-decoration:none}
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <a href="../index.html">◀ Back to course</a>
+      </div>
+      <div>
+        <strong>Java • Topic {{TOPIC_NUMBER}}</strong>
+      </div>
+    </header>
+
+    <h1 id="title">{{TOPIC_TITLE}}</h1>
+
+    <p class="lead">A clear, friendly explanation of <strong>{{TOPIC_TITLE}}</strong>. Use short paragraphs, examples, and a small code block when helpful. Keep the tone professional and approachable.</p>
+
+    <div class="section" id="overview">
+      <h2>Overview</h2>
+      <p>Brief summary of what this topic covers and why it matters.</p>
+    </div>
+
+    <div class="section" id="details">
+      <h2>Details</h2>
+      <p>Step-by-step explanation, key concepts, and small examples. Use bullet lists when necessary.</p>
+      <pre><code>// Example code
+public class HelloWorld {
+  public static void main(String[] args) {
+    System.out.println("Hello, Java!");
+  }
+}
+      </code></pre>
+    </div>
+
+    <div class="section" id="practice">
+      <h2>Try it</h2>
+      <p>Small tasks or exercises the learner can try. Offer hints and links to related topics.</p>
+    </div>
+
+    <div class="section" id="navigation">
+      <nav>
+        <a href="{{PREV_FOLDER}}">◀ Previous</a>
+        <a href="../index.html">Course index</a>
+        <a href="{{NEXT_FOLDER}}">Next ▶</a>
+      </nav>
+    </div>
+
+    <div class="section">
+      <a class="quiz-btn" href="#" data-quiz="quiz.json">Take Quiz</a>
+    </div>
+
+    <footer style="margin-top:40px;font-size:0.9em;color:#666">
+      <p>Topic {{TOPIC_NUMBER}} — Keep content concise. AI creators: follow this template for consistency and include a `quiz.json` with the schema defined in the repository README when adding assessments.</p>
+    </footer>
+
+  </body>
+</html>

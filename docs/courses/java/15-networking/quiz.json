@@ -1,0 +1,10 @@
+{
+  "title": "Quiz: Networking",
+  "timeLimitSeconds": 0,
+  "shuffleQuestions": true,
+  "questions": [
+    { "id": "q1", "type": "single", "question": "Which class is used for HTTP calls in modern Java?", "options": [{"id":"a","text":"HttpClient"},{"id":"b","text":"URLConnection"},{"id":"c","text":"SocketClient"}], "correctOptions": ["a"], "explanation": "HttpClient is the modern HTTP API." },
+    { "id": "q2", "type": "single", "question": "Which protocol is used for web pages?", "options": [{"id":"a","text":"HTTP(S)"},{"id":"b","text":"FTP"},{"id":"c","text":"SMTP"}], "correctOptions": ["a"], "explanation": "HTTP/HTTPS is used for web traffic." },
+    { "id": "q3", "type": "single", "question": "Which class provides low-level TCP sockets?", "options": [{"id":"a","text":"Socket"},{"id":"b","text":"URL"},{"id":"c","text":"HttpServer"}], "correctOptions": ["a"], "explanation": "Socket is for low-level TCP communication." }
+  ]
+}

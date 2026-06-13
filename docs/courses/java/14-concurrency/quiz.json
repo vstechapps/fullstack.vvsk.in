@@ -1,0 +1,10 @@
+{
+  "title": "Quiz: Concurrency",
+  "timeLimitSeconds": 0,
+  "shuffleQuestions": true,
+  "questions": [
+    { "id": "q1", "type": "single", "question": "Which class manages a pool of threads?", "options": [{"id":"a","text":"ExecutorService"},{"id":"b","text":"ThreadPool"},{"id":"c","text":"Scheduler"}], "correctOptions": ["a"], "explanation": "ExecutorService manages thread pools." },
+    { "id": "q2", "type": "single", "question": "Which keyword prevents simultaneous access to a block?", "options": [{"id":"a","text":"synchronized"},{"id":"b","text":"volatile"},{"id":"c","text":"transient"}], "correctOptions": ["a"], "explanation": "synchronized enforces mutual exclusion." },
+    { "id": "q3", "type": "single", "question": "Which collection helps with concurrent access?", "options": [{"id":"a","text":"ConcurrentHashMap"},{"id":"b","text":"HashMap"},{"id":"c","text":"ArrayList"}], "correctOptions": ["a"], "explanation": "ConcurrentHashMap is thread-safe." }
+  ]
+}

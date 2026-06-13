@@ -1,0 +1,10 @@
+{
+  "title": "Quiz: Exceptions",
+  "timeLimitSeconds": 0,
+  "shuffleQuestions": true,
+  "questions": [
+    { "id": "q1", "type": "single", "question": "Which block is used to handle exceptions?", "options": [{"id":"a","text":"catch"},{"id":"b","text":"try"},{"id":"c","text":"finally"}], "correctOptions": ["a"], "explanation": "catch handles thrown exceptions." },
+    { "id": "q2", "type": "single", "question": "Which block runs regardless of exception?", "options": [{"id":"a","text":"finally"},{"id":"b","text":"catch"},{"id":"c","text":"try"}], "correctOptions": ["a"], "explanation": "finally executes no matter what." },
+    { "id": "q3", "type": "single", "question": "Which exceptions are checked at compile time?", "options": [{"id":"a","text":"Checked exceptions"},{"id":"b","text":"Runtime exceptions"},{"id":"c","text":"Errors"}], "correctOptions": ["a"], "explanation": "Checked exceptions must be declared or handled." }
+  ]
+}

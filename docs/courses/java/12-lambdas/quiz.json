@@ -1,0 +1,10 @@
+{
+  "title": "Quiz: Lambdas",
+  "timeLimitSeconds": 0,
+  "shuffleQuestions": true,
+  "questions": [
+    { "id": "q1", "type": "single", "question": "Which of these represents a lambda expression?", "options": [{"id":"a","text":"(x) -> x * 2"},{"id":"b","text":"function(x)"},{"id":"c","text":"lambda x: x*2"}], "correctOptions": ["a"], "explanation": "(x) -> x * 2 is Java lambda syntax." },
+    { "id": "q2", "type": "single", "question": "Which interface is commonly used with lambdas?", "options": [{"id":"a","text":"Functional interfaces"},{"id":"b","text":"Serializable"},{"id":"c","text":"RunnableOnly"}], "correctOptions": ["a"], "explanation": "Functional interfaces have a single abstract method." },
+    { "id": "q3", "type": "single", "question": "Which feature often pairs with lambdas?", "options": [{"id":"a","text":"Streams"},{"id":"b","text":"Threads"},{"id":"c","text":"Files"}], "correctOptions": ["a"], "explanation": "Lambdas are commonly used with Streams API." }
+  ]
+}

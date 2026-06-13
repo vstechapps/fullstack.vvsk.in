@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>02 - Installation</title>
+    <style>body{font-family:Arial,Helvetica,sans-serif;line-height:1.5;padding:24px;max-width:900px;margin:auto}header{display:flex;justify-content:space-between;align-items:center}nav a{margin:0 8px}.section{margin:20px 0}.quiz-btn{display:inline-block;padding:10px 14px;background:#0078d4;color:#fff;border-radius:6px;text-decoration:none}</style>
+  </head>
+  <body>
+    <header><div><a href="../index.html">◀ Back to course</a></div><div><strong>Java • Topic 02</strong></div></header>
+    <h1 id="title">Installation</h1>
+    <p class="lead">How to install Java, JDK, and configure your environment.</p>
+    <div class="section" id="overview"><h2>Overview</h2><p>Which JDK to pick, PATH setup, and IDE recommendations.</p></div>
+    <div class="section" id="details"><h2>Details</h2><p>Installation steps for Windows, macOS and Linux.</p></div>
+    <div class="section" id="practice"><h2>Try it</h2><p>Install JDK and run <code>java -version</code>.</p></div>
+    <div class="section" id="navigation"><nav><a href="01-intro">◀ Previous</a><a href="../index.html">Course index</a><a href="03-syntax">Next ▶</a></nav></div>
+    <div class="section"><a class="quiz-btn" href="#" data-quiz="quiz.json">Take Quiz</a></div>
+  </body>
+</html>

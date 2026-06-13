@@ -1,0 +1,10 @@
+{
+  "title": "Quiz: Types",
+  "timeLimitSeconds": 0,
+  "shuffleQuestions": true,
+  "questions": [
+    { "id": "q1", "type": "single", "question": "Which of these is a primitive type?", "options": [{"id":"a","text":"int"},{"id":"b","text":"String"},{"id":"c","text":"List"}], "correctOptions": ["a"], "explanation": "int is a primitive type." },
+    { "id": "q2", "type": "single", "question": "Which type represents true/false?", "options": [{"id":"a","text":"boolean"},{"id":"b","text":"bool"},{"id":"c","text":"BooleanType"}], "correctOptions": ["a"], "explanation": "boolean is the primitive boolean type." },
+    { "id": "q3", "type": "single", "question": "Which class is used for text?", "options": [{"id":"a","text":"String"},{"id":"b","text":"Text"},{"id":"c","text":"Char"}], "correctOptions": ["a"], "explanation": "String is Java's text class." }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Quiz: Control Flow",
+  "timeLimitSeconds": 0,
+  "shuffleQuestions": true,
+  "questions": [
+    { "id": "q1", "type": "single", "question": "Which loop is guaranteed to run at least once?", "options": [{"id":"a","text":"do...while"},{"id":"b","text":"for"},{"id":"c","text":"while"}], "correctOptions": ["a"], "explanation": "do...while executes the body before testing the condition." },
+    { "id": "q2", "type": "single", "question": "Which statement stops the current loop iteration and moves to next?", "options": [{"id":"a","text":"break"},{"id":"b","text":"continue"},{"id":"c","text":"return"}], "correctOptions": ["b"], "explanation": "continue moves to the next iteration." },
+    { "id": "q3", "type": "single", "question": "Which construct is best for selection among many discrete values?", "options": [{"id":"a","text":"switch"},{"id":"b","text":"if else"},{"id":"c","text":"for"}], "correctOptions": ["a"], "explanation": "switch is concise for many discrete values." }
+  ]
+}

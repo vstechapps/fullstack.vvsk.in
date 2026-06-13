@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Java - Core and Advanced</title>
+  </head>
+  <body>
+    <h1>Java - Core and Advanced</h1>
+    <ul>
+      <li><a href="01-intro/">01-intro</a></li>
+    </ul>
+  </body>
+</html>

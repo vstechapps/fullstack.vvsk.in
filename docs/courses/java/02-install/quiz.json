@@ -1,0 +1,10 @@
+{
+  "title": "Quiz: Installation",
+  "timeLimitSeconds": 0,
+  "shuffleQuestions": true,
+  "questions": [
+    { "id": "q1", "type": "single", "question": "Which command shows the installed Java version?", "options": [{"id":"a","text":"java -version"},{"id":"b","text":"javac --version"},{"id":"c","text":"java --help"}], "correctOptions": ["a"], "explanation": "Use java -version to check the runtime version." },
+    { "id": "q2", "type": "single", "question": "Which environment variable is commonly set for Java?", "options": [{"id":"a","text":"JAVA_HOME"},{"id":"b","text":"JVM_HOME"},{"id":"c","text":"PATH_HOME"}], "correctOptions": ["a"], "explanation": "JAVA_HOME points to the JDK installation." },
+    { "id": "q3", "type": "single", "question": "Which packaging contains the JDK?", "options": [{"id":"a","text":"JRE"},{"id":"b","text":"JDK"},{"id":"c","text":"JVM"}], "correctOptions": ["b"], "explanation": "JDK includes compiler and tools." }
+  ]
+}

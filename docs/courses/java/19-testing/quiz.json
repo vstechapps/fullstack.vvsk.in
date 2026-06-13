@@ -1,0 +1,10 @@
+{
+  "title": "Quiz: Testing",
+  "timeLimitSeconds": 0,
+  "shuffleQuestions": true,
+  "questions": [
+    { "id": "q1", "type": "single", "question": "Which framework is commonly used for unit testing Java?", "options": [{"id":"a","text":"JUnit"},{"id":"b","text":"Mocha"},{"id":"c","text":"pytest"}], "correctOptions": ["a"], "explanation": "JUnit is a popular Java testing framework." },
+    { "id": "q2", "type": "single", "question": "What is a mock object?", "options": [{"id":"a","text":"A test double that simulates behavior"},{"id":"b","text":"A production instance"},{"id":"c","text":"A static resource"}], "correctOptions": ["a"], "explanation": "Mocks simulate dependencies in tests." },
+    { "id": "q3", "type": "single", "question": "Which test type checks a single unit of code?", "options": [{"id":"a","text":"Unit test"},{"id":"b","text":"Integration test"},{"id":"c","text":"System test"}], "correctOptions": ["a"], "explanation": "Unit tests focus on a single unit of code." }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Quiz: Inheritance",
+  "timeLimitSeconds": 0,
+  "shuffleQuestions": true,
+  "questions": [
+    { "id": "q1", "type": "single", "question": "Which keyword is used for inheritance in Java?", "options": [{"id":"a","text":"extends"},{"id":"b","text":"implements"},{"id":"c","text":"inherits"}], "correctOptions": ["a"], "explanation": "extends denotes class inheritance." },
+    { "id": "q2", "type": "single", "question": "Can Java classes extend multiple classes?", "options": [{"id":"a","text":"No, only single inheritance"},{"id":"b","text":"Yes"},{"id":"c","text":"Only with keyword multiple"}], "correctOptions": ["a"], "explanation": "Java supports single class inheritance." },
+    { "id": "q3", "type": "single", "question": "Which method can be overridden in subclasses?", "options": [{"id":"a","text":"Non-final methods"},{"id":"b","text":"Final methods"},{"id":"c","text":"Private methods"}], "correctOptions": ["a"], "explanation": "Final methods cannot be overridden." }
+  ]
+}

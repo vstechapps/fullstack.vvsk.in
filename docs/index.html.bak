@@ -1,0 +1,11 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>fullstack.vvsk.in - Courses</title>
+  </head>
+  <body>
+    <h1>fullstack.vvsk.in - Courses</h1>
+    <p>This is a placeholder index. Courses live under <code>docs/courses/</code>.</p>
+  </body>
+</html>

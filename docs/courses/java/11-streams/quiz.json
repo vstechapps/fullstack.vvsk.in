@@ -1,0 +1,10 @@
+{
+  "title": "Quiz: Streams",
+  "timeLimitSeconds": 0,
+  "shuffleQuestions": true,
+  "questions": [
+    { "id": "q1", "type": "single", "question": "Which operation is a terminal stream operation?", "options": [{"id":"a","text":"collect"},{"id":"b","text":"map"},{"id":"c","text":"filter"}], "correctOptions": ["a"], "explanation": "collect is a terminal operation." },
+    { "id": "q2", "type": "single", "question": "Which is an intermediate operation?", "options": [{"id":"a","text":"filter"},{"id":"b","text":"forEach"},{"id":"c","text":"reduce"}], "correctOptions": ["a"], "explanation": "filter is intermediate and returns a new stream." },
+    { "id": "q3", "type": "single", "question": "Streams are typically used to process what?", "options": [{"id":"a","text":"Collections"},{"id":"b","text":"Files only"},{"id":"c","text":"Sockets"}], "correctOptions": ["a"], "explanation": "Streams are commonly used with collections." }
+  ]
+}

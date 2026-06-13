@@ -1,0 +1,10 @@
+{
+  "title": "Quiz: Security",
+  "timeLimitSeconds": 0,
+  "shuffleQuestions": true,
+  "questions": [
+    { "id": "q1", "type": "single", "question": "Which practice helps prevent SQL injection?", "options": [{"id":"a","text":"Use prepared statements"},{"id":"b","text":"Concatenate strings"},{"id":"c","text":"Disable validation"}], "correctOptions": ["a"], "explanation": "Prepared statements parameterize inputs and avoid injection." },
+    { "id": "q2", "type": "single", "question": "Which input should be validated?", "options": [{"id":"a","text":"All external input"},{"id":"b","text":"Only files"},{"id":"c","text":"No input"}], "correctOptions": ["a"], "explanation": "Validate all untrusted input." },
+    { "id": "q3", "type": "single", "question": "Which library helps with secure password hashing?", "options": [{"id":"a","text":"BCrypt"},{"id":"b","text":"PlainText"},{"id":"c","text":"MD5Simple"}], "correctOptions": ["a"], "explanation": "BCrypt is recommended for password hashing." }
+  ]
+}

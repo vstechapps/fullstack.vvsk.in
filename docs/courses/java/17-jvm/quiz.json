@@ -1,0 +1,10 @@
+{
+  "title": "Quiz: JVM Internals",
+  "timeLimitSeconds": 0,
+  "shuffleQuestions": true,
+  "questions": [
+    { "id": "q1", "type": "single", "question": "Where does the JVM store object instances?", "options": [{"id":"a","text":"Heap"},{"id":"b","text":"Stack"},{"id":"c","text":"Method Area"}], "correctOptions": ["a"], "explanation": "Objects live on the heap." },
+    { "id": "q2", "type": "single", "question": "Which component executes bytecode?", "options": [{"id":"a","text":"JVM"},{"id":"b","text":"JDK"},{"id":"c","text":"JRE only"}], "correctOptions": ["a"], "explanation": "JVM executes bytecode produced by javac." },
+    { "id": "q3", "type": "single", "question": "What is garbage collection?", "options": [{"id":"a","text":"Automatic memory reclamation"},{"id":"b","text":"Manual free"},{"id":"c","text":"Disk cleanup"}], "correctOptions": ["a"], "explanation": "GC reclaims unused memory automatically." }
+  ]
+}

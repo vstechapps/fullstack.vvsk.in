@@ -1,0 +1,10 @@
+{
+  "title": "Quiz: I/O",
+  "timeLimitSeconds": 0,
+  "shuffleQuestions": true,
+  "questions": [
+    { "id": "q1", "type": "single", "question": "Which construct simplifies closing streams?", "options": [{"id":"a","text":"try-with-resources"},{"id":"b","text":"finally-only"},{"id":"c","text":"closeAll"}], "correctOptions": ["a"], "explanation": "try-with-resources automatically closes resources." },
+    { "id": "q2", "type": "single", "question": "Which class reads text line-by-line?", "options": [{"id":"a","text":"BufferedReader"},{"id":"b","text":"FileWriter"},{"id":"c","text":"OutputStream"}], "correctOptions": ["a"], "explanation": "BufferedReader supports readLine()." },
+    { "id": "q3", "type": "single", "question": "Which class writes bytes to a file?", "options": [{"id":"a","text":"FileOutputStream"},{"id":"b","text":"FileReader"},{"id":"c","text":"BufferedReader"}], "correctOptions": ["a"], "explanation": "FileOutputStream writes raw bytes." }
+  ]
+}

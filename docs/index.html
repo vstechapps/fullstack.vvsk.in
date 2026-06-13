@@ -1,0 +1,83 @@
+<!doctype html>
+<!--
+  Home / Landing page template (moved to templates/home.template.html)
+  Usage: copy this file to docs/index.html (or use its HTML as the basis) when regenerating the site.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Fullstack Accelerator — fullstack.vvsk.in</title>
+    <style>/* copied styles from root home-template.html */:root{--brand:#0078d4;--muted:#666;--card:#fff}body{font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;margin:0;color:#222;background:#f7f9fb}.container{max-width:1100px;margin:0 auto;padding:28px}header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}.logo{display:flex;align-items:center;gap:12px}.logo .mark{width:42px;height:42px;background:var(--brand);border-radius:8px;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}h1{margin:8px 0 6px;font-size:28px}p.lead{color:var(--muted);margin:0 0 18px}.hero{background:linear-gradient(180deg,#fff,#fbfcfe);padding:26px;border-radius:12px;box-shadow:0 6px 20px rgba(18,38,63,0.06)}.controls{display:flex;gap:12px;margin-top:14px}.cta{background:var(--brand);color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none}.search{flex:1;display:flex}.search input{flex:1;padding:10px 12px;border-radius:8px;border:1px solid #e6eef8}.courses-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:20px}.course-card{background:var(--card);padding:16px;border-radius:10px;box-shadow:0 6px 18px rgba(18,38,63,0.04);display:flex;flex-direction:column;gap:10px}.course-card h3{margin:0;font-size:16px}.course-meta{color:var(--muted);font-size:13px}.course-topics{margin-top:8px;font-size:13px;color:#444}footer{margin:36px 0 12px;color:var(--muted);font-size:13px}@media (max-width:560px){h1{font-size:22px}}</style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo">
+          <div class="mark">FA</div>
+          <div>
+            <div style="font-weight:700">Fullstack Accelerator</div>
+            <div style="font-size:12px;color:var(--muted)">fullstack.vvsk.in — learn fullstack from fundamentals to projects</div>
+          </div>
+        </div>
+        <nav>
+          <a href="#courses" style="color:var(--muted);text-decoration:none">Courses</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <h1>Learn fullstack development — curated paths, hands-on projects, and assessments</h1>
+        <p class="lead">Structured learning paths (Fullstack, MERN, MEAN) with topic-level quizzes, exercises, and project-based milestones. Use the search to find courses or topics quickly.</p>
+        <div class="controls">
+          <div class="search">
+            <input id="home-search" placeholder="Search courses or topics (example: Java, React, Node)" />
+          </div>
+          <a class="cta" href="#courses">Browse courses</a>
+        </div>
+      </section>
+
+      <section id="courses">
+        <h2 style="margin-top:22px">Available courses</h2>
+        <div id="courses-grid" class="courses-grid">
+          <!-- course cards injected here -->
+        </div>
+        <div id="no-courses" style="display:none;color:var(--muted);margin-top:12px">No courses found.</div>
+      </section>
+
+      <footer>
+        <div>© <span id="year"></span> Fullstack Accelerator — curated by vstechapps</div>
+      </footer>
+    </div>
+
+    <script>
+      (function(){
+        document.getElementById('year').textContent = new Date().getFullYear();
+        const candidates = ['./courses.json', 'courses.json', '../docs/courses.json', '/docs/courses.json'];
+        function fetchFirst(list){ if (!list.length) return Promise.reject('no candidates'); const url = list[0]; return fetch(url).then(r=>{ if (!r.ok) throw new Error('not found'); return r.json() }).catch(()=>fetchFirst(list.slice(1))); }
+        fetchFirst(candidates).then(data=>{
+          const grid = document.getElementById('courses-grid');
+          const courses = data.courses || [];
+          if (!courses.length){ document.getElementById('no-courses').style.display='block'; return; }
+          courses.forEach(c=>{
+            const el = document.createElement('div'); el.className='course-card';
+            const title = document.createElement('h3');
+            const link = document.createElement('a');
+            const p = (c.path || '').replace(/\\/g, '/').replace(/^docs\//, '');
+            link.href = p + '/index.html';
+            link.textContent = c.title || c.id;
+            title.appendChild(link);
+            el.appendChild(title);
+            const meta = document.createElement('div'); meta.className='course-meta'; meta.textContent = c.id || '';
+            el.appendChild(meta);
+            const topics = document.createElement('div'); topics.className='course-topics'; topics.textContent = 'Topics: (loaded on course page)';
+            el.appendChild(topics);
+            grid.appendChild(el);
+          });
+        }).catch(()=>{ document.getElementById('no-courses').style.display='block'; });
+
+        const input = document.getElementById('home-search');
+        input.addEventListener('input', function(){ const v = this.value.trim().toLowerCase(); const cards = document.querySelectorAll('.course-card'); cards.forEach(card => { const txt = card.textContent.toLowerCase(); card.style.display = txt.indexOf(v) !== -1 ? '' : 'none'; }); });
+      })();
+    </script>
+  </body>
+</html>

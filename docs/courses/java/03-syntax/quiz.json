@@ -1,0 +1,10 @@
+{
+  "title": "Quiz: Syntax",
+  "timeLimitSeconds": 0,
+  "shuffleQuestions": true,
+  "questions": [
+    { "id": "q1", "type": "single", "question": "Which symbol denotes single-line comments in Java?", "options": [{"id":"a","text":"//"},{"id":"b","text":"/*"},{"id":"c","text":"#"}], "correctOptions": ["a"], "explanation": "Use // for single-line comments." },
+    { "id": "q2", "type": "single", "question": "What is the entry method signature for Java programs?", "options": [{"id":"a","text":"public static void main(String[] args)"},{"id":"b","text":"public void main()"},{"id":"c","text":"static int main(String args)"}], "correctOptions": ["a"], "explanation": "Standard main signature uses String[] args." },
+    { "id": "q3", "type": "single", "question": "Which keyword declares a class?", "options": [{"id":"a","text":"class"},{"id":"b","text":"struct"},{"id":"c","text":"module"}], "correctOptions": ["a"], "explanation": "Use class to declare a class." }
+  ]
+}

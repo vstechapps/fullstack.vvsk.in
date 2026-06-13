@@ -1,0 +1,10 @@
+{
+  "generatedAt": "2026-06-13T18:28:31.149Z",
+  "courses": [
+    {
+      "id": "java",
+      "title": "Java - Core and Advanced",
+      "path": "docs\\courses\\java"
+    }
+  ]
+}
