@@ -1,56 +1,85 @@
 .nav {
-  position: sticky;
+  position: fixed;
   top: 0;
+  right: 0;
+  left: 0;
   z-index: 20;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(11, 15, 24, 0.82);
-  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-color);
+  background: rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(10px);
+  padding: 16px 0;
+}
+
+.nav + main {
+  padding-top: var(--nav-height);
 }
 
 .nav-inner {
   display: flex;
-  min-height: var(--nav-height);
+  min-height: 38px;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-lg);
+  gap: var(--space-xl);
 }
 
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-sm);
   color: var(--text-primary);
-  font-weight: 900;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.6;
 }
 
 .brand-mark {
-  display: grid;
-  width: 2rem;
-  height: 2rem;
-  place-items: center;
-  border-radius: var(--radius-sm);
-  background: linear-gradient(135deg, var(--primary-400), var(--accent-500));
-  color: var(--text-inverse);
+  display: none;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: 2rem;
 }
 
 .nav-link {
-  border-radius: var(--radius-sm);
   color: var(--text-secondary);
-  font-size: 0.925rem;
-  font-weight: 700;
-  padding: 0.55rem 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.2;
+  padding: 0;
+  transition: color var(--duration-fast) var(--ease-standard);
 }
 
 .nav-link:hover,
 .nav-link.is-active {
-  background: var(--bg-soft);
   color: var(--text-primary);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav .btn {
+  min-height: 35px;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+}
+
+.nav .btn-primary {
+  --btn-bg: #38bdf8;
+  --btn-border: #38bdf8;
+  --btn-color: #0f172a;
+  box-shadow: none;
+}
+
+.nav .btn-subtle {
+  --btn-bg: transparent;
+  --btn-border: #38bdf8;
+  color: #38bdf8;
 }
 
 .side-nav {
@@ -72,15 +101,27 @@
 }
 
 @media (max-width: 760px) {
+  .nav {
+    padding: var(--space-md) 0;
+  }
+
+  .nav + main {
+    padding-top: 130px;
+  }
+
   .nav-inner {
     align-items: flex-start;
     flex-direction: column;
-    padding-block: var(--space-md);
+    gap: var(--space-md);
   }
 
   .nav-links {
     width: 100%;
     overflow-x: auto;
     padding-bottom: var(--space-xs);
+  }
+
+  .nav-actions {
+    width: 100%;
   }
 }

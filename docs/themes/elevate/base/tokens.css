@@ -86,8 +86,8 @@
   /* Layout */
   --container-sm: 760px;
   --container-md: 1040px;
-  --container-lg: 1220px;
-  --nav-height: 68px;
+  --container-lg: 1200px;
+  --nav-height: 71px;
 
   /* Motion */
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
