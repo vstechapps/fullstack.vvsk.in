@@ -9,11 +9,7 @@
   <body>
     <nav class="nav">
       <div class="container nav-inner">
-        <a class="brand" href="index.html"><span class="brand-mark">FS</span><span>The Fullstack</span></a>
-        <div class="nav-actions">
-          <a class="btn btn-subtle btn-sm" href="#">Login</a>
-          <a class="btn btn-primary btn-sm" href="#">Get Started</a>
-        </div>
+        <a class="brand" href="index.html"><span class="brand-mark">FS</span><span>Elevate</span></a>
       </div>
     </nav>
 
@@ -31,12 +27,33 @@
 
       <section class="docs-main stack-lg">
         <header class="docs-header">
-          <span class="text-caption">Components</span>
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Elevate</a>
+            <span class="breadcrumb-separator">/</span>
+            <span>Components</span>
+            <span class="breadcrumb-separator">/</span>
+            <span aria-current="page">Forms</span>
+          </nav>
+          <span class="docs-kicker">Component</span>
           <h1>Forms</h1>
           <p class="text-lead">Inputs for onboarding, lab submission, code review requests, and cohort settings.</p>
         </header>
 
+        <section class="component-note">
+          <h3>Usage</h3>
+          <p>Use form controls for clear data entry and configuration flows where learners need confidence before submitting.</p>
+          <ul>
+            <li>Pair every input with a visible label.</li>
+            <li>Use hints for helpful context, not required-field noise.</li>
+            <li>Use segmented controls for compact, mutually exclusive choices.</li>
+          </ul>
+        </section>
+
         <article class="example-card">
+          <div class="example-header">
+            <span class="example-title">Input stack</span>
+            <span class="badge badge-primary">Form controls</span>
+          </div>
           <div class="example-preview">
             <form class="card">
               <div class="card-body">
@@ -77,6 +94,10 @@
         </article>
 
         <article class="example-card">
+          <div class="example-header">
+            <span class="example-title">Choice controls</span>
+            <span class="badge badge-primary">Preferences</span>
+          </div>
           <div class="example-preview">
             <div class="stack">
               <div class="segmented">

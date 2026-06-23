@@ -9,11 +9,7 @@
   <body>
     <nav class="nav">
       <div class="container nav-inner">
-        <a class="brand" href="index.html"><span class="brand-mark">FS</span><span>The Fullstack</span></a>
-        <div class="nav-actions">
-          <a class="btn btn-subtle btn-sm" href="#">Login</a>
-          <a class="btn btn-primary btn-sm" href="#">Get Started</a>
-        </div>
+        <a class="brand" href="index.html"><span class="brand-mark">FS</span><span>Elevate</span></a>
       </div>
     </nav>
 
@@ -31,12 +27,33 @@
 
       <section class="docs-main stack-lg">
         <header class="docs-header">
-          <span class="text-caption">Components</span>
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Elevate</a>
+            <span class="breadcrumb-separator">/</span>
+            <span>Components</span>
+            <span class="breadcrumb-separator">/</span>
+            <span aria-current="page">Badges</span>
+          </nav>
+          <span class="docs-kicker">Component</span>
           <h1>Badges</h1>
           <p class="text-lead">Compact status, reward, and skill markers for feedback-rich learning flows.</p>
         </header>
 
+        <section class="component-note">
+          <h3>Usage</h3>
+          <p>Use badges to label state, status, reward, and level metadata without competing with primary actions.</p>
+          <ul>
+            <li>Keep badge copy short and scannable.</li>
+            <li>Use XP and gold badges only for rewards or progress outcomes.</li>
+            <li>Use level pills for learner identity or role-like achievement states.</li>
+          </ul>
+        </section>
+
         <article class="example-card">
+          <div class="example-header">
+            <span class="example-title">Status badges</span>
+            <span class="badge badge-primary">States</span>
+          </div>
           <div class="example-preview">
             <div class="cluster">
               <span class="badge">Default</span>
@@ -60,6 +77,10 @@
         </article>
 
         <article class="example-card">
+          <div class="example-header">
+            <span class="example-title">Level pills</span>
+            <span class="badge badge-primary">Identity</span>
+          </div>
           <div class="example-preview">
             <div class="cluster">
               <span class="level-pill"><span class="level-dot">4</span>React Ranger</span>

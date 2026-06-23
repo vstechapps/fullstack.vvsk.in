@@ -9,11 +9,7 @@
   <body>
     <nav class="nav">
       <div class="container nav-inner">
-        <a class="brand" href="index.html"><span class="brand-mark">FS</span><span>The Fullstack</span></a>
-        <div class="nav-actions">
-          <a class="btn btn-subtle btn-sm" href="#">Login</a>
-          <a class="btn btn-primary btn-sm" href="#">Get Started</a>
-        </div>
+        <a class="brand" href="index.html"><span class="brand-mark">FS</span><span>Elevate</span></a>
       </div>
     </nav>
 
@@ -31,12 +27,33 @@
 
       <section class="docs-main stack-lg">
         <header class="docs-header">
-          <span class="text-caption">Product patterns</span>
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Elevate</a>
+            <span class="breadcrumb-separator">/</span>
+            <span>Patterns</span>
+            <span class="breadcrumb-separator">/</span>
+            <span aria-current="page">Gamification</span>
+          </nav>
+          <span class="docs-kicker">Pattern</span>
           <h1>Gamification</h1>
           <p class="text-lead">Subtle motivation systems for serious learners: visible progress, meaningful rewards, and challenge framing.</p>
         </header>
 
+        <section class="component-note">
+          <h3>Usage</h3>
+          <p>Use gamification patterns to clarify momentum and mastery, not to overload the interface with decoration.</p>
+          <ul>
+            <li>Show current progress and next action together.</li>
+            <li>Use rings and paths for meaningful skill or module progression.</li>
+            <li>Use alerts for time-sensitive learning nudges and review reminders.</li>
+          </ul>
+        </section>
+
         <article class="example-card">
+          <div class="example-header">
+            <span class="example-title">Learning path</span>
+            <span class="badge badge-primary">Progression</span>
+          </div>
           <div class="example-preview">
             <div class="card">
               <div class="card-header">
@@ -74,6 +91,10 @@
         </article>
 
         <article class="example-card">
+          <div class="example-header">
+            <span class="example-title">Mastery and nudge</span>
+            <span class="badge badge-primary">Motivation</span>
+          </div>
           <div class="example-preview">
             <div class="grid grid-2">
               <article class="card">
@@ -109,6 +130,10 @@
         </article>
 
         <article class="example-card">
+          <div class="example-header">
+            <span class="example-title">Leaderboard table</span>
+            <span class="badge badge-primary">Competition</span>
+          </div>
           <div class="example-preview">
             <div class="table-wrap">
               <table class="table">
