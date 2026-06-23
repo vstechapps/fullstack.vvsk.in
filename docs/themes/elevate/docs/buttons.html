@@ -10,29 +10,34 @@
     <nav class="nav">
       <div class="container nav-inner">
         <a class="brand" href="index.html"><span class="brand-mark">FS</span><span>The Fullstack</span></a>
-        <div class="nav-links">
-          <a class="nav-link" href="index.html">Overview</a>
-          <a class="nav-link is-active" href="buttons.html">Buttons</a>
-          <a class="nav-link" href="cards.html">Cards</a>
-          <a class="nav-link" href="forms.html">Forms</a>
-          <a class="nav-link" href="badges.html">Badges</a>
-          <a class="nav-link" href="gamification.html">Gamification</a>
-        </div>
         <div class="nav-actions">
           <a class="btn btn-subtle btn-sm" href="#">Login</a>
           <a class="btn btn-primary btn-sm" href="#">Get Started</a>
         </div>
       </div>
     </nav>
-    <main class="section">
-      <div class="container-md stack-lg">
-        <div class="stack">
+
+    <main class="docs-shell">
+      <aside class="docs-sidebar">
+        <nav class="side-nav" aria-label="Component docs">
+          <a href="index.html">Overview</a>
+          <a class="is-active" href="buttons.html">Buttons</a>
+          <a href="cards.html">Cards</a>
+          <a href="forms.html">Forms</a>
+          <a href="badges.html">Badges</a>
+          <a href="gamification.html">Gamification</a>
+        </nav>
+      </aside>
+
+      <section class="docs-main stack-lg">
+        <header class="docs-header">
           <span class="text-caption">Components</span>
           <h1>Buttons</h1>
-          <p class="text-lead">Action styles for lessons, quests, labs, payments, and account flows.</p>
-        </div>
-        <section class="card">
-          <div class="card-body stack-lg">
+          <p class="text-lead">Action styles for lessons, quests, labs, account flows, and destructive operations.</p>
+        </header>
+
+        <article class="example-card">
+          <div class="example-preview">
             <div class="cluster">
               <button class="btn btn-primary">Start lesson</button>
               <button class="btn btn-success">Submit lab</button>
@@ -40,20 +45,50 @@
               <button class="btn btn-ghost">Skip</button>
               <button class="btn btn-danger">Reset attempt</button>
             </div>
+          </div>
+          <div class="example-code">
+            <pre><code>&lt;button class="btn btn-primary"&gt;Start lesson&lt;/button&gt;
+&lt;button class="btn btn-success"&gt;Submit lab&lt;/button&gt;
+&lt;button class="btn btn-subtle"&gt;Save draft&lt;/button&gt;
+&lt;button class="btn btn-ghost"&gt;Skip&lt;/button&gt;
+&lt;button class="btn btn-danger"&gt;Reset attempt&lt;/button&gt;</code></pre>
+          </div>
+        </article>
+
+        <article class="example-card">
+          <div class="example-preview">
             <div class="cluster">
               <button class="btn btn-primary btn-sm">Small</button>
               <button class="btn btn-primary">Default</button>
               <button class="btn btn-primary btn-lg">Large</button>
               <button class="btn btn-icon" aria-label="Open command menu">C</button>
             </div>
+          </div>
+          <div class="example-code">
+            <pre><code>&lt;button class="btn btn-primary btn-sm"&gt;Small&lt;/button&gt;
+&lt;button class="btn btn-primary"&gt;Default&lt;/button&gt;
+&lt;button class="btn btn-primary btn-lg"&gt;Large&lt;/button&gt;
+&lt;button class="btn btn-icon" aria-label="Open command menu"&gt;C&lt;/button&gt;</code></pre>
+          </div>
+        </article>
+
+        <article class="example-card">
+          <div class="example-preview">
             <div class="btn-group" aria-label="Lesson view">
               <button class="btn btn-subtle">Theory</button>
               <button class="btn btn-subtle">Practice</button>
               <button class="btn btn-subtle">Review</button>
             </div>
           </div>
-        </section>
-      </div>
+          <div class="example-code">
+            <pre><code>&lt;div class="btn-group" aria-label="Lesson view"&gt;
+  &lt;button class="btn btn-subtle"&gt;Theory&lt;/button&gt;
+  &lt;button class="btn btn-subtle"&gt;Practice&lt;/button&gt;
+  &lt;button class="btn btn-subtle"&gt;Review&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </article>
+      </section>
     </main>
   </body>
 </html>

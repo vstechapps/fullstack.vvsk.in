@@ -10,59 +10,96 @@
     <nav class="nav">
       <div class="container nav-inner">
         <a class="brand" href="index.html"><span class="brand-mark">FS</span><span>The Fullstack</span></a>
-        <div class="nav-links">
-          <a class="nav-link" href="index.html">Overview</a>
-          <a class="nav-link" href="buttons.html">Buttons</a>
-          <a class="nav-link" href="cards.html">Cards</a>
-          <a class="nav-link is-active" href="forms.html">Forms</a>
-          <a class="nav-link" href="badges.html">Badges</a>
-          <a class="nav-link" href="gamification.html">Gamification</a>
-        </div>
         <div class="nav-actions">
           <a class="btn btn-subtle btn-sm" href="#">Login</a>
           <a class="btn btn-primary btn-sm" href="#">Get Started</a>
         </div>
       </div>
     </nav>
-    <main class="section">
-      <div class="container-sm stack-lg">
-        <div class="stack">
+
+    <main class="docs-shell">
+      <aside class="docs-sidebar">
+        <nav class="side-nav" aria-label="Component docs">
+          <a href="index.html">Overview</a>
+          <a href="buttons.html">Buttons</a>
+          <a href="cards.html">Cards</a>
+          <a class="is-active" href="forms.html">Forms</a>
+          <a href="badges.html">Badges</a>
+          <a href="gamification.html">Gamification</a>
+        </nav>
+      </aside>
+
+      <section class="docs-main stack-lg">
+        <header class="docs-header">
           <span class="text-caption">Components</span>
           <h1>Forms</h1>
           <p class="text-lead">Inputs for onboarding, lab submission, code review requests, and cohort settings.</p>
-        </div>
-        <form class="card">
-          <div class="card-body">
-            <div class="field">
-              <label for="goal">Learning goal</label>
-              <input class="input" id="goal" placeholder="Build production-ready fullstack apps">
-              <span class="field-hint">Used to personalize quests and review cadence.</span>
-            </div>
-            <div class="field">
-              <label for="track">Track</label>
-              <select class="select" id="track">
-                <option>Fullstack TypeScript</option>
-                <option>Backend Engineering</option>
-                <option>Frontend Systems</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="notes">Lab notes</label>
-              <textarea class="textarea" id="notes" placeholder="What tradeoffs did you make?"></textarea>
-            </div>
-            <div class="segmented">
-              <button class="segment is-active" type="button">Daily</button>
-              <button class="segment" type="button">Weekends</button>
-              <button class="segment" type="button">Custom</button>
-            </div>
-            <label class="check-row"><input type="checkbox" checked> Include streak reminders</label>
+        </header>
+
+        <article class="example-card">
+          <div class="example-preview">
+            <form class="card">
+              <div class="card-body">
+                <div class="field">
+                  <label for="goal">Learning goal</label>
+                  <input class="input" id="goal" placeholder="Build production-ready fullstack apps">
+                  <span class="field-hint">Used to personalize quests and review cadence.</span>
+                </div>
+                <div class="field">
+                  <label for="track">Track</label>
+                  <select class="select" id="track">
+                    <option>Fullstack TypeScript</option>
+                    <option>Backend Engineering</option>
+                    <option>Frontend Systems</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="notes">Lab notes</label>
+                  <textarea class="textarea" id="notes" placeholder="What tradeoffs did you make?"></textarea>
+                </div>
+              </div>
+            </form>
           </div>
-          <div class="card-footer">
-            <button class="btn btn-ghost" type="button">Cancel</button>
-            <button class="btn btn-primary" type="submit">Save plan</button>
+          <div class="example-code">
+            <pre><code>&lt;div class="field"&gt;
+  &lt;label for="goal"&gt;Learning goal&lt;/label&gt;
+  &lt;input class="input" id="goal" placeholder="Build production-ready fullstack apps"&gt;
+  &lt;span class="field-hint"&gt;Used to personalize quests and review cadence.&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class="field"&gt;
+  &lt;label for="track"&gt;Track&lt;/label&gt;
+  &lt;select class="select" id="track"&gt;
+    &lt;option&gt;Fullstack TypeScript&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/div&gt;</code></pre>
           </div>
-        </form>
-      </div>
+        </article>
+
+        <article class="example-card">
+          <div class="example-preview">
+            <div class="stack">
+              <div class="segmented">
+                <button class="segment is-active" type="button">Daily</button>
+                <button class="segment" type="button">Weekends</button>
+                <button class="segment" type="button">Custom</button>
+              </div>
+              <label class="check-row"><input type="checkbox" checked> Include streak reminders</label>
+            </div>
+          </div>
+          <div class="example-code">
+            <pre><code>&lt;div class="segmented"&gt;
+  &lt;button class="segment is-active" type="button"&gt;Daily&lt;/button&gt;
+  &lt;button class="segment" type="button"&gt;Weekends&lt;/button&gt;
+  &lt;button class="segment" type="button"&gt;Custom&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;label class="check-row"&gt;
+  &lt;input type="checkbox" checked&gt; Include streak reminders
+&lt;/label&gt;</code></pre>
+          </div>
+        </article>
+      </section>
     </main>
   </body>
 </html>

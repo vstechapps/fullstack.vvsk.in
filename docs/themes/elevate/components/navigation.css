@@ -106,12 +106,12 @@
   }
 
   .nav + main {
-    padding-top: 130px;
+    padding-top: var(--nav-height);
   }
 
   .nav-inner {
-    align-items: flex-start;
-    flex-direction: column;
+    align-items: center;
+    flex-direction: row;
     gap: var(--space-md);
   }
 
@@ -122,6 +122,6 @@
   }
 
   .nav-actions {
-    width: 100%;
+    display: none;
   }
 }

@@ -10,53 +10,85 @@
     <nav class="nav">
       <div class="container nav-inner">
         <a class="brand" href="index.html"><span class="brand-mark">FS</span><span>The Fullstack</span></a>
-        <div class="nav-links">
-          <a class="nav-link" href="index.html">Overview</a>
-          <a class="nav-link" href="buttons.html">Buttons</a>
-          <a class="nav-link is-active" href="cards.html">Cards</a>
-          <a class="nav-link" href="forms.html">Forms</a>
-          <a class="nav-link" href="badges.html">Badges</a>
-          <a class="nav-link" href="gamification.html">Gamification</a>
-        </div>
         <div class="nav-actions">
           <a class="btn btn-subtle btn-sm" href="#">Login</a>
           <a class="btn btn-primary btn-sm" href="#">Get Started</a>
         </div>
       </div>
     </nav>
-    <main class="section">
-      <div class="container stack-lg">
-        <div class="stack">
+
+    <main class="docs-shell">
+      <aside class="docs-sidebar">
+        <nav class="side-nav" aria-label="Component docs">
+          <a href="index.html">Overview</a>
+          <a href="buttons.html">Buttons</a>
+          <a class="is-active" href="cards.html">Cards</a>
+          <a href="forms.html">Forms</a>
+          <a href="badges.html">Badges</a>
+          <a href="gamification.html">Gamification</a>
+        </nav>
+      </aside>
+
+      <section class="docs-main stack-lg">
+        <header class="docs-header">
           <span class="text-caption">Components</span>
           <h1>Cards</h1>
-          <p class="text-lead">Reusable surfaces for lessons, skill stats, quests, and progress checkpoints.</p>
-        </div>
-        <div class="grid grid-3">
-          <article class="card lesson-card card-interactive" data-status="complete">
-            <div class="cluster"><span class="badge badge-success">Complete</span><span class="badge badge-gold">+80 XP</span></div>
-            <h3>HTTP fundamentals</h3>
-            <p>Requests, responses, headers, caching, and status code strategy.</p>
-            <div class="progress"><div class="progress-bar" style="width: 100%;"></div></div>
-          </article>
-          <article class="card lesson-card card-interactive">
-            <div class="cluster"><span class="badge badge-primary">Active</span><span class="badge badge-xp">+120 XP</span></div>
-            <h3>Node API patterns</h3>
-            <p>Controllers, services, validation, logging, and clean boundaries.</p>
-            <div class="progress"><div class="progress-bar" style="width: 64%;"></div></div>
-          </article>
-          <article class="card lesson-card card-interactive">
-            <div class="cluster"><span class="badge">Locked</span><span class="badge badge-warning">Boss lab</span></div>
-            <h3>Production deploy</h3>
-            <p>Ship a typed API with observability and rollback practice.</p>
-            <div class="progress"><div class="progress-bar-xp progress-bar" style="width: 22%;"></div></div>
-          </article>
-        </div>
-        <div class="grid grid-3">
-          <div class="stat-card surface"><span class="stat-label">XP this week</span><span class="stat-value">1,420</span><span class="text-small">Top 8% of cohort</span></div>
-          <div class="stat-card surface"><span class="stat-label">Mastery</span><span class="stat-value">84%</span><span class="text-small">Backend track</span></div>
-          <div class="stat-card surface"><span class="stat-label">Reviews</span><span class="stat-value">12</span><span class="text-small">Pending flashcards</span></div>
-        </div>
-      </div>
+          <p class="text-lead">Reusable surfaces for lessons, stats, quests, and progress checkpoints.</p>
+        </header>
+
+        <article class="example-card">
+          <div class="example-preview">
+            <div class="grid grid-3">
+              <article class="card lesson-card card-interactive" data-status="complete">
+                <div class="cluster"><span class="badge badge-success">Complete</span><span class="badge badge-gold">+80 XP</span></div>
+                <h3>HTTP fundamentals</h3>
+                <p>Requests, responses, headers, caching, and status code strategy.</p>
+                <div class="progress"><div class="progress-bar" style="width: 100%;"></div></div>
+              </article>
+              <article class="card lesson-card card-interactive">
+                <div class="cluster"><span class="badge badge-primary">Active</span><span class="badge badge-xp">+120 XP</span></div>
+                <h3>Node API patterns</h3>
+                <p>Controllers, services, validation, logging, and clean boundaries.</p>
+                <div class="progress"><div class="progress-bar" style="width: 64%;"></div></div>
+              </article>
+              <article class="card lesson-card card-interactive">
+                <div class="cluster"><span class="badge">Locked</span><span class="badge badge-warning">Boss lab</span></div>
+                <h3>Production deploy</h3>
+                <p>Ship a typed API with observability and rollback practice.</p>
+                <div class="progress"><div class="progress-bar progress-bar-xp" style="width: 22%;"></div></div>
+              </article>
+            </div>
+          </div>
+          <div class="example-code">
+            <pre><code>&lt;article class="card lesson-card card-interactive" data-status="complete"&gt;
+  &lt;div class="cluster"&gt;
+    &lt;span class="badge badge-success"&gt;Complete&lt;/span&gt;
+    &lt;span class="badge badge-gold"&gt;+80 XP&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;h3&gt;HTTP fundamentals&lt;/h3&gt;
+  &lt;p&gt;Requests, responses, headers, caching, and status code strategy.&lt;/p&gt;
+  &lt;div class="progress"&gt;&lt;div class="progress-bar" style="width: 100%;"&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/article&gt;</code></pre>
+          </div>
+        </article>
+
+        <article class="example-card">
+          <div class="example-preview">
+            <div class="grid grid-3">
+              <div class="stat-card surface"><span class="stat-label">XP this week</span><span class="stat-value">1,420</span><span class="text-small">Top 8% of cohort</span></div>
+              <div class="stat-card surface"><span class="stat-label">Mastery</span><span class="stat-value">84%</span><span class="text-small">Backend track</span></div>
+              <div class="stat-card surface"><span class="stat-label">Reviews</span><span class="stat-value">12</span><span class="text-small">Pending flashcards</span></div>
+            </div>
+          </div>
+          <div class="example-code">
+            <pre><code>&lt;div class="stat-card surface"&gt;
+  &lt;span class="stat-label"&gt;XP this week&lt;/span&gt;
+  &lt;span class="stat-value"&gt;1,420&lt;/span&gt;
+  &lt;span class="text-small"&gt;Top 8% of cohort&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </article>
+      </section>
     </main>
   </body>
 </html>
