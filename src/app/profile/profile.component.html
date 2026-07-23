@@ -1,0 +1,50 @@
+<div class="profile-page">
+  <div class="page-header">
+    <h1 class="page-title">Your <span class="text-gradient">FullStack</span> Profile</h1>
+    <p class="page-subtitle">Manage your profile, preferences and account settings</p>
+  </div>
+
+  <div *ngIf="user; else guestState" class="profile-grid">
+    <div class="card card-interactive profile-panel">
+      <div class="card-header profile-header">
+        <img
+          [src]="user.image || 'https://ui-avatars.com/api/?name=' + user.name + '&background=0D8ABC&color=fff'"
+          alt="{{ user.name }}"
+          class="profile-avatar"
+          (error)="onImageError($event, user.name)"
+        />
+        <div>
+          <span class="badge badge-secondary">Signed in</span>
+          <h2>{{ user.name }}</h2>
+          <p class="muted">{{ user.email }}</p>
+        </div>
+      </div>
+
+      <div class="card-body profile-body">
+        <div class="field">
+            <label for="githubKey">Github API Key</label>
+            <input type="password" class="input" id="githubKey" placeholder="">
+        </div>
+        <div class="field">
+            <label for="googleAi">Google AI Studio API Key</label>
+            <input type="password"  class="input" id="googleAi" placeholder="">
+        </div>
+        
+      </div>
+
+      <div class="card-footer profile-actions">
+        <button class="btn btn-primary" type="button">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #guestState>
+    <div class="card card-interactive profile-panel guest-panel">
+      <div class="card-body guest-body">
+        <h2 class="text-gradient">Stay on track with your training</h2>
+        <p class="muted">Log in to access your profile, saved progress, and personalized roadmap.</p>
+        <button class="btn btn-primary" type="button" (click)="login()">Login with Google</button>
+      </div>
+    </div>
+  </ng-template>
+</div>

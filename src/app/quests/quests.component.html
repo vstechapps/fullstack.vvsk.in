@@ -1,0 +1,32 @@
+<div class="main-content">
+    <nav class="breadcrumb text-subtitle">
+        <a href="/">Home</a>
+        <span>/</span>
+        <span>Quests</span>
+        <span class="badge badge-primary" style="font-weight:600;margin-left:15px">🔥 Engineering Quests 🚀 </span>
+    </nav>
+    <article>
+            <div class="m-20">
+                <div class="d-ib">
+                    <h1> Learn By Solving <span class="text-gradient">Real Engineering Problems</span> </h1>
+                </div>        
+            </div>     
+    </article>
+
+    <div class="grid grid-3">
+        <div class="card card-interactive" *ngFor="let quest of quests">
+            <div class="card-header">
+                <span class="text-small">{{quest.category}}</span>
+                <span class="badge"><i class="bi" [ngClass]="{'bi-lock': quest.locked, 'bi-unlock': !quest.locked}"></i>{{quest.locked ? 'Locked' : 'Unlocked'}}</span>
+            </div>
+            <div class="card-body">
+                <h3>{{ quest.title }}</h3>
+                <p>{{ quest.description }}</p>
+            </div>
+            <div class="card-footer">
+                <span class="badge badge-gold">+{{ quest.xp }} XP</span>
+                <button *ngIf="!quest.locked" class="btn btn-primary btn-sm" [routerLink]="['/quests', quest.id]">Start</button>
+            </div>
+        </div>
+    </div>
+</div>

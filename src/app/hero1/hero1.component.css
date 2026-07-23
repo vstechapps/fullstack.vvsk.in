@@ -1,0 +1,19 @@
+.btn-gradient{
+    background: linear-gradient(70deg, indigo,var(--primary-700), indigo);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+
+
+.xp-meter{
+    margin-bottom: 10px;
+}
+
+@media (max-width: 970px) {
+    .m-hide{
+    display: none;
+}
+}

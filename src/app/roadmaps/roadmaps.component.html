@@ -1,0 +1,31 @@
+<div class="main-content">
+    <nav class="breadcrumb text-subtitle">
+        <a href="/">Home</a>
+        <span>/</span>
+        <span>Roadmaps</span>
+        <span class="badge badge-primary" style="font-weight:600;margin-left:15px">⚡Structured Paths 🎯 </span>
+    </nav>
+    <article>
+            <div class="m-20">
+                <div class="d-ib">
+                    <h1> Choose Your <span class="text-gradient">Career Path</span> </h1>
+                </div>        
+            </div>     
+    </article>
+    <div class="grid grid-3">
+        <div class="card card-interactive" *ngFor="let course of courses">
+            <div class="card-header">
+                <cicon [tech]="course.icon"></cicon>
+                <h3>{{ course.title }}</h3>
+                <span class="text-small">{{course.category}}</span>
+                <span class="badge"><i class="bi" [ngClass]="{'bi-lock': course.locked, 'bi-unlock': !course.locked}"></i>{{course.locked ? 'Locked' : 'Unlocked'}}</span>
+            </div>
+            <div class="card-body">   
+                <p>{{ course.description }}</p>
+            </div>
+            <div class="card-footer">
+                <button *ngIf="!course.locked" class="btn btn-primary btn-sm">Start</button>
+            </div>
+        </div>
+    </div>
+</div>

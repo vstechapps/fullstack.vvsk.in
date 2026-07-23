@@ -1,0 +1,23 @@
+<section class="section" style="padding:10px 30px">
+    
+    <div class="text-center" style="margin:10px">
+        <h2>
+            Why Learners Love
+            <span class="text-gradient2">
+                The FullStack
+            </span>
+        </h2>
+    </div>
+
+    <div class="grid grid-4" style="margin-top:25px">
+        <article class="card card-interactive" style="padding:10px;" *ngFor="let article of articles">
+            <div [ngClass]="article.iconClass" style="display:inline-block;width:30%;vertical-align:middle;">
+                {{ article.icon }}
+            </div>
+            <div style="display:inline-block;width:69%;vertical-align:middle;">
+                <h4 style="margin-top:10px">{{ article.title }}</h4>
+                <p style="margin:10px 0px">{{ article.description }}</p>
+            </div>
+        </article>
+    </div>
+</section>

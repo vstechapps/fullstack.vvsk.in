@@ -1,0 +1,121 @@
+.nav {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    margin: 0;
+}
+
+.highlight {
+    color: #38bdf8;
+}
+
+.text-gradient{
+    background: linear-gradient(70deg, red, orange, green, var(--primary-300));
+    background-clip: text;
+}
+.d-nav{
+    display: flex;
+}
+.m-nav{
+    display: none;
+}
+
+.btn-menu{
+    margin-right: 15px;
+    border: none;
+    background: none;
+    font-size: 25px;
+}
+
+.btn-close{
+    position: absolute;
+    right: 15px;
+    border: none;
+    background: none;
+    font-size: 20px;
+}
+
+.sidenav{
+    height: 100%;
+    padding: 10px;
+}
+
+.nav-links-mobile{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    width: 100%;
+    gap: 5px;
+}
+
+.profile-menu {
+    position: relative;
+}
+
+.profile-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.08);
+    color: white;
+    border-radius: 999px;
+    padding: 0.45rem 0.8rem;
+    cursor: pointer;
+}
+
+.profile-trigger img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-dropdown {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.5rem);
+    min-width: 180px;
+    background: #111827;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 0.75rem;
+    padding: 0.4rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    z-index: 1000;
+}
+
+.dropdown-item {
+    width: 100%;
+    text-align: left;
+    border: none;
+    background: transparent;
+    color: white;
+    padding: 0.6rem 0.7rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background: rgba(255,255,255,0.08);
+}
+
+.dropdown-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.12);
+    margin: 0.35rem 0;
+}
+
+@media (max-width: 970px) {
+    .d-nav {
+        display: none;
+    }
+    
+    .m-nav {
+        display: flex;
+    }
+}

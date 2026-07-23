@@ -1,0 +1,83 @@
+<nav class="header nav d-nav" aria-label="Navigation">
+    <div class="nav-brand" style="margin-left:10px;font-weight:600">
+        <div class="text-subtitle">
+            <span class="logo-icon text-gradient">&lt;/&gt;</span>
+            <span class="logo-text" style="margin-left:5px;font-size: 25px;">
+                <span>The <span class="highlight">FullStack</span></span>
+            </span>
+        </div>
+    </div>
+    <div class="nav-links">
+        <span class="nav-link" [ngClass]="{ 'active': route === '/' }" [routerLink]="['/']">Home</span>
+        <span class="nav-link" [ngClass]="{ 'active': route === '/roadmaps' }" [routerLink]="['/roadmaps']">RoadMaps</span>
+        <span class="nav-link" [ngClass]="{ 'active': route === '/quests' }" [routerLink]="['/quests']">Quests</span>
+        <span class="nav-link" [ngClass]="{ 'active': route === '/challenges' }" [routerLink]="['/challenges']">Challenges</span>
+        <span class="nav-link" [ngClass]="{ 'active': route === '/leaderboard' }" [routerLink]="['/leaderboard']">Leaderboard</span>
+    </div>
+
+    <div class="nav-actions" *ngIf="!user">
+        <button class="btn btn-subtle" (click)="login()">Log In</button>
+        <button class="btn btn-primary">Get Started Free</button>
+    </div>
+    <div class="profile-menu" *ngIf="user">
+        <button class="profile-trigger" type="button" (click)="toggleProfileMenu()">
+            <img [src]="user.image || 'https://ui-avatars.com/api/?name=' + user.name + '&background=0D8ABC&color=fff'" alt="{{ user.name }}" (error)="onImageError($event, user.name)" />
+            <span>{{ user.name }}</span>
+            <i class="bi bi-chevron-down"></i>
+        </button>
+
+        <div class="profile-dropdown" *ngIf="showProfileMenu">
+            <button class="dropdown-item" type="button">📊 Dashboard</button>
+            <button class="dropdown-item" type="button">🔥 Progress</button>
+            <button class="dropdown-item" type="button">❤️ Favorites</button>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item" type="button" [routerLink]="['/profile']" (click)="showProfileMenu = false">👤 Profile</button>
+            <button class="dropdown-item" type="button" (click)="logout()">🚪 Logout</button>
+        </div>
+    </div>
+</nav>
+
+<nav class="header nav m-nav" aria-label="Navigation">
+    <div class="nav-brand" style="margin-left:5px;font-weight:600">
+        <div class="text-subtitle">
+            <button class="btn-menu" (click)="toggleMenu()"><i class="bi bi-list"></i></button>
+            <span class="logo-icon text-gradient">&lt;/&gt;</span>
+            <span class="logo-text" style="margin-left:5px">
+                <span>The <span class="highlight">FullStack</span></span>
+            </span>
+        </div>
+    </div>
+</nav>
+
+<div class="sidenav m-nav" *ngIf="menu">
+    <button class="btn-close" type="button" (click)="toggleMenu()">
+        <i class="bi bi-x-lg fs-4"></i>
+    </button>
+    <div class="nav-links-mobile">
+        <button class="link" [ngClass]="{ 'active': route === '/' }" type="button" [routerLink]="['/']">Home</button>
+        <button class="link" [ngClass]="{ 'active': route === '/roadmaps' }" type="button" [routerLink]="['/roadmaps']">RoadMaps</button>
+        <button class="link" [ngClass]="{ 'active': route === '/quests' }" type="button" [routerLink]="['/quests']">Quests</button>
+        <button class="link" [ngClass]="{ 'active': route === '/challenges' }" type="button" [routerLink]="['/challenges']">Challenges</button>
+        <button class="link" [ngClass]="{ 'active': route === '/leaderboard' }" type="button" [routerLink]="['/leaderboard']">Leaderboard</button>
+
+        
+        <button class="btn btn-primary" style="margin-top: 10px;" *ngIf="!user" (click)="login()">Login</button>
+
+        <div class="profile-menu" *ngIf="user">
+        <button class="profile-trigger" type="button" (click)="toggleProfileMenu()">
+            <img [src]="user.image || 'https://ui-avatars.com/api/?name=' + user.name + '&background=0D8ABC&color=fff'" alt="{{ user.name }}" (error)="onImageError($event, user.name)" />
+            <span>{{ user.name }}</span>
+            <i class="bi bi-chevron-down"></i>
+        </button>
+
+        <div class="profile-dropdown" *ngIf="showProfileMenu">
+            <button class="dropdown-item" type="button">📊 Dashboard</button>
+            <button class="dropdown-item" type="button">🔥 Progress</button>
+            <button class="dropdown-item" type="button">❤️ Favorites</button>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item" type="button" [routerLink]="['/profile']" (click)="showProfileMenu = false">👤 Profile</button>
+            <button class="dropdown-item" type="button" (click)="logout()">🚪 Logout</button>
+        </div>
+    </div>
+    </div>
+</div>
