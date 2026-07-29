@@ -12,35 +12,16 @@ import { CiconComponent } from '../cicon/cicon.component';
 })
 export class RoadmapsComponent {
 
-  courses : Course[]= [
-    {
-      id: 1,
-      icon: "angular",
-      title:"Angular Developer",
-      description:"Build Dynamic apps with Angular and Typescript",
-      locked:false
-    },
-    {
-      id: 2,
-      icon: "java",
-      title:"Java Developer",
-      description:"",
-      locked:false
-    },
-    {
-      id: 3,
-      icon: "springboot",
-      title:"Spring Boot Developer",
-      description:"",
-      locked:false
-    },
-    {
-      id: 4,
-      icon:"python",
-      title:"Python Developer",
-      description:"",
-      locked:false
-    }
-  ]
+  courses : Course[] = [];
+  constructor(){
+    this.test();
+  }
+
+  async test(){
+    let docs = await Firebase.read("roadmaps");
+    docs.data.forEach(d=>{
+      this.courses.push({id:d.id,title:d["title"],description:d["description"],locked:d["locked"]})
+    })
+  }
 
 }

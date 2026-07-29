@@ -44,6 +44,10 @@
     padding: 10px;
 }
 
+.nav-link{
+    font-size: 18px;
+}
+
 .nav-links-mobile{
     margin-top: 40px;
     display: flex;

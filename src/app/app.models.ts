@@ -1,5 +1,5 @@
 export class Task {
-  id: number = 0;
+  id: string = "";
   title: string = "";
   description: string = "";
   category?: string = "";

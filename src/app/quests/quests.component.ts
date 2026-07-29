@@ -14,7 +14,7 @@ export class QuestsComponent {
 
    quests:Quest[] = [
     {
-      id: 1,
+      id: "id",
       title: 'Fix Login API Bug',
       description: 'Users cannot login with valid credentials.',
       difficulty: 'Easy',
@@ -25,7 +25,7 @@ export class QuestsComponent {
       locked: false
     },
     {
-      id: 2,
+      id: "id",
       title: 'Optimize Slow Query',
       description: 'Improve database query performance.',
       difficulty: 'Easy',
@@ -36,7 +36,7 @@ export class QuestsComponent {
       locked: false
     },
     {
-      id: 3,
+      id: "id",
       title: 'Resolve 500 Error',
       description: 'Investigate production server failure.',
       difficulty: 'Medium',
@@ -47,7 +47,7 @@ export class QuestsComponent {
       locked: true
     },
     {
-      id: 4,
+      id: "id",
       title: 'Implement Pagination API',
       description: 'Support large result sets.',
       difficulty: 'Medium',
@@ -58,7 +58,7 @@ export class QuestsComponent {
       locked: true
     },
     {
-      id: 5,
+      id: "id",
       title: 'Fix Memory Leak',
       description: 'Identify and resolve heap leak.',
       difficulty: 'Hard',
@@ -69,7 +69,7 @@ export class QuestsComponent {
       locked: true
     },
     {
-      id: 6,
+      id: "id",
       title: 'Resolve SEV1 BlackDuck Vulnerability',
       description: 'Upgrade vulnerable dependencies.',
       difficulty: 'Hard',
