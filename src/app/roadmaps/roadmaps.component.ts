@@ -14,14 +14,16 @@ export class RoadmapsComponent {
 
   courses : Course[] = [];
   constructor(){
-    this.test();
+    this.load();
   }
 
-  async test(){
+  async load(){
+    Loader.show();
     let docs = await Firebase.read("roadmaps");
     docs.data.forEach(d=>{
-      this.courses.push({id:d.id,title:d["title"],description:d["description"],locked:d["locked"]})
-    })
+      this.courses.push(JSON.parse(JSON.stringify(d)));
+    });
+    Loader.hide();
   }
 
 }

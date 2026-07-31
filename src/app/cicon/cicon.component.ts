@@ -11,5 +11,8 @@ export class CiconComponent {
 
   @Input()
   tech:string | undefined = "";
+
+  @Input()
+  height:string = "30px";
   
 }

@@ -1,3 +1,5 @@
+import { Loader } from "./loader";
+
 interface FirebaseApi {
   init(): Promise<void>;
   read(
@@ -23,9 +25,11 @@ interface FirebaseApi {
 
 declare global {
   const Firebase: FirebaseApi;
+  const Loader: Loader;
 
   interface Window {
     Firebase: FirebaseApi;
+    Loader: Loader;
   }
 }
 

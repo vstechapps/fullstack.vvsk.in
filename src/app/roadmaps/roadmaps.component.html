@@ -15,8 +15,8 @@
     <div class="grid grid-3">
         <div class="card card-interactive" *ngFor="let course of courses">
             <div class="card-header">
-                <cicon [tech]="course.icon"></cicon>
-                <h3>{{ course.title }}</h3>
+                <cicon [tech]="course.icon" height="60px"></cicon>
+                <h3 class="text-subtitle">{{ course.title }}</h3>
                 <span class="text-small">{{course.category}}</span>
                 <span class="badge"><i class="bi" [ngClass]="{'bi-lock': course.locked, 'bi-unlock': !course.locked}"></i>{{course.locked ? 'Locked' : 'Unlocked'}}</span>
             </div>
