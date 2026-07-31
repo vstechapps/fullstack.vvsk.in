@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       }
     });
     Firebase.init();
+    Loader.init();
   }
 
   ngOnInit(): void {
