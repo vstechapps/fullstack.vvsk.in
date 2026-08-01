@@ -10,7 +10,7 @@ import { Component, Input } from '@angular/core';
 export class CiconComponent {
 
   @Input()
-  tech:string | undefined = "";
+  tech:string = "";
 
   @Input()
   height:string = "30px";

@@ -1,0 +1,15 @@
+.card-header{
+    justify-content: start;
+}
+
+.btn-gradient{
+    background: linear-gradient(70deg, indigo,var(--primary-700), indigo);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.btn-gradient{
+    background: linear-gradient(linear-gradient(70deg, #4338ca 0%, #6366f1 100%));
+}

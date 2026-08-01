@@ -16,15 +16,28 @@
         <div class="card card-interactive" *ngFor="let course of courses">
             <div class="card-header">
                 <cicon [tech]="course.icon" height="60px"></cicon>
-                <h3 class="text-subtitle">{{ course.title }}</h3>
-                <span class="text-small">{{course.category}}</span>
-                <span class="badge"><i class="bi" [ngClass]="{'bi-lock': course.locked, 'bi-unlock': !course.locked}"></i>{{course.locked ? 'Locked' : 'Unlocked'}}</span>
+                <div>
+                    <h3 class="text-subtitle">{{ course.title }}</h3>
+                    <span class="text-small">{{course.category}}</span>
+                </div>
+                <div *ngIf="course.labels && course.labels.length > 0">
+                    <span *ngFor="let label of course.labels" class="badge badge-default">{{label}}</span>
+                </div>
             </div>
-            <div class="card-body">   
-                <p>{{ course.description }}</p>
+            <div class="card-body">
+                <div>
+                    <p>{{ course.description }}</p>
+                    <p class="text-small">{{ course.summary }}</p>
+                </div>
             </div>
             <div class="card-footer">
-                <button *ngIf="!course.locked" class="btn btn-primary btn-sm">Start</button>
+                <span *ngIf="course.xp" class="badge badge-gold">+{{ course.xp }} XP</span>
+                <div *ngIf="course.topics">
+                    <i class="bi bi-play-btn-fill" style="color: teal;font-size: 20px;vertical-align: middle;margin-right: 8px;"></i>
+                    <span style="vertical-align:middle">{{course.topics}} Topics</span>
+                </div>
+                <button *ngIf="!course.locked" class="btn btn-gradient btn-sm"> Start Roadmap &#10132;</button>
+                <span *ngIf="course.locked" class="badge"><i class="bi" [ngClass]="{'bi-lock': course.locked, 'bi-unlock': !course.locked}"></i>{{course.locked ? 'Locked' : 'Unlocked'}}</span>
             </div>
         </div>
     </div>

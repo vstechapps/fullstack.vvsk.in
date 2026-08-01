@@ -2,25 +2,24 @@ export class Task {
   id: string = "";
   title: string = "";
   description: string = "";
+  summary:string = "";
   category?: string = "";
   completed?: boolean = false;
   locked: boolean = false;
-  xp?: number = 0;
+  xp?: number;
   gems?: number = 0;
-  icon?:string = "";
+  icon:string = "";
   labels?: string[] = [];
 
-  constructor(){
-
-  }
 }
 
 export class Quest extends Task{
     difficulty: string = "Easy";
 }
 
-export interface Course extends Task{
-
+export class Course extends Task{
+  topics?: number;
+  quests?:number;
 }
 
 export enum Difficulty{
