@@ -8,7 +8,7 @@
     <article>
             <div class="m-20">
                 <div class="d-ib">
-                    <h1> Choose Your <span class="text-gradient">Career Path</span> </h1>
+                    <h1> Start <span class="text-gradient"> Your Journey</span> </h1>
                 </div>        
             </div>     
     </article>
@@ -36,7 +36,7 @@
                     <i class="bi bi-play-btn-fill" style="color: teal;font-size: 20px;vertical-align: middle;margin-right: 8px;"></i>
                     <span style="vertical-align:middle">{{course.topics}} Topics</span>
                 </div>
-                <button *ngIf="!course.locked" class="btn btn-gradient btn-sm"> Start Roadmap &#10132;</button>
+                <button *ngIf="!course.locked" class="btn btn-gradient btn-sm" [routerLink]="['/roadmaps', course.id]"> Start Roadmap &#10132;</button>
                 <span *ngIf="course.locked" class="badge"><i class="bi" [ngClass]="{'bi-lock': course.locked, 'bi-unlock': !course.locked}"></i>{{course.locked ? 'Locked' : 'Unlocked'}}</span>
             </div>
         </div>

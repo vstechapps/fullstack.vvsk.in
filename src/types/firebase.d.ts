@@ -4,7 +4,7 @@ interface FirebaseApi {
   init(): Promise<void>;
   read(
     collectionName: string,
-    options?: {
+    options?: string | {
       docId?: string | null;
       size?: number;
       lastDoc?: unknown | null;

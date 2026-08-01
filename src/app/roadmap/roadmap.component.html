@@ -1,0 +1,32 @@
+<div class="main-content" *ngIf="!loading && roadmap; else loadingTpl">
+  <nav class="breadcrumb text-subtitle">
+    <a href="/">Home</a>
+    <span>/</span>
+    <a href="/roadmaps">Roadmaps</a>
+    <span>/</span>
+    <span>{{ roadmap.title }}</span>
+  </nav>
+
+  <section class="card" style="padding: 24px; margin-top: 24px;">
+    <div class="d-flex" style="gap: 16px; align-items: center; flex-wrap: wrap; margin-bottom: 16px;">
+      <cicon [tech]="roadmap.icon" height="50px"></cicon>
+      <span class="text-title text-gradient" style="margin-left:15px;vertical-align:middle;margin-right:15px">{{ roadmap.title }}</span>
+      <span class="badge badge-default" *ngFor="let label of roadmap.labels || []">{{ label }}</span>
+    </div>
+
+    <p>{{ roadmap.description }}</p>
+
+    <div class="card" style="margin-top: 24px; padding: 18px; background: rgba(255,255,255,0.03);">
+      <h3 style="margin-top: 0;">What you'll learn</h3>
+      <ul>
+        <li *ngFor="let topic of roadmap.topicsList || []">{{ topic }}</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<ng-template #loadingTpl>
+  <div class="main-content">
+    <p class="text-subtitle">Loading roadmap...</p>
+  </div>
+</ng-template>

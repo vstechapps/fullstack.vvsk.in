@@ -1,0 +1,33 @@
+<div class="main-content">
+    <nav class="breadcrumb text-subtitle">
+        <a href="/">Home</a>
+        <span>/</span>
+        <span>Challenges</span>
+        <span class="badge badge-primary" style="font-weight:600;margin-left:15px">? Coding Challenges ?</span>
+    </nav>
+
+    <article>
+            <div class="m-20">
+                <div class="d-ib">
+                    <h1> Solve <span class="text-gradient">Practical Challenges</span> </h1>
+                </div>
+            </div>
+    </article>
+
+    <div class="grid grid-3">
+        <div class="card card-interactive" *ngFor="let ch of challenges">
+            <div class="card-header">
+                <span class="text-small">{{ch.category}}</span>
+                <span class="badge"><i class="bi" [ngClass]="{'bi-lock': ch.locked, 'bi-unlock': !ch.locked}"></i>{{ch.locked ? 'Locked' : 'Unlocked'}}</span>
+            </div>
+            <div class="card-body">
+                <h3>{{ ch.title }}</h3>
+                <p>{{ ch.description }}</p>
+            </div>
+            <div class="card-footer">
+                <span class="badge badge-gold">+{{ ch.xp }} XP</span>
+                <button *ngIf="!ch.locked" class="btn btn-primary btn-sm" [routerLink]="['/challenges', ch.id]">Start</button>
+            </div>
+        </div>
+    </div>
+</div>

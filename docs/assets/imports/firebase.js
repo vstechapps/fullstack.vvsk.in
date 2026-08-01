@@ -161,8 +161,12 @@ import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.7.
      * - lastDoc: Last document from current page for pagination
      */
     async function read(collectionName, options = {docId: null, size: 20, lastDoc: null, search: { key: null, value: null }}) {
-        if (options.docId) {
-            const docRef = doc(this.db, collectionName, options.docId);
+        const normalizedOptions = typeof options === 'string'
+            ? { docId: options, size: 20, lastDoc: null, search: { key: null, value: null } }
+            : options || { docId: null, size: 20, lastDoc: null, search: { key: null, value: null } };
+
+        if (normalizedOptions.docId) {
+            const docRef = doc(this.db, collectionName, normalizedOptions.docId);
             const docSnap = await getDoc(docRef);
             const docData = docSnap.exists() ? { id: docSnap.id, ...docSnap.data() } : null;
             return {
@@ -173,14 +177,14 @@ import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.7.
         } 
         else {
             const collectionRef = collection(this.db, collectionName);
-            const pageSize = Math.max(1, Math.min(options.size, 100)); // Limit page size between 1 and 100
+            const pageSize = Math.max(1, Math.min(normalizedOptions.size, 100)); // Limit page size between 1 and 100
             
             let q;
-            if (!options.lastDoc) {
+            if (!normalizedOptions.lastDoc) {
                 // First page
-                if (options.search?.key && options.search?.value !== null) {
+                if (normalizedOptions.search?.key && normalizedOptions.search?.value !== null) {
                     q = query(collectionRef, 
-                        where(options.search.key, '==', options.search.value),
+                        where(normalizedOptions.search.key, '==', normalizedOptions.search.value),
                         limit(pageSize + 1)
                     );
                 } else {
@@ -188,15 +192,15 @@ import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.7.
                 }
             } else {
                 // Subsequent pages using the last document as cursor
-                if (options.search?.key && options.search?.value !== null) {
+                if (normalizedOptions.search?.key && normalizedOptions.search?.value !== null) {
                     q = query(collectionRef, 
-                        where(options.search.key, '==', options.search.value),
-                        startAfter(options.lastDoc),
+                        where(normalizedOptions.search.key, '==', normalizedOptions.search.value),
+                        startAfter(normalizedOptions.lastDoc),
                         limit(pageSize + 1)
                     );
                 } else {
                     q = query(collectionRef, 
-                        startAfter(options.lastDoc),
+                        startAfter(normalizedOptions.lastDoc),
                         limit(pageSize + 1)
                     );
                 }

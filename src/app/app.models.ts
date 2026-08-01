@@ -20,6 +20,7 @@ export class Quest extends Task{
 export class Course extends Task{
   topics?: number;
   quests?:number;
+  topicsList?: string[];
 }
 
 export enum Difficulty{

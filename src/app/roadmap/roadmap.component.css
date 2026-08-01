@@ -1,0 +1,35 @@
+.card {
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  background: rgba(255,255,255,0.04);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.badge-primary {
+  background: linear-gradient(135deg, #4f46e5, #06b6d4);
+  color: white;
+}
+
+.badge-gold {
+  background: gold;
+  color: #1f2937;
+}
+
+.badge-default {
+  background: rgba(255,255,255,0.12);
+  color: #e5e7eb;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #a78bfa, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

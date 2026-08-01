@@ -122,4 +122,8 @@
     .m-nav {
         display: flex;
     }
+
+    .logo-text {
+        font-size: 25px;
+    }
 }
