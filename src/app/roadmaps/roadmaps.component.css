@@ -17,3 +17,7 @@
 .btn-gradient{
     background: linear-gradient(linear-gradient(70deg, #4338ca 0%, #6366f1 100%));
 }
+
+.badge.badge-default{
+    margin: 5px;
+}

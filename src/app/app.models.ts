@@ -17,10 +17,24 @@ export class Quest extends Task{
     difficulty: string = "Easy";
 }
 
+export class Topic extends Task{
+
+}
+
+export class Assessment extends Task{
+
+}
+
+export class Project extends Task{
+
+}
+
 export class Course extends Task{
-  topics?: number;
-  quests?:number;
-  topicsList?: string[];
+  topics?: Topic[];
+  quests?:Quest[];
+  assessments?: Assessment[];
+  projects?: Project[];
+  skills?: string[];
 }
 
 export enum Difficulty{

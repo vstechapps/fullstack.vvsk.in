@@ -31,7 +31,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.route = event.url;
       }
     });
-    Firebase.init();
   }
 
   ngOnInit(): void {
