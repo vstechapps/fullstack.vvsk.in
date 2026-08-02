@@ -16,11 +16,9 @@
 
     <p>{{ roadmap.description }}</p>
 
-    <div class="card" style="margin-top: 24px; padding: 18px; background: rgba(255,255,255,0.03);">
-      <h3 style="margin-top: 0;">What you'll learn</h3>
-      <ul>
-        <li *ngFor="let topic of roadmap.topicsList || []">{{ topic }}</li>
-      </ul>
+    <div class="card" style="margin: 15px;display:inline-block;padding:10px 15px" *ngFor="let topic of roadmap.topicsList || [], index as i" >
+        <span class="text-index">{{i+1}}</span>
+        <span class="text-subtitle">{{topic}}</span>
     </div>
   </section>
 </div>
