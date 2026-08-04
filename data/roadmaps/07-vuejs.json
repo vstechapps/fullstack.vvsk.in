@@ -1,0 +1,51 @@
+{
+  "topics": [
+    { "title": "Vue.js Fundamentals" },
+    { "title": "Modern JavaScript for Vue" },
+    { "title": "Vue CLI & Vite Project Setup" },
+    { "title": "Templates, Directives & Data Binding" },
+    { "title": "Components, Props & Events" },
+    { "title": "Composition API" },
+    { "title": "Reactivity Fundamentals" },
+    { "title": "Computed Properties & Watchers" },
+    { "title": "Forms & Validation" },
+    { "title": "Routing with Vue Router" },
+    { "title": "State Management with Pinia" },
+    { "title": "API Integration with Axios" },
+    { "title": "Authentication & Route Guards" },
+    { "title": "Styling with Scoped CSS & Tailwind" },
+    { "title": "Component Libraries" },
+    { "title": "Testing with Vitest & Vue Test Utils" },
+    { "title": "Nuxt Fundamentals" },
+    { "title": "Performance Optimization" },
+    { "title": "Deployment & Production Build" }
+  ],
+  "summary": "Build approachable, reactive frontend applications with Vue.js and its modern ecosystem",
+  "labels": [
+    "Frontend"
+  ],
+  "icon": "vuejs",
+  "description": "Create polished web interfaces with Vue, Composition API, routing, Pinia and testing",
+  "xp": 500,
+  "skills": [
+    "JavaScript (ES6+)",
+    "Vue.js",
+    "Composition API",
+    "Vue Router",
+    "Pinia",
+    "Vite",
+    "REST APIs",
+    "Axios",
+    "Tailwind CSS",
+    "Scoped CSS",
+    "Vitest",
+    "Vue Test Utils",
+    "Nuxt",
+    "Single Page Application (SPA)",
+    "Component architecture",
+    "Reactive programming",
+    "Responsive web design"
+  ],
+  "title": "Vue.js Developer",
+  "locked": true
+}

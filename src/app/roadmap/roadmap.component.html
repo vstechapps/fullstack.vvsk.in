@@ -12,8 +12,8 @@
             <cicon [tech]="roadmap.icon" height="50px"></cicon>
             <span class="text-title text-gradient" style="margin-left:15px;vertical-align:middle;margin-right:15px">{{
                 roadmap.title }}</span>
-            <span class="badge badge-default" *ngFor="let label of roadmap.labels || []">{{ label }}</span>
-            <span class="badge badge-gold" *ngIf="roadmap.xp">+{{ roadmap.xp }} XP</span>
+            <span class="badge badge-primary" *ngFor="let label of roadmap.labels || []">{{ label }}</span>
+            <span class="badge badge-xp" style="margin-left:10px" *ngIf="roadmap.xp"> 💎 {{ roadmap.xp }} XP </span>
             <div style="display: inline-block;width: 30%;margin-left: 50px;vertical-align: middle;">
                 <div class="xp-meter">
                     <div class="progress-meta">
@@ -66,7 +66,7 @@
                     <div class="card-header">
                         <span class="text-lead">Skills You'll Gain</span>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" style="display:block">
                         <span style="margin:3px;" *ngFor="let skill of roadmap.skills" class="badge badge-default">
                             {{skill}}
                         </span>

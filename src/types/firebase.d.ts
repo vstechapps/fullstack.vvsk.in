@@ -9,6 +9,7 @@ interface FirebaseApi {
       size?: number;
       lastDoc?: unknown | null;
       search?: { key?: string | null; value?: unknown | null };
+      sort?: boolean;
     }
   ): Promise<{
     data: Array<{ id: string; [key: string]: any }>;

@@ -31,10 +31,10 @@
                 </div>
             </div>
             <div class="card-footer">
-                <span *ngIf="course.xp" class="badge badge-gold">+{{ course.xp }} XP</span>
-                <div *ngIf="course.topics && course.topics.length!=0">
+                <div *ngIf="course.topics && course.topics.length!=0" style="font-weight:bold">
                     <i class="bi bi-play-btn-fill" style="color: teal;font-size: 20px;vertical-align: middle;margin-right: 8px;"></i>
                     <span style="vertical-align:middle">{{course.topics.length}} Topics</span>
+                    <span style="margin:0px 20px;">🏆 +{{ course.xp }} XP</span>
                 </div>
                 <button *ngIf="!course.locked" class="btn btn-gradient btn-sm" [routerLink]="['/roadmaps', course.id]"> Start Roadmap &#10132;</button>
                 <span *ngIf="course.locked" class="badge"><i class="bi" [ngClass]="{'bi-lock': course.locked, 'bi-unlock': !course.locked}"></i>{{course.locked ? 'Locked' : 'Unlocked'}}</span>

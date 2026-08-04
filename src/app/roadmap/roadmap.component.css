@@ -18,11 +18,6 @@
   color: white;
 }
 
-.badge-gold {
-  background: gold;
-  color: #1f2937;
-}
-
 .badge-default {
   background: rgba(255,255,255,0.12);
   color: #e5e7eb;

@@ -1,0 +1,50 @@
+{
+  "topics": [
+    { "title": "Flask Fundamentals" },
+    { "title": "Python Web Development Basics" },
+    { "title": "Routing, Views & Request Handling" },
+    { "title": "Templates with Jinja2" },
+    { "title": "Forms & Validation" },
+    { "title": "Application Factory Pattern" },
+    { "title": "Blueprints & Project Structure" },
+    { "title": "REST APIs with Flask" },
+    { "title": "Database Integration with SQLAlchemy" },
+    { "title": "Migrations with Flask-Migrate" },
+    { "title": "Authentication & Sessions" },
+    { "title": "JWT Authentication for APIs" },
+    { "title": "Error Handling & Logging" },
+    { "title": "Testing Flask Apps with Pytest" },
+    { "title": "Caching & Background Tasks" },
+    { "title": "Security Best Practices" },
+    { "title": "Dockerizing Flask Apps" },
+    { "title": "Deployment with Gunicorn & Nginx" }
+  ],
+  "summary": "Create lightweight Python web apps and APIs with Flask from fundamentals to deployment",
+  "labels": [
+    "Backend"
+  ],
+  "icon": "flask",
+  "description": "Build flexible Python web applications using Flask, SQLAlchemy, authentication and testing",
+  "xp": 500,
+  "skills": [
+    "Python",
+    "Flask",
+    "Jinja2",
+    "REST APIs",
+    "SQLAlchemy",
+    "Flask-Migrate",
+    "JWT",
+    "Sessions",
+    "Pytest",
+    "Blueprints",
+    "Application factory pattern",
+    "Gunicorn",
+    "Nginx",
+    "Docker",
+    "Caching",
+    "Security basics",
+    "Deployment"
+  ],
+  "title": "Flask Developer",
+  "locked": true
+}

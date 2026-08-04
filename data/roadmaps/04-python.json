@@ -1,0 +1,50 @@
+{
+  "topics": [
+    { "title": "Python Fundamentals" },
+    { "title": "Data Types, Operators & Control Flow" },
+    { "title": "Functions & Modules" },
+    { "title": "Object-Oriented Programming" },
+    { "title": "File Handling & Path Operations" },
+    { "title": "Error Handling & Logging" },
+    { "title": "Virtual Environments & Package Management" },
+    { "title": "Working with APIs & HTTP Requests" },
+    { "title": "Data Structures & Algorithms in Python" },
+    { "title": "Database Access with SQLAlchemy" },
+    { "title": "Automation & Scripting" },
+    { "title": "Testing with Pytest" },
+    { "title": "Type Hints & Static Analysis" },
+    { "title": "Asynchronous Programming" },
+    { "title": "Data Processing with Pandas" },
+    { "title": "Web Development Foundations" },
+    { "title": "Security Best Practices" },
+    { "title": "Packaging & Deployment" }
+  ],
+  "summary": "Learn Python from core syntax to backend, automation and production-ready development",
+  "labels": [
+    "Programming"
+  ],
+  "icon": "python",
+  "description": "Master Python for scripting, APIs, databases, testing and real-world application development",
+  "xp": 500,
+  "skills": [
+    "Python",
+    "Object-Oriented Programming",
+    "Data structures",
+    "Algorithms",
+    "Virtual environments",
+    "pip",
+    "REST APIs",
+    "SQLAlchemy",
+    "Pytest",
+    "Type hints",
+    "Asyncio",
+    "Pandas",
+    "Automation",
+    "Logging",
+    "Error handling",
+    "Packaging",
+    "Security basics"
+  ],
+  "title": "Python Developer",
+  "locked": false
+}

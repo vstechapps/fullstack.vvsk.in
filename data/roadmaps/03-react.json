@@ -1,0 +1,52 @@
+{
+  "topics": [
+    { "title": "React Fundamentals" },
+    { "title": "Modern JavaScript for React" },
+    { "title": "JSX & Rendering Elements" },
+    { "title": "Components, Props & State" },
+    { "title": "Event Handling & Forms" },
+    { "title": "Hooks: useState, useEffect & useRef" },
+    { "title": "Custom Hooks" },
+    { "title": "Routing with React Router" },
+    { "title": "Context API & State Management" },
+    { "title": "Redux Toolkit & Async Flows" },
+    { "title": "API Integration with Fetch & Axios" },
+    { "title": "Authentication & Protected Routes" },
+    { "title": "Styling with CSS Modules & Tailwind" },
+    { "title": "Component Libraries & Design Systems" },
+    { "title": "Performance Optimization" },
+    { "title": "Testing with Jest & React Testing Library" },
+    { "title": "End-to-End Testing with Cypress" },
+    { "title": "Next.js Fundamentals" },
+    { "title": "Deployment & Production Build" }
+  ],
+  "summary": "Build fast, interactive frontend applications with React and the modern JavaScript ecosystem",
+  "labels": [
+    "Frontend"
+  ],
+  "icon": "react",
+  "description": "Create scalable user interfaces with React, hooks, routing, state management and testing",
+  "xp": 500,
+  "skills": [
+    "JavaScript (ES6+)",
+    "React",
+    "JSX",
+    "React Hooks",
+    "React Router",
+    "Redux Toolkit",
+    "Context API",
+    "REST APIs",
+    "Axios",
+    "Tailwind CSS",
+    "Jest",
+    "React Testing Library",
+    "Cypress",
+    "Next.js",
+    "Single Page Application (SPA)",
+    "Component architecture",
+    "Front-end debugging",
+    "Responsive web design"
+  ],
+  "title": "React Developer",
+  "locked": false
+}

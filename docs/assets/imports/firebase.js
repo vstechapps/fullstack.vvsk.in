@@ -1,6 +1,6 @@
 // Import Firebase modules from Google CDN
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, doc, getDoc, setDoc, collection, getDocs, query, limit, startAfter, startAt, where } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, collection, getDocs, query, limit, startAfter, startAt, where, orderBy, documentId } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
 
@@ -155,15 +155,16 @@ import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.7.
      * @param {Object} [options.search] - Search options
      * @param {string} [options.search.key] - Field name to search in
      * @param {any} [options.search.value] - Value to search for
+     * @param {boolean} [options.sort] - When true, order results by document id
      * @returns {Promise<{data: Array<{id: string, [key: string]: any}>, hasMore: boolean, lastDoc: Object}>} Returns paginated data with the following properties:
      * - data: Array of documents with their IDs and data
      * - hasMore: Indicates if there are more documents available
      * - lastDoc: Last document from current page for pagination
      */
-    async function read(collectionName, options = {docId: null, size: 20, lastDoc: null, search: { key: null, value: null }}) {
+    async function read(collectionName, options = {docId: null, size: 20, lastDoc: null, search: { key: null, value: null }, sort: false}) {
         const normalizedOptions = typeof options === 'string'
-            ? { docId: options, size: 20, lastDoc: null, search: { key: null, value: null } }
-            : options || { docId: null, size: 20, lastDoc: null, search: { key: null, value: null } };
+            ? { docId: options, size: 20, lastDoc: null, search: { key: null, value: null }, sort: false }
+            : options || { docId: null, size: 20, lastDoc: null, search: { key: null, value: null }, sort: false };
 
         if (normalizedOptions.docId) {
             const docRef = doc(this.db, collectionName, normalizedOptions.docId);
@@ -180,30 +181,23 @@ import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.7.
             const pageSize = Math.max(1, Math.min(normalizedOptions.size, 100)); // Limit page size between 1 and 100
             
             let q;
+            const constraints = [];
+
+            if (normalizedOptions.search?.key && normalizedOptions.search?.value !== null) {
+                constraints.push(where(normalizedOptions.search.key, '==', normalizedOptions.search.value));
+            }
+
+            if (normalizedOptions.sort) {
+                constraints.push(orderBy(documentId()));
+            }
+
             if (!normalizedOptions.lastDoc) {
-                // First page
-                if (normalizedOptions.search?.key && normalizedOptions.search?.value !== null) {
-                    q = query(collectionRef, 
-                        where(normalizedOptions.search.key, '==', normalizedOptions.search.value),
-                        limit(pageSize + 1)
-                    );
-                } else {
-                    q = query(collectionRef, limit(pageSize + 1));
-                }
+                constraints.push(limit(pageSize + 1));
+                q = query(collectionRef, ...constraints);
             } else {
-                // Subsequent pages using the last document as cursor
-                if (normalizedOptions.search?.key && normalizedOptions.search?.value !== null) {
-                    q = query(collectionRef, 
-                        where(normalizedOptions.search.key, '==', normalizedOptions.search.value),
-                        startAfter(normalizedOptions.lastDoc),
-                        limit(pageSize + 1)
-                    );
-                } else {
-                    q = query(collectionRef, 
-                        startAfter(normalizedOptions.lastDoc),
-                        limit(pageSize + 1)
-                    );
-                }
+                constraints.push(startAfter(normalizedOptions.lastDoc));
+                constraints.push(limit(pageSize + 1));
+                q = query(collectionRef, ...constraints);
             }
             
             const querySnapshot = await getDocs(q);
