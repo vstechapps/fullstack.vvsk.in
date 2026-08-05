@@ -1,0 +1,17 @@
+{
+  "category": "Developer",
+  "difficulty": "Easy",
+  "icon": "",
+  "locked": true,
+  "description": "Improve a project repository by writing clear documentation that helps another developer understand, run and contribute to it.",
+  "requirements": [
+    "Repository should include a README.md file at the root",
+    "README.md should describe the project purpose, tech stack and main features",
+    "README.md should include setup and run instructions",
+    "README.md should include testing instructions or clearly state if tests are not available yet",
+    "README.md should include a simple folder structure or architecture overview"
+  ],
+  "xp": 60,
+  "title": "Document Your Project",
+  "gems": 6
+}

@@ -1,0 +1,17 @@
+{
+  "category": "Testing",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": true,
+  "description": "Add automated unit tests for important logic in an existing frontend or backend project.",
+  "requirements": [
+    "Repository should include a configured test framework such as Jest, Vitest, Pytest, JUnit, xUnit or Jasmine",
+    "At least five meaningful unit tests should be present",
+    "Tests should cover success and failure scenarios",
+    "README.md should include the command required to run tests",
+    "Submitted repository should include evidence that tests pass through a test report, CI run or documented command output"
+  ],
+  "xp": 150,
+  "title": "Add Unit Tests",
+  "gems": 15
+}

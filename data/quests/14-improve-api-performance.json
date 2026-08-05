@@ -1,0 +1,18 @@
+{
+  "category": "Performance",
+  "difficulty": "Hard",
+  "icon": "",
+  "locked": true,
+  "description": "Improve a slow API endpoint by identifying the bottleneck and applying a measurable optimization.",
+  "requirements": [
+    "Repository should identify the slow endpoint or operation being optimized",
+    "Repository should include before and after performance evidence such as timings, benchmark output or load test results",
+    "Optimization should address a real bottleneck such as inefficient queries, repeated network calls, missing indexes or excessive computation",
+    "API response contract should remain compatible unless the breaking change is clearly documented",
+    "Automated tests or documented manual checks should verify the endpoint still works correctly",
+    "README.md or commit message should explain the performance improvement"
+  ],
+  "xp": 550,
+  "title": "Improve Slow API Performance",
+  "gems": 55
+}

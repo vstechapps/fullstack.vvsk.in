@@ -1,0 +1,18 @@
+{
+  "category": "Backend",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": true,
+  "description": "Fix a broken login API where valid users cannot sign in or invalid users are incorrectly accepted.",
+  "requirements": [
+    "Repository should include a clear bug fix commit or pull request showing the login API change",
+    "Login should succeed only for valid credentials",
+    "Login should fail for invalid password, missing password and unknown user cases",
+    "Existing authentication response format should remain backward compatible unless documented",
+    "Automated tests should cover the fixed login behavior",
+    "README.md or commit message should briefly describe the root cause and the fix"
+  ],
+  "xp": 260,
+  "title": "Fix Bug in Login API",
+  "gems": 26
+}

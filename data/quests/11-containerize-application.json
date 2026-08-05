@@ -1,0 +1,17 @@
+{
+  "category": "DevOps",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": true,
+  "description": "Containerize an application so it can be built and run consistently on another machine.",
+  "requirements": [
+    "Repository should include a Dockerfile at the root or in the application directory",
+    "Docker image should install dependencies and run the application",
+    "Repository should include a .dockerignore file",
+    "README.md should include docker build and docker run commands",
+    "Application should expose the expected port or service when run in a container"
+  ],
+  "xp": 300,
+  "title": "Containerize Application",
+  "gems": 30
+}

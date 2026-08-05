@@ -1,0 +1,18 @@
+{
+  "category": "Security",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": true,
+  "description": "Build a login API that validates user credentials and returns a secure authentication response.",
+  "requirements": [
+    "Repository should include user registration or seeded test user setup",
+    "Login endpoint should validate email or username and password",
+    "Passwords should be hashed and should not be stored in plain text",
+    "Successful login should return a token or session response without exposing sensitive user data",
+    "Invalid login should return an appropriate error response without leaking whether a user exists",
+    "Repository should include tests or documented sample requests for success and failure login cases"
+  ],
+  "xp": 220,
+  "title": "Build Secure Login API",
+  "gems": 22
+}

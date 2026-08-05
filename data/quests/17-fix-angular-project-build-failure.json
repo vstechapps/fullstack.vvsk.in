@@ -1,0 +1,18 @@
+{
+  "category": "Frontend",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": true,
+  "description": "Fix an Angular project that fails during install, compile or production build, then document the root cause.",
+  "requirements": [
+    "Repository should contain an Angular project with a clear build fix commit or pull request",
+    "Project should install dependencies successfully",
+    "Angular build command such as npm run build or ng build should complete successfully",
+    "Fix should address the real cause such as TypeScript errors, missing imports, dependency mismatch, template errors or configuration issues",
+    "Existing application behavior should remain intact after the build fix",
+    "README.md, issue note or commit message should explain the build failure and the fix"
+  ],
+  "xp": 240,
+  "title": "Fix Angular Project Build Failure",
+  "gems": 24
+}

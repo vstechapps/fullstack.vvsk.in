@@ -1,0 +1,17 @@
+{
+  "category": "Frontend",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": true,
+  "description": "Add client-side validation to a form so users get useful feedback before invalid data is submitted.",
+  "requirements": [
+    "Repository should contain a form with at least three input fields",
+    "Form should validate required fields and at least one format rule such as email, URL or password length",
+    "Validation errors should be displayed near the related fields",
+    "Submit action should be blocked when the form is invalid",
+    "Repository should include screenshots, a demo link or clear steps to verify the validation behavior"
+  ],
+  "xp": 120,
+  "title": "Add Form Validation",
+  "gems": 12
+}

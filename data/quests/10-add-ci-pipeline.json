@@ -1,0 +1,17 @@
+{
+  "category": "DevOps",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": true,
+  "description": "Add a continuous integration workflow that installs dependencies, runs tests and reports whether the project is healthy.",
+  "requirements": [
+    "Repository should include a CI workflow file such as GitHub Actions, GitLab CI or Azure Pipelines",
+    "CI pipeline should install project dependencies",
+    "CI pipeline should run automated tests or a meaningful validation command",
+    "CI pipeline should run on pull requests or pushes to the main branch",
+    "Repository should include a successful CI run or badge link in README.md"
+  ],
+  "xp": 280,
+  "title": "Add CI Pipeline",
+  "gems": 28
+}

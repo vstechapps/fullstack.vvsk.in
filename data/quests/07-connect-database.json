@@ -1,0 +1,17 @@
+{
+  "category": "Database",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": true,
+  "description": "Connect an application to a database and implement basic create and read operations for one resource.",
+  "requirements": [
+    "Repository should contain database configuration using environment variables or a local development config",
+    "Application should define at least one model, entity or table schema",
+    "Application should support creating a record through an API, form or script",
+    "Application should support reading records through an API, page or script",
+    "README.md should include database setup and migration or initialization instructions"
+  ],
+  "xp": 180,
+  "title": "Connect App to Database",
+  "gems": 18
+}

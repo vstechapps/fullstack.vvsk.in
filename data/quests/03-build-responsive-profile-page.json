@@ -1,0 +1,17 @@
+{
+  "category": "Frontend",
+  "difficulty": "Easy",
+  "icon": "",
+  "locked": true,
+  "description": "Build a responsive profile or portfolio page that works well on desktop and mobile screens.",
+  "requirements": [
+    "Repository should contain a runnable frontend project or static web page",
+    "Page should include profile information, skills and at least two project or experience sections",
+    "Layout should be responsive for mobile and desktop viewports",
+    "CSS should be organized in a separate stylesheet, component style file or framework configuration",
+    "README.md should explain how to run or open the page locally"
+  ],
+  "xp": 80,
+  "title": "Build Responsive Profile Page",
+  "gems": 8
+}

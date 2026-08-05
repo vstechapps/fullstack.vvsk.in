@@ -1,0 +1,17 @@
+{
+  "category": "Backend",
+  "difficulty": "Easy",
+  "icon": "",
+  "locked": true,
+  "description": "Create a small backend service with a health check endpoint that can be used to verify the application is running.",
+  "requirements": [
+    "Repository should contain a runnable backend project",
+    "Application should expose a GET health check endpoint such as /health or /api/health",
+    "Health check response should include an HTTP 200 status and a JSON body",
+    "Project should include clear local run instructions in README.md",
+    "Repository should include at least one sample request using curl, Postman collection or HTTP file"
+  ],
+  "xp": 90,
+  "title": "Create Health Check API",
+  "gems": 9
+}

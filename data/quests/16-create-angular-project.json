@@ -1,0 +1,18 @@
+{
+  "category": "Frontend",
+  "difficulty": "Easy",
+  "icon": "",
+  "locked": true,
+  "description": "Create a new Angular application with a clean project structure and a working starter page.",
+  "requirements": [
+    "Repository should contain a valid Angular project created with Angular CLI or an equivalent Angular setup",
+    "Project should include package.json, angular.json and src application files",
+    "Application should run locally using an npm script such as npm start or ng serve",
+    "Starter page should include at least one custom component beyond the default app shell",
+    "README.md should include setup, install and run instructions",
+    "Repository should include a successful build command such as npm run build or ng build"
+  ],
+  "xp": 100,
+  "title": "Create Angular Project",
+  "gems": 10
+}

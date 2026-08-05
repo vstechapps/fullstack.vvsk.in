@@ -1,0 +1,18 @@
+{
+  "category": "Code Quality",
+  "difficulty": "Hard",
+  "icon": "",
+  "locked": true,
+  "description": "Refactor a complex function or method to resolve a Sonar-style cyclomatic complexity issue without changing behavior.",
+  "requirements": [
+    "Repository should identify the original complex function or method in code, README.md or commit message",
+    "Refactor should reduce nested conditionals, repeated branches or oversized decision logic",
+    "Behavior should remain compatible with the original feature",
+    "Automated tests should cover the refactored logic",
+    "No new lint, type-check or test failures should be introduced",
+    "Commit message or README.md should summarize the refactoring approach"
+  ],
+  "xp": 400,
+  "title": "Fix Sonar Cyclomatic Complexity Issue",
+  "gems": 40
+}

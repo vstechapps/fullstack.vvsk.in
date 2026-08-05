@@ -1,0 +1,18 @@
+{
+  "category": "Backend",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": true,
+  "description": "Fix a Gradle-based Java, Kotlin or Spring Boot project that fails to compile, test or package.",
+  "requirements": [
+    "Repository should contain a Gradle project with build.gradle, build.gradle.kts or settings.gradle files",
+    "Repository should include a clear build fix commit or pull request",
+    "Gradle build command such as ./gradlew build, gradlew.bat build or gradle build should complete successfully",
+    "Fix should address the real cause such as dependency conflicts, plugin version issues, missing repositories, compile errors or failing tests",
+    "Existing application behavior should remain compatible after the build fix",
+    "README.md, issue note or commit message should explain the build failure and the fix"
+  ],
+  "xp": 260,
+  "title": "Fix Gradle Project Build Failure",
+  "gems": 26
+}

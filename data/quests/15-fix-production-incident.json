@@ -1,0 +1,18 @@
+{
+  "category": "Backend",
+  "difficulty": "Hard",
+  "icon": "",
+  "locked": true,
+  "description": "Resolve a production-style incident where a critical user flow is broken, then document the root cause and prevention steps.",
+  "requirements": [
+    "Repository should describe the incident scenario in README.md, issue notes or commit message",
+    "Fix should restore the broken critical flow such as login, checkout, profile update or data sync",
+    "Repository should include a regression test or verification checklist for the incident",
+    "Fix should include meaningful logging, error handling or monitoring improvement where appropriate",
+    "Root cause and prevention notes should be documented",
+    "No unrelated large refactor should be mixed into the incident fix"
+  ],
+  "xp": 650,
+  "title": "Fix Production Incident",
+  "gems": 65
+}

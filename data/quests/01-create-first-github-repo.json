@@ -1,0 +1,17 @@
+{
+  "category": "Developer",
+  "difficulty": "Easy",
+  "icon": "",
+  "locked": false,
+  "description": "Create your first GitHub repository with any preferred programming language such as Java, Python, Node.js, Angular or React.",
+  "requirements":[
+    "Repository should be public or accessible from the submitted Git URL",
+    "Repository should contain a valid initialized project in Java, Python, Node.js, Angular or React",
+    "Repository should have a minimal project structure with source files",
+    "Repository should include a README.md file explaining the project purpose and setup steps",
+    "Repository should contain at least one meaningful commit after initial setup"
+  ],
+  "xp": 50,
+  "title": "Create Github Code Repo",
+  "gems": 5
+}
