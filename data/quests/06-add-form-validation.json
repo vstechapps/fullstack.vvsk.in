@@ -2,7 +2,7 @@
   "category": "Frontend",
   "difficulty": "Medium",
   "icon": "",
-  "locked": true,
+  "locked": false,
   "description": "Add client-side validation to a form so users get useful feedback before invalid data is submitted.",
   "requirements": [
     "Repository should contain a form with at least three input fields",

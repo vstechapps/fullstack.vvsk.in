@@ -2,7 +2,7 @@
   "category": "DevOps",
   "difficulty": "Medium",
   "icon": "",
-  "locked": true,
+  "locked": false,
   "description": "Containerize an application so it can be built and run consistently on another machine.",
   "requirements": [
     "Repository should include a Dockerfile at the root or in the application directory",

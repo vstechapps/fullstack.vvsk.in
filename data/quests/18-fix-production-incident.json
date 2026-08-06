@@ -2,7 +2,7 @@
   "category": "Backend",
   "difficulty": "Hard",
   "icon": "",
-  "locked": true,
+  "locked": false,
   "description": "Resolve a production-style incident where a critical user flow is broken, then document the root cause and prevention steps.",
   "requirements": [
     "Repository should describe the incident scenario in README.md, issue notes or commit message",

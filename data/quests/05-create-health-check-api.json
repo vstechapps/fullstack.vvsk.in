@@ -2,7 +2,7 @@
   "category": "Backend",
   "difficulty": "Easy",
   "icon": "",
-  "locked": true,
+  "locked": false,
   "description": "Create a small backend service with a health check endpoint that can be used to verify the application is running.",
   "requirements": [
     "Repository should contain a runnable backend project",

@@ -2,7 +2,7 @@
   "category": "Security",
   "difficulty": "Medium",
   "icon": "",
-  "locked": true,
+  "locked": false,
   "description": "Build a login API that validates user credentials and returns a secure authentication response.",
   "requirements": [
     "Repository should include user registration or seeded test user setup",

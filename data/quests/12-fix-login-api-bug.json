@@ -2,7 +2,7 @@
   "category": "Backend",
   "difficulty": "Medium",
   "icon": "",
-  "locked": true,
+  "locked": false,
   "description": "Fix a broken login API where valid users cannot sign in or invalid users are incorrectly accepted.",
   "requirements": [
     "Repository should include a clear bug fix commit or pull request showing the login API change",

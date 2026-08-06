@@ -2,7 +2,7 @@
   "category": "Performance",
   "difficulty": "Hard",
   "icon": "",
-  "locked": true,
+  "locked": false,
   "description": "Improve a slow API endpoint by identifying the bottleneck and applying a measurable optimization.",
   "requirements": [
     "Repository should identify the slow endpoint or operation being optimized",

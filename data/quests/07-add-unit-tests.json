@@ -2,7 +2,7 @@
   "category": "Testing",
   "difficulty": "Medium",
   "icon": "",
-  "locked": true,
+  "locked": false,
   "description": "Add automated unit tests for important logic in an existing frontend or backend project.",
   "requirements": [
     "Repository should include a configured test framework such as Jest, Vitest, Pytest, JUnit, xUnit or Jasmine",

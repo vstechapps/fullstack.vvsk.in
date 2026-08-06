@@ -2,7 +2,7 @@
   "category": "Frontend",
   "difficulty": "Medium",
   "icon": "",
-  "locked": true,
+  "locked": false,
   "description": "Fix an Angular project that fails during install, compile or production build, then document the root cause.",
   "requirements": [
     "Repository should contain an Angular project with a clear build fix commit or pull request",

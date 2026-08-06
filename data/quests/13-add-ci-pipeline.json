@@ -2,7 +2,7 @@
   "category": "DevOps",
   "difficulty": "Medium",
   "icon": "",
-  "locked": true,
+  "locked": false,
   "description": "Add a continuous integration workflow that installs dependencies, runs tests and reports whether the project is healthy.",
   "requirements": [
     "Repository should include a CI workflow file such as GitHub Actions, GitLab CI or Azure Pipelines",

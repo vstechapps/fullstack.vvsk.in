@@ -2,7 +2,7 @@
   "category": "Database",
   "difficulty": "Medium",
   "icon": "",
-  "locked": true,
+  "locked": false,
   "description": "Connect an application to a database and implement basic create and read operations for one resource.",
   "requirements": [
     "Repository should contain database configuration using environment variables or a local development config",

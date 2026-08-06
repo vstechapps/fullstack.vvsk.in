@@ -2,7 +2,7 @@
   "category": "Frontend",
   "difficulty": "Easy",
   "icon": "",
-  "locked": true,
+  "locked": false,
   "description": "Create a new Angular application with a clean project structure and a working starter page.",
   "requirements": [
     "Repository should contain a valid Angular project created with Angular CLI or an equivalent Angular setup",

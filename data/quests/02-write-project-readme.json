@@ -2,7 +2,7 @@
   "category": "Developer",
   "difficulty": "Easy",
   "icon": "",
-  "locked": true,
+  "locked": false,
   "description": "Improve a project repository by writing clear documentation that helps another developer understand, run and contribute to it.",
   "requirements": [
     "Repository should include a README.md file at the root",

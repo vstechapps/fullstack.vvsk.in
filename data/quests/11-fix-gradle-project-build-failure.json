@@ -2,7 +2,7 @@
   "category": "Backend",
   "difficulty": "Medium",
   "icon": "",
-  "locked": true,
+  "locked": false,
   "description": "Fix a Gradle-based Java, Kotlin or Spring Boot project that fails to compile, test or package.",
   "requirements": [
     "Repository should contain a Gradle project with build.gradle, build.gradle.kts or settings.gradle files",
