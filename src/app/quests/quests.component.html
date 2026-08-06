@@ -19,7 +19,6 @@
         <div class="card card-interactive" *ngFor="let quest of quests">
             <div class="card-header">
                 <span class="text-small">{{quest.category}}</span>
-                <span class="badge"><i class="bi" [ngClass]="{'bi-lock': quest.locked, 'bi-unlock': !quest.locked}"></i>{{quest.locked ? 'Locked' : 'Unlocked'}}</span>
             </div>
             <div class="card-body">
                 <h3>{{ quest.title }}</h3>
@@ -27,7 +26,7 @@
             </div>
             <div class="card-footer">
                 <span class="badge badge-gold">+{{ quest.xp }} XP</span>
-                <button *ngIf="!quest.locked" class="btn btn-primary btn-sm" [routerLink]="['/quests', quest.id]">Start</button>
+                <span class="badge"><i class="bi" [ngClass]="{'bi-lock': quest.locked, 'bi-unlock': !quest.locked}"></i>{{quest.locked ? 'Locked' : 'Unlocked'}}</span>
             </div>
         </div>
     </div>
