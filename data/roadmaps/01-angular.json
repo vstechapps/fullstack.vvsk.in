@@ -25,8 +25,8 @@
     "Deployment & Production Build"
   ],
   "topics": [
-    { "title": "Angular Fundamentals" },
-    { "title": "TypeScript for Angular" },
+    { "id":"01-fundamentals","title": "Angular Fundamentals" },
+    { "id":"02-typescript","title": "TypeScript for Angular" },
     { "title": "Angular CLI & Project Structure" },
     { "title": "Components & Templates" },
     { "title": "Directives & Pipes" },

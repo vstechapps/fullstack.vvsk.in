@@ -5,6 +5,7 @@
   "scripts": {
     "start": "ng serve --host 0.0.0.0 --port 4200",
     "build": "ng build && node scripts/move-files.js",
+    "deploy-test": "node scripts/deploy-test.js",
     "deploy-prod": "node scripts/deploy-prod.js",
     "test": "ng test --watch=false --browsers=ChromeHeadless"
   },
