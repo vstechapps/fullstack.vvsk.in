@@ -1,0 +1,441 @@
+{
+  "title": "Angular Fundamentals",
+  "pages": [
+    {
+      "id": "overview",
+      "title": "What Angular Is",
+      "duration": "8m",
+      "content": [
+        {
+          "tag": "h2",
+          "text": "Angular at a Glance"
+        },
+        {
+          "tag": "p",
+          "value": "Angular is a TypeScript-based web framework for building fast, reliable, maintainable applications. It gives you a structured way to build user interfaces, manage state, call APIs, validate forms, route between screens and prepare apps for production."
+        },
+        {
+          "tag": "p",
+          "value": "Unlike a small UI library that only handles rendering, Angular includes a broader application platform: components, templates, dependency injection, routing, forms, HttpClient, testing utilities, build tooling and production optimization."
+        },
+        {
+          "tag": "ul",
+          "text": "Use Angular when the application needs structure, multiple screens, reusable UI, team-friendly conventions and long-term maintainability."
+        },
+        {
+          "tag": "ul",
+          "text": "Angular applications are usually written in TypeScript and compiled into browser-ready JavaScript, HTML and CSS."
+        },
+        {
+          "tag": "ul",
+          "text": "Modern Angular favors standalone components, direct imports and reactive patterns such as signals."
+        },
+        {
+          "tag": "pre,code",
+          "text": "Angular = Components + Templates + TypeScript + Dependency Injection + Tooling"
+        }
+      ]
+    },
+    {
+      "id": "mental-model",
+      "title": "The Angular Mental Model",
+      "duration": "10m",
+      "content": [
+        {
+          "tag": "h2",
+          "text": "Think in Components"
+        },
+        {
+          "tag": "p",
+          "value": "The core idea in Angular is simple: break the screen into components. A component owns a piece of UI, its template, its styling and the behavior needed for that part of the page."
+        },
+        {
+          "tag": "p",
+          "value": "A real application becomes a tree of components. The root component contains layout components. Layout components contain feature components. Feature components contain smaller presentational components."
+        },
+        {
+          "tag": "ul",
+          "text": "Component class: TypeScript code that stores data and behavior."
+        },
+        {
+          "tag": "ul",
+          "text": "Template: HTML-like markup that renders data and reacts to user actions."
+        },
+        {
+          "tag": "ul",
+          "text": "Styles: CSS that controls the component's visual presentation."
+        },
+        {
+          "tag": "ul",
+          "text": "Imports: other components, directives and pipes this component needs."
+        },
+        {
+          "tag": "pre,code",
+          "text": "AppComponent\n  HeaderComponent\n  SidebarComponent\n  DashboardPageComponent\n    StatsCardComponent\n    ActivityListComponent\n  FooterComponent"
+        }
+      ]
+    },
+    {
+      "id": "component-anatomy",
+      "title": "Component Anatomy",
+      "duration": "12m",
+      "content": [
+        {
+          "tag": "h2",
+          "text": "A Component Has Metadata and Behavior"
+        },
+        {
+          "tag": "p",
+          "value": "Angular marks a TypeScript class as a component using the @Component decorator. The decorator tells Angular the selector, template, styles and imports required by that component."
+        },
+        {
+          "tag": "p",
+          "value": "The selector is the custom HTML element used to render the component. The template controls what appears on the screen. The class contains state and methods."
+        },
+        {
+          "tag": "pre,code",
+          "text": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-user-card',\n  standalone: true,\n  template: `\n    <article>\n      <h2>{{ name }}</h2>\n      <button (click)=\"follow()\">Follow</button>\n    </article>\n  `\n})\nexport class UserCardComponent {\n  name = 'Asha';\n\n  follow() {\n    console.log('Follow clicked');\n  }\n}"
+        },
+        {
+          "tag": "ul",
+          "text": "selector lets another template use the component as <app-user-card></app-user-card>."
+        },
+        {
+          "tag": "ul",
+          "text": "template can be inline or placed in a separate HTML file."
+        },
+        {
+          "tag": "ul",
+          "text": "standalone components can import dependencies directly without declaring them in an NgModule."
+        }
+      ]
+    },
+    {
+      "id": "templates",
+      "title": "Templates and Binding",
+      "duration": "14m",
+      "content": [
+        {
+          "tag": "h2",
+          "text": "Templates Connect Data to the DOM"
+        },
+        {
+          "tag": "p",
+          "value": "An Angular template is HTML with Angular syntax added. It can display values, bind properties, listen to events and conditionally render content."
+        },
+        {
+          "tag": "p",
+          "value": "Binding is the connection between the component class and the template. When data changes, Angular updates the rendered view."
+        },
+        {
+          "tag": "ul",
+          "text": "Interpolation displays a value: {{ userName }}."
+        },
+        {
+          "tag": "ul",
+          "text": "Property binding sets a DOM or component property: [disabled]=\"isSaving\"."
+        },
+        {
+          "tag": "ul",
+          "text": "Event binding listens for user actions: (click)=\"save()\"."
+        },
+        {
+          "tag": "ul",
+          "text": "Two-way binding is useful for forms when the template and class need to stay in sync."
+        },
+        {
+          "tag": "pre,code",
+          "text": "<h1>Hello {{ userName }}</h1>\n\n<button [disabled]=\"isSaving\" (click)=\"save()\">\n  Save\n</button>\n\n<p *ngIf=\"isSaving\">Saving your changes...</p>"
+        }
+      ]
+    },
+    {
+      "id": "control-flow",
+      "title": "Rendering Lists and Conditions",
+      "duration": "12m",
+      "content": [
+        {
+          "tag": "h2",
+          "text": "Show the Right UI for the Current State"
+        },
+        {
+          "tag": "p",
+          "value": "Most screens change based on data. Angular templates can show a loading message, render a list, hide empty sections and display alternate states."
+        },
+        {
+          "tag": "p",
+          "value": "In modern Angular, built-in control flow syntax such as @if and @for is preferred for new code. Older projects often use directives such as *ngIf and *ngFor, so you should recognize both styles."
+        },
+        {
+          "tag": "pre,code",
+          "text": "@if (users.length === 0) {\n  <p>No users found.</p>\n} @else {\n  <ul>\n    @for (user of users; track user.id) {\n      <li>{{ user.name }}</li>\n    }\n  </ul>\n}"
+        },
+        {
+          "tag": "ul",
+          "text": "Use conditions for loading, empty, error and success states."
+        },
+        {
+          "tag": "ul",
+          "text": "Use tracking keys when rendering lists so Angular can update the DOM efficiently."
+        },
+        {
+          "tag": "ul",
+          "text": "Keep complex decisions in the component class instead of hiding too much logic inside the template."
+        }
+      ]
+    },
+    {
+      "id": "data-and-events",
+      "title": "Data and Events",
+      "duration": "12m",
+      "content": [
+        {
+          "tag": "h2",
+          "text": "User Actions Change Component State"
+        },
+        {
+          "tag": "p",
+          "value": "Angular components usually hold state as class properties or signals. The template reads that state. User actions call methods. Those methods update the state, and Angular refreshes the view."
+        },
+        {
+          "tag": "p",
+          "value": "This flow is the foundation of interactive Angular screens: render data, capture events, update state and render again."
+        },
+        {
+          "tag": "pre,code",
+          "text": "import { Component, signal } from '@angular/core';\n\n@Component({\n  selector: 'app-counter',\n  standalone: true,\n  template: `\n    <p>Count: {{ count() }}</p>\n    <button (click)=\"increment()\">Increment</button>\n  `\n})\nexport class CounterComponent {\n  count = signal(0);\n\n  increment() {\n    this.count.update(value => value + 1);\n  }\n}"
+        },
+        {
+          "tag": "ul",
+          "text": "Use simple properties for straightforward static state."
+        },
+        {
+          "tag": "ul",
+          "text": "Use signals when state changes over time and the template should react precisely to those changes."
+        },
+        {
+          "tag": "ul",
+          "text": "Keep event handlers small and move reusable logic into methods or services."
+        }
+      ]
+    },
+    {
+      "id": "services-di",
+      "title": "Services and Dependency Injection",
+      "duration": "14m",
+      "content": [
+        {
+          "tag": "h2",
+          "text": "Move Shared Logic Out of Components"
+        },
+        {
+          "tag": "p",
+          "value": "A component should focus on UI behavior. Shared work such as API calls, authentication, logging, calculations or cross-page state usually belongs in a service."
+        },
+        {
+          "tag": "p",
+          "value": "Dependency injection lets Angular provide a service to a component instead of the component manually creating it. This improves reuse, testing and separation of concerns."
+        },
+        {
+          "tag": "pre,code",
+          "text": "import { Injectable } from '@angular/core';\n\n@Injectable({ providedIn: 'root' })\nexport class UserService {\n  getCurrentUser() {\n    return { id: 1, name: 'Asha' };\n  }\n}\n\n@Component({\n  selector: 'app-profile',\n  standalone: true,\n  template: `<h1>{{ user.name }}</h1>`\n})\nexport class ProfileComponent {\n  user = this.userService.getCurrentUser();\n\n  constructor(private userService: UserService) {}\n}"
+        },
+        {
+          "tag": "ul",
+          "text": "Use services for code that is shared by multiple components."
+        },
+        {
+          "tag": "ul",
+          "text": "Use dependency injection instead of calling new ServiceName() inside a component."
+        },
+        {
+          "tag": "ul",
+          "text": "A service with providedIn: 'root' is available application-wide."
+        }
+      ]
+    },
+    {
+      "id": "app-structure",
+      "title": "Application Structure",
+      "duration": "10m",
+      "content": [
+        {
+          "tag": "h2",
+          "text": "Organize by Features"
+        },
+        {
+          "tag": "p",
+          "value": "Angular projects are easier to maintain when related files live together. For small apps, a few components and services are enough. For larger apps, group code by feature area such as auth, dashboard, profile or admin."
+        },
+        {
+          "tag": "p",
+          "value": "Angular CLI creates a standard starting structure, but teams usually add feature folders as the app grows."
+        },
+        {
+          "tag": "pre,code",
+          "text": "src/app/\n  app.component.ts\n  app.routes.ts\n  core/\n    auth.service.ts\n    api.service.ts\n  features/\n    dashboard/\n      dashboard-page.component.ts\n      stats-card.component.ts\n    profile/\n      profile-page.component.ts\n  shared/\n    button.component.ts\n    date-format.pipe.ts"
+        },
+        {
+          "tag": "ul",
+          "text": "core contains singleton services and app-wide infrastructure."
+        },
+        {
+          "tag": "ul",
+          "text": "features contains screen-specific and domain-specific code."
+        },
+        {
+          "tag": "ul",
+          "text": "shared contains reusable UI and utilities that do not belong to one feature."
+        }
+      ]
+    },
+    {
+      "id": "angular-vs-plain-js",
+      "title": "Angular vs Plain JavaScript",
+      "duration": "8m",
+      "content": [
+        {
+          "tag": "h2",
+          "text": "Angular Handles Common App Problems for You"
+        },
+        {
+          "tag": "p",
+          "value": "With plain JavaScript, you manually select DOM elements, listen for events and update the DOM. Angular lets you describe the UI with templates and bind it to component state."
+        },
+        {
+          "tag": "p",
+          "value": "The difference becomes more valuable as screens grow. Angular gives repeatable patterns for forms, routing, API calls, validation, dependency management and testing."
+        },
+        {
+          "tag": "pre,code",
+          "text": "// Plain JavaScript\nconst button = document.querySelector('#save');\nbutton.addEventListener('click', save);\n\n// Angular template\n<button (click)=\"save()\">Save</button>"
+        },
+        {
+          "tag": "ul",
+          "text": "Angular reduces manual DOM manipulation."
+        },
+        {
+          "tag": "ul",
+          "text": "Angular encourages predictable organization for growing codebases."
+        },
+        {
+          "tag": "ul",
+          "text": "Angular adds a learning curve, but gives strong conventions once the app becomes serious."
+        }
+      ]
+    },
+    {
+      "id": "first-mini-component",
+      "title": "Build a Mini Component",
+      "duration": "15m",
+      "content": [
+        {
+          "tag": "h2",
+          "text": "Practice the Fundamentals Together"
+        },
+        {
+          "tag": "p",
+          "value": "A useful first exercise is a simple task list component. It uses component state, event binding, interpolation and list rendering."
+        },
+        {
+          "tag": "pre,code",
+          "text": "import { Component, signal } from '@angular/core';\n\n@Component({\n  selector: 'app-task-list',\n  standalone: true,\n  template: `\n    <h2>Tasks</h2>\n\n    <input #taskInput placeholder=\"New task\" />\n    <button (click)=\"addTask(taskInput.value); taskInput.value = ''\">\n      Add\n    </button>\n\n    @if (tasks().length === 0) {\n      <p>No tasks yet.</p>\n    } @else {\n      <ul>\n        @for (task of tasks(); track task) {\n          <li>{{ task }}</li>\n        }\n      </ul>\n    }\n  `\n})\nexport class TaskListComponent {\n  tasks = signal<string[]>([]);\n\n  addTask(title: string) {\n    const trimmed = title.trim();\n    if (!trimmed) return;\n    this.tasks.update(tasks => [...tasks, trimmed]);\n  }\n}"
+        },
+        {
+          "tag": "ul",
+          "text": "The input collects user data."
+        },
+        {
+          "tag": "ul",
+          "text": "The click event calls addTask()."
+        },
+        {
+          "tag": "ul",
+          "text": "The signal stores the current task list."
+        },
+        {
+          "tag": "ul",
+          "text": "The template renders either an empty state or a list."
+        }
+      ]
+    },
+    {
+      "id": "common-mistakes",
+      "title": "Common Beginner Mistakes",
+      "duration": "10m",
+      "content": [
+        {
+          "tag": "h2",
+          "text": "Avoid These Early Problems"
+        },
+        {
+          "tag": "p",
+          "value": "Most beginner Angular issues come from mixing template syntax, forgetting imports, putting too much logic in templates or treating Angular like manual DOM scripting."
+        },
+        {
+          "tag": "ul",
+          "text": "Do not use document.querySelector for normal UI updates. Use binding and component state."
+        },
+        {
+          "tag": "ul",
+          "text": "Do not put long calculations directly in the template. Move them into the class or a service."
+        },
+        {
+          "tag": "ul",
+          "text": "Do not forget to import components, directives or pipes that a standalone component template uses."
+        },
+        {
+          "tag": "ul",
+          "text": "Do not mutate complex state carelessly. Prefer clear update methods that make the change obvious."
+        },
+        {
+          "tag": "ul",
+          "text": "Do not hide API calls or business rules inside presentational components."
+        },
+        {
+          "tag": "pre,code",
+          "text": "// Avoid heavy template expressions\n{{ users.filter(user => user.active).length }}\n\n// Prefer a class property, method or computed signal\nactiveUserCount = computed(() => this.users().filter(user => user.active).length);"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint",
+      "title": "Fundamentals Checkpoint",
+      "duration": "8m",
+      "content": [
+        {
+          "tag": "h2",
+          "text": "You Are Ready for the Next Topic When..."
+        },
+        {
+          "tag": "p",
+          "value": "Before moving deeper into Angular CLI, TypeScript and components, make sure the main ideas feel clear. You do not need mastery yet, but you should understand the purpose of each building block."
+        },
+        {
+          "tag": "ul",
+          "text": "You can explain what Angular is and why teams use it."
+        },
+        {
+          "tag": "ul",
+          "text": "You can describe a component as a TypeScript class plus a template and metadata."
+        },
+        {
+          "tag": "ul",
+          "text": "You understand interpolation, property binding and event binding at a high level."
+        },
+        {
+          "tag": "ul",
+          "text": "You know that services hold reusable logic and Angular injects them where needed."
+        },
+        {
+          "tag": "ul",
+          "text": "You can read a small Angular component and identify its selector, state, template and event handlers."
+        },
+        {
+          "tag": "pre,code",
+          "text": "Next: learn Angular CLI so you can create, run, build and maintain Angular projects confidently."
+        }
+      ]
+    }
+  ]
+}
