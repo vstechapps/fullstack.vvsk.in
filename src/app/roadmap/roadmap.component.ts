@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgIf, NgFor } from '@angular/common';
 import { CiconComponent } from '../cicon/cicon.component';
 import { Course } from '../app.models';
@@ -7,7 +7,7 @@ import { Course } from '../app.models';
 @Component({
   selector: 'app-roadmap',
   standalone: true,
-  imports: [NgIf, NgFor, CiconComponent],
+  imports: [NgIf, NgFor, CiconComponent,RouterLink],
   templateUrl: './roadmap.component.html',
   styleUrl: './roadmap.component.css'
 })

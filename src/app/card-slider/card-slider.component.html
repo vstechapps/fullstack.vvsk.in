@@ -1,0 +1,64 @@
+<div class="activity-container">
+  
+  <!-- Linear Progress Bar -->
+  <div class="progress-bar">
+    <div class="progress-fill" [style.width.%]="((currentIndex() + 1) / cards.length) * 100"></div>
+  </div>
+
+  <!-- Cards Track Viewport -->
+  <div class="slider-viewport">
+    <div class="slider-track" [style.transform]="transformStyle()">
+      
+      @for (card of cards; track card.id; let idx = $index) {
+        <div class="slider-slide">
+          <div class="card-frame" [class.active-frame]="idx === currentIndex()">
+            
+            <div class="card-header">
+              <h2>{{ card.title }}</h2>
+            </div>
+
+            <div class="card-content">
+              @switch (card.type) {
+                @case ('content') {
+                  <div [innerHTML]="card.content"></div>
+                }
+                @case ('mcq') {
+                  <app-mcq-view 
+                    [data]="card.content" 
+                    (validated)="onAnswerEvaluated($event)">
+                  </app-mcq-view>
+                }
+                @case ('blank') {
+                  <!-- Handle blank template inputs -->
+                }
+                @case ('match') {
+                  <!-- Handle matching configuration logic -->
+                }
+                @case ('order') {
+                  <!-- Handle drag reorder sorting -->
+                }
+                @case ('code') {
+                  <!-- Handle custom playground output verification -->
+                }
+              }
+            </div>
+
+          </div>
+        </div>
+      }
+      
+    </div>
+  </div>
+
+  <!-- Persistent User Navigation Context Footer -->
+  <div class="slider-actions">
+    <button class="action-btn secondary" (click)="prev()" [disabled]="isFirst()">
+      Back
+    </button>
+    
+    <button class="action-btn primary" (click)="next()" [disabled]="!isCurrentCardValid()">
+      {{ isLast() ? 'Finish Activity' : 'Next' }}
+    </button>
+  </div>
+
+</div>

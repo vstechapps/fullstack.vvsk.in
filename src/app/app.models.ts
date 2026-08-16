@@ -18,7 +18,7 @@ export class Quest extends Task{
 }
 
 export class Topic extends Task{
-
+  cards:any[]=[];
 }
 
 export class Assessment extends Task{
