@@ -1,12 +1,47 @@
-<div *ngIf="topic && topic.cards" class="main-content">
-    <div style="display:flex;justify-content:space-between;margin-bottom:30px">
-        <nav class="breadcrumb text-subtitle" *ngIf="roadmap">
+<div *ngIf="roadmap && topic" style="display:flex;justify-content:space-between;margin-bottom:30px">
+    <nav class="breadcrumb text-subtitle" *ngIf="roadmap">
         <a (click)="exit()">{{ roadmap.title }}</a>
         <span>/</span>
         <span>{{topic.title}}</span>
     </nav>
     <button class="btn btn-subtle" style="float:right;" (click)="exit()">Exit</button>
+</div>
+
+<div *ngIf="topic && topic.cards" class="main-content">
+    <app-card-slider [cards]="topic.cards" (activityComplete)="onActivityComplete()"></app-card-slider>
+</div>
+
+<div *ngIf="showTopicComplete && roadmap && topic && nextTopicInfo" class="modal-backdrop">
+    <div class="modal-card">
+        <h3 class="modal-title">You have successfully completed {{topic.title}} in roadmap {{roadmap.title}}</h3>
+        <p class="modal-sub">Next Topic : {{ nextTopicInfo.title || '—' }}</p>
+
+                <div *ngIf="showConfetti" class="celebration">
+                    <div class="rocket">🚀</div>
+                    <span *ngFor="let _ of confettiArray; let i = index" class="confetti-piece" [style.--i]="i"></span>
+                </div>
+
+        <div class="modal-actions">
+                <button class="btn action-btn primary" (click)="proceedToNextTopic()" [disabled]="!nextTopicInfo">Proceed to next topic</button>
+            <button class="btn action-btn secondary" (click)="exit()">Exit</button>
+        </div>
     </div>
+</div>
     
-    <app-card-slider [cards]="topic.cards" (activityComplete)="nextTopic()"></app-card-slider>
+<!-- Roadmap completion modal -->
+<div *ngIf="showRoadmapComplete && roadmap" class="modal-backdrop">
+    <div class="modal-card">
+        <h3 class="modal-title">You have successfully completed the roadmap {{roadmap.title}}</h3>
+        <p class="modal-sub">Great job — you've finished all topics in this roadmap.</p>
+
+                <div *ngIf="showConfetti" class="celebration">
+                    <div class="rocket large">🚀</div>
+                    <span *ngFor="let _ of confettiArray; let i = index" class="confetti-piece" [style.--i]="i"></span>
+                </div>
+
+        <div class="modal-actions">
+            <button class="btn action-btn primary" (click)="exit()">Back to roadmaps</button>
+            <button class="btn action-btn secondary" (click)="closeRoadmapModal()">Close</button>
+        </div>
+    </div>
 </div>
