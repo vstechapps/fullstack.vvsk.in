@@ -1,4 +1,4 @@
-<div *ngIf="roadmap && topic" style="display:flex;justify-content:space-between;margin-bottom:30px">
+<div *ngIf="roadmap && topic" class="main-content" style="display:flex;justify-content:space-between;margin-bottom:20px">
     <nav class="breadcrumb text-subtitle" *ngIf="roadmap">
         <a (click)="exit()">{{ roadmap.title }}</a>
         <span>/</span>
@@ -7,23 +7,28 @@
     <button class="btn btn-subtle" style="float:right;" (click)="exit()">Exit</button>
 </div>
 
-<div *ngIf="topic && topic.cards" class="main-content">
+<div *ngIf="topic && topic.cards" >
     <app-card-slider [cards]="topic.cards" (activityComplete)="onActivityComplete()"></app-card-slider>
 </div>
 
 <div *ngIf="showTopicComplete && roadmap && topic && nextTopicInfo" class="modal-backdrop">
-    <div class="modal-card">
-        <h3 class="modal-title">You have successfully completed {{topic.title}} in roadmap {{roadmap.title}}</h3>
-        <p class="modal-sub">Next Topic : {{ nextTopicInfo.title || '—' }}</p>
-
-                <div *ngIf="showConfetti" class="celebration">
-                    <div class="rocket">🚀</div>
-                    <span *ngFor="let _ of confettiArray; let i = index" class="confetti-piece" [style.--i]="i"></span>
-                </div>
-
-        <div class="modal-actions">
-                <button class="btn action-btn primary" (click)="proceedToNextTopic()" [disabled]="!nextTopicInfo">Proceed to next topic</button>
-            <button class="btn action-btn secondary" (click)="exit()">Exit</button>
+    <div class="card">
+        <div class="card-header">
+            <h2>Great Job! 👏 🎉</h2>
+        </div>
+        <div class="card-body">
+            <h3 class="modal-title">
+                You have successfully completed <b>{{topic.title}}</b> in roadmap <b>{{roadmap.title}}</b>.
+            </h3>
+            <p class="modal-sub">Next Topic : {{ nextTopicInfo?.title || '—' }}</p>
+            <div *ngIf="showConfetti" class="celebration">
+            <div class="rocket"><span style="display: inline-block;rotate:45deg;">🚀</span></div>
+                <span *ngFor="let _ of confettiArray; let i = index" class="confetti-piece" [style.--i]="i"></span>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-secondary" (click)="exit()">Save Progress & Exit</button>
+            <button class="btn btn-primary" (click)="proceedToNextTopic()" [disabled]="!nextTopicInfo">Proceed to next topic</button>
         </div>
     </div>
 </div>

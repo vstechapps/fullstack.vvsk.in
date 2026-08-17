@@ -91,7 +91,6 @@ export class CardSliderComponent implements OnInit {
   }
 
   public finishActivity(): void {
-    this.reset();
     this.activityComplete.emit();
   }
 }

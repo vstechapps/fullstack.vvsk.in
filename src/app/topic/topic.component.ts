@@ -3,13 +3,14 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Course, Topic } from '../app.models';
 import { CardSliderComponent } from '../card-slider/card-slider.component';
 import { NgFor, NgIf } from '@angular/common';
+import { Utility } from '../services/app.util';
 
 @Component({
   selector: 'app-topic',
   standalone: true,
   imports: [CardSliderComponent, NgIf, RouterLink,NgFor],
   templateUrl: './topic.component.html',
-  styleUrl: './topic.component.css'
+    styleUrls: ['./topic.component.css']
 })
 export class TopicComponent {
 
@@ -21,8 +22,8 @@ export class TopicComponent {
 
   showTopicComplete = false;
   showRoadmapComplete = false;
-  showConfetti = false;
-  confettiArray = new Array(18);
+  showConfetti = true;
+  confettiArray = Utility.mobileAndTabletCheck()? new Array(18): new Array(18);
 
   constructor(private route: ActivatedRoute, private router: Router) {
 
@@ -76,19 +77,26 @@ export class TopicComponent {
     if (this.topic) {
       this.topic.cards = [];
     }
-    const nextIndex = this.currentIndex + 1;
+    let nextIndex = this.currentIndex + 1;
     if (this.roadmap.topics && nextIndex < this.roadmap.topics.length) {
       this.nextTopicInfo = this.roadmap.topics[nextIndex];
       this.showTopicComplete = true;
       this.showRoadmapComplete = false;
-      this.fireConfetti();
     } else {
       // no next topic -> roadmap completed
       this.nextTopicInfo = null;
       this.showTopicComplete = false;
       this.showRoadmapComplete = true;
-      this.fireConfetti(true);
     }
+
+    // debug logging to help diagnose rendering issues
+    console.debug('Topic complete:', {
+      currentIndex: this.currentIndex,
+      topic: this.topic,
+      nextTopicInfo: this.nextTopicInfo,
+      showTopicComplete: this.showTopicComplete,
+      showRoadmapComplete: this.showRoadmapComplete
+    });
   }
 
   /** User confirmed proceeding to next topic */
@@ -101,8 +109,4 @@ export class TopicComponent {
     this.showRoadmapComplete = false;
   }
 
-  private fireConfetti(isRoadmap = false): void {
-    this.showConfetti = true;
-    setTimeout(() => this.showConfetti = false, isRoadmap ? 3500 : 2500);
-  }
 }
