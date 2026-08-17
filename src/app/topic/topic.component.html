@@ -20,7 +20,7 @@
             <h3 class="modal-title">
                 You have successfully completed <b>{{topic.title}}</b> in roadmap <b>{{roadmap.title}}</b>.
             </h3>
-            <p class="modal-sub">Next Topic : {{ nextTopicInfo?.title || '—' }}</p>
+            <p class="modal-sub">Next Topic : {{ nextTopicInfo.title || '—' }}</p>
             <div *ngIf="showConfetti" class="celebration">
             <div class="rocket"><span style="display: inline-block;rotate:45deg;">🚀</span></div>
                 <span *ngFor="let _ of confettiArray; let i = index" class="confetti-piece" [style.--i]="i"></span>
