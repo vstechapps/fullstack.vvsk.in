@@ -43,7 +43,7 @@
 	top: 18px;
 	font-size: 34px;
 	filter: drop-shadow(0 8px 18px rgba(59,130,246,0.18));
-    animation: moveRight 3s ease-in-out infinite;
+    animation: moveRight 2200ms ease-in-out infinite;
 }
 
 .rocket.large { font-size: 58px; top: 6px; }
@@ -77,12 +77,12 @@
 @keyframes moveRight {
     0% {
         /* Starting position on the left */
-        transform: translateX(30px);
+        transform: translateX(-30px);
     }
 
     100% {
         /* Ending position on the right (adjust px or % as needed) */
-        transform: translateX(450px);
+        transform: translateX(400px);
     }
 }
 

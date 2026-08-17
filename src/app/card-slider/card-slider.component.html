@@ -2,49 +2,49 @@
   
   <!-- Linear Progress Bar -->
   <div class="progress-bar">
-    <div class="progress-fill" [style.width.%]="((currentIndex() + 1) / cards.length) * 100"></div>
+    <div class="progress-fill" [style.width.%]="((currentIndex + 1) / cards.length) * 100"></div>
   </div>
 
   <!-- Cards Track Viewport -->
-  <div class="slider-viewport">
+  <div class="slider-viewport" *ngIf="currentCard">
     <div class="slider-track">
       <div class="slider-slide">
-        <div class="card-frame active-frame">
+        <div class="active-frame">
           <div class="card-header">
-            <h2>{{ currentCard().title }}</h2>
+            <h2>{{ currentCard.title }}</h2>
           </div>
           <div class="card-content">
-            @switch (currentCard().type) {
+            @switch (currentCard.type) {
               @case ('content') {
-                <div class="content" [innerHTML]="currentCard().content"></div>
+                <div class="content" [innerHTML]="currentCard.content"></div>
               }
               @case ('mcq') {
                 <app-mcq-view 
-                  [data]="$any(currentCard().content)" 
+                  [data]="$any(currentCard.content)" 
                   (validated)="onAnswerEvaluated($event)">
                 </app-mcq-view>
               }
               @case ('blank') {
                 <app-blank-view
-                  [data]="$any(currentCard().content)"
+                  [data]="$any(currentCard.content)"
                   (validated)="onAnswerEvaluated($event)">
                 </app-blank-view>
               }
               @case ('match') {
                 <app-match-view
-                  [data]="$any(currentCard().content)"
+                  [data]="$any(currentCard.content)"
                   (validated)="onAnswerEvaluated($event)">
                 </app-match-view>
               }
               @case ('order') {
                 <app-order-view
-                  [data]="$any(currentCard().content)"
+                  [data]="$any(currentCard.content)"
                   (validated)="onAnswerEvaluated($event)">
                 </app-order-view>
               }
               @case ('code') {
                 <app-code-view
-                  [data]="$any(currentCard().content)"
+                  [data]="$any(currentCard.content)"
                   (validated)="onAnswerEvaluated($event)">
                 </app-code-view>
               }
@@ -62,7 +62,7 @@
       Back
     </button>
     
-    <button class="action-btn primary" (click)="next()" [disabled]="!isCurrentCardValid()">
+    <button class="action-btn primary" (click)="next()" [disabled]="!(currentCard && currentCard.completed)">
       {{ isLast() ? 'Finish Activity' : 'Next' }}
     </button>
   </div>

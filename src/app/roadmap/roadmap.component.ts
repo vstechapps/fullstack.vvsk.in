@@ -3,6 +3,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgIf, NgFor } from '@angular/common';
 import { CiconComponent } from '../cicon/cicon.component';
 import { Course } from '../app.models';
+import { AppService } from '../services/app.service';
 
 @Component({
   selector: 'app-roadmap',
@@ -15,7 +16,7 @@ export class RoadmapComponent implements OnInit {
   roadmap: Course | null = null;
   loading = true;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute,public app:AppService) {}
 
   ngOnInit(): void {
     this.loadRoadmap();

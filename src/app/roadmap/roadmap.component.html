@@ -39,7 +39,7 @@
                         <td>
                             <span style="font-size: 35px;">Topics</span>
                         </td>
-                        <td style="text-align:left">
+                        <td [style.text-align]="app.isMobile?'left':'center'">
                             <span>
                                 <button class="btn btn-primary" style="font-size:20px" [routerLink]="['/roadmaps', roadmap.id,'explore']">Start <i class="bi bi-play" style="font-size:30px;"></i></button>
                             </span>
