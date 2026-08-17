@@ -7,46 +7,40 @@
 
   <!-- Cards Track Viewport -->
   <div class="slider-viewport">
-    <div class="slider-track" [style.transform]="transformStyle()">
-      
-      @for (card of cards; track card.id; let idx = $index) {
-        <div class="slider-slide">
-          <div class="card-frame" [class.active-frame]="idx === currentIndex()">
-            
-            <div class="card-header">
-              <h2>{{ card.title }}</h2>
-            </div>
-
-            <div class="card-content">
-              @switch (card.type) {
-                @case ('content') {
-                  <div [innerHTML]="card.content"></div>
-                }
-                @case ('mcq') {
-                  <app-mcq-view 
-                    [data]="card.content" 
-                    (validated)="onAnswerEvaluated($event)">
-                  </app-mcq-view>
-                }
-                @case ('blank') {
-                  <!-- Handle blank template inputs -->
-                }
-                @case ('match') {
-                  <!-- Handle matching configuration logic -->
-                }
-                @case ('order') {
-                  <!-- Handle drag reorder sorting -->
-                }
-                @case ('code') {
-                  <!-- Handle custom playground output verification -->
-                }
-              }
-            </div>
-
+    <div class="slider-track">
+      <div class="slider-slide">
+        <div class="card-frame active-frame">
+          <div class="card-header">
+            <h2>{{ currentCard().title }}</h2>
           </div>
+          <div class="card-content">
+            @switch (currentCard().type) {
+              @case ('content') {
+                <div class="content" [innerHTML]="currentCard().content"></div>
+              }
+              @case ('mcq') {
+                <app-mcq-view 
+                  [data]="currentCard().content" 
+                  (validated)="onAnswerEvaluated($event)">
+                </app-mcq-view>
+              }
+              @case ('blank') {
+                <!-- Handle blank template inputs -->
+              }
+              @case ('match') {
+                <!-- Handle matching configuration logic -->
+              }
+              @case ('order') {
+                <!-- Handle drag reorder sorting -->
+              }
+              @case ('code') {
+                <!-- Handle custom playground output verification -->
+              }
+            }
+          </div>
+
         </div>
-      }
-      
+      </div>
     </div>
   </div>
 

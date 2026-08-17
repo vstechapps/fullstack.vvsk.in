@@ -10,6 +10,14 @@
     padding: 0;
 }
 
+.card-content .content *{
+  margin-top: 10px;
+}
+
+.card-content .content ul{
+  margin-left: 20px;
+}
+
 .main-content{
     margin-left:0px
 }

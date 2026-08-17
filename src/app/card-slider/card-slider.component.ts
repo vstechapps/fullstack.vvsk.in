@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, signal, computed, HostListener } from '@angular/core';
+import { Component, Input, Output, EventEmitter, signal, computed, HostListener, OnInit } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { SliderCard } from './card-slider-models';
 import { McqViewComponent } from './mcq-view.component';
@@ -10,7 +10,7 @@ import { McqViewComponent } from './mcq-view.component';
   templateUrl: './card-slider.component.html',
   styleUrls: ['./card-slider.component.css']
 })
-export class CardSliderComponent {
+export class CardSliderComponent implements OnInit {
   @Input({ required: true }) cards: SliderCard[] = [];
   @Output() activityComplete = new EventEmitter<void>();
 
@@ -35,6 +35,10 @@ export class CardSliderComponent {
     if (reachedBottom) {
       this.updateValidationState();
     }
+  }
+
+  ngOnInit(): void {
+    this.updateValidationState();
   }
 
   // Run automatically when moving slides to check if it was pre-validated
