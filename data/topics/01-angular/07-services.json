@@ -1,0 +1,74 @@
+{
+  "title": "Services",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "what-are-services",
+      "title": "What are Services?",
+      "type": "content",
+      "content": "<h2>Angular Services</h2>\n<p>Services are typically classes with a narrow, well-defined purpose. They are used to share data, logic, and functionality across multiple components, adhering to the DRY (Don't Repeat Yourself) principle.</p>\n<p>In Angular, services are often injected into components using Dependency Injection (DI).</p>"
+    },
+    {
+      "id": "injectable-decorator",
+      "title": "The @Injectable Decorator",
+      "type": "content",
+      "content": "<h2>@Injectable Decorator</h2>\n<p>The <code>@Injectable()</code> decorator marks a class as available to be provided and injected as a dependency.</p>\n<pre><code class=\"language-typescript\">import { Injectable } from '@angular/core';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class DataService { }</code></pre>\n<p>Using <code>providedIn: 'root'</code> creates a single, shared instance (singleton) of the service that is available application-wide.</p>"
+    },
+    {
+      "id": "dependency-injection",
+      "title": "Dependency Injection (DI)",
+      "type": "content",
+      "content": "<h2>Dependency Injection</h2>\n<p>DI is a design pattern in which a class requests dependencies from external sources rather than creating them. Angular's DI framework provides declared dependencies to a class when that class is instantiated.</p>\n<pre><code class=\"language-typescript\">constructor(private dataService: DataService) { }</code></pre>"
+    },
+    {
+      "id": "mcq-providedin",
+      "title": "Service Registration",
+      "type": "mcq",
+      "content": {
+        "options": [
+          { "id": "a", "text": "providedIn: 'root'" },
+          { "id": "b", "text": "providedIn: 'app'" },
+          { "id": "c", "text": "providedIn: 'global'" },
+          { "id": "d", "text": "providedIn: 'all'" }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "blank-injectable",
+      "title": "Service Decorator",
+      "type": "blank",
+      "content": {
+        "prompt": "<p>To mark a class as a service that can be injected, we use the <code>@___</code> decorator.</p>",
+        "answer": "Injectable"
+      }
+    },
+    {
+      "id": "order-di-steps",
+      "title": "DI Steps",
+      "type": "order",
+      "content": {
+        "prompt": "Arrange the steps to create and use a service in Angular:",
+        "correctOrder": [
+          "Create a service class",
+          "Add the @Injectable decorator",
+          "Specify providedIn: 'root' (or another provider)",
+          "Inject the service in the component constructor"
+        ]
+      }
+    },
+    {
+      "id": "match-service-terms",
+      "title": "Service Concepts",
+      "type": "match",
+      "content": {
+        "pairs": [
+          { "left": "Service", "right": "Class for sharing data and logic" },
+          { "left": "DI", "right": "Framework supplying requested dependencies" },
+          { "left": "Singleton", "right": "A single instance shared application-wide" },
+          { "left": "Constructor", "right": "Where dependencies are typically injected" }
+        ]
+      }
+    }
+  ]
+}

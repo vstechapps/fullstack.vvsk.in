@@ -8,5 +8,5 @@
     <button class="btn btn-subtle" style="float:right;" (click)="exit()">Exit</button>
     </div>
     
-    <app-card-slider [cards]="topic.cards"></app-card-slider>
+    <app-card-slider [cards]="topic.cards" (activityComplete)="nextTopic()"></app-card-slider>
 </div>

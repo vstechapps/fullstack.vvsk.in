@@ -1,0 +1,71 @@
+{
+  "title": "Angular CLI",
+  "duration": "25m",
+  "cards": [
+    {
+      "id": "what-is-cli",
+      "title": "Angular CLI Basics",
+      "type": "content",
+      "content": "<h2>Angular CLI</h2>\n<p>The Angular CLI is a command-line interface tool that you use to initialize, develop, scaffold, and maintain Angular applications.</p>\n<pre><code>npm install -g @angular/cli\nng new my-app</code></pre>"
+    },
+    {
+      "id": "cli-generators",
+      "title": "Generating Files",
+      "type": "content",
+      "content": "<h2>Scaffolding Code</h2>\n<p>Use <code>ng generate</code> (or <code>ng g</code>) to create components, services, and more.</p>\n<pre><code>ng generate component header\nng g s user</code></pre>"
+    },
+    {
+      "id": "cli-serve-build",
+      "title": "Serve and Build",
+      "type": "content",
+      "content": "<h2>Serving and Building</h2>\n<p><code>ng serve</code> builds the app and starts a local dev server. <code>ng build</code> compiles the app into an output directory for deployment.</p>\n<pre><code>ng serve --open\nng build --configuration production</code></pre>"
+    },
+    {
+      "id": "cli-mcq",
+      "title": "Generate Command",
+      "type": "mcq",
+      "content": {
+        "options": [
+          {"id": "a", "text": "ng create component my-comp"},
+          {"id": "b", "text": "ng make component my-comp"},
+          {"id": "c", "text": "ng generate component my-comp"},
+          {"id": "d", "text": "ng new component my-comp"}
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "cli-match",
+      "title": "Match Commands",
+      "type": "match",
+      "content": {
+        "pairs": [
+          {"left": "ng new", "right": "Creates a new workspace"},
+          {"left": "ng serve", "right": "Starts the dev server"},
+          {"left": "ng build", "right": "Compiles the app for deployment"},
+          {"left": "ng test", "right": "Runs unit tests"}
+        ]
+      }
+    },
+    {
+      "id": "cli-code",
+      "title": "CLI Command as String",
+      "type": "code",
+      "content": {
+        "prompt": "Write a JavaScript function that returns the Angular CLI command to start the development server.",
+        "starterCode": "function getServeCommand() {\n  // return the command string\n  \n}\nconsole.log(getServeCommand());",
+        "language": "javascript",
+        "expectedOutput": "ng serve"
+      }
+    },
+    {
+      "id": "cli-blank",
+      "title": "CLI Shorthand",
+      "type": "blank",
+      "content": {
+        "prompt": "<p>The shorthand for <code>ng generate component</code> is <code>ng ___ c</code>.</p>",
+        "answer": "g"
+      }
+    }
+  ]
+}

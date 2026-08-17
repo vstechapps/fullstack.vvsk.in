@@ -1,0 +1,77 @@
+{
+  "title": "Deployment",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "building-for-prod",
+      "title": "Production Builds",
+      "type": "content",
+      "content": "<h2>Building the App</h2>\n<p>Before deploying, you must compile your Angular application. Running <code>ng build</code> generates optimized, minified, and tree-shaken static files in the <code>dist/</code> directory.</p>\n<p>By default, <code>ng build</code> uses the production configuration in newer Angular versions.</p>"
+    },
+    {
+      "id": "environments",
+      "title": "Environment Variables",
+      "type": "content",
+      "content": "<h2>Environments</h2>\n<p>Angular environments allow you to configure different variables (like API URLs) for development and production. You can configure file replacements in <code>angular.json</code>.</p>\n<pre><code class=\"language-typescript\">// environment.ts\nexport const environment = {\n  production: false,\n  apiUrl: 'http://localhost:3000'\n};</code></pre>"
+    },
+    {
+      "id": "hosting-options",
+      "title": "Hosting Providers",
+      "type": "content",
+      "content": "<h2>Where to Deploy</h2>\n<p>Since a standard Angular build is just static HTML, CSS, and JS, it can be hosted anywhere.</p>\n<ul>\n  <li><strong>Firebase Hosting:</strong> <code>ng deploy</code> with <code>@angular/fire</code></li>\n  <li><strong>Vercel / Netlify:</strong> Automatic deployments from GitHub</li>\n  <li><strong>Docker:</strong> Containerize your app with NGINX</li>\n</ul>"
+    },
+    {
+      "id": "deploy-mcq",
+      "title": "Build Output",
+      "type": "mcq",
+      "content": {
+        "options": [
+          { "id": "a", "text": "src/" },
+          { "id": "b", "text": "dist/" },
+          { "id": "c", "text": "build/" },
+          { "id": "d", "text": "public/" }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "deploy-match",
+      "title": "Deployment Concepts",
+      "type": "match",
+      "content": {
+        "pairs": [
+          { "left": "ng build", "right": "Compiles app into static files" },
+          { "left": "dist/", "right": "Folder containing the built app" },
+          { "left": "Environments", "right": "Configuration for dev/prod settings" },
+          { "left": "NGINX", "right": "Web server often used to serve Angular" }
+        ]
+      }
+    },
+    {
+      "id": "deploy-code",
+      "title": "Build Command",
+      "type": "code",
+      "content": {
+        "prompt": "Write the CLI command to build an Angular app.",
+        "language": "bash",
+        "starterCode": "# build command\n",
+        "expectedOutput": ""
+      }
+    },
+    {
+      "id": "deploy-order",
+      "title": "CI/CD Pipeline Steps",
+      "type": "order",
+      "content": {
+        "prompt": "Order the typical steps in a CI/CD pipeline for Angular.",
+        "correctOrder": [
+          "Checkout code",
+          "Install npm dependencies",
+          "Run unit and E2E tests",
+          "Build the application for production",
+          "Deploy artifacts to hosting provider"
+        ]
+      }
+    }
+  ]
+}

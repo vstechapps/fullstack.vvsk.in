@@ -1,0 +1,75 @@
+{
+  "title": "Components",
+  "duration": "35m",
+  "cards": [
+    {
+      "id": "component-basics",
+      "title": "Component Basics",
+      "type": "content",
+      "content": "<h2>@Component Decorator</h2>\n<p>Components are the main building block of Angular. Each component has a class, an HTML template, and CSS styles.</p>\n<pre><code>@Component({\n  selector: 'app-hello',\n  template: '&lt;h1&gt;Hello!&lt;/h1&gt;'\n})\nexport class HelloComponent {}</code></pre>"
+    },
+    {
+      "id": "input-output",
+      "title": "Input & Output",
+      "type": "content",
+      "content": "<h2>Data Passing</h2>\n<p>Use <code>@Input()</code> to pass data into a component and <code>@Output()</code> with <code>EventEmitter</code> to emit events to a parent component.</p>"
+    },
+    {
+      "id": "lifecycle-hooks",
+      "title": "Lifecycle Hooks",
+      "type": "content",
+      "content": "<h2>Component Lifecycle</h2>\n<p>Angular provides lifecycle hooks to tap into key moments. <code>ngOnInit</code> is called after inputs are initialized. <code>ngOnDestroy</code> is called before the component is destroyed.</p>"
+    },
+    {
+      "id": "comp-mcq",
+      "title": "Component Selector",
+      "type": "mcq",
+      "content": {
+        "options": [
+          {"id": "a", "text": "To define the CSS classes"},
+          {"id": "b", "text": "To specify the HTML tag used to instantiate the component"},
+          {"id": "c", "text": "To select elements from the DOM"},
+          {"id": "d", "text": "To inject services"}
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "comp-order",
+      "title": "Lifecycle Order",
+      "type": "order",
+      "content": {
+        "correctOrder": [
+          "constructor()",
+          "ngOnChanges()",
+          "ngOnInit()",
+          "ngAfterViewInit()",
+          "ngOnDestroy()"
+        ],
+        "prompt": "Arrange the lifecycle hooks in the order they execute:"
+      }
+    },
+    {
+      "id": "comp-blank",
+      "title": "Data Flow",
+      "type": "blank",
+      "content": {
+        "prompt": "<p>To emit custom events from a child to a parent component, you use the <code>@___()</code> decorator.</p>",
+        "answer": "Output"
+      }
+    },
+    {
+      "id": "comp-match",
+      "title": "Component Metadata",
+      "type": "match",
+      "content": {
+        "pairs": [
+          {"left": "selector", "right": "CSS selector that identifies this component"},
+          {"left": "templateUrl", "right": "URL to an external file containing a template"},
+          {"left": "styleUrls", "right": "List of URLs to stylesheets"},
+          {"left": "standalone", "right": "Whether the component requires an NgModule"}
+        ]
+      }
+    }
+  ]
+}

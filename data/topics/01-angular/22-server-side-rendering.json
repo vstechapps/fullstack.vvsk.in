@@ -1,0 +1,74 @@
+{
+  "title": "Server-Side Rendering",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "ssr-intro",
+      "title": "Server-Side Rendering (SSR)",
+      "type": "content",
+      "content": "<h2>Angular SSR</h2>\n<p>By default, Angular runs entirely in the browser (Client-Side Rendering). Server-Side Rendering (SSR) generates the initial HTML on the server before sending it to the client.</p>\n<p>This significantly improves First Contentful Paint (FCP) and Search Engine Optimization (SEO).</p>"
+    },
+    {
+      "id": "hydration",
+      "title": "Hydration",
+      "type": "content",
+      "content": "<h2>Client Hydration</h2>\n<p>Hydration is the process of restoring the server-rendered HTML into a fully interactive Angular application on the client. Angular 16+ introduced non-destructive hydration via <code>provideClientHydration()</code>, which reuses the existing DOM nodes instead of destroying and recreating them.</p>"
+    },
+    {
+      "id": "ssr-setup",
+      "title": "Adding SSR",
+      "type": "content",
+      "content": "<h2>Enabling SSR</h2>\n<p>You can add SSR to an existing Angular project using the CLI:</p>\n<pre><code class=\"language-bash\">ng add @angular/ssr</code></pre>\n<p>This sets up a Node.js Express server to render your application routes dynamically.</p>"
+    },
+    {
+      "id": "ssr-mcq",
+      "title": "Hydration API",
+      "type": "mcq",
+      "content": {
+        "options": [
+          { "id": "a", "text": "provideServerRendering()" },
+          { "id": "b", "text": "provideClientHydration()" },
+          { "id": "c", "text": "enableHydration()" },
+          { "id": "d", "text": "bootstrapHydration()" }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "ssr-order",
+      "title": "SSR Lifecycle",
+      "type": "order",
+      "content": {
+        "prompt": "Order the steps of Server-Side Rendering with Hydration.",
+        "correctOrder": [
+          "Client requests a page",
+          "Server renders Angular app to HTML",
+          "Browser displays the static HTML (FCP)",
+          "Angular client script downloads and hydrates the DOM"
+        ]
+      }
+    },
+    {
+      "id": "ssr-blank",
+      "title": "SEO Benefit",
+      "type": "blank",
+      "content": {
+        "prompt": "SSR improves <code>___</code> because search engine crawlers receive fully rendered HTML immediately.",
+        "answer": "SEO"
+      }
+    },
+    {
+      "id": "ssr-match",
+      "title": "SSR Terminology",
+      "type": "match",
+      "content": {
+        "pairs": [
+          { "left": "SSR", "right": "Renders HTML on the server" },
+          { "left": "Hydration", "right": "Makes server-rendered HTML interactive" },
+          { "left": "FCP", "right": "First Contentful Paint" },
+          { "left": "@angular/ssr", "right": "Package to enable server rendering" }
+        ]
+      }
+    }
+  ]
+}

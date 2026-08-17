@@ -1,0 +1,95 @@
+{
+  "title": "Signals",
+  "duration": "25m",
+  "cards": [
+    {
+      "id": "signals-intro",
+      "title": "What are Signals?",
+      "type": "content",
+      "content": "<h2>Introduction to Angular Signals</h2>\n<p>Signals are a new reactive primitive introduced in Angular 16. A signal is a wrapper around a value that can notify interested consumers when that value changes.</p>\n<p>Signals track dependencies automatically, making Angular's change detection much more efficient.</p>"
+    },
+    {
+      "id": "signals-core-concepts",
+      "title": "Core Concepts",
+      "type": "content",
+      "content": "<h2>signal(), computed(), and effect()</h2>\n<ul>\n<li><code>signal()</code>: Creates a WritableSignal. You can update its value using <code>.set()</code> or <code>.update()</code>.</li>\n<li><code>computed()</code>: Creates a read-only signal that derives its value from other signals. It is lazily evaluated and memoized.</li>\n<li><code>effect()</code>: Runs a side-effect function whenever its signal dependencies change.</li>\n</ul>"
+    },
+    {
+      "id": "signals-interop",
+      "title": "Signals vs Observables",
+      "type": "content",
+      "content": "<h2>RxJS Interoperability</h2>\n<p>Signals are great for synchronous state, while RxJS is ideal for async events. Angular provides interop functions:</p>\n<ul>\n<li><code>toSignal()</code>: Converts an Observable into a Signal.</li>\n<li><code>toObservable()</code>: Converts a Signal into an Observable.</li>\n</ul>"
+    },
+    {
+      "id": "signals-mcq",
+      "title": "Understanding effect()",
+      "type": "mcq",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "It computes a derived value based on other signals."
+          },
+          {
+            "id": "b",
+            "text": "It runs a side effect when dependent signals change."
+          },
+          {
+            "id": "c",
+            "text": "It converts an observable to a signal."
+          },
+          {
+            "id": "d",
+            "text": "It manually triggers Angular's change detection."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "signals-blank",
+      "title": "Derived Signals",
+      "type": "blank",
+      "content": {
+        "prompt": "To create a signal that depends on other signals and updates automatically, use the <code>___</code> function.",
+        "answer": "computed"
+      }
+    },
+    {
+      "id": "signals-code",
+      "title": "Signal Counter",
+      "type": "code",
+      "content": {
+        "prompt": "Create a writable signal called `count` initialized to 0, then update it to 5.",
+        "language": "javascript",
+        "starterCode": "const { signal } = require('@angular/core');\n\n// Create signal here\n\n\nconsole.log(count());",
+        "expectedOutput": "5"
+      }
+    },
+    {
+      "id": "signals-match",
+      "title": "Signal API Match",
+      "type": "match",
+      "content": {
+        "pairs": [
+          {
+            "left": "signal()",
+            "right": "Creates a writable signal"
+          },
+          {
+            "left": "computed()",
+            "right": "Creates a derived read-only signal"
+          },
+          {
+            "left": "effect()",
+            "right": "Executes side-effects when signals change"
+          },
+          {
+            "left": "toSignal()",
+            "right": "Converts an RxJS Observable to a Signal"
+          }
+        ]
+      }
+    }
+  ]
+}

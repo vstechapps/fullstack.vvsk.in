@@ -18,6 +18,10 @@
   margin-left: 20px;
 }
 
+.card-content .content a{
+  text-decoration: underline;
+}
+
 .main-content{
     margin-left:0px
 }

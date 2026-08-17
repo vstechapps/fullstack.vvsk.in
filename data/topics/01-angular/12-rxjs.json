@@ -1,0 +1,114 @@
+{
+  "title": "RxJS",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "rxjs-intro",
+      "title": "Introduction to RxJS",
+      "type": "content",
+      "content": "<h2>RxJS Basics</h2>\n<p>RxJS (Reactive Extensions for JavaScript) is a library for reactive programming using Observables. Angular uses it heavily for async operations like HTTP requests and routing.</p>\n<ul>\n<li><strong>Observable:</strong> A stream of data over time.</li>\n<li><strong>Observer:</strong> An object that listens to an Observable (next, error, complete).</li>\n<li><strong>Subscription:</strong> Represents the execution of an Observable. Used to cancel the execution (unsubscribe).</li>\n</ul>"
+    },
+    {
+      "id": "rxjs-operators",
+      "title": "Pipes and Operators",
+      "type": "content",
+      "content": "<h2>Operators</h2>\n<p>Operators are pure functions that enable complex async code to be composed easily. You use the <code>pipe()</code> method to chain operators.</p>\n<ul>\n<li><strong>map:</strong> Transforms data.</li>\n<li><strong>filter:</strong> Filters data.</li>\n<li><strong>switchMap:</strong> Cancels previous requests and switches to a new inner Observable.</li>\n<li><strong>catchError:</strong> Catches errors on the observable.</li>\n<li><strong>tap:</strong> Performs side effects without modifying the stream.</li>\n</ul>"
+    },
+    {
+      "id": "rxjs-subjects",
+      "title": "Subjects",
+      "type": "content",
+      "content": "<h2>Subjects and BehaviorSubjects</h2>\n<p>A Subject is a special type of Observable that allows values to be multicasted to many Observers. It is both an Observable and an Observer.</p>\n<p>A <strong>BehaviorSubject</strong> is a variant of Subject that requires an initial value and emits its current value whenever it is subscribed to.</p>"
+    },
+    {
+      "id": "rxjs-mcq",
+      "title": "BehaviorSubject vs Subject",
+      "type": "mcq",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Subject emits an initial value, BehaviorSubject does not."
+          },
+          {
+            "id": "b",
+            "text": "BehaviorSubject requires an initial value and emits the latest value to new subscribers."
+          },
+          {
+            "id": "c",
+            "text": "There is no difference."
+          },
+          {
+            "id": "d",
+            "text": "Subject is used for HTTP requests, BehaviorSubject is for routing."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "rxjs-match",
+      "title": "Match Operators",
+      "type": "match",
+      "content": {
+        "pairs": [
+          {
+            "left": "map",
+            "right": "Transforms emitted values"
+          },
+          {
+            "left": "filter",
+            "right": "Emits values that pass a condition"
+          },
+          {
+            "left": "switchMap",
+            "right": "Cancels previous inner observable and switches to a new one"
+          },
+          {
+            "left": "tap",
+            "right": "Performs side-effects transparently"
+          },
+          {
+            "left": "catchError",
+            "right": "Handles errors in an observable chain"
+          }
+        ]
+      }
+    },
+    {
+      "id": "rxjs-order",
+      "title": "Observable Pipeline",
+      "type": "order",
+      "content": {
+        "prompt": "Arrange the steps of an Observable pipeline in order, from creation to subscription.",
+        "correctOrder": [
+          "Create an Observable",
+          "Call the pipe() method",
+          "Apply operators (e.g., map, filter)",
+          "Subscribe to the Observable",
+          "Receive values in the next callback"
+        ]
+      }
+    },
+    {
+      "id": "rxjs-code",
+      "title": "Observable Pipe",
+      "type": "code",
+      "content": {
+        "prompt": "Use pipe, map, and filter to multiply values by 2 and only emit values greater than 5. Assume <code>of(1, 2, 3, 4)</code> is the source.",
+        "language": "javascript",
+        "starterCode": "import { of } from 'rxjs';\nimport { map, filter } from 'rxjs/operators';\n\nconst source = of(1, 2, 3, 4);\n// Add pipe with map and filter\nconst result = source.pipe(\n  \n);\nresult.subscribe(val => console.log(val));",
+        "expectedOutput": "6\n8"
+      }
+    },
+    {
+      "id": "rxjs-blank",
+      "title": "Chaining Operators",
+      "type": "blank",
+      "content": {
+        "prompt": "In RxJS, we use the <code>___</code> method on an Observable to chain operators together.",
+        "answer": "pipe"
+      }
+    }
+  ]
+}

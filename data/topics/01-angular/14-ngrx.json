@@ -1,0 +1,104 @@
+{
+  "title": "NgRx",
+  "duration": "35m",
+  "cards": [
+    {
+      "id": "ngrx-intro",
+      "title": "Introduction to NgRx",
+      "type": "content",
+      "content": "<h2>What is NgRx?</h2>\n<p>NgRx is a framework for building reactive applications in Angular. It provides state management based on the Redux pattern.</p>\n<p>Key concepts: <strong>Store</strong> (single source of truth), <strong>Actions</strong> (events that change state), and <strong>Reducers</strong> (pure functions that handle state transitions).</p>"
+    },
+    {
+      "id": "ngrx-selectors-effects",
+      "title": "Selectors and Effects",
+      "type": "content",
+      "content": "<h2>Selectors & Effects</h2>\n<ul>\n<li><strong>Selectors:</strong> Pure functions used to derive, slice, or compose pieces of state from the store.</li>\n<li><strong>Effects:</strong> Manage side effects like HTTP requests. They listen for actions, perform async operations, and dispatch new actions with the results.</li>\n</ul>"
+    },
+    {
+      "id": "ngrx-setup",
+      "title": "Setup and Boilerplate",
+      "type": "content",
+      "content": "<h2>Modern NgRx</h2>\n<p>Modern NgRx provides helper functions to reduce boilerplate:</p>\n<ul>\n<li><code>createAction()</code></li>\n<li><code>createReducer()</code></li>\n<li><code>createSelector()</code></li>\n</ul>\n<p>These functions make creating the state management architecture simpler and more type-safe.</p>"
+    },
+    {
+      "id": "ngrx-mcq",
+      "title": "Purpose of Effects",
+      "type": "mcq",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "To mutate the state directly."
+          },
+          {
+            "id": "b",
+            "text": "To isolate side effects (like HTTP calls) from components."
+          },
+          {
+            "id": "c",
+            "text": "To define the initial state of the store."
+          },
+          {
+            "id": "d",
+            "text": "To select data from the store."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "ngrx-order",
+      "title": "NgRx Data Flow",
+      "type": "order",
+      "content": {
+        "prompt": "Arrange the steps in the NgRx data flow for an async operation.",
+        "correctOrder": [
+          "Component dispatches an Action",
+          "Effect listens to the Action and makes an API call",
+          "API call returns data",
+          "Effect dispatches a Success Action",
+          "Reducer updates the Store",
+          "Component receives updated state via a Selector"
+        ]
+      }
+    },
+    {
+      "id": "ngrx-match",
+      "title": "Match NgRx Concepts",
+      "type": "match",
+      "content": {
+        "pairs": [
+          {
+            "left": "Store",
+            "right": "The single source of truth for application state"
+          },
+          {
+            "left": "Action",
+            "right": "Describes a unique event in the application"
+          },
+          {
+            "left": "Reducer",
+            "right": "Pure function that returns the new state"
+          },
+          {
+            "left": "Selector",
+            "right": "Function to slice specific data from state"
+          },
+          {
+            "left": "Effect",
+            "right": "Handles side-effects like API calls"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ngrx-blank",
+      "title": "Reducers",
+      "type": "blank",
+      "content": {
+        "prompt": "In modern NgRx, we use the <code>___</code> function to handle state transitions based on actions.",
+        "answer": "createReducer"
+      }
+    }
+  ]
+}

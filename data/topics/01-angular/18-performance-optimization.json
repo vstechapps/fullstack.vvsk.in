@@ -1,0 +1,74 @@
+{
+  "title": "Performance Optimization",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "change-detection",
+      "title": "OnPush Change Detection",
+      "type": "content",
+      "content": "<h2>Optimizing Change Detection</h2>\n<p>By default, Angular checks every component in the tree when an event occurs. Setting <code>changeDetection: ChangeDetectionStrategy.OnPush</code> tells Angular to only check the component when its Input references change or an event originates from it.</p>\n<p>This drastically improves performance for large applications.</p>"
+    },
+    {
+      "id": "trackby",
+      "title": "Optimizing Loops with trackBy",
+      "type": "content",
+      "content": "<h2>Using trackBy in *ngFor / @for</h2>\n<p>When re-rendering lists, Angular destroys and recreates DOM nodes by default. Using a tracking function (or the new <code>@for (item of items; track item.id)</code> syntax in Angular 17) allows Angular to track items by a unique identifier, updating only the changed DOM nodes.</p>"
+    },
+    {
+      "id": "lazy-loading",
+      "title": "Lazy Loading and Bundle Analysis",
+      "type": "content",
+      "content": "<h2>Reducing Bundle Size</h2>\n<p><strong>Lazy Loading:</strong> Load modules or standalone components only when their route is accessed (<code>loadComponent</code> / <code>loadChildren</code>).</p>\n<p><strong>Bundle Analysis:</strong> Use tools like <code>source-map-explorer</code> to visualize the bundle and identify large dependencies.</p>\n<p>Angular's Ahead-of-Time (AOT) compilation and tree shaking automatically remove unused code during the production build.</p>"
+    },
+    {
+      "id": "optimization-mcq",
+      "title": "Change Detection Strategy",
+      "type": "mcq",
+      "content": {
+        "options": [
+          { "id": "a", "text": "ChangeDetectionStrategy.Default" },
+          { "id": "b", "text": "ChangeDetectionStrategy.OnPush" },
+          { "id": "c", "text": "ChangeDetectionStrategy.Manual" },
+          { "id": "d", "text": "ChangeDetectionStrategy.Detached" }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "optimization-order",
+      "title": "Optimization Steps",
+      "type": "order",
+      "content": {
+        "prompt": "Arrange these performance optimization techniques from most basic to advanced.",
+        "correctOrder": [
+          "Use trackBy / track in loops",
+          "Implement lazy loading for routes",
+          "Enable OnPush change detection",
+          "Analyze bundle size with source-map-explorer"
+        ]
+      }
+    },
+    {
+      "id": "optimization-match",
+      "title": "Optimization Concepts",
+      "type": "match",
+      "content": {
+        "pairs": [
+          { "left": "OnPush", "right": "Optimizes change detection checks" },
+          { "left": "Lazy Loading", "right": "Defers loading of code until needed" },
+          { "left": "Tree Shaking", "right": "Removes unused code from bundles" },
+          { "left": "track", "right": "Optimizes list rendering" }
+        ]
+      }
+    },
+    {
+      "id": "optimization-blank",
+      "title": "Ahead-of-Time Compilation",
+      "type": "blank",
+      "content": {
+        "prompt": "Angular's <code>___</code> compilation converts Angular HTML and TypeScript code into efficient JavaScript code during the build phase.",
+        "answer": "AOT"
+      }
+    }
+  ]
+}

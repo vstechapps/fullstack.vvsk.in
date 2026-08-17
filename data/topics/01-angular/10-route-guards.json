@@ -1,0 +1,71 @@
+{
+  "title": "Route Guards",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-route-guards",
+      "title": "Protecting Routes",
+      "type": "content",
+      "content": "<h2>Route Guards</h2>\n<p>Route guards prevent unauthorized users from accessing certain routes or navigating away with unsaved changes. They can return a boolean, an Observable, a Promise, or a <code>UrlTree</code> to redirect users.</p>\n<p>Modern Angular uses <strong>functional guards</strong> instead of classes.</p>"
+    },
+    {
+      "id": "functional-guards",
+      "title": "Functional Guards",
+      "type": "content",
+      "content": "<h2>Writing Functional Guards</h2>\n<p>A functional guard is just a function that takes route snapshots and returns true/false or a UrlTree.</p>\n<pre><code class=\"language-typescript\">export const authGuard: CanActivateFn = (route, state) => {\n  const authService = inject(AuthService);\n  return authService.isLoggedIn() ? true : inject(Router).createUrlTree(['/login']);\n};</code></pre>"
+    },
+    {
+      "id": "mcq-guard-return",
+      "title": "Redirecting from a Guard",
+      "type": "mcq",
+      "content": {
+        "options": [
+          { "id": "a", "text": "Return an Error" },
+          { "id": "b", "text": "Return a UrlTree" },
+          { "id": "c", "text": "Return false only" },
+          { "id": "d", "text": "Use window.location.href" }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "blank-inject",
+      "title": "Injecting in Guards",
+      "type": "blank",
+      "content": {
+        "prompt": "<p>In functional guards, we use the <code>___()</code> function to get instances of services.</p>",
+        "answer": "inject"
+      }
+    },
+    {
+      "id": "match-guard-types",
+      "title": "Guard Types",
+      "type": "match",
+      "content": {
+        "pairs": [
+          { "left": "CanActivate", "right": "Controls if a route can be visited" },
+          { "left": "CanDeactivate", "right": "Controls if the user can leave a route" },
+          { "left": "CanMatch", "right": "Controls if a route should even be matched" },
+          { "left": "CanActivateChild", "right": "Controls access to child routes" }
+        ]
+      }
+    },
+    {
+      "id": "code-auth-guard",
+      "title": "Simple Auth Guard",
+      "type": "code",
+      "content": {
+        "prompt": "Write a simple functional auth guard that just returns true.",
+        "language": "javascript",
+        "starterCode": "const simpleGuard = (route, state) => {\n  // return true\n  \n};",
+        "expectedOutput": "undefined"
+      }
+    },
+    {
+      "id": "summary-guards",
+      "title": "Guards Summary",
+      "type": "content",
+      "content": "<h2>Summary</h2>\n<ul>\n<li>Guards protect routes from unauthorized access.</li>\n<li><strong>Functional guards</strong> are the modern standard, utilizing the <code>inject()</code> function.</li>\n<li>A guard can return a <code>UrlTree</code> to handle redirections cleanly.</li>\n</ul>"
+    }
+  ]
+}

@@ -2,11 +2,15 @@ import { Component, Input, Output, EventEmitter, signal, computed, HostListener,
 import { CommonModule, NgFor } from '@angular/common';
 import { SliderCard } from './card-slider-models';
 import { McqViewComponent } from './mcq-view.component';
+import { BlankViewComponent } from './blank-view.component';
+import { MatchViewComponent } from './match-view.component';
+import { OrderViewComponent } from './order-view.component';
+import { CodeViewComponent } from './code-view.component';
 
 @Component({
   selector: 'app-card-slider',
   standalone: true,
-  imports: [CommonModule,NgFor,McqViewComponent],
+  imports: [CommonModule, NgFor, McqViewComponent, BlankViewComponent, MatchViewComponent, OrderViewComponent, CodeViewComponent],
   templateUrl: './card-slider.component.html',
   styleUrls: ['./card-slider.component.css']
 })
@@ -33,7 +37,11 @@ export class CardSliderComponent implements OnInit {
     const reachedBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 2;
 
     if (reachedBottom) {
-      this.updateValidationState();
+      const card = this.currentCard();
+      if(card.type=="content"){
+        card.completed = true;
+        this.updateValidationState();
+      }
     }
   }
 
@@ -45,7 +53,7 @@ export class CardSliderComponent implements OnInit {
   private updateValidationState(): void {
     const card = this.currentCard();
     // 'content' types are always instantly passable
-    if (card.type === 'content' || card.completed) {
+    if (card.completed) {
       this.isCurrentCardValid.set(true);
     } else {
       this.isCurrentCardValid.set(false);
@@ -67,7 +75,7 @@ export class CardSliderComponent implements OnInit {
       this.currentIndex.update(idx => idx + 1);
       this.updateValidationState();
     } else {
-      this.activityComplete.emit();
+      this.finishActivity();
     }
   }
 
@@ -76,5 +84,14 @@ export class CardSliderComponent implements OnInit {
       this.currentIndex.update(idx => idx - 1);
       this.updateValidationState();
     }
+  }
+
+  public reset(): void {
+    this.currentIndex.set(0);
+  }
+
+  public finishActivity(): void {
+    this.reset();
+    this.activityComplete.emit();
   }
 }

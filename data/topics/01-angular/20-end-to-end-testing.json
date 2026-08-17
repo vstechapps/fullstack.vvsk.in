@@ -1,0 +1,71 @@
+{
+  "title": "End-to-End Testing",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "e2e-basics",
+      "title": "What is E2E Testing?",
+      "type": "content",
+      "content": "<h2>End-to-End Testing</h2>\n<p>E2E testing involves testing an application's workflow from beginning to end. It simulates real user scenarios by interacting with the browser.</p>\n<p>While Protractor was Angular's legacy E2E tool, modern Angular projects typically use <strong>Cypress</strong> or <strong>Playwright</strong>.</p>"
+    },
+    {
+      "id": "cypress-intro",
+      "title": "Cypress Overview",
+      "type": "content",
+      "content": "<h2>Using Cypress</h2>\n<p>Cypress provides a fast, reliable testing experience for anything that runs in a browser. It offers time travel, automatic waiting, and excellent debugging.</p>\n<pre><code class=\"language-javascript\">describe('Login', () => {\n  it('should login successfully', () => {\n    cy.visit('/login');\n    cy.get('input[name=\"user\"]').type('admin');\n    cy.get('button[type=\"submit\"]').click();\n    cy.url().should('include', '/dashboard');\n  });\n});</code></pre>"
+    },
+    {
+      "id": "page-objects",
+      "title": "Page Object Model",
+      "type": "content",
+      "content": "<h2>Page Objects</h2>\n<p>The Page Object Model (POM) is a design pattern used in E2E testing to create an object repository for web UI elements. It helps reduce code duplication and improves test maintenance by abstracting UI details away from the test logic.</p>"
+    },
+    {
+      "id": "e2e-mcq",
+      "title": "Modern E2E Tools",
+      "type": "mcq",
+      "content": {
+        "options": [
+          { "id": "a", "text": "Karma" },
+          { "id": "b", "text": "Jasmine" },
+          { "id": "c", "text": "Cypress" },
+          { "id": "d", "text": "TestBed" }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "e2e-match",
+      "title": "E2E Terminology",
+      "type": "match",
+      "content": {
+        "pairs": [
+          { "left": "Cypress", "right": "Modern E2E testing framework" },
+          { "left": "Protractor", "right": "Deprecated Angular E2E tool" },
+          { "left": "cy.visit()", "right": "Navigates to a URL" },
+          { "left": "Page Object", "right": "Design pattern for abstracting UI" }
+        ]
+      }
+    },
+    {
+      "id": "e2e-code",
+      "title": "Cypress Test",
+      "type": "code",
+      "content": {
+        "prompt": "Write a snippet using a generic testing API (like Cypress) to click a button with id 'submit-btn'.",
+        "language": "javascript",
+        "starterCode": "// pseudo-code to click #submit-btn\n",
+        "expectedOutput": ""
+      }
+    },
+    {
+      "id": "e2e-blank",
+      "title": "Automated Waits",
+      "type": "blank",
+      "content": {
+        "prompt": "Unlike older E2E tools, Cypress features automatic <code>___</code>, meaning it automatically retries assertions without needing sleep commands.",
+        "answer": "waiting"
+      }
+    }
+  ]
+}

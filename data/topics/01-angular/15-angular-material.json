@@ -1,0 +1,104 @@
+{
+  "title": "Angular Material",
+  "duration": "25m",
+  "cards": [
+    {
+      "id": "material-intro",
+      "title": "Getting Started",
+      "type": "content",
+      "content": "<h2>Angular Material</h2>\n<p>Angular Material provides UI components following Google's Material Design specification. It ensures accessible, responsive, and well-tested components.</p>\n<p>To install: <code>ng add @angular/material</code></p>"
+    },
+    {
+      "id": "material-components",
+      "title": "Common Components",
+      "type": "content",
+      "content": "<h2>Common Components</h2>\n<ul>\n<li><strong>MatButton:</strong> Interactive buttons.</li>\n<li><strong>MatInput:</strong> Form fields.</li>\n<li><strong>MatTable:</strong> Data tables with sorting and pagination.</li>\n</ul>\n<p>You must import each component's module (e.g., <code>MatButtonModule</code>) into your Angular application.</p>"
+    },
+    {
+      "id": "material-popups",
+      "title": "Popups and Modals",
+      "type": "content",
+      "content": "<h2>Popups & Modals</h2>\n<ul>\n<li><strong>MatDialog:</strong> Used for modal dialogs. Injected via a service.</li>\n<li><strong>MatSnackBar:</strong> Used for temporary toast-like notifications at the bottom of the screen.</li>\n</ul>"
+    },
+    {
+      "id": "material-theming",
+      "title": "Theming",
+      "type": "content",
+      "content": "<h2>Theming</h2>\n<p>Angular Material comes with pre-built themes (like indigo-pink). You can also define custom themes using Sass by specifying custom color palettes for primary, accent, and warn colors.</p>"
+    },
+    {
+      "id": "material-mcq",
+      "title": "Dialog Component",
+      "type": "mcq",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "MatPopupModule"
+          },
+          {
+            "id": "b",
+            "text": "MatModalModule"
+          },
+          {
+            "id": "c",
+            "text": "MatDialogModule"
+          },
+          {
+            "id": "d",
+            "text": "MatAlertModule"
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "material-match",
+      "title": "Component Match",
+      "type": "match",
+      "content": {
+        "pairs": [
+          {
+            "left": "MatDialog",
+            "right": "Modal popup"
+          },
+          {
+            "left": "MatSnackBar",
+            "right": "Toast notification"
+          },
+          {
+            "left": "MatTable",
+            "right": "Data grid"
+          },
+          {
+            "left": "MatSidenav",
+            "right": "Collapsible side panel"
+          }
+        ]
+      }
+    },
+    {
+      "id": "material-blank",
+      "title": "Toast Notifications",
+      "type": "blank",
+      "content": {
+        "prompt": "To show a temporary message at the bottom of the screen in Angular Material, you use the <code>___</code> service.",
+        "answer": "MatSnackBar"
+      }
+    },
+    {
+      "id": "material-order",
+      "title": "Material Setup",
+      "type": "order",
+      "content": {
+        "prompt": "Order the steps to use an Angular Material component.",
+        "correctOrder": [
+          "Run ng add @angular/material",
+          "Choose a theme and typography settings",
+          "Import the specific component module (e.g. MatButtonModule)",
+          "Use the component tag (e.g. <button mat-button>) in your template"
+        ]
+      }
+    }
+  ]
+}

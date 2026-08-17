@@ -1,0 +1,72 @@
+{
+  "title": "Lazy Loading",
+  "duration": "35m",
+  "cards": [
+    {
+      "id": "intro-lazy-loading",
+      "title": "What is Lazy Loading?",
+      "type": "content",
+      "content": "<h2>Lazy Loading</h2>\n<p>Lazy loading is a technique where parts of the application (like feature modules or standalone components) are loaded only when needed. This reduces the initial bundle size and speeds up application load time.</p>"
+    },
+    {
+      "id": "lazy-loading-standalone",
+      "title": "Lazy Loading Standalone Components",
+      "type": "content",
+      "content": "<h2>loadComponent</h2>\n<p>For standalone components, you use the <code>loadComponent</code> property in your route configuration and provide a dynamic import.</p>\n<pre><code class=\"language-typescript\">{\n  path: 'admin',\n  loadComponent: () => import('./admin/admin.component').then(m => m.AdminComponent)\n}</code></pre>"
+    },
+    {
+      "id": "lazy-loading-children",
+      "title": "Lazy Loading Routes",
+      "type": "content",
+      "content": "<h2>loadChildren</h2>\n<p>To lazy load a set of routes, you use <code>loadChildren</code>.</p>\n<pre><code class=\"language-typescript\">{\n  path: 'dashboard',\n  loadChildren: () => import('./dashboard/dashboard.routes').then(m => m.DASHBOARD_ROUTES)\n}</code></pre>\n<p>You can also configure <strong>Preloading Strategies</strong> (like <code>PreloadAllModules</code>) to load lazy routes in the background after the initial load.</p>"
+    },
+    {
+      "id": "mcq-lazy-load-prop",
+      "title": "Lazy Loading Property",
+      "type": "mcq",
+      "content": {
+        "options": [
+          { "id": "a", "text": "component" },
+          { "id": "b", "text": "lazyComponent" },
+          { "id": "c", "text": "loadComponent" },
+          { "id": "d", "text": "importComponent" }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "code-lazy-route",
+      "title": "Define a Lazy Route",
+      "type": "code",
+      "content": {
+        "prompt": "Complete the route definition using loadComponent for 'ProfileComponent'.",
+        "language": "javascript",
+        "starterCode": "const route = {\n  path: 'profile',\n  // add loadComponent here\n  \n};",
+        "expectedOutput": "undefined"
+      }
+    },
+    {
+      "id": "blank-dynamic-import",
+      "title": "Dynamic Imports",
+      "type": "blank",
+      "content": {
+        "prompt": "<p>Lazy loading relies on JavaScript's dynamic <code>___()</code> syntax to fetch files on demand.</p>",
+        "answer": "import"
+      }
+    },
+    {
+      "id": "order-lazy-loading",
+      "title": "Lazy Loading Steps",
+      "type": "order",
+      "content": {
+        "prompt": "Order the steps to lazy load a standalone component:",
+        "correctOrder": [
+          "Create a standalone component",
+          "Add a route definition",
+          "Use the loadComponent property",
+          "Write a dynamic import() statement"
+        ]
+      }
+    }
+  ]
+}

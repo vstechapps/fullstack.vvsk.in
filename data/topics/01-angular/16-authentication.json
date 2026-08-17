@@ -1,0 +1,95 @@
+{
+  "title": "Authentication",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "auth-jwt",
+      "title": "JWT and Tokens",
+      "type": "content",
+      "content": "<h2>JSON Web Tokens (JWT)</h2>\n<p>Authentication in single-page apps typically uses JWTs. Upon login, the server returns a token, which the client sends with subsequent requests.</p>\n<p><strong>Storage:</strong> Tokens can be stored in <code>localStorage</code> (vulnerable to XSS) or HTTP-only cookies (more secure against XSS, but requires CSRF protection).</p>"
+    },
+    {
+      "id": "auth-interceptors",
+      "title": "HttpInterceptors",
+      "type": "content",
+      "content": "<h2>HttpInterceptors</h2>\n<p>Angular's <code>HttpInterceptor</code> allows you to intercept outgoing HTTP requests and attach the JWT automatically to the <code>Authorization</code> header before the request leaves the app.</p>"
+    },
+    {
+      "id": "auth-guards",
+      "title": "Route Guards",
+      "type": "content",
+      "content": "<h2>Protecting Routes</h2>\n<p>Route Guards (like <code>CanActivate</code>) prevent unauthorized users from accessing certain routes. You can inject your Auth Service into a guard to check if the user is logged in or has the correct role.</p>"
+    },
+    {
+      "id": "auth-mcq",
+      "title": "Secure Token Storage",
+      "type": "mcq",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "localStorage"
+          },
+          {
+            "id": "b",
+            "text": "sessionStorage"
+          },
+          {
+            "id": "c",
+            "text": "HttpOnly Cookie"
+          },
+          {
+            "id": "d",
+            "text": "Angular Component State"
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "auth-match",
+      "title": "Auth Concepts",
+      "type": "match",
+      "content": {
+        "pairs": [
+          {
+            "left": "JWT",
+            "right": "Token format used for authentication"
+          },
+          {
+            "left": "HttpInterceptor",
+            "right": "Attaches auth token to outgoing requests"
+          },
+          {
+            "left": "Route Guard",
+            "right": "Prevents navigation to protected routes"
+          },
+          {
+            "left": "HttpOnly Cookie",
+            "right": "Secure place to store auth tokens"
+          }
+        ]
+      }
+    },
+    {
+      "id": "auth-blank",
+      "title": "HTTP Header",
+      "type": "blank",
+      "content": {
+        "prompt": "To send a JWT to the server, you typically include it in the <code>___</code> header of the HTTP request.",
+        "answer": "Authorization"
+      }
+    },
+    {
+      "id": "auth-code",
+      "title": "Auth Service",
+      "type": "code",
+      "content": {
+        "prompt": "Complete the function to check if a user is logged in.",
+        "language": "javascript",
+        "starterCode": "const localStorage = { getItem: () => 'fake-jwt-token' };\n\nfunction isLoggedIn() {\n  // return true if token exists, false otherwise\n  \n}\n\n// Test\nconsole.log(isLoggedIn());",
+        "expectedOutput": "true"
+      }
+    }
+  ]
+}

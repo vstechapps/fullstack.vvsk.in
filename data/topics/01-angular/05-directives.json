@@ -1,0 +1,70 @@
+{
+  "title": "Directives",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "what-are-directives",
+      "title": "Directives Overview",
+      "type": "content",
+      "content": "<h2>Directives</h2>\n<p>Directives are classes that add additional behavior to elements in your Angular applications.</p>"
+    },
+    {
+      "id": "structural-directives",
+      "title": "Structural Control Flow",
+      "type": "content",
+      "content": "<h2>Built-in Control Flow (Angular 17+)</h2>\n<p>Angular 17 introduced a new built-in control flow syntax: <code>@if</code>, <code>@for</code>, and <code>@switch</code>.</p>\n<pre><code>@if (isLoggedIn) {\n  &lt;p&gt;Welcome!&lt;/p&gt;\n}</code></pre>"
+    },
+    {
+      "id": "attribute-directives",
+      "title": "Attribute Directives",
+      "type": "content",
+      "content": "<h2>Attribute Directives</h2>\n<p>These change the appearance or behavior of an element. Examples include <code>ngClass</code> and <code>ngStyle</code>.</p>\n<pre><code>&lt;div [ngClass]=\"{'active': isActive}\"&gt;...&lt;/div&gt;</code></pre>"
+    },
+    {
+      "id": "dir-mcq",
+      "title": "Control Flow Syntax",
+      "type": "mcq",
+      "content": {
+        "options": [
+          {"id": "a", "text": "ng-for"},
+          {"id": "b", "text": "*ngFor"},
+          {"id": "c", "text": "@for"},
+          {"id": "d", "text": "#for"}
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "dir-blank",
+      "title": "NgClass",
+      "type": "blank",
+      "content": {
+        "prompt": "<p>To dynamically apply multiple CSS classes based on conditions, you can use the <code>[___]</code> directive.</p>",
+        "answer": "ngClass"
+      }
+    },
+    {
+      "id": "dir-match",
+      "title": "Directive Types",
+      "type": "match",
+      "content": {
+        "pairs": [
+          {"left": "Components", "right": "Directives with a template"},
+          {"left": "Structural directives", "right": "Change the DOM layout by adding/removing elements"},
+          {"left": "Attribute directives", "right": "Change appearance or behavior of an element"}
+        ]
+      }
+    },
+    {
+      "id": "dir-code",
+      "title": "Conditional Classes",
+      "type": "code",
+      "content": {
+        "prompt": "Write a JavaScript function that returns an object where the key 'active' is true if the passed parameter is true.",
+        "starterCode": "function getClasses(isActive) {\n  \n}\nconsole.log(getClasses(true).active);",
+        "language": "javascript",
+        "expectedOutput": "true"
+      }
+    }
+  ]
+}

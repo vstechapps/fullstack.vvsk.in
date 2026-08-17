@@ -1,0 +1,74 @@
+{
+  "title": "Routing",
+  "duration": "35m",
+  "cards": [
+    {
+      "id": "intro-routing",
+      "title": "Angular Router",
+      "type": "content",
+      "content": "<h2>Routing</h2>\n<p>The Angular Router enables navigation from one view to the next as users perform application tasks.</p>\n<p>You define an array of <code>Routes</code> mapping URL paths to components.</p>\n<pre><code class=\"language-typescript\">const routes: Routes = [\n  { path: 'home', component: HomeComponent },\n  { path: '', redirectTo: '/home', pathMatch: 'full' }\n];</code></pre>"
+    },
+    {
+      "id": "router-outlet-link",
+      "title": "Router Outlet & Link",
+      "type": "content",
+      "content": "<h2>Displaying Routes</h2>\n<p>The <code>&lt;router-outlet&gt;</code> directive is a placeholder where the router renders the component for the active route.</p>\n<p>The <code>routerLink</code> directive links to different routes, preventing full page reloads.</p>\n<pre><code class=\"language-html\">&lt;a routerLink=\"/home\"&gt;Home&lt;/a&gt;\n&lt;router-outlet&gt;&lt;/router-outlet&gt;</code></pre>"
+    },
+    {
+      "id": "route-params",
+      "title": "Route Parameters & Wildcards",
+      "type": "content",
+      "content": "<h2>Dynamic and Fallback Routes</h2>\n<p>Use a colon (:) to define route parameters: <code>{ path: 'user/:id', component: UserComponent }</code>.</p>\n<p>A wildcard route (<code>**</code>) catches all undefined paths, useful for 404 pages: <code>{ path: '**', component: PageNotFoundComponent }</code>.</p>"
+    },
+    {
+      "id": "mcq-wildcard",
+      "title": "Wildcard Route",
+      "type": "mcq",
+      "content": {
+        "options": [
+          { "id": "a", "text": "*" },
+          { "id": "b", "text": "**" },
+          { "id": "c", "text": "***" },
+          { "id": "d", "text": "404" }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "blank-router-outlet",
+      "title": "Router Outlet",
+      "type": "blank",
+      "content": {
+        "prompt": "<p>The directive used as a placeholder for routed components is <code>&lt;___&gt;</code>.</p>",
+        "answer": "router-outlet"
+      }
+    },
+    {
+      "id": "order-routing-setup",
+      "title": "Routing Setup",
+      "type": "order",
+      "content": {
+        "prompt": "Order the steps to set up routing:",
+        "correctOrder": [
+          "Define the Routes array",
+          "Provide routes using provideRouter",
+          "Add <router-outlet> to the root template",
+          "Use routerLink for navigation"
+        ]
+      }
+    },
+    {
+      "id": "match-routing-terms",
+      "title": "Routing Terms",
+      "type": "match",
+      "content": {
+        "pairs": [
+          { "left": "Routes", "right": "Array of URL-to-component mappings" },
+          { "left": "router-outlet", "right": "Placeholder for active route" },
+          { "left": "routerLink", "right": "Directive for internal navigation" },
+          { "left": "pathMatch: 'full'", "right": "Matches the entire URL exactly" }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "title": "Forms",
+  "duration": "40m",
+  "cards": [
+    {
+      "id": "forms-overview",
+      "title": "Forms in Angular",
+      "type": "content",
+      "content": "<h2>Forms</h2>\n<p>Angular provides two approaches to handling forms: <strong>Template-driven</strong> (relies on directives in the template) and <strong>Reactive</strong> (programmatic approach using form control objects).</p>"
+    },
+    {
+      "id": "reactive-forms",
+      "title": "Reactive Forms",
+      "type": "content",
+      "content": "<h2>Reactive Forms</h2>\n<p>Reactive forms use <code>FormControl</code>, <code>FormGroup</code>, and <code>FormArray</code> to track value and validity. They are robust, scalable, and reusable.</p>\n<pre><code>profileForm = new FormGroup({\n  name: new FormControl(''),\n});</code></pre>"
+    },
+    {
+      "id": "validators",
+      "title": "Validators",
+      "type": "content",
+      "content": "<h2>Validators</h2>\n<p>Validators are functions that validate form inputs. Common ones include <code>Validators.required</code>, <code>Validators.minLength(3)</code>, and <code>Validators.pattern()</code>.</p>"
+    },
+    {
+      "id": "forms-mcq-1",
+      "title": "Reactive Module",
+      "type": "mcq",
+      "content": {
+        "options": [
+          {"id": "a", "text": "FormsModule"},
+          {"id": "b", "text": "ReactiveFormsModule"},
+          {"id": "c", "text": "FormBuilderModule"},
+          {"id": "d", "text": "AngularFormsModule"}
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "forms-mcq-2",
+      "title": "Form Tracking",
+      "type": "mcq",
+      "content": {
+        "options": [
+          {"id": "a", "text": "FormGroup"},
+          {"id": "b", "text": "FormControl"},
+          {"id": "c", "text": "FormBuilder"},
+          {"id": "d", "text": "FormValidator"}
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "forms-blank",
+      "title": "FormBuilder",
+      "type": "blank",
+      "content": {
+        "prompt": "<p>The <code>Form___</code> service provides syntactic sugar that shortens creating instances of a FormControl, FormGroup, or FormArray.</p>",
+        "answer": "Builder"
+      }
+    },
+    {
+      "id": "forms-code",
+      "title": "Form Value",
+      "type": "code",
+      "content": {
+        "prompt": "Write a JS function that extracts the 'email' field from a form value object.",
+        "starterCode": "function getEmail(formValue) {\n  \n}\nconsole.log(getEmail({email: 'test@test.com', name: 'John'}));",
+        "language": "javascript",
+        "expectedOutput": "test@test.com"
+      }
+    }
+  ]
+}

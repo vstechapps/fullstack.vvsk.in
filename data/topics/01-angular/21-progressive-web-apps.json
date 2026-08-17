@@ -1,0 +1,74 @@
+{
+  "title": "Progressive Web Apps",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "pwa-intro",
+      "title": "What is a PWA?",
+      "type": "content",
+      "content": "<h2>Progressive Web Apps</h2>\n<p>A Progressive Web App (PWA) is a web app that uses modern web capabilities to deliver an app-like experience. Key features include offline support, push notifications, and being installable on the device's home screen.</p>\n<p>You can add PWA capabilities to an Angular app using: <code>ng add @angular/pwa</code></p>"
+    },
+    {
+      "id": "service-workers",
+      "title": "Service Workers",
+      "type": "content",
+      "content": "<h2>Angular Service Worker</h2>\n<p>A Service Worker is a script that your browser runs in the background. The Angular Service Worker (<code>ngsw-worker.js</code>) intercepts HTTP requests and serves cached responses, enabling offline functionality and fast loading.</p>\n<p>It is configured via the <code>ngsw-config.json</code> file.</p>"
+    },
+    {
+      "id": "manifest",
+      "title": "Web App Manifest",
+      "type": "content",
+      "content": "<h2>manifest.json</h2>\n<p>The Web App Manifest is a JSON file that tells the browser about your web application and how it should behave when installed on the user's desktop or mobile device. It includes the app name, icons, theme colors, and start URL.</p>"
+    },
+    {
+      "id": "pwa-mcq",
+      "title": "PWA Command",
+      "type": "mcq",
+      "content": {
+        "options": [
+          { "id": "a", "text": "ng generate pwa" },
+          { "id": "b", "text": "ng add @angular/pwa" },
+          { "id": "c", "text": "npm install pwa" },
+          { "id": "d", "text": "ng serve --pwa" }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "pwa-match",
+      "title": "PWA Concepts",
+      "type": "match",
+      "content": {
+        "pairs": [
+          { "left": "Service Worker", "right": "Background script for caching and offline" },
+          { "left": "manifest.json", "right": "Defines app icons and theme color" },
+          { "left": "ngsw-config.json", "right": "Configures caching strategies" },
+          { "left": "Installable", "right": "Adding the app to the home screen" }
+        ]
+      }
+    },
+    {
+      "id": "pwa-blank",
+      "title": "Offline Support",
+      "type": "blank",
+      "content": {
+        "prompt": "A <code>___</code> worker intercepts network requests to provide offline support.",
+        "answer": "service"
+      }
+    },
+    {
+      "id": "pwa-order",
+      "title": "Adding PWA to Angular",
+      "type": "order",
+      "content": {
+        "prompt": "Order the steps to add and test PWA in an Angular app.",
+        "correctOrder": [
+          "Run ng add @angular/pwa",
+          "Configure ngsw-config.json",
+          "Build the app for production",
+          "Serve with a local HTTP server"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "title": "Unit Testing",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "unit-testing-basics",
+      "title": "Unit Testing Basics",
+      "type": "content",
+      "content": "<h2>Jasmine & Karma</h2>\n<p>Angular uses <strong>Jasmine</strong> as the testing framework (providing <code>describe</code>, <code>it</code>, <code>expect</code>) and <strong>Karma</strong> as the test runner (executing tests in a real browser).</p>\n<p>Newer Angular versions also support Jest as an alternative test runner for faster, headless testing.</p>"
+    },
+    {
+      "id": "testbed",
+      "title": "The Angular TestBed",
+      "type": "content",
+      "content": "<h2>TestBed Configuration</h2>\n<p><code>TestBed</code> is the primary API for writing Angular unit tests. It creates an Angular testing module, allowing you to configure components, services, and dependencies.</p>\n<pre><code class=\"language-typescript\">await TestBed.configureTestingModule({\n  imports: [MyComponent],\n  providers: [MyService]\n}).compileComponents();</code></pre>"
+    },
+    {
+      "id": "mocking-dependencies",
+      "title": "Mocking Dependencies",
+      "type": "content",
+      "content": "<h2>Isolating Tests</h2>\n<p>To unit test effectively, you should isolate the component or service by mocking its dependencies. You can provide mock objects or use Jasmine spies (<code>jasmine.createSpyObj</code>).</p>\n<pre><code class=\"language-typescript\">const mockAuth = { isLoggedIn: () => true };\nTestBed.configureTestingModule({\n  providers: [{ provide: AuthService, useValue: mockAuth }]\n});</code></pre>"
+    },
+    {
+      "id": "testing-mcq",
+      "title": "Test Runner",
+      "type": "mcq",
+      "content": {
+        "options": [
+          { "id": "a", "text": "Mocha" },
+          { "id": "b", "text": "Karma" },
+          { "id": "c", "text": "Protractor" },
+          { "id": "d", "text": "Cypress" }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "testing-blank",
+      "title": "Testing API",
+      "type": "blank",
+      "content": {
+        "prompt": "The primary Angular API for configuring testing modules is called <code>___</code>.",
+        "answer": "TestBed"
+      }
+    },
+    {
+      "id": "testing-code",
+      "title": "Write a Test",
+      "type": "code",
+      "content": {
+        "prompt": "Write a simple Jasmine test using `describe`, `it`, and `expect` that verifies `1 + 1` equals `2`.",
+        "language": "javascript",
+        "starterCode": "describe('Math test', () => {\n  // write your test here\n});",
+        "expectedOutput": ""
+      }
+    },
+    {
+      "id": "testing-match",
+      "title": "Testing Tools",
+      "type": "match",
+      "content": {
+        "pairs": [
+          { "left": "Jasmine", "right": "Testing framework (describe, it)" },
+          { "left": "Karma", "right": "Test runner that opens a browser" },
+          { "left": "TestBed", "right": "Angular testing utility" },
+          { "left": "Spy", "right": "Mock function to track calls" }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "title": "HttpClient",
+  "duration": "40m",
+  "cards": [
+    {
+      "id": "intro-httpclient",
+      "title": "Introduction to HttpClient",
+      "type": "content",
+      "content": "<h2>HttpClient</h2>\n<p>Angular's <code>HttpClient</code> offers a simplified client HTTP API based on XMLHttpRequest. It returns RxJS Observables, making it easy to handle asynchronous requests.</p>\n<p>To use it, provide it in your app config using <code>provideHttpClient()</code> (in Angular 15+ standalone apps).</p>"
+    },
+    {
+      "id": "http-methods",
+      "title": "HTTP Methods & Observables",
+      "type": "content",
+      "content": "<h2>Making Requests</h2>\n<p>Use methods like <code>get()</code>, <code>post()</code>, <code>put()</code>, and <code>delete()</code>.</p>\n<pre><code class=\"language-typescript\">import { HttpClient } from '@angular/common/http';\n\nconstructor(private http: HttpClient) {}\n\ngetData() {\n  return this.http.get('/api/data');\n}</code></pre>\n<p>Because it returns an Observable, you must <code>subscribe()</code> to it for the request to actually be sent.</p>"
+    },
+    {
+      "id": "http-headers-params",
+      "title": "Headers & Params",
+      "type": "content",
+      "content": "<h2>Headers and Query Parameters</h2>\n<p>You can configure requests with custom headers and parameters using <code>HttpHeaders</code> and <code>HttpParams</code>.</p>\n<pre><code class=\"language-typescript\">const headers = new HttpHeaders({ 'Authorization': 'Bearer token' });\nconst params = new HttpParams().set('page', '1');\n\nthis.http.get('/api/data', { headers, params });</code></pre>"
+    },
+    {
+      "id": "mcq-http-observable",
+      "title": "Executing Requests",
+      "type": "mcq",
+      "content": {
+        "options": [
+          { "id": "a", "text": "Call .execute()" },
+          { "id": "b", "text": "Call .subscribe()" },
+          { "id": "c", "text": "Call .send()" },
+          { "id": "d", "text": "It executes automatically" }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "match-http-methods",
+      "title": "HTTP Methods",
+      "type": "match",
+      "content": {
+        "pairs": [
+          { "left": "GET", "right": "Retrieve data" },
+          { "left": "POST", "right": "Create new data" },
+          { "left": "PUT", "right": "Update existing data" },
+          { "left": "DELETE", "right": "Remove data" }
+        ]
+      }
+    },
+    {
+      "id": "code-http-get",
+      "title": "Write a GET Request",
+      "type": "code",
+      "content": {
+        "prompt": "Complete the service method to make a GET request to '/api/users' and return the observable.",
+        "language": "javascript",
+        "starterCode": "class UserService {\n  constructor(http) {\n    this.http = http;\n  }\n  getUsers() {\n    // return the GET request observable\n    \n  }\n}",
+        "expectedOutput": "undefined"
+      }
+    },
+    {
+      "id": "blank-http-provide",
+      "title": "Providing HttpClient",
+      "type": "blank",
+      "content": {
+        "prompt": "<p>In standalone applications, we use the <code>provide___()</code> function to enable HTTP features.</p>",
+        "answer": "HttpClient"
+      }
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "title": "Interceptors",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "what-are-interceptors",
+      "title": "What are Interceptors?",
+      "type": "content",
+      "content": "<h2>Interceptors in Angular</h2>\n<p>Interceptors sit between your application and the backend. They allow you to intercept and modify HTTP requests and responses globally.</p>\n<p>Common use cases include:</p>\n<ul>\n  <li>Attaching authentication tokens to outgoing requests</li>\n  <li>Catching and handling global HTTP errors</li>\n  <li>Logging requests and responses</li>\n</ul>\n<p>In modern Angular, functional interceptors (<code>HttpInterceptorFn</code>) are preferred over the older class-based <code>HttpInterceptor</code>.</p>"
+    },
+    {
+      "id": "modifying-requests",
+      "title": "Modifying Requests",
+      "type": "content",
+      "content": "<h2>Cloning Requests</h2>\n<p>HttpRequest objects are immutable. To modify a request (like adding a header), you must clone it.</p>\n<pre><code class=\"language-typescript\">export const authInterceptor: HttpInterceptorFn = (req, next) => {\n  const authReq = req.clone({\n    setHeaders: { Authorization: `Bearer my-token` }\n  });\n  return next(authReq);\n};</code></pre>"
+    },
+    {
+      "id": "error-handling",
+      "title": "Error Handling & Retry",
+      "type": "content",
+      "content": "<h2>Handling Errors Globally</h2>\n<p>Interceptors can also process responses. Since <code>next(req)</code> returns an Observable, you can use RxJS operators like <code>catchError</code> and <code>retry</code>.</p>\n<pre><code class=\"language-typescript\">export const errorInterceptor: HttpInterceptorFn = (req, next) => {\n  return next(req).pipe(\n    retry(2),\n    catchError(error => {\n      console.error('HTTP Error:', error);\n      return throwError(() => error);\n    })\n  );\n};</code></pre>"
+    },
+    {
+      "id": "interceptor-mcq",
+      "title": "Modifying Requests",
+      "type": "mcq",
+      "content": {
+        "options": [
+          { "id": "a", "text": "Modify the req.headers property directly" },
+          { "id": "b", "text": "Use the req.clone() method" },
+          { "id": "c", "text": "Create a new HttpRequest object from scratch" },
+          { "id": "d", "text": "Call req.update()" }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "interceptor-blank",
+      "title": "Functional Interceptors",
+      "type": "blank",
+      "content": {
+        "prompt": "In Angular 15+, functional interceptors use the <code>___</code> type instead of a class.",
+        "answer": "HttpInterceptorFn"
+      }
+    },
+    {
+      "id": "interceptor-code",
+      "title": "Write a Token Interceptor",
+      "type": "code",
+      "content": {
+        "prompt": "Write a functional interceptor named `tokenInterceptor` that adds an `Authorization: Bearer my-token` header to the request.",
+        "language": "javascript",
+        "starterCode": "const tokenInterceptor = (req, next) => {\n  // clone request and add header\n  \n};",
+        "expectedOutput": "Bearer my-token"
+      }
+    },
+    {
+      "id": "interceptor-match",
+      "title": "Interceptor Concepts",
+      "type": "match",
+      "content": {
+        "pairs": [
+          { "left": "req.clone()", "right": "Creates a mutable copy of the request" },
+          { "left": "next(req)", "right": "Passes the request to the next handler" },
+          { "left": "HttpInterceptorFn", "right": "Type for functional interceptors" },
+          { "left": "catchError", "right": "RxJS operator for handling HTTP errors" }
+        ]
+      }
+    }
+  ]
+}

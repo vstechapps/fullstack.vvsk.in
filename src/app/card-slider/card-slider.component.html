@@ -20,21 +20,33 @@
               }
               @case ('mcq') {
                 <app-mcq-view 
-                  [data]="currentCard().content" 
+                  [data]="$any(currentCard().content)" 
                   (validated)="onAnswerEvaluated($event)">
                 </app-mcq-view>
               }
               @case ('blank') {
-                <!-- Handle blank template inputs -->
+                <app-blank-view
+                  [data]="$any(currentCard().content)"
+                  (validated)="onAnswerEvaluated($event)">
+                </app-blank-view>
               }
               @case ('match') {
-                <!-- Handle matching configuration logic -->
+                <app-match-view
+                  [data]="$any(currentCard().content)"
+                  (validated)="onAnswerEvaluated($event)">
+                </app-match-view>
               }
               @case ('order') {
-                <!-- Handle drag reorder sorting -->
+                <app-order-view
+                  [data]="$any(currentCard().content)"
+                  (validated)="onAnswerEvaluated($event)">
+                </app-order-view>
               }
               @case ('code') {
-                <!-- Handle custom playground output verification -->
+                <app-code-view
+                  [data]="$any(currentCard().content)"
+                  (validated)="onAnswerEvaluated($event)">
+                </app-code-view>
               }
             }
           </div>
