@@ -21,7 +21,7 @@ import { BlankContent } from './card-slider-models';
 
     @if (!isSubmitted()) {
       <button class="submit-btn" [disabled]="!userAnswer.trim()" (click)="checkAnswer()">
-        Check Answer
+        Submit Answer
       </button>
     }
 

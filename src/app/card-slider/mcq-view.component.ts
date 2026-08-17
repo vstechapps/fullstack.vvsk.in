@@ -20,17 +20,17 @@ import { CommonModule } from '@angular/common';
     </div>
     <div>
       <button class="btn btn-primary" [disabled]="selectedId() === null" (click)="submitAnswer()">
-        Submit
+        Submit Answer
       </button>
     </div>
   `,
   styles: [`
     .options-stack { display: flex; flex-direction: column; gap: 12px; margin-bottom: 15px; }
-    .btn-ghost { text-align: left; cursor: pointer;}
+    .btn-ghost { justify-content: left; cursor: pointer;}
     .btn-ghost.selected { border-color: var(--primary-400);background: var(--bg-soft); }
     .btn-ghost.success { border-color: #28a745; color: #155724; }
     .btn-ghost.error { border-color: #dc3545; color: #721c24; }
-    .btn-primary { width: 100%; padding: 10px; border-radius: 4px; cursor: pointer; }
+    .btn-primary { width: 100%; padding: 10px; border-radius: 4px; cursor: pointer;background: linear-gradient(135deg, #3b82f6, #8b5cf6); }
     .btn-primary:disabled { cursor: not-allowed; }
   `]
 })
@@ -41,6 +41,7 @@ export class McqViewComponent {
   selectedId = signal<any>(null);
 
   selectOption(id: any) {
+    this.submitted.set(false);
     this.selectedId.set(id);
   }
 
