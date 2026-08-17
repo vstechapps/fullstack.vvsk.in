@@ -14,7 +14,7 @@
                 roadmap.title }}</span>
             <span class="badge badge-primary" *ngFor="let label of roadmap.labels || []">{{ label }}</span>
             <span class="badge badge-xp" style="margin-left:10px" *ngIf="roadmap.xp"> 💎 {{ roadmap.xp }} XP </span>
-            <div style="display: inline-block;width: 30%;margin-left: 50px;vertical-align: middle;">
+            <div style="display: inline-block;width: 40%;margin-left: 50px;vertical-align: middle;">
                 <div class="xp-meter">
                     <div class="progress-meta">
                         <span>Progress</span>
@@ -24,6 +24,9 @@
                         <div class="progress-bar" style="width:0%"></div>
                     </div>
                 </div>
+            </div>
+            <div style="display:inline-block;">
+                
             </div>
         </div>
 
@@ -36,9 +39,9 @@
                         <td>
                             <span style="font-size: 35px;">Topics</span>
                         </td>
-                        <td style="text-align:center">
+                        <td style="text-align:left">
                             <span>
-                               <button class="btn btn-primary" style="font-size:20px" [routerLink]="['/roadmaps', roadmap.id,'explore']">Start <i class="bi bi-play" style="font-size:30px;"></i></button>
+                                <button class="btn btn-primary" style="font-size:20px" [routerLink]="['/roadmaps', roadmap.id,'explore']">Start <i class="bi bi-play" style="font-size:30px;"></i></button>
                             </span>
                         </td>
                     </tr>

@@ -45,3 +45,8 @@
     padding-top: 3px;
     margin-right: 20px;
 }
+
+.table tbody td{
+  min-width: 220px;
+  padding:0.9rem 0rem;
+}
