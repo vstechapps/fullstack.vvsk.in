@@ -84,14 +84,14 @@
   letter-spacing: -0.03em;
 }
 
-.card-content {
+.card-body {
   color: #dfe7f3;
 }
 
-.card-content p,
-.card-content li,
-.card-content label,
-.card-content span {
+.card-body p,
+.card-body li,
+.card-body label,
+.card-body span {
   color: #dfe7f3;
 }
 

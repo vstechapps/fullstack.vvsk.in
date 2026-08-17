@@ -10,15 +10,15 @@
     padding: 0;
 }
 
-.card-content .content *{
+.card-body .content *{
   margin-top: 10px;
 }
 
-.card-content .content ul{
+.card-body .content ul{
   margin-left: 20px;
 }
 
-.card-content .content a{
+.card-body .content a{
   text-decoration: underline;
 }
 
