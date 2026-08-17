@@ -35,18 +35,23 @@
     
 <!-- Roadmap completion modal -->
 <div *ngIf="showRoadmapComplete && roadmap" class="modal-backdrop">
-    <div class="modal-card">
-        <h3 class="modal-title">You have successfully completed the roadmap {{roadmap.title}}</h3>
-        <p class="modal-sub">Great job — you've finished all topics in this roadmap.</p>
-
-                <div *ngIf="showConfetti" class="celebration">
-                    <div class="rocket large">🚀</div>
-                    <span *ngFor="let _ of confettiArray; let i = index" class="confetti-piece" [style.--i]="i"></span>
-                </div>
-
-        <div class="modal-actions">
-            <button class="btn action-btn primary" (click)="exit()">Back to roadmaps</button>
-            <button class="btn action-btn secondary" (click)="closeRoadmapModal()">Close</button>
+    <div class="card">
+        <div class="card-header">
+            <h2>Great Job! 👏 🎉</h2>
+        </div>
+        <div class="card-body">
+            <h3 class="modal-title">
+                You have successfully completed the roadmap <b>{{roadmap.title}}</b>.
+            </h3>
+            <p class="modal-sub">Great job — you've finished all topics in this roadmap.</p>
+            <div *ngIf="showConfetti" class="celebration">
+            <div class="rocket"><span style="display: inline-block;rotate:45deg;">🚀</span></div>
+                <span *ngFor="let _ of confettiArray; let i = index" class="confetti-piece" [style.--i]="i"></span>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-secondary" (click)="closeRoadmapModal()">Save Progress & Exit</button>
+            <button class="btn btn-primary" (click)="exit()">Back to roadmaps</button>
         </div>
     </div>
 </div>

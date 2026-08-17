@@ -30,7 +30,7 @@ import { BlankContent } from './card-slider-models';
         @if (isCorrect()) {
           <span>✓ Correct!</span>
         } @else {
-          <span>✗ Correct answer: <strong>{{ data.answer }}</strong></span>
+          <span>✗ Wrong!</span>
         }
       </div>
     }
