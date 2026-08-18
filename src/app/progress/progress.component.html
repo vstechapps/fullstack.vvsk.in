@@ -47,7 +47,7 @@
 <div *ngIf="showResetModal && roadmapToReset" class="modal-backdrop">
   <div class="card modal-card">
     <div class="card-header">
-      <h3>Reset roadmap progress</h3>
+      <h3>Reset Progress</h3>
     </div>
     <div class="card-body">
       <p>
@@ -55,8 +55,7 @@
       </p>
     </div>
     <div class="card-footer modal-actions">
-      <button class="btn btn-danger" type="button" (click)="resetRoadmapProgress()">Yes</button>
-      <button class="btn btn-secondary" type="button" (click)="resetRoadmapProgress()">Reset</button>
+      <button class="btn btn-danger" type="button" (click)="resetRoadmapProgress()">Yes, Reset</button>
       <button class="btn btn-subtle" type="button" (click)="closeResetPrompt()">Cancel</button>
     </div>
   </div>
