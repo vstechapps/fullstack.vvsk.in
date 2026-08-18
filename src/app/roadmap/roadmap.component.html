@@ -10,10 +10,12 @@
     <section class="card" style="padding: 24px; margin-top: 24px;">
         <div class="d-flex" style="gap: 16px; align-items: center; flex-wrap: wrap; margin-bottom: 16px;">
             <cicon [tech]="roadmap.icon" height="50px"></cicon>
-            <span class="text-title text-gradient" style="margin-left:15px;vertical-align:middle;margin-right:15px">{{
+            <span class="text-title text-gradient" style="margin-left:15px;vertical-align:middle;margin-right:15px;font-size:30px">{{
                 roadmap.title }}</span>
-            <span class="badge badge-primary" *ngFor="let label of roadmap.labels || []">{{ label }}</span>
-            <span class="badge badge-xp" style="margin-left:10px" *ngIf="roadmap.xp"> 💎 {{ roadmap.xp }} XP </span>
+            <div style="display: inline-block;vertical-align: middle;">
+                <span class="badge badge-primary" *ngFor="let label of roadmap.labels || []">{{ label }}</span>
+                 <span class="badge badge-xp" style="margin-left:10px" *ngIf="roadmap.xp"> 💎 {{ roadmap.xp }} XP </span>
+            </div>
             <div style="display: inline-block;width: 40%;margin-left: 50px;vertical-align: middle;">
                 <div class="xp-meter">
                     <div class="progress-meta">

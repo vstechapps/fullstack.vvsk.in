@@ -1,0 +1,63 @@
+<div class="main-content progress-page" style="padding: 2rem;">
+  <div class="page-header">
+    <div>
+      <p class="eyebrow">My Progress</p>
+    </div>
+  </div>
+  <div>
+    <p class="text-subtitle">Track your progress across roadmaps.</p>
+    <p class="text-small">
+      See how far you've come in your fullstack learning journey.
+    </p>
+  </div>
+<div class="progress-list" *ngIf="roadmaps.length; else noRoadmaps">
+    <div class="card card-interactive" *ngFor="let roadmap of roadmaps">
+        <div class="card-header">
+            <div>
+                <cicon [tech]="roadmap.icon" height="60px"></cicon>
+                <span class="text-title text-gradient" style="vertical-align: middle;margin-left:15px;font-size:30px">{{ roadmap.title }}</span>
+                <span class="text-small">{{roadmap.category}}</span>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="progress-meta">
+                <strong>{{ getProgressValue(roadmap.id) }}%</strong>
+                <span>{{ roadmap.topics?.length || 0 }} Topics</span>
+            </div>
+            <div class="progress">
+                <div class="progress-bar" [style.width.%]="getProgressValue(roadmap.id)"></div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-danger btn-sm" type="button" (click)="openResetPrompt(roadmap)">Reset</button>
+            <button class="btn btn-primary btn-sm" type="button" [routerLink]="['/roadmaps', roadmap.id]">
+                Continue
+            </button>
+        </div>
+    </div>
+</div>
+
+  <ng-template #noRoadmaps>
+    <div class="empty-state">
+      <h3>No roadmaps available yet.</h3>
+    </div>
+  </ng-template>
+</div>
+
+<div *ngIf="showResetModal && roadmapToReset" class="modal-backdrop">
+  <div class="card modal-card">
+    <div class="card-header">
+      <h3>Reset roadmap progress</h3>
+    </div>
+    <div class="card-body">
+      <p>
+        Do you really want to reset the progress made on <strong>{{ roadmapToReset.title }}</strong> roadmap?
+      </p>
+    </div>
+    <div class="card-footer modal-actions">
+      <button class="btn btn-danger" type="button" (click)="resetRoadmapProgress()">Yes</button>
+      <button class="btn btn-secondary" type="button" (click)="resetRoadmapProgress()">Reset</button>
+      <button class="btn btn-subtle" type="button" (click)="closeResetPrompt()">Cancel</button>
+    </div>
+  </div>
+</div>

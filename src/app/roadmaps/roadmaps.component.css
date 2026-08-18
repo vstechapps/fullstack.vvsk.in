@@ -21,3 +21,11 @@
 .badge.badge-default{
     margin: 5px;
 }
+
+/* For mobile devices , .card-footer should have flex-direction:column */
+@media (max-width: 720px) {
+    .grid .card .card-footer{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
