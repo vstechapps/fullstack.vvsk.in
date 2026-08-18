@@ -1,4 +1,4 @@
-<div class="main-content" *ngIf="!loading && roadmap; else loadingTpl">
+<div class="main-content" *ngIf="roadmap">
     <nav class="breadcrumb text-subtitle">
         <a href="/">Home</a>
         <span>/</span>
@@ -82,9 +82,3 @@
 
     </section>
 </div>
-
-<ng-template #loadingTpl>
-    <div class="main-content">
-        <p class="text-subtitle">Loading roadmap...</p>
-    </div>
-</ng-template>

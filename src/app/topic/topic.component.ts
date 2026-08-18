@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Course, Topic } from '../app.models';
+import { Course, Topic, UserRoadMapProgress } from '../app.models';
 import { CardSliderComponent } from '../card-slider/card-slider.component';
 import { NgFor, NgIf } from '@angular/common';
 import { Utility } from '../services/app.util';
+import { RoadmapsService } from '../services/roadmaps.service';
 
 @Component({
   selector: 'app-topic',
@@ -25,30 +26,28 @@ export class TopicComponent {
   showConfetti = true;
   confettiArray = Utility.mobileAndTabletCheck()? new Array(18): new Array(18);
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  userprogress: UserRoadMapProgress | null = null;
 
-    this.loadRoadmap();
+  constructor(private route: ActivatedRoute, private router: Router,private roadmapsService:RoadmapsService) {
+
+    const id = this.route.snapshot.paramMap.get('id') || '';
+    this.loadRoadmap(id);
     Firebase.publish("FOOTER", { enabled: false });
+    
 
   }
 
-  async loadRoadmap(): Promise<void> {
+  async loadRoadmap(id:string): Promise<void> {
     Loader.show();
-
-    const id = this.route.snapshot.paramMap.get('id') || '';
-    const response = await Firebase.read('roadmaps', id);
-    const doc = response.data?.[0] || null;
-
-    this.roadmap = doc ? JSON.parse(JSON.stringify(doc)) : null;
+    this.roadmap = await this.roadmapsService.getRoadmapById(id);
     await this.loadTopic(this.currentIndex);
     Loader.hide();
   }
 
   async loadTopic(index: number): Promise<void> {
     if (this.roadmap && this.roadmap.topics) {
-      let t = this.roadmap.id + "_" + this.roadmap.topics[index].id;
-      let d = (await Firebase.read("topics", t)).data?.[0] || null;
-      this.topic = d ? JSON.parse(JSON.stringify(d)) : null;
+      let topicId = this.roadmap.topics[index].id;
+      this.topic = await this.roadmapsService.getTopicById(this.roadmap.id, topicId);
     }
   }
 

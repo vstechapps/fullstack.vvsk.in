@@ -3,6 +3,7 @@ import { Course } from '../app.models';
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { CiconComponent } from '../cicon/cicon.component';
+import { RoadmapsService } from '../services/roadmaps.service';
 
 @Component({
   selector: 'app-roadmaps',
@@ -14,16 +15,13 @@ import { CiconComponent } from '../cicon/cicon.component';
 export class RoadmapsComponent {
 
   courses : Course[] = [];
-  constructor(){
+  constructor(private roadmapsService: RoadmapsService) {
     this.load();
   }
 
   async load(){
     Loader.show();
-    let docs = await Firebase.read("roadmaps");
-    docs.data.forEach(d=>{
-      this.courses.push(JSON.parse(JSON.stringify(d)));
-    });
+    this.courses = await this.roadmapsService.getAllRoadmaps();
     Loader.hide();
   }
 

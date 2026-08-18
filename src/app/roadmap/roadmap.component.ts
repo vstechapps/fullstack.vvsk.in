@@ -4,6 +4,7 @@ import { NgIf, NgFor } from '@angular/common';
 import { CiconComponent } from '../cicon/cicon.component';
 import { Course } from '../app.models';
 import { AppService } from '../services/app.service';
+import { RoadmapsService } from '../services/roadmaps.service';
 
 @Component({
   selector: 'app-roadmap',
@@ -14,24 +15,19 @@ import { AppService } from '../services/app.service';
 })
 export class RoadmapComponent implements OnInit {
   roadmap: Course | null = null;
-  loading = true;
 
-  constructor(private route: ActivatedRoute,public app:AppService) {}
-
-  ngOnInit(): void {
-    this.loadRoadmap();
+  constructor(private route: ActivatedRoute,public app:AppService,public roadmapsService: RoadmapsService) {
+    const id = this.route.snapshot.paramMap.get('id') || '';
+    this.loadRoadmap(id);
   }
 
-  async loadRoadmap(): Promise<void> {
-    this.loading = true;
+  ngOnInit(): void {
+
+  }
+
+  async loadRoadmap(id:string): Promise<void> {
     Loader.show();
-
-    const id = this.route.snapshot.paramMap.get('id') || '';
-    const response = await Firebase.read('roadmaps', id);
-    const doc = response.data?.[0] || null;
-
-    this.roadmap = doc ? JSON.parse(JSON.stringify(doc)) : null;
-    this.loading = false;
+    this.roadmap = await this.roadmapsService.getRoadmapById(id);
     Loader.hide();
   }
 }

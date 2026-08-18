@@ -61,3 +61,19 @@ export interface User{
   image?:string;
   contact?:string;
 }
+
+export interface UserRoadMapProgress{
+  user:string;
+  roadmap:string;
+  started:boolean;
+  status:string;
+  percent:string;
+  tasks:string[];
+  createdAt:string;
+  updatedAt:string;
+}
+
+export interface TaskStatus{
+  task:string;
+  status:string;
+}
