@@ -23,7 +23,7 @@
                         }}%</span>
                     </div>
                     <div class="progress">
-                        <div class="progress-bar" [style.width]="userprogress?.percent || '0' + '%'"></div>
+                        <div class="progress-bar" [style.width]="(userprogress?.percent || '0') + '%'"></div>
                     </div>
                 </div>
             </div>
@@ -50,7 +50,8 @@
                         <td><span class="text-index">{{i+1}}</span><span class="text-subtitle">{{topic.title}}</span></td>
                         <td style="text-align:center">
                             <button *ngIf="completed.includes(roadmap.id + '_' + topic.id)" class="btn btn-success"><i class="bi bi-check-circle"></i></button>
-                            <button *ngIf="!completed.includes(roadmap.id + '_' + topic.id)" class="btn btn-gradient"><i class="bi bi-lock"></i></button>
+                            <button *ngIf="!completed.includes(roadmap.id + '_' + topic.id) && userprogress?.next === topic.id" class="btn btn-primary" [routerLink]="['/roadmaps', roadmap.id, 'explore']"><i class="bi bi-play-circle"></i></button>
+                            <button *ngIf="!completed.includes(roadmap.id + '_' + topic.id) && userprogress?.next !== topic.id" class="btn btn-gradient"><i class="bi bi-lock"></i></button>
                         </td>
                     </tr>
                 </tbody>
