@@ -66,6 +66,7 @@ export interface UserRoadMapProgress{
   user:string;
   roadmap:string;
   started:boolean;
+  next?:string;
   status:string;
   percent:string;
   tasks:TaskStatus[];

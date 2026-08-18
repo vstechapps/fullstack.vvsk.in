@@ -40,8 +40,11 @@ export class TopicComponent {
   async loadRoadmap(id:string): Promise<void> {
     Loader.show();
     this.roadmap = await this.roadmapsService.getRoadmapById(id);
-    await this.loadTopic(this.currentIndex);
     this.userprogress = await this.roadmapsService.getUserProgress(id);
+    if(this.userprogress && this.userprogress.next && this.roadmap && this.roadmap.topics){
+      this.currentIndex = this.roadmap?.topics.findIndex(t => t.id === this.userprogress?.next) || 0;
+    }
+    await this.loadTopic(this.currentIndex);
     Loader.hide();
   }
 
@@ -121,6 +124,13 @@ export class TopicComponent {
     }
     let percent = Math.floor((this.userprogress.tasks.length / (this.roadmap.topics?.length || 1)) * 100);
     this.userprogress.percent = percent.toString();
+    if(percent >= 100) {
+      this.userprogress.status = "completed";
+    }
+    let nextIndex = this.currentIndex + 1;
+    if(this.roadmap && this.roadmap.topics && nextIndex < this.roadmap.topics.length) {
+      this.userprogress.next = this.roadmap.topics[nextIndex].id;
+    }
     await this.roadmapsService.updateUserProgress(this.roadmap.id, this.userprogress);
     Loader.hide();
   }
