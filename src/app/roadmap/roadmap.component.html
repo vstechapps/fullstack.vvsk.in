@@ -18,15 +18,14 @@
                 <div class="xp-meter">
                     <div class="progress-meta">
                         <span>Progress</span>
-                        <span>0%</span>
+                        <span>{{
+                            userprogress?.percent || 0
+                        }}%</span>
                     </div>
                     <div class="progress">
-                        <div class="progress-bar" style="width:0%"></div>
+                        <div class="progress-bar" [style.width]="userprogress?.percent || '0' + '%'"></div>
                     </div>
                 </div>
-            </div>
-            <div style="display:inline-block;">
-                
             </div>
         </div>
 
@@ -41,7 +40,7 @@
                         </td>
                         <td [style.text-align]="app.isMobile?'left':'center'">
                             <span>
-                                <button class="btn btn-primary" style="font-size:20px" [routerLink]="['/roadmaps', roadmap.id,'explore']">Start <i class="bi bi-play" style="font-size:30px;"></i></button>
+                                <button class="btn btn-primary" style="font-size:20px" [routerLink]="['/roadmaps', roadmap.id,'explore']">{{userprogress?.started ? "Resume" : "Start"}} <i class="bi bi-play" style="font-size:30px;"></i></button>
                             </span>
                         </td>
                     </tr>
@@ -49,7 +48,10 @@
                 <tbody>
                     <tr *ngFor="let topic of roadmap.topics || [], index as i">
                         <td><span class="text-index">{{i+1}}</span><span class="text-subtitle">{{topic.title}}</span></td>
-                        <td style="text-align:center"><button class="btn btn-gradient"><i class="bi bi-lock"></i></button></td>
+                        <td style="text-align:center">
+                            <button *ngIf="completed.includes(roadmap.id + '_' + topic.id)" class="btn btn-success"><i class="bi bi-check-circle"></i></button>
+                            <button *ngIf="!completed.includes(roadmap.id + '_' + topic.id)" class="btn btn-gradient"><i class="bi bi-lock"></i></button>
+                        </td>
                     </tr>
                 </tbody>
             </table>

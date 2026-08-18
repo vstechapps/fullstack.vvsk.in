@@ -41,6 +41,7 @@ export class TopicComponent {
     Loader.show();
     this.roadmap = await this.roadmapsService.getRoadmapById(id);
     await this.loadTopic(this.currentIndex);
+    this.userprogress = await this.roadmapsService.getUserProgress(id);
     Loader.hide();
   }
 
@@ -71,12 +72,13 @@ export class TopicComponent {
   }
 
   /** Triggered by child when activity completes; shows completion modal */
-  onActivityComplete(): void {
+  async onActivityComplete(): Promise<void> {
     if (!this.roadmap) return;
     if (this.topic) {
       this.topic.cards = [];
     }
     let nextIndex = this.currentIndex + 1;
+    await this.saveUserProgress();
     if (this.roadmap.topics && nextIndex < this.roadmap.topics.length) {
       this.nextTopicInfo = this.roadmap.topics[nextIndex];
       this.showTopicComplete = true;
@@ -96,6 +98,31 @@ export class TopicComponent {
       showTopicComplete: this.showTopicComplete,
       showRoadmapComplete: this.showRoadmapComplete
     });
+  }
+
+  private async saveUserProgress() {
+    if(!this.roadmap) {
+      return;
+    }
+    Loader.show();
+    if (this.userprogress == null) {
+      this.userprogress = {
+        user: "",
+        roadmap: this.roadmap.id,
+        started: true,
+        status: "inprogress",
+        percent: "0",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        tasks: [{ task: this.topic?.id || "", status: "completed" }]
+      };
+    } else {
+      this.userprogress.tasks.push({ task: this.topic?.id || "", status: "completed" });
+    }
+    let percent = Math.floor((this.userprogress.tasks.length / (this.roadmap.topics?.length || 1)) * 100);
+    this.userprogress.percent = percent.toString();
+    await this.roadmapsService.updateUserProgress(this.roadmap.id, this.userprogress);
+    Loader.hide();
   }
 
   /** User confirmed proceeding to next topic */

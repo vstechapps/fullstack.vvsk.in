@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Course, Topic } from "../app.models";
+import { Course, Topic, UserRoadMapProgress } from "../app.models";
+import { UserService } from "./user.service";
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,9 @@ export class RoadmapsService {
 
     courses : Course[] = [];
     topics : Map<string, Topic> = new Map<string, Topic>();
+    userprogress : Map<string, UserRoadMapProgress> = new Map<string, UserRoadMapProgress>();
+
+    constructor(private userService: UserService) {}
 
     async getAllRoadmaps(): Promise<Course[]> {
         if (this.courses.length === 0) {
@@ -38,4 +42,33 @@ export class RoadmapsService {
         }
         return this.topics.get(roadmapId + "_" + topicId) || null;
     }
+
+    async getUserProgress(roadmapId: string): Promise<UserRoadMapProgress | null> {
+        if(!this.userService.user){
+            console.error("User not logged in. Cannot fetch progress.");
+            return null;
+        }
+        let t = this.userService.user?.id + "_" + roadmapId;
+        if(!this.userprogress.has(roadmapId)){
+             let d = (await Firebase.read("userprogress", t)).data?.[0] || null;
+             let progress = d ? JSON.parse(JSON.stringify(d)) : null;
+             if(progress){
+                this.userprogress.set(roadmapId, progress);
+             }
+        }
+        return this.userprogress.get(roadmapId) || null;
+    }
+
+    async updateUserProgress(roadmapId: string, progress: UserRoadMapProgress): Promise<void> {
+        if(!this.userService.user){
+            console.error("User not logged in. Cannot update progress.");
+            return;
+        }
+        let t = this.userService.user?.id + "_" + roadmapId;
+        progress.user = this.userService.user?.id || '';
+        progress.roadmap = roadmapId;
+        await Firebase.write("userprogress", t, progress);
+        this.userprogress.set(roadmapId, progress);
+    }
+
 }

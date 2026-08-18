@@ -68,7 +68,7 @@ export interface UserRoadMapProgress{
   started:boolean;
   status:string;
   percent:string;
-  tasks:string[];
+  tasks:TaskStatus[];
   createdAt:string;
   updatedAt:string;
 }

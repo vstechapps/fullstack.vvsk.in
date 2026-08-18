@@ -16,7 +16,7 @@ interface FirebaseApi {
     hasMore: boolean;
     lastDoc: unknown | null;
   }>;
-  write(collectionName: string, docId: string, data: Record<string, unknown>): Promise<void>;
+  write(collectionName: string, docId: string, data: any): Promise<void>;
   loginWithGoogle(): Promise<unknown>;
   logout(): Promise<void>;
   getUser(): unknown;
