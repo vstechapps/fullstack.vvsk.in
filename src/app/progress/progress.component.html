@@ -45,16 +45,16 @@
 </div>
 
 <div *ngIf="showResetModal && roadmapToReset" class="modal-backdrop">
-  <div class="card modal-card">
-    <div class="card-header">
+  <div class="modal">
+    <div class="modal-header">
       <h3>Reset Progress</h3>
     </div>
-    <div class="card-body">
+    <div class="modal-body">
       <p>
         Do you really want to reset the progress made on <strong>{{ roadmapToReset.title }}</strong> roadmap?
       </p>
     </div>
-    <div class="card-footer modal-actions">
+    <div class="modal-footer modal-actions">
       <button class="btn btn-danger" type="button" (click)="resetRoadmapProgress()">Yes, Reset</button>
       <button class="btn btn-subtle" type="button" (click)="closeResetPrompt()">Cancel</button>
     </div>

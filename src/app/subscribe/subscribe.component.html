@@ -1,6 +1,8 @@
-<div class="main-content pricing-page">
+<div class="main-content" style="padding: 50px 100px;text-align: center;">
 
-  <!-- Hero -->
+  <div class="pricing-page">
+  
+    <!-- Hero -->
   <section class="pricing-hero">
 
     <div class="premium-badge">👑 &nbsp; Upgrade to Premium</div>
@@ -150,4 +152,25 @@
     </div>
   </section>
 
-</div>  
+ </div>
+</div>
+
+
+<div *ngIf="paymentModal && qrCodeUrl" class="modal-backdrop">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Scan QR Code to Pay</h3>
+      <span class="close" (click)="togglePaymentModal()" style="cursor:pointer;font-size:25px;"><b>&times;</b></span>
+    </div>
+    <div class="modal-body">
+      <div style="text-align:center;">
+        <p>
+          Scan the QR code below using your UPI app to complete the payment.
+        </p>
+        <img [src]="qrCodeUrl" alt="QR Code" style="width: 300px; height: 300px; margin-top: 20px;display:inline-block;">
+      </div>
+    </div>
+    <div class="modal-footer modal-actions" style="justify-content: center;">
+      <button class="btn btn-subtle" type="button" (click)="togglePaymentModal()">Cancel Payment</button>
+  </div>
+</div>
