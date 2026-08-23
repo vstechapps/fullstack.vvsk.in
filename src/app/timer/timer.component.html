@@ -1,0 +1,6 @@
+<div class="timer" [class.complete]="isComplete" role="timer" [attr.aria-label]="isComplete ? 'Time completed' : minutes + ' minutes ' + seconds + ' seconds remaining'">
+	<span class="stopwatch" aria-hidden="true">
+		⏰
+	</span>
+	<span class="time" aria-live="polite">{{ minutes }}:{{ seconds }}</span>
+</div>

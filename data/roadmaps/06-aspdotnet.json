@@ -1,0 +1,53 @@
+{
+  "topics": [
+    { "id": "01-fundamentals", "title": "Fundamentals" },
+    { "id": "02-csharp", "title": "C#" },
+    { "id": "03-structure", "title": "Structure" },
+    { "id": "04-configuration", "title": "Configuration" },
+    { "id": "05-controllers", "title": "Controllers" },
+    { "id": "06-routing", "title": "Routing" },
+    { "id": "07-middleware", "title": "Middleware" },
+    { "id": "08-apis", "title": "Web API" },
+    { "id": "09-di", "title": "Dependency Injection" },
+    { "id": "10-ef", "title": "Entity Framework" },
+    { "id": "11-migrations", "title": "Migrations" },
+    { "id": "12-validation", "title": "Validation" },
+    { "id": "13-errors", "title": "Error Handling" },
+    { "id": "14-auth", "title": "Authentication" },
+    { "id": "15-jwt", "title": "JWT" },
+    { "id": "16-caching", "title": "Caching" },
+    { "id": "17-background", "title": "Background Jobs" },
+    { "id": "18-logging", "title": "Logging" },
+    { "id": "19-testing", "title": "Testing" },
+    { "id": "20-packaging", "title": "Packaging" },
+    { "id": "21-deployment", "title": "Deployment" }
+  ],
+  "summary": "Build secure, scalable backend APIs and enterprise applications with ASP.NET Core[cite: 2]",
+  "labels": [
+    "Backend"
+  ],
+  "icon": "aspdotnet",
+  "description": "Develop production-ready web APIs with C#, ASP.NET Core, Entity Framework and Azure[cite: 2]",
+  "xp": 500,
+  "skills": [
+    "C#",
+    ".NET",
+    "ASP.NET Core",
+    "REST APIs",
+    "Entity Framework Core",
+    "SQL Server",
+    "Dependency Injection",
+    "Middleware",
+    "JWT",
+    "ASP.NET Core Identity",
+    "xUnit",
+    "Moq",
+    "Docker",
+    "Azure",
+    "CI/CD",
+    "Logging",
+    "Performance tuning"
+  ],
+  "title": "ASP.NET Core Developer",
+  "locked": false
+}

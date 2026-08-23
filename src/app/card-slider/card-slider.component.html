@@ -12,6 +12,7 @@
         <div class="active-frame">
           <div class="card-header">
             <h2>{{ currentCard.title }}</h2>
+            <timer *ngIf="currentCard.duration != null" [duration]="currentCard.duration" [resetKey]="currentIndex" (completed)="onTimeUp()"></timer>
           </div>
           <div class="card-body">
             @switch (currentCard.type) {

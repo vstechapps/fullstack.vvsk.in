@@ -1,0 +1,49 @@
+{
+  "topics": [
+    { "id": "01-fundamentals", "title": "Fundamentals" },
+    { "id": "02-syntax", "title": "Syntax" },
+    { "id": "03-variables", "title": "Variables" },
+    { "id": "04-datatypes", "title": "Data Types" },
+    { "id": "05-operators", "title": "Operators" },
+    { "id": "06-controlflow", "title": "Control Flow" },
+    { "id": "07-oop", "title": "OOP" },
+    { "id": "08-arrays", "title": "Arrays" },
+    { "id": "09-strings", "title": "Strings" },
+    { "id": "10-exceptions", "title": "Exceptions" },
+    { "id": "11-collections", "title": "Collections" },
+    { "id": "12-generics", "title": "Generics" },
+    { "id": "13-streams", "title": "Streams" },
+    { "id": "14-lambdas", "title": "Lambdas" },
+    { "id": "15-concurrency", "title": "Concurrency" },
+    { "id": "16-io", "title": "File I/O" },
+    { "id": "17-versions", "title": "Versions" },
+    { "id": "18-features", "title": "Features" },
+    { "id": "19-debugging", "title": "Debugging" },
+    { "id": "20-testing", "title": "Testing" },
+    { "id": "21-packaging", "title": "Packaging" },
+    { "id": "22-deployment", "title": "Deployment" }
+  ],
+  "summary": "Master core Java essentials efficiently to build a strong foundation for technical interviews and development without heavy framework bloat",
+  "labels": [
+    "Programming"
+  ],
+  "icon": "java",
+  "description": "Comprehensive core Java curriculum designed for freshers to gain production-ready proficiency quickly",
+  "xp": 500,
+  "skills": [
+    "Java",
+    "Object-Oriented Programming",
+    "Collections Framework",
+    "Exception Handling",
+    "Streams API",
+    "Lambda Expressions",
+    "Concurrency",
+    "Generics",
+    "File I/O",
+    "JUnit",
+    "Packaging",
+    "Deployment"
+  ],
+  "title": "Java Developer",
+  "locked": false
+}

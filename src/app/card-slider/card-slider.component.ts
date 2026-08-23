@@ -6,11 +6,12 @@ import { BlankViewComponent } from './blank-view.component';
 import { MatchViewComponent } from './match-view.component';
 import { OrderViewComponent } from './order-view.component';
 import { CodeViewComponent } from './code-view.component';
+import { TimerComponent } from '../timer/timer.component';
 
 @Component({
   selector: 'app-card-slider',
   standalone: true,
-  imports: [CommonModule, NgFor, McqViewComponent, BlankViewComponent, MatchViewComponent, OrderViewComponent, CodeViewComponent],
+  imports: [CommonModule, NgFor, McqViewComponent, BlankViewComponent, MatchViewComponent, OrderViewComponent, CodeViewComponent, TimerComponent],
   templateUrl: './card-slider.component.html',
   styleUrls: ['./card-slider.component.css']
 })
@@ -34,14 +35,9 @@ export class CardSliderComponent implements OnInit {
     });
   }
 
-  @HostListener('window:scroll')
-  onWindowScroll(): void {
-    const reachedBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 2;
-
-    if (reachedBottom && this.currentCard) {
-      if(this.currentCard.type=="content"){
-        this.currentCard.completed = true;
-      }
+  onTimeUp(): void {
+    if (this.currentCard && this.currentCard.type == 'content') {
+      this.currentCard.completed = true;
     }
   }
 

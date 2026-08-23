@@ -43,4 +43,5 @@ export interface SliderCard {
   title: string;
   content: string | McqContent | BlankContent | MatchContent | OrderContent | CodeContent;
   completed?: boolean;
+  duration?: string | number; // Optional duration for content cards
 }

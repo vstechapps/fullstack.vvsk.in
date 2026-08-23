@@ -59,16 +59,17 @@ export class RoadmapsService {
         return this.userprogress.get(roadmapId) || null;
     }
 
-    async updateUserProgress(roadmapId: string, progress: UserRoadMapProgress): Promise<void> {
+    async updateUserProgress(roadmapId: string, progress: UserRoadMapProgress): Promise<boolean> {
         if(!this.userService.user){
             console.error("User not logged in. Cannot update progress.");
-            return;
+            return false;
         }
         let t = this.userService.user?.id + "_" + roadmapId;
         progress.user = this.userService.user?.id || '';
         progress.roadmap = roadmapId;
         await Firebase.write("userprogress", t, progress);
         this.userprogress.set(roadmapId, progress);
+        return true;
     }
 
 }

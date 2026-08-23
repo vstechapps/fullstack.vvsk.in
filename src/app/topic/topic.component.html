@@ -20,6 +20,7 @@
             <h3 class="modal-title">
                 You have successfully completed <b>{{topic.title}}</b> in roadmap <b>{{roadmap.title}}</b>.
             </h3>
+            <h4 *ngIf="!ableToSaveProgress">Failed to save your progress. Please log in to save your progress.</h4>
             <p class="modal-sub">Next Topic : {{ nextTopicInfo.title || '—' }}</p>
             <div *ngIf="showConfetti" class="celebration">
             <div class="rocket"><span style="display: inline-block;rotate:45deg;">🚀</span></div>
@@ -27,7 +28,7 @@
             </div>
         </div>
         <div class="card-footer">
-            <button class="btn btn-secondary" (click)="exit()">Save Progress & Exit</button>
+            <button class="btn btn-secondary" (click)="exit()">Exit Roadmap</button>
             <button class="btn btn-primary" (click)="proceedToNextTopic()" [disabled]="!nextTopicInfo">Proceed to next topic</button>
         </div>
     </div>
@@ -44,6 +45,7 @@
                 You have successfully completed the roadmap <b>{{roadmap.title}}</b>.
             </h3>
             <p class="modal-sub">Great job — you've finished all topics in this roadmap.</p>
+            <h4 *ngIf="!ableToSaveProgress">Failed to save your progress. Please log in to save your progress.</h4>
             <div *ngIf="showConfetti" class="celebration">
             <div class="rocket"><span style="display: inline-block;rotate:45deg;">🚀</span></div>
                 <span *ngFor="let _ of confettiArray; let i = index" class="confetti-piece" [style.--i]="i"></span>

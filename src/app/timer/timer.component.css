@@ -1,0 +1,39 @@
+.timer {
+	color: #1976d2;
+	display: inline-flex;
+	gap: 0.45rem;
+	min-width: 5.5rem;
+	transition: color 250ms ease;
+}
+
+.timer.complete {
+	animation: timer-vibrate 180ms ease-in-out 4;
+	color: #16834b;
+}
+
+.stopwatch {
+	display: inline-flex;
+	height: 1.55rem;
+	position: relative;
+	width: 1.45rem;
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+.time {
+	font-variant-numeric: tabular-nums;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+@keyframes timer-vibrate {
+	0%, 100% { transform: translateX(0); }
+	25% { transform: translateX(-0.16rem); }
+	75% { transform: translateX(0.16rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.timer.complete { animation: none; }
+}

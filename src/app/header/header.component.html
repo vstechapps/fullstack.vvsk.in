@@ -9,10 +9,10 @@
     </div>
     <div class="nav-links">
         <span class="nav-link" [ngClass]="{ 'active': route === '/' }" [routerLink]="['/']">Home</span>
-        <span class="nav-link" [ngClass]="{ 'active': route === '/roadmaps' }" [routerLink]="['/roadmaps']">RoadMaps</span>
-        <span class="nav-link" [ngClass]="{ 'active': route === '/quests' }" [routerLink]="['/quests']">Quests</span>
-        <span class="nav-link" [ngClass]="{ 'active': route === '/challenges' }" [routerLink]="['/challenges']">Challenges</span>
-        <span class="nav-link" [ngClass]="{ 'active': route === '/leaderboard' }" [routerLink]="['/leaderboard']">Leaderboard</span>
+        <span class="nav-link" [ngClass]="{ 'active': route.includes('/roadmaps') }" [routerLink]="['/roadmaps']">RoadMaps</span>
+        <span class="nav-link" [ngClass]="{ 'active': route.includes('/quests') }" [routerLink]="['/quests']">Quests</span>
+        <span class="nav-link" [ngClass]="{ 'active': route.includes('/challenges') }" [routerLink]="['/challenges']">Challenges</span>
+        <span class="nav-link" [ngClass]="{ 'active': route.includes('/leaderboard') }" [routerLink]="['/leaderboard']">Leaderboard</span>
     </div>
 
     <div class="nav-actions" *ngIf="!user">

@@ -28,6 +28,8 @@ export class TopicComponent {
 
   userprogress: UserRoadMapProgress | null = null;
 
+  ableToSaveProgress: boolean = false;
+
   constructor(private route: ActivatedRoute, private router: Router,private roadmapsService:RoadmapsService) {
 
     const id = this.route.snapshot.paramMap.get('id') || '';
@@ -131,7 +133,7 @@ export class TopicComponent {
     if(this.roadmap && this.roadmap.topics && nextIndex < this.roadmap.topics.length) {
       this.userprogress.next = this.roadmap.topics[nextIndex].id;
     }
-    await this.roadmapsService.updateUserProgress(this.roadmap.id, this.userprogress);
+    this.ableToSaveProgress= await this.roadmapsService.updateUserProgress(this.roadmap.id, this.userprogress);
     Loader.hide();
   }
 

@@ -6,36 +6,42 @@
       "id": "what-is-angular",
       "title": "What Angular Is",
       "type": "content",
+      "duration": "10s",
       "content": "<h2>Angular at a Glance</h2>\n<p>Angular is a TypeScript-based framework for building web applications. It helps you create screens, reusable UI, routes, forms, API calls and production builds using a consistent structure.</p>\n<p>At the beginner level, think of Angular as a way to split a web app into small building blocks called components and connect those components to data.</p>\n<ul>\n  <li>Angular apps are usually written with TypeScript, HTML templates and CSS.</li>\n  <li>Angular is useful when an app has multiple screens, shared UI and growing business logic.</li>\n  <li>Angular provides structure so teams can build and maintain larger frontend applications.</li>\n</ul>\n<h3>References</h3>\n<ul>\n  <li><a href=\"https://angular.dev/overview\" target=\"_blank\" rel=\"noopener noreferrer\">Angular overview</a></li>\n  <li><a href=\"https://angular.dev/guide/components\" target=\"_blank\" rel=\"noopener noreferrer\">Angular components</a></li>\n</ul>"
     },
     {
       "id": "core-building-blocks",
       "title": "Core Building Blocks",
       "type": "content",
+      "duration": "10s",
       "content": "<h2>The Main Pieces of an Angular App</h2>\n<p>Before learning each topic deeply, it helps to know the basic role of the most common Angular building blocks.</p>\n<ul>\n  <li>Components control parts of the screen.</li>\n  <li>Templates describe what the user sees.</li>\n  <li>Services hold reusable logic such as API calls or shared data.</li>\n  <li>Routes connect URLs to pages.</li>\n  <li>Angular CLI helps create, run, test and build projects.</li>\n</ul>\n<pre><code>Angular app\n  Components -&gt; UI\n  Templates  -&gt; HTML view\n  Services   -&gt; Shared logic\n  Routes     -&gt; Navigation\n  CLI        -&gt; Project tooling</code></pre>\n<h3>References</h3>\n<ul>\n  <li><a href=\"https://angular.dev/guide/components\" target=\"_blank\" rel=\"noopener noreferrer\">Angular components</a></li>\n  <li><a href=\"https://angular.dev/tools/cli\" target=\"_blank\" rel=\"noopener noreferrer\">Angular CLI overview</a></li>\n</ul>"
     },
     {
       "id": "component-basics",
       "title": "Component Basics",
       "type": "content",
+      "duration": "10s",
       "content": "<h2>A Component Owns a Piece of UI</h2>\n<p>A component is a TypeScript class connected to a template. The class stores data and behavior. The template displays that data and calls the behavior when the user interacts with the page.</p>\n<p>Every Angular app starts from a root component and grows into a tree of smaller components.</p>\n<pre><code>import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-welcome',\n  standalone: true,\n  template: `&lt;h1&gt;Welcome {{ name }}&lt;/h1&gt;`\n})\nexport class WelcomeComponent {\n  name = 'Learner';\n}</code></pre>\n<ul>\n  <li><code>selector</code> is the custom HTML tag for the component.</li>\n  <li><code>template</code> is the UI displayed by the component.</li>\n  <li>Class properties provide data to the template.</li>\n</ul>\n<h3>References</h3>\n<ul>\n  <li><a href=\"https://angular.dev/guide/components\" target=\"_blank\" rel=\"noopener noreferrer\">Angular component anatomy</a></li>\n  <li><a href=\"https://angular.dev/guide/components/selectors\" target=\"_blank\" rel=\"noopener noreferrer\">Angular component selectors</a></li>\n</ul>"
     },
     {
       "id": "template-basics",
       "title": "Template Basics",
       "type": "content",
+      "duration": "10s",
       "content": "<h2>Templates Connect UI and Data</h2>\n<p>Angular templates look like HTML, but they include extra syntax for showing data, setting properties and responding to events.</p>\n<ul>\n  <li>Interpolation displays a value from the component.</li>\n  <li>Property binding updates an element or component property.</li>\n  <li>Event binding runs component code when the user does something.</li>\n</ul>\n<pre><code>&lt;h2&gt;{{ title }}&lt;/h2&gt;\n\n&lt;button [disabled]=&quot;isSaving&quot; (click)=&quot;save()&quot;&gt;\n  Save\n&lt;/button&gt;</code></pre>\n<p>You do not need to master every template feature yet. For fundamentals, focus on understanding how data moves from the component into the template and how events move from the template back into the component.</p>\n<h3>References</h3>\n<ul>\n  <li><a href=\"https://angular.dev/guide/templates\" target=\"_blank\" rel=\"noopener noreferrer\">Angular templates overview</a></li>\n  <li><a href=\"https://angular.dev/guide/templates/binding\" target=\"_blank\" rel=\"noopener noreferrer\">Angular binding guide</a></li>\n</ul>"
     },
     {
       "id": "simple-interaction",
       "title": "Simple Interaction Flow",
       "type": "content",
+      "duration": "10s",
       "content": "<h2>Render Data, Handle Action, Update UI</h2>\n<p>Most Angular screens follow the same basic loop: the component has data, the template displays it, the user performs an action, and the component updates the data.</p>\n<pre><code>import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-counter',\n  standalone: true,\n  template: `\n    &lt;p&gt;Count: {{ count }}&lt;/p&gt;\n    &lt;button (click)=&quot;increment()&quot;&gt;Increment&lt;/button&gt;\n  `\n})\nexport class CounterComponent {\n  count = 0;\n\n  increment() {\n    this.count = this.count + 1;\n  }\n}</code></pre>\n<ul>\n  <li><code>count</code> stores component state.</li>\n  <li><code>{{ count }}</code> displays the state.</li>\n  <li><code>(click)</code> runs code when the user clicks the button.</li>\n  <li><code>increment</code> updates the value and Angular refreshes the screen.</li>\n</ul>\n<h3>References</h3>\n<ul>\n  <li><a href=\"https://angular.dev/guide/templates/event-listeners\" target=\"_blank\" rel=\"noopener noreferrer\">Angular event listeners</a></li>\n  <li><a href=\"https://angular.dev/guide/templates/binding\" target=\"_blank\" rel=\"noopener noreferrer\">Angular binding guide</a></li>\n</ul>"
     },
     {
       "id": "checkpoint",
       "title": "Fundamentals Checkpoint",
       "type": "content",
+      "duration": "10s",
       "content": "<h2>What You Should Know Now</h2>\n<p>This topic is only meant to give you the first mental model. The next topics will go deeper into Angular CLI, components, templates, forms, services, routing and the rest of the Angular ecosystem.</p>\n<ul>\n  <li>Angular is a framework for building structured web applications.</li>\n  <li>Components are the main UI building blocks.</li>\n  <li>Templates display component data and listen to user actions.</li>\n  <li>Services, routes, forms and CLI are important Angular concepts you will learn in later topics.</li>\n</ul>\n<pre><code>Next topic: Angular CLI</code></pre>\n<h3>References</h3>\n<ul>\n  <li><a href=\"https://angular.dev/overview\" target=\"_blank\" rel=\"noopener noreferrer\">Angular overview</a></li>\n  <li><a href=\"https://angular.dev/guide/templates\" target=\"_blank\" rel=\"noopener noreferrer\">Angular templates overview</a></li>\n</ul>"
     }
   ]
