@@ -29,12 +29,20 @@ body {
   font-family: Arial, sans-serif;
 }
 
+.main-content{
+  padding: 50px 100px;
+  text-align: center;
+}
+
+@media screen {
+  
+}
 
 /* PAGE */
 
 .pricing-page {
   padding: 0px 100px;
-    text-align: left;
+  text-align: left;
 }
 
 
@@ -337,6 +345,10 @@ body {
 /* MOBILE */
 
 @media (max-width: 750px) {
+
+  .main-content{
+    padding: var(--space-md);
+  }
 
   .pricing-page {
     padding: 30px 15px 50px;
