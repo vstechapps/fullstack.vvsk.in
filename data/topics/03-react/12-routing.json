@@ -1,0 +1,157 @@
+{
+  "title": "Routing in React",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-to-routing",
+      "title": "Introduction to Client-Side Routing",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>In traditional multi-page applications, every navigation request results in the browser requesting a completely new HTML document from the server. This causes a full page reload.</p><p>In modern Single Page Applications (SPAs) built with React, we use <strong>Client-Side Routing</strong>. Instead of requesting a new page from the server, a client-side router intercepts browser navigation, updates the URL bar dynamically, and renders the corresponding component inside the existing document without a reload.</p>"
+    },
+    {
+      "id": "csr-vs-ssr-mcq",
+      "title": "Client-Side vs Server-Side Routing",
+      "type": "mcq",
+      "duration": "1m 30s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Client-side routing requires a full page refresh for every navigation action."
+          },
+          {
+            "id": "b",
+            "text": "Client-side routing updates the URL and changes the DOM view instantly without requesting a new HTML page from the server."
+          },
+          {
+            "id": "c",
+            "text": "Server-side routing is faster because it does not require JavaScript to load."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "react-router-setup",
+      "title": "Configuring React Router v6",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>To enable routing in a React app, we use the <code>react-router-dom</code> library. We must first wrap our root component with <code>BrowserRouter</code> to enable routing context.</p><p>Inside, we declare individual routes using the <code>Routes</code> wrapper and individual <code>Route</code> components.</p><pre><code>import { BrowserRouter, Routes, Route } from 'react-router-dom';\n\nfunction App() {\n  return (\n    &lt;BrowserRouter&gt;\n      &lt;Routes&gt;\n        &lt;Route path='/' element={&lt;Home /&gt;} /&gt;\n        &lt;Route path='/about' element={&lt;About /&gt;} /&gt;\n      &lt;/Routes&gt;\n    &lt;/BrowserRouter&gt;\n  );\n}</code></pre>"
+    },
+    {
+      "id": "routing-syntax-blank",
+      "title": "Fill in the Hook Name",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To navigate programmatically in React Router v6 (for example, redirecting a user after they click a button or complete an action), we use the [[blank1]] hook.",
+        "answers": {
+          "blank1": "useNavigate"
+        }
+      }
+    },
+    {
+      "id": "navigation-links",
+      "title": "Navigating with Link and NavLink",
+      "type": "content",
+      "duration": "3m 30s",
+      "content": "<p>Do not use standard HTML <code>&lt;a href='...'&gt;</code> tags for internal links! Using them causes a hard page reload, losing your application's state.</p><p>Instead, React Router provides two replacement components:</p><ul><li><code>&lt;Link to='/about'&gt;</code>: Performs standard client-side navigation.</li><li><code>&lt;NavLink to='/about'&gt;</code>: Special version of Link that automatically adds an <code>active</code> class or styles when the current route matches the URL.</li></ul>"
+    },
+    {
+      "id": "router-concepts-match",
+      "title": "Match the Routing Concept",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "BrowserRouter",
+            "right": "Provides routing history context to the React application."
+          },
+          {
+            "left": "Routes",
+            "right": "Container that matches the current location to one of its children."
+          },
+          {
+            "left": "Route",
+            "right": "Maps a specific URL path to a React component configuration."
+          },
+          {
+            "left": "NavLink",
+            "right": "A navigation anchor that knows if it is active or pending."
+          }
+        ]
+      }
+    },
+    {
+      "id": "dynamic-routing",
+      "title": "Dynamic Routing & Path Parameters",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Frequently, pages must render dynamic content based on identifiers (like a user ID or product slug). We define these parameters in the route configuration using a colon (<code>:</code>) prefix.</p><pre><code>&lt;Route path='/user/:userId' element={&lt;UserProfile /&gt;} /&gt;</code></pre><p>Within the rendered component, we extract this dynamic parameter using the <code>useParams</code> hook:</p><pre><code>import { useParams } from 'react-router-dom';\n\nfunction UserProfile() {\n  const { userId } = useParams();\n  return &lt;h1&gt;User Profile ID: {userId}&lt;/h1&gt;;\n}</code></pre>"
+    },
+    {
+      "id": "router-setup-order",
+      "title": "Ordering Router Setup Steps",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "items": [
+          {
+            "id": "step-1",
+            "text": "Run npm install react-router-dom in your project root."
+          },
+          {
+            "id": "step-2",
+            "text": "Wrap your main Application component inside <BrowserRouter>."
+          },
+          {
+            "id": "step-3",
+            "text": "Define a routing tree using <Routes> and individual <Route> definitions."
+          },
+          {
+            "id": "step-4",
+            "text": "Replace traditional anchor tags with React Router's <Link> or <NavLink> components."
+          }
+        ],
+        "correctOrder": [
+          "step-1",
+          "step-2",
+          "step-3",
+          "step-4"
+        ]
+      }
+    },
+    {
+      "id": "not-found-mcq",
+      "title": "Handling Not Found (404) Routes",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "<Route path='*' element={<NotFound />} />"
+          },
+          {
+            "id": "b",
+            "text": "<Route path='404' element={<NotFound />} />"
+          },
+          {
+            "id": "c",
+            "text": "<Route errorElement={<NotFound />} />"
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "routing-summary",
+      "title": "Summary & Best Practices",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Congratulations! You have completed the foundation of routing in React. Let's recap key takeaways:</p><ul><li><strong>Keep it Declarative:</strong> Define routes cleanly inside structured Route elements.</li><li><strong>Prevent Reloads:</strong> Always use <code>Link</code> or <code>NavLink</code> instead of anchor tags.</li><li><strong>Dynamic Context:</strong> Utilize hooks like <code>useParams</code> and <code>useNavigate</code> to hook into route states.</li><li><strong>Fallback Routes:</strong> Always establish a wildcard fallback route (<code>path='*'</code>) to gracefully handle broken links or missing paths.</li></ul>"
+    }
+  ]
+}

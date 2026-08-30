@@ -1,0 +1,130 @@
+{
+  "title": "Forms in React",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-forms",
+      "title": "Introduction to React Forms",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Handling forms is a crucial part of building interactive React applications. Unlike traditional HTML forms where the DOM handles form data, React prefers using <strong>Controlled Components</strong>, where state is the single source of truth.</p>\n<pre><code>const [value, setValue] = useState('');</code></pre>"
+    },
+    {
+      "id": "controlled-components-mcq",
+      "title": "Understanding Controlled Components",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Form data is handled by the DOM itself."
+          },
+          {
+            "id": "b",
+            "text": "React state handles the form data and input values."
+          },
+          {
+            "id": "c",
+            "text": "Inputs cannot be validated before submission."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "uncontrolled-refs",
+      "title": "Uncontrolled Components & Refs",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Sometimes you need <strong>Uncontrolled Components</strong> where form values are grabbed directly from the DOM using the <code>useRef</code> hook instead of writing an event handler for every keystroke.</p>\n<pre><code>const inputRef = useRef(null);\n// access via inputRef.current.value</code></pre>"
+    },
+    {
+      "id": "form-blank",
+      "title": "Complete the Hook Name",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To create an uncontrolled component and reference a DOM element directly in React, we use the _____ hook.",
+        "blanks": [
+          {
+            "id": "0",
+            "answer": "useRef"
+          }
+        ]
+      }
+    },
+    {
+      "id": "form-library-content",
+      "title": "Advanced Forms with Libraries",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>As forms grow, managing state manually leads to performance bottlenecks and boilerplate. Libraries like <strong>React Hook Form</strong> or <strong>Formik</strong> optimize re-renders and simplify validation schema integration with tools like Yup or Zod.</p>"
+    },
+    {
+      "id": "match-form-concepts",
+      "title": "Match Form Concepts",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Controlled Component",
+            "right": "State drives the input value"
+          },
+          {
+            "left": "Uncontrolled Component",
+            "right": "DOM drives the input value via Ref"
+          },
+          {
+            "left": "React Hook Form",
+            "right": "Optimized library minimizing re-renders"
+          },
+          {
+            "left": "onSubmit",
+            "right": "Event handler preventing default refresh"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-form-steps",
+      "title": "Order the Form Lifecycle Steps",
+      "type": "order",
+      "duration": "5m",
+      "content": {
+        "items": [
+          {
+            "id": "step1",
+            "text": "User types into the input field."
+          },
+          {
+            "id": "step2",
+            "text": "onChange event fires, triggering state update."
+          },
+          {
+            "id": "step3",
+            "text": "React re-renders the component with the new state."
+          },
+          {
+            "id": "step4",
+            "text": "User clicks submit, triggering onSubmit handler."
+          }
+        ],
+        "correctOrder": [
+          "step1",
+          "step2",
+          "step3",
+          "step4"
+        ]
+      }
+    },
+    {
+      "id": "conclusion-content",
+      "title": "Summary & Best Practices",
+      "type": "content",
+      "duration": "6m",
+      "content": "<p>Always remember to:</p><ul><li>Use controlled components for dynamic validation and dependency.</li><li>Prevent default form submission behavior using <code>e.preventDefault()</code>.</li><li>Consider libraries for complex, multi-step enterprise forms.</li></ul>"
+    }
+  ]
+}

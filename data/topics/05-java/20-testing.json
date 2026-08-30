@@ -1,0 +1,163 @@
+{
+  "title": "Mastering Unit & Integration Testing in Java",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "junit5-intro",
+      "title": "Introduction to JUnit 5 Lifecycle",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>JUnit 5 is the modern testing standard for Java applications. It is split into three sub-projects: JUnit Platform, JUnit Jupiter, and JUnit Vintage.</p><p>Understanding the test lifecycle annotations is key to writing clean tests:</p><ul><li><code>@BeforeAll</code>: Runs once before all test methods in the current class (must be static).</li><li><code>@BeforeEach</code>: Runs before every individual <code>@Test</code>.</li><li><code>@AfterEach</code>: Runs after every individual <code>@Test</code>.</li><li><code>@AfterAll</code>: Runs once after all tests have executed (must be static).</li></ul><pre><code>@TestInstance(Lifecycle.PER_METHOD)\nclass OrderServiceTest {\n    @BeforeEach\n    void setUp() {\n        // Initialize fresh test fixtures\n    }\n}</code></pre>"
+    },
+    {
+      "id": "junit5-lifecycle-mcq",
+      "title": "Choose the Correct Lifecycle Annotation",
+      "type": "mcq",
+      "duration": "1m 30s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "@BeforeAll (Must be static unless @TestInstance(Lifecycle.PER_CLASS) is used)"
+          },
+          {
+            "id": "b",
+            "text": "@BeforeEach (Executed on every method)"
+          },
+          {
+            "id": "c",
+            "text": "@SetUpClass (Legacy JUnit 4 syntax)"
+          },
+          {
+            "id": "d",
+            "text": "@BeforeSuite (JUnit suite level)"
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "junit5-assertions",
+      "title": "Advanced Assertions in JUnit 5",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>JUnit Jupiter offers rich assertion mechanisms that improve upon standard structural assertions.</p><h3>1. Grouped Assertions</h3><p>Using <code>assertAll()</code>, all assertions within the block are executed even if one or more fail. This provides a complete picture of failures in a single run.</p><pre><code>assertAll(\"Address assertion\",\n    () -> assertEquals(\"Prague\", address.getCity()),\n    () -> assertEquals(\"Czechia\", address.getCountry())\n);</code></pre><h3>2. Exception Testing</h3><p>Use <code>assertThrows()</code> to verify if a block of code throws a specific exception.</p><pre><code>IllegalArgumentException exception = assertThrows(\n    IllegalArgumentException.class, \n    () -> calculator.divide(10, 0)\n);\nassertEquals(\"Cannot divide by zero\", exception.getMessage());</code></pre>"
+    },
+    {
+      "id": "junit5-assert-blank",
+      "title": "Completing Exception Testing Assertions",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "Complete the test block to catch an empty payload execution exception:\n\nassertThrows(IllegalArgumentException.class, () -> userService.saveUser([blank]));",
+        "answer": "null"
+      }
+    },
+    {
+      "id": "mockito-stub-verify",
+      "title": "Mocking with Mockito",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Mockito allows isolated unit testing of classes by mocking their outer dependencies. This ensures fast execution and zero side effects (e.g., bypassing live database/network calls).</p><h3>Stubbing</h3><p>Configure a method call on a mock instance to return a predefined value using <code>when().thenReturn()</code>.</p><pre><code>when(paymentClient.charge(100.00)).thenReturn(new ChargeResult(Status.SUCCESS));</code></pre><h3>Verification</h3><p>Assert that a mock method was actually invoked with specific arguments using <code>verify()</code>.</p><pre><code>verify(notificationService, times(1)).sendEmail(eq(\"user@test.com\"), anyString());</code></pre>"
+    },
+    {
+      "id": "mockito-match",
+      "title": "Match Mockito Concepts to Functionality",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "key": "@Mock",
+            "value": "Creates a simulated mock dependency object."
+          },
+          {
+            "key": "@InjectMocks",
+            "value": "Instantiates class under test and injects defined mocks."
+          },
+          {
+            "key": "verify()",
+            "value": "Asserts method execution patterns/counts on mock objects."
+          },
+          {
+            "key": "ArgumentCaptor",
+            "value": "Captures actual method parameters passed to mock for validation."
+          }
+        ]
+      }
+    },
+    {
+      "id": "spring-test-slices",
+      "title": "Integration Testing & Spring Slices",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>While <code>@SpringBootTest</code> bootstraps the entire ApplicationContext, specialized Test Slices load only the minimum component layers required, saving startup time:</p><ul><li><code>@WebMvcTest</code>: Focuses only on Spring MVC controllers, security configurations, and filters. Dependencies must be loaded via <code>@MockBean</code>.</li><li><code>@DataJpaTest</code>: Configures an in-memory database, configures Hibernate, and scans only <code>@Entity</code> classes and JPA repositories. Transactions auto-rollback at the end of each test method.</li></ul><pre><code>@WebMvcTest(UserController.class)\nclass UserControllerTest {\n    @Autowired\n    private MockMvc mockMvc;\n\n    @MockBean\n    private UserService userService;\n}</code></pre>"
+    },
+    {
+      "id": "aaa-lifecycle-order",
+      "title": "Arrange, Act, Assert Pattern Sequence",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Arrange: Set up mocks, environment variables, and prepare input arguments."
+          },
+          {
+            "id": "2",
+            "text": "Act: Invoke the exact target method being unit-tested."
+          },
+          {
+            "id": "3",
+            "text": "Assert: Validate returned results and verify dependencies' interactions."
+          },
+          {
+            "id": "4",
+            "text": "Teardown: Release shared resources (handled automatically or inside @AfterEach)."
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    },
+    {
+      "id": "tdd-best-practices",
+      "title": "Test-Driven Development (TDD)",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>TDD changes developer mindset from \"writing code, then checking it\" to \"using tests to design software architecture.\"</p><p>The canonical cycle consists of three steps:</p><ol><li><strong>Red:</strong> Write a failing test for a piece of missing functionality. The test must fail to compile or assert negative behavior.</li><li><strong>Green:</strong> Write the minimum amount of functional code necessary to make the test pass successfully.</li><li><strong>Refactor:</strong> Clean up both business logic code and test structures (reducing duplication, fixing style issues) without changing the overall behavior.</li></ol>"
+    },
+    {
+      "id": "tdd-scenarios-mcq",
+      "title": "Identify Valid TDD Practice",
+      "type": "mcq",
+      "duration": "2m 30s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Refactoring your code base while tests are failing (Red phase)."
+          },
+          {
+            "id": "b",
+            "text": "Writing the minimal, simplest code possible to pass a test, even if it uses a hardcoded return value."
+          },
+          {
+            "id": "c",
+            "text": "Skipping the failing test phase if you already know the architectural design perfectly."
+          },
+          {
+            "id": "d",
+            "text": "Writing all system-wide integrations and mocks first before defining unit tests."
+          }
+        ],
+        "correctId": "b"
+      }
+    }
+  ]
+}

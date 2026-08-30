@@ -1,0 +1,171 @@
+{
+  "title": "Mastering Java Strings",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "java-string-immutability",
+      "title": "String Immutability in Java",
+      "type": "content",
+      "duration": "180s",
+      "content": "<p>In Java, Strings are <strong>immutable</strong>. Once a String object is created, its value cannot be changed. Any operation that appears to modify a String actually creates a new String object in memory.</p>\n<pre><code>String greeting = \"Hello\";\ngreeting = greeting.concat(\" World\"); // Creates a new String \"Hello World\"</code></pre>\n<p>This design choice provides security, thread-safety, and allows for String pooling optimization.</p>"
+    },
+    {
+      "id": "string-pool-concept",
+      "title": "The String Constant Pool",
+      "type": "content",
+      "duration": "180s",
+      "content": "<p>To save memory, Java maintains a special execution area called the <strong>String Constant Pool</strong> inside the Heap.</p>\n<ul>\n  <li>When you declare a literal like <code>String s = \"Java\";</code>, JVM checks the pool first.</li>\n  <li>If it exists, the reference is reused. If not, a new object is created in the pool.</li>\n  <li>Using <code>new String(\"Java\")</code> bypasses the pool check, forcing a new object on the heap directly.</li>\n</ul>"
+    },
+    {
+      "id": "string-equality-mcq",
+      "title": "String Equality Comparison",
+      "type": "mcq",
+      "duration": "120s",
+      "content": {
+        "question": "What is the output of the following Java code?\n\nString s1 = \"Apple\";\nString s2 = new String(\"Apple\");\nSystem.out.println(s1 == s2);\nSystem.out.println(s1.equals(s2));",
+        "options": [
+          {
+            "id": "a",
+            "text": "true\ntrue"
+          },
+          {
+            "id": "b",
+            "text": "false\nfalse"
+          },
+          {
+            "id": "c",
+            "text": "false\ntrue"
+          },
+          {
+            "id": "d",
+            "text": "true\nfalse"
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "memory-allocation-matching",
+      "title": "Match Memory Allocations",
+      "type": "match",
+      "duration": "180s",
+      "content": {
+        "instruction": "Match the Java declaration style with its corresponding memory outcome.",
+        "pairs": [
+          {
+            "left": "String s = \"Demo\";",
+            "right": "Creates or reuses reference in String Pool."
+          },
+          {
+            "left": "String s = new String(\"Demo\");",
+            "right": "Creates an object on Heap, bypassing pool reuse."
+          },
+          {
+            "left": "String s = \"De\" + \"mo\";",
+            "right": "Evaluated at compile-time into a single pool literal."
+          },
+          {
+            "left": "s.intern();",
+            "right": "Manually adds/fetches reference to/from the String Pool."
+          }
+        ]
+      }
+    },
+    {
+      "id": "essential-string-methods",
+      "title": "Essential String Methods",
+      "type": "content",
+      "duration": "180s",
+      "content": "<p>Java provides powerful built-in methods to inspect and manipulate Strings:</p>\n<ul>\n  <li><code>length()</code>: Returns the number of characters.</li>\n  <li><code>charAt(int index)</code>: Retrieves char at index.</li>\n  <li><code>substring(int beginIndex, int endIndex)</code>: Extracts a segment (endIndex is exclusive).</li>\n  <li><code>indexOf(String str)</code>: Finds position of substring.</li>\n</ul>\n<pre><code>String demo = \"Developer\";\nchar ch = demo.charAt(2); // 'v'\nString sub = demo.substring(0, 4); // \"Deve\"</code></pre>"
+    },
+    {
+      "id": "method-chaining-order",
+      "title": "Order of String Chaining",
+      "type": "order",
+      "duration": "180s",
+      "content": {
+        "instruction": "Arrange the execution states of the following code from start to final output:\n\nString result = \" Java Developer \".trim().substring(0, 4).toUpperCase();",
+        "items": [
+          {
+            "id": "1",
+            "text": "Original: \" Java Developer \""
+          },
+          {
+            "id": "2",
+            "text": "After trim(): \"Java Developer\""
+          },
+          {
+            "id": "3",
+            "text": "After substring(0, 4): \"Java\""
+          },
+          {
+            "id": "4",
+            "text": "After toUpperCase(): \"JAVA\""
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    },
+    {
+      "id": "stringbuilder-vs-stringbuffer",
+      "title": "StringBuilder vs StringBuffer",
+      "type": "content",
+      "duration": "240s",
+      "content": "<p>When extensive string concatenation is needed (e.g., inside loops), <code>String</code> causes excessive garbage collection pressure. Java provides mutable alternatives:</p>\n<ul>\n  <li><strong>StringBuilder</strong>: Fast, efficient, but <strong>not thread-safe</strong>. Preferred for single-threaded environments.</li>\n  <li><strong>StringBuffer</strong>: Thread-safe (synchronized methods), but has performance overhead.</li>\n</ul>\n<pre><code>StringBuilder builder = new StringBuilder();\nfor (int i = 0; i &lt; 5; i++) {\n    builder.append(i);\n} // \"01234\"</code></pre>"
+    },
+    {
+      "id": "mutable-strings-blank",
+      "title": "Fill in the Blanks: Mutability",
+      "type": "blank",
+      "duration": "120s",
+      "content": {
+        "text": "Because String is [blank1], we should avoid concatenating strings inside a loop using the '+' operator. Instead, we should use [blank2] for a single-threaded performance boost, or [blank3] if thread safety is required.",
+        "answers": {
+          "blank1": "immutable",
+          "blank2": "StringBuilder",
+          "blank3": "StringBuffer"
+        }
+      }
+    },
+    {
+      "id": "performance-mcq",
+      "title": "String Pool Optimizations",
+      "type": "mcq",
+      "duration": "120s",
+      "content": {
+        "question": "Which of the following describes the main benefit of String Immutability?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It allows String literals to be safely shared inside the String Constant Pool without synchronization issues."
+          },
+          {
+            "id": "b",
+            "text": "It guarantees that string variables are dynamically typed at runtime."
+          },
+          {
+            "id": "c",
+            "text": "It forces all String allocations onto Stack memory instead of Heap memory."
+          },
+          {
+            "id": "d",
+            "text": "It allows strings to increase in size automatically without reallocation."
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "best-practices",
+      "title": "String Best Practices",
+      "type": "content",
+      "duration": "300s",
+      "content": "<p>To write production-grade Java code, adhere to these key practices:</p>\n<ul>\n  <li><strong>Null safety:</strong> When checking variables against literals, call the method on the literal: <code>\"ADMIN\".equals(role)</code> instead of <code>role.equals(\"ADMIN\")</code> to prevent <code>NullPointerException</code>.</li>\n  <li><strong>Use isEmpty() or isBlank():</strong> Avoid manual length checks (e.g., <code>str.length() == 0</code>). <code>isBlank()</code> is especially useful as it handles whitespace characters as well.</li>\n  <li><strong>Minimize internalizing:</strong> <code>String.intern()</code> is expensive; use it only for extremely repetitive domains.</li>\n</ul>"
+    }
+  ]
+}

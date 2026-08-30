@@ -1,0 +1,218 @@
+{
+  "title": "Mastering Java File I/O",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-to-java-io",
+      "title": "Introduction to Streams",
+      "type": "content",
+      "duration": "120s",
+      "content": "<h3>The Concept of Streams</h3><p>In Java, I/O operations are performed using <strong>Streams</strong>. A stream represents a continuous flow of data from a source (input) to a destination (output).</p><p>Streams are classified into two main categories based on the data type they handle:</p><ul><li><strong>Byte Streams:</strong> Handle 8-bit raw bytes (e.g., images, audio, binary data). Principal classes: <code>InputStream</code> and <code>OutputStream</code>.</li><li><strong>Character Streams:</strong> Handle 16-bit Unicode characters (text files). Principal classes: <code>Reader</code> and <code>Writer</code>.</li></ul>"
+    },
+    {
+      "id": "stream-matching",
+      "title": "Match Stream Types",
+      "type": "match",
+      "duration": "180s",
+      "content": {
+        "pairs": [
+          {
+            "key": "FileInputStream",
+            "value": "Reads raw byte streams from files (e.g., images)."
+          },
+          {
+            "key": "FileReader",
+            "value": "Reads character streams from text files."
+          },
+          {
+            "key": "BufferedReader",
+            "value": "Reads text efficiently by buffering characters for performance."
+          },
+          {
+            "key": "ObjectInputStream",
+            "value": "Deserializes Java objects from an underlying stream."
+          }
+        ]
+      }
+    },
+    {
+      "id": "byte-streams-concept",
+      "title": "Reading Files with Byte Streams",
+      "type": "content",
+      "duration": "120s",
+      "content": "<h3>Using FileInputStream</h3><p>To read raw binary data, we use the <code>FileInputStream</code> class. It reads the file byte by byte. When the end of the file is reached, the <code>read()</code> method returns <code>-1</code>.</p><pre><code>FileInputStream in = null;\ntry {\n    in = new FileInputStream('input.dat');\n    int data;\n    while ((data = in.read()) != -1) {\n        // process byte\n    }\n} finally {\n    if (in != null) in.close();\n}</code></pre>"
+    },
+    {
+      "id": "eof-indicator-mcq",
+      "title": "EOF Indicator in InputStream",
+      "type": "mcq",
+      "duration": "90s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "0"
+          },
+          {
+            "id": "b",
+            "text": "null"
+          },
+          {
+            "id": "c",
+            "text": "-1"
+          },
+          {
+            "id": "d",
+            "text": "An EOFException is thrown"
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "character-streams-buffering",
+      "title": "Character Streams & Buffering",
+      "type": "content",
+      "duration": "150s",
+      "content": "<h3>Efficient Text I/O with Buffering</h3><p>Reading directly from disk can be highly inefficient. Wrapping a <code>FileReader</code> in a <code>BufferedReader</code> creates an internal memory buffer. Instead of calling the OS for every single character, chunks of characters are loaded into memory at once.</p><pre><code>BufferedReader reader = new BufferedReader(new FileReader('notes.txt'));\nString line;\nwhile ((line = reader.readLine()) != null) {\n    System.out.println(line);\n}</code></pre><p><strong>Note:</strong> <code>readLine()</code> returns <code>null</code> when the end of the character stream is reached.</p>"
+    },
+    {
+      "id": "buffering-wrapping-order",
+      "title": "Order the BufferedReader Initialization",
+      "type": "order",
+      "duration": "120s",
+      "content": {
+        "items": [
+          {
+            "id": "step1",
+            "text": "Instantiate a File object pointing to the file path."
+          },
+          {
+            "id": "step2",
+            "text": "Instantiate a FileReader using the File object."
+          },
+          {
+            "id": "step3",
+            "text": "Wrap the FileReader inside a BufferedReader instance."
+          },
+          {
+            "id": "step4",
+            "text": "Invoke readLine() to begin streaming buffered content."
+          }
+        ],
+        "correctOrder": [
+          "step1",
+          "step2",
+          "step3",
+          "step4"
+        ]
+      }
+    },
+    {
+      "id": "try-with-resources-content",
+      "title": "Automatic Resource Management",
+      "type": "content",
+      "duration": "180s",
+      "content": "<h3>Try-With-Resources</h3><p>Prior to Java 7, streams had to be explicitly closed inside a <code>finally</code> block, risking leaks or nested exceptions. Java 7 introduced <strong>try-with-resources</strong>, which automatically closes any class implementing <code>AutoCloseable</code> at the end of the statement block.</p><pre><code>try (BufferedReader br = new BufferedReader(new FileReader('data.txt'))) {\n    System.out.println(br.readLine());\n} catch (IOException e) {\n    e.printStackTrace();\n}\n// BufferedReader is automatically closed here</code></pre>"
+    },
+    {
+      "id": "try-with-resources-blank",
+      "title": "Try-With-Resources Syntax",
+      "type": "blank",
+      "duration": "120s",
+      "content": {
+        "sentence": "To utilize try-with-resources, the resource initialization must happen within parentheses immediately after the [blank] keyword, and the resource class must implement the [blank] interface.",
+        "correctAnswers": [
+          "try",
+          "AutoCloseable"
+        ]
+      }
+    },
+    {
+      "id": "java-nio2-content",
+      "title": "Java NIO.2 (Non-blocking I/O)",
+      "type": "content",
+      "duration": "180s",
+      "content": "<h3>Introduction to NIO.2</h3><p>Java 7 introduced NIO.2 (new package: <code>java.nio.file</code>) as a modern replacement for legacy <code>java.io.File</code> capabilities. Key abstractions include:</p><ul><li><strong>Path:</strong> Replaces <code>java.io.File</code> and represents locating files system-agnostically.</li><li><strong>Paths:</strong> Helper utility class containing static methods returning a <code>Path</code> object.</li><li><strong>Files:</strong> Utility class packed with static operations such as <code>Files.readAllLines(path)</code> or <code>Files.write(path, bytes)</code>.</li></ul>"
+    },
+    {
+      "id": "nio2-utility-mcq",
+      "title": "Identify correct Files operation",
+      "type": "mcq",
+      "duration": "120s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Files.checkExist(Path p)"
+          },
+          {
+            "id": "b",
+            "text": "Files.exists(Path p)"
+          },
+          {
+            "id": "c",
+            "text": "Path.exists()"
+          },
+          {
+            "id": "d",
+            "text": "File.existsAtPath(Path p)"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "serialization-content",
+      "title": "Object Serialization in Java",
+      "type": "content",
+      "duration": "150s",
+      "content": "<h3>Writing Objects to Disk</h3><p>Java allows converting an object state into a byte stream via <strong>Serialization</strong>. Objects must implement the marker interface <code>java.io.Serializable</code> to be eligible.</p><p>Use the <strong><code>transient</code></strong> keyword on fields you do not want to be serialized (e.g., passwords, temp tokens, or database connection instances).</p><pre><code>public class User implements Serializable {\n    private String username;\n    private transient String password; // Will not be saved\n}</code></pre>"
+    },
+    {
+      "id": "deserialization-order",
+      "title": "Steps to Deserialize an Object",
+      "type": "order",
+      "duration": "120s",
+      "content": {
+        "items": [
+          {
+            "id": "step1",
+            "text": "Open a FileInputStream pointing to the serialized target file."
+          },
+          {
+            "id": "step2",
+            "text": "Instantiate ObjectInputStream wrapped around the file stream."
+          },
+          {
+            "id": "step3",
+            "text": "Call readObject() from the ObjectInputStream instance."
+          },
+          {
+            "id": "step4",
+            "text": "Cast the deserialized output Object into your expected Class type."
+          }
+        ],
+        "correctOrder": [
+          "step1",
+          "step2",
+          "step3",
+          "step4"
+        ]
+      }
+    },
+    {
+      "id": "transient-field-blank",
+      "title": "Transient Keyword Behavior",
+      "type": "blank",
+      "content": {
+        "sentence": "When a serialized object is read back from disk, any field that was marked with the [blank] modifier will not restore its persistent state, but will instead be initialized to its default JVM [blank] value.",
+        "correctAnswers": [
+          "transient",
+          "null"
+        ]
+      },
+      "duration": "150s"
+    }
+  ]
+}

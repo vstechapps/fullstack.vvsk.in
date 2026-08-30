@@ -1,0 +1,112 @@
+{
+  "title": "React Fundamentals",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "react-intro",
+      "title": "What is React?",
+      "type": "content",
+      "duration": "30s",
+      "content": "<p>React is a declarative, efficient, and flexible JavaScript library for building user interfaces.</p>\n<p>It lets you compose complex UIs from small and isolated pieces of code called \"components\".</p>"
+    },
+    {
+      "id": "jsx-concept",
+      "title": "Understanding JSX",
+      "type": "content",
+      "duration": "45s",
+      "content": "<p>JSX is a syntax extension to JavaScript. It is used with React to describe what the UI should look like.</p>\n<pre><code>const element = &lt;h1&gt;Hello, world!&lt;/h1&gt;;</code></pre>"
+    },
+    {
+      "id": "react-mcq-1",
+      "title": "What is JSX?",
+      "type": "mcq",
+      "duration": "30s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "A database query language for React"
+          },
+          {
+            "id": "b",
+            "text": "A syntax extension to JavaScript"
+          },
+          {
+            "id": "c",
+            "text": "A built-in state management library"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "components-blank",
+      "title": "Complete the Component Definition",
+      "type": "blank",
+      "duration": "45s",
+      "content": {
+        "text": "React components are regular JavaScript functions that return {blank}.",
+        "blanks": [
+          {
+            "id": "1",
+            "answer": "JSX"
+          }
+        ]
+      }
+    },
+    {
+      "id": "props-vs-state",
+      "title": "Match React Concepts",
+      "type": "match",
+      "duration": "60s",
+      "content": {
+        "pairs": [
+          {
+            "left": "Props",
+            "right": "Passed from parent to child"
+          },
+          {
+            "left": "State",
+            "right": "Managed within the component"
+          },
+          {
+            "left": "JSX",
+            "right": "HTML-like syntax in JS"
+          }
+        ]
+      }
+    },
+    {
+      "id": "render-order",
+      "title": "React Application Lifecycle Order",
+      "type": "order",
+      "duration": "45s",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Write JSX components"
+          },
+          {
+            "id": "2",
+            "text": "Babel transpiles JSX to React.createElement"
+          },
+          {
+            "id": "3",
+            "text": "React creates the Virtual DOM"
+          },
+          {
+            "id": "4",
+            "text": "React updates the actual DOM"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    }
+  ]
+}

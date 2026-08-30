@@ -1,0 +1,190 @@
+{
+  "title": "Java Concurrency & Multithreading",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-concurrency-parallelism",
+      "title": "Concurrency vs Parallelism",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Understanding the difference between concurrency and parallelism is fundamental for a Java Developer:</p><ul><li><strong>Concurrency:</strong> About <em>copinement/structure</em>. It is the ability to run multiple tasks out-of-order or in interleaved fashion on a single core.</li><li><strong>Parallelism:</strong> About <em>execution</em>. It is the ability to run multiple tasks at the exact same time on multiple processing cores.</li></ul>"
+    },
+    {
+      "id": "creating-threads-java",
+      "title": "Creating Threads in Java",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>In Java, there are two primary ways to define and execute a thread:</p><ol><li>Extending the <code>Thread</code> class.</li><li>Implementing the <code>Runnable</code> interface (preferred for separation of concerns).</li></ol><pre><code>// Using Runnable lambda syntax\nRunnable task = () -&gt; System.out.println(\"Running in: \" + Thread.currentThread().getName());\nThread thread = new Thread(task);\nthread.start();</code></pre>"
+    },
+    {
+      "id": "thread-lifecycle",
+      "title": "The Thread Lifecycle",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>A Java thread can exist in one of the following states defined by the <code>Thread.State</code> enum:</p><ul><li><strong>NEW:</strong> Created but not yet started.</li><li><strong>RUNNABLE:</strong> Executing in the JVM (or waiting for OS resource allocation).</li><li><strong>BLOCKED:</strong> Waiting to acquire a monitor lock.</li><li><strong>WAITING:</strong> Waiting indefinitely for another thread to perform an action.</li><li><strong>TIMED_WAITING:</strong> Waiting for a specified period.</li><li><strong>TERMINATED:</strong> Finished execution.</li></ul>"
+    },
+    {
+      "id": "thread-states-mcq",
+      "title": "Identify the Thread State",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "WAITING"
+          },
+          {
+            "id": "b",
+            "text": "BLOCKED"
+          },
+          {
+            "id": "c",
+            "text": "TIMED_WAITING"
+          },
+          {
+            "id": "d",
+            "text": "NEW"
+          }
+        ],
+        "correctId": "b",
+        "question": "Which state is a thread in when it is waiting to acquire a monitor lock to enter a synchronized block?"
+      }
+    },
+    {
+      "id": "race-conditions",
+      "title": "Race Conditions & Data Races",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>A <strong>race condition</strong> occurs when the program's outcome depends on the unpredictable sequence or timing of thread execution.</p><p>A <strong>data race</strong> happens when two or more threads concurrently access the same memory location, at least one of these accesses is a write, and there is no synchronization coordinating them.</p>"
+    },
+    {
+      "id": "synchronized-keyword",
+      "title": "The synchronized Keyword",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Java provides built-in lock mechanisms via the <code>synchronized</code> keyword. It ensures that only one thread can execute a block of code or a method on a locked monitor object at a time.</p><pre><code>public class Counter {\n    private int count = 0;\n    \n    public synchronized void increment() {\n        count++; // Thread-safe operation\n    }\n}</code></pre>"
+    },
+    {
+      "id": "concurrency-blank",
+      "title": "Fill in the Blanks: Synchronization & Visibility",
+      "type": "blank",
+      "duration": "1m 30s",
+      "content": {
+        "text": "In Java, we use the [blank1] keyword to lock a block of code from concurrent execution, and we can use the [blank2] keyword to guarantee that changes to a variable are immediately visible to all other threads.",
+        "blanks": {
+          "blank1": "synchronized",
+          "blank2": "volatile"
+        }
+      }
+    },
+    {
+      "id": "volatile-keyword",
+      "title": "The volatile Keyword",
+      "type": "content",
+      "duration": "2m 30s",
+      "content": "<p>The <code>volatile</code> keyword solves <strong>visibility</strong> issues rather than atomicity. It ensures that reads and writes to a variable go directly to the main memory, bypassing CPU caches.</p><p>Use <code>volatile</code> when you have a flag checked by one thread and updated by another, but avoid using it for compound operations like incrementing (<code>i++</code>).</p>"
+    },
+    {
+      "id": "concurrency-match",
+      "title": "Match Concurrency Terms",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Deadlock",
+            "right": "Threads blocked forever waiting for each other to release locks."
+          },
+          {
+            "left": "Race Condition",
+            "right": "Inconsistent program output due to thread scheduling order."
+          },
+          {
+            "left": "Thread Pool",
+            "right": "A managed collection of pre-instantiated worker threads."
+          },
+          {
+            "left": "Livelock",
+            "right": "Threads constantly changing state in response to each other without progress."
+          }
+        ]
+      }
+    },
+    {
+      "id": "executor-framework",
+      "title": "The Executor Framework",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Manually managing individual threads is highly discouraged in production Java. Instead, use the <code>ExecutorService</code> API.</p><pre><code>ExecutorService executor = Executors.newFixedThreadPool(10);\n\nexecutor.submit(() -&gt; {\n    System.out.println(\"Task executed inside thread pool\");\n});\n\nexecutor.shutdown();</code></pre>"
+    },
+    {
+      "id": "executor-lifecycle-order",
+      "title": "Executor Lifecycle Steps",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "instruction": "Order the lifecycle actions of an ExecutorService correctly from instantiation to complete shutdown:",
+        "items": [
+          {
+            "id": "1",
+            "text": "Create an ExecutorService instance via Executors factory."
+          },
+          {
+            "id": "2",
+            "text": "Submit Callable or Runnable tasks to the pool."
+          },
+          {
+            "id": "3",
+            "text": "Invoke shutdown() to stop accepting new tasks."
+          },
+          {
+            "id": "4",
+            "text": "Invoke awaitTermination() to block until active tasks complete execution."
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    },
+    {
+      "id": "completable-future",
+      "title": "CompletableFuture (Asynchronous Programming)",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Introduced in Java 8, <code>CompletableFuture</code> implements <code>Future</code> and <code>CompletionStage</code>, allowing you to write non-blocking asynchronous pipeline structures.</p><pre><code>CompletableFuture.supplyAsync(() -&gt; \"Hello\")\n    .thenApply(val -&gt; val + \" World\")\n    .thenAccept(System.out::println);</code></pre>"
+    },
+    {
+      "id": "completablefuture-mcq",
+      "title": "CompletableFuture Methods",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "thenAccept()"
+          },
+          {
+            "id": "b",
+            "text": "thenApply()"
+          },
+          {
+            "id": "c",
+            "text": "thenRun()"
+          },
+          {
+            "id": "d",
+            "text": "handle()"
+          }
+        ],
+        "correctId": "b",
+        "question": "Which CompletableFuture method is used to transform the result of a previous computation and return a new value?"
+      }
+    }
+  ]
+}

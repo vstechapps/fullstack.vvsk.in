@@ -1,0 +1,210 @@
+{
+  "title": "Java Application Deployment Strategies",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "deployment-intro",
+      "title": "Java Deployment Archives: JAR vs WAR",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>In modern Java development, choosing how to package your application is the first step toward deployment.</p><ul><li><strong>JAR (Java Archive):</strong> Standard for microservices. Bundles classes, resources, and an embedded servlet container (like Tomcat in Spring Boot) into a single, executable file. Run via <code>java -jar app.jar</code>.</li><li><strong>WAR (Web Archive):</strong> Legacy/Traditional standard. Requires a standalone web server or application server (like Tomcat, WildFly, or WebLogic) to run.</li></ul>"
+    },
+    {
+      "id": "jar-vs-war-mcq",
+      "title": "Choosing Packaging Strategy",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "question": "Which packaging format is preferred for modern, standalone Spring Boot microservices containing embedded servers?",
+        "options": [
+          {
+            "id": "a",
+            "text": "WAR (Web Archive)"
+          },
+          {
+            "id": "b",
+            "text": "EAR (Enterprise Archive)"
+          },
+          {
+            "id": "c",
+            "text": "JAR (Java Archive)"
+          },
+          {
+            "id": "d",
+            "text": "ZIP archive with classes"
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "dockerization-intro",
+      "title": "Containerizing Java Applications",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Dockerizing Java applications ensures consistency across development, testing, and production environments.</p><p>A modern production-grade <strong>Dockerfile</strong> uses a multi-stage build to keep the final image small:</p><pre><code># Stage 1: Build\nFROM maven:3.8-openjdk-17 AS builder\nWORKDIR /app\nCOPY . .\nRUN mvn clean package -DskipTests\n\n# Stage 2: Runtime\nFROM openjdk:17-jdk-slim\nWORKDIR /app\nCOPY --from=builder /app/target/*.jar app.jar\nENTRYPOINT [\"java\", \"-jar\", \"app.jar\"]</code></pre>"
+    },
+    {
+      "id": "docker-build-order",
+      "title": "Dockerization Lifecycle Order",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Compile and package the application using Maven/Gradle (generating JAR)."
+          },
+          {
+            "id": "2",
+            "text": "Execute the Docker build command referencing the Dockerfile."
+          },
+          {
+            "id": "3",
+            "text": "Push the built Docker image to a container registry (e.g., Docker Hub or ECR)."
+          },
+          {
+            "id": "4",
+            "text": "Pull and run the container on the target production server."
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    },
+    {
+      "id": "jvm-tuning-intro",
+      "title": "JVM Tuning and Container Awareness",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Historically, Java applications inside containers did not recognize container memory limits, leading to sudden OS-level kills (OOM Killer).</p><p>Since Java 10+, the JVM is container-aware. However, explicit sizing is still recommended:</p><ul><li><code>-Xms</code>: Initial heap size.</li><li><code>-Xmx</code>: Maximum heap size.</li><li><code>-XX:+UseG1GC</code>: Enables the G1 Garbage Collector, recommended for multi-threaded server apps.</li></ul>"
+    },
+    {
+      "id": "jvm-flag-blank",
+      "title": "JVM Memory Allocation",
+      "type": "blank",
+      "content": {
+        "text": "The JVM command-line option used to configure the maximum allowable heap memory allocation is [blank].",
+        "answer": "-Xmx"
+      },
+      "duration": "2m"
+    },
+    {
+      "id": "cicd-pipelines",
+      "title": "CI/CD Pipelines for Java",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Continuous Integration & Continuous Deployment (CI/CD) automates Java deployments.</p><p>A standard pipeline features the following stages:</p><ol><li><strong>Checkout:</strong> Pull latest codebase from Git repository.</li><li><strong>Build & Test:</strong> Run tests using <code>mvn clean test</code>. Fail pipeline if tests break.</li><li><strong>Analyze:</strong> Check code quality (e.g., SonarQube) and search for vulnerabilities.</li><li><strong>Package:</strong> Build production artifact and upload image.</li><li><strong>Deploy:</strong> Rollout update to cloud environment.</li></ol>"
+    },
+    {
+      "id": "tool-matching",
+      "title": "Match Tools to Deployment Functions",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "source": "Maven",
+            "target": "Build Tool & Artifact Packager"
+          },
+          {
+            "source": "Kubernetes",
+            "target": "Container Orchestrator"
+          },
+          {
+            "source": "Jenkins",
+            "target": "CI/CD Pipeline Engine"
+          },
+          {
+            "source": "Prometheus",
+            "target": "Metrics Collection and Monitoring"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deployment-strategies-content",
+      "title": "Blue-Green vs Canary Deployments",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Minimizing downtime during release cycles requires reliable cutover strategies:</p><ul><li><strong>Blue-Green Deployment:</strong> Maintains two identical environments. Active traffic goes to \"Blue\". Deploy new code to \"Green\". Test on Green, then switch router/load balancer traffic instantly to Green.</li><li><strong>Canary Deployment:</strong> Gradually route a small subset of production traffic (e.g., 5%) to the new version. If metrics remain healthy, scale traffic to 100%.</li></ul>"
+    },
+    {
+      "id": "canary-mcq",
+      "title": "Identifying Release Patterns",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "question": "Which deployment strategy routes a microscopic portion of actual user traffic to the newly released version of your Java microservice to test stability before full rollout?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Recreate deployment strategy"
+          },
+          {
+            "id": "b",
+            "text": "Canary deployment strategy"
+          },
+          {
+            "id": "c",
+            "text": "Blue-Green instant cutover"
+          },
+          {
+            "id": "d",
+            "text": "Manual shadow deploy"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "dockerfile-entrypoint-blank",
+      "title": "Dockerfile Commands",
+      "type": "blank",
+      "content": {
+        "text": "The Dockerfile instruction used to set the primary default executable command for running the Java JAR file is [blank].",
+        "answer": "ENTRYPOINT"
+      },
+      "duration": "2m"
+    },
+    {
+      "id": "monitoring-and-logging",
+      "title": "Post-Deployment Monitoring & Health Checks",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Once deployed, your application must report its condition continuously.</p><p>Using <strong>Spring Boot Actuator</strong> provides built-in endpoints:</p><ul><li><code>/actuator/health</code>: Confirms application availability for load balancers.</li><li><code>/actuator/metrics</code>: Exposes internal telemetry metrics.</li></ul><p>These metrics are typically scraped by <strong>Prometheus</strong> and displayed on <strong>Grafana</strong> dashboards.</p>"
+    },
+    {
+      "id": "graceful-shutdown-mcq",
+      "title": "Production Graceful Shutdowns",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "question": "Why is it important to enable 'graceful shutdown' configurations in production Java microservices during deployment rollouts?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To reduce the target memory usage of the application startup phase"
+          },
+          {
+            "id": "b",
+            "text": "To allow existing HTTP requests to complete safely before the pod terminates"
+          },
+          {
+            "id": "c",
+            "text": "To automatically clean up temporary heap dumps"
+          },
+          {
+            "id": "d",
+            "text": "To notify external API registries to start billing active users"
+          }
+        ],
+        "correctId": "b"
+      }
+    }
+  ]
+}

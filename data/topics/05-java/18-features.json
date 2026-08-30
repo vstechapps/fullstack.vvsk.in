@@ -1,0 +1,173 @@
+{
+  "title": "Modern Java Developer Features",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "evolution-modern-java",
+      "title": "Evolution of Modern Java",
+      "type": "content",
+      "duration": "180s",
+      "content": "<p>Since Java 9, Oracle transitioned to a strict <strong>6-month release cadence</strong>. This means new features are delivered much faster through rapid feature releases, alongside <strong>Long-Term Support (LTS)</strong> releases every 2 years (starting with Java 17).</p>\n<p>Key highlights of modern Java versions include:</p>\n<ul>\n  <li><strong>Java 8:</strong> Lambdas, Streams, and Optional</li>\n  <li><strong>Java 11:</strong> HTTP Client, String APIs, and run single-file source code</li>\n  <li><strong>Java 17:</strong> Sealed Classes, Pattern Matching (Preview), and Records</li>\n  <li><strong>Java 21:</strong> Virtual Threads, Pattern Matching for switch, and Sequenced Collections</li>\n</ul>"
+    },
+    {
+      "id": "lambda-expressions",
+      "title": "Lambda Expressions & Functional Interfaces",
+      "type": "content",
+      "duration": "180s",
+      "content": "<p>Introduced in Java 8, <strong>Lambda Expressions</strong> allow you to treat functionality as a method argument, or code as data. A lambda expression can only implement a <strong>Functional Interface</strong> (an interface with exactly one abstract method).</p>\n<pre><code>// Traditional anonymous class\nRunnable r1 = new Runnable() {\n    @Override\n    public void run() {\n        System.out.println(\"Hello World\");\n    }\n};\n\n// Modern Lambda expression\nRunnable r2 = () -&gt; System.out.println(\"Hello World\");</code></pre>"
+    },
+    {
+      "id": "lambda-mcq",
+      "title": "Identify the Valid Functional Interface",
+      "type": "mcq",
+      "duration": "90s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "An interface with multiple abstract methods and no default methods."
+          },
+          {
+            "id": "b",
+            "text": "An interface with exactly one abstract method, but it can have multiple default or static methods."
+          },
+          {
+            "id": "c",
+            "text": "An interface that has been declared abstract but contains no methods."
+          },
+          {
+            "id": "d",
+            "text": "An interface with no abstract methods and one private method."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "streams-api",
+      "title": "The Streams API",
+      "type": "content",
+      "duration": "240s",
+      "content": "<p>The <strong>Streams API</strong> provides a declarative way to process collections of objects. A stream pipeline consists of a source, zero or more intermediate operations, and a terminal operation.</p>\n<p><strong>Intermediate Operations</strong> are lazy and return a new stream (e.g., <code>filter()</code>, <code>map()</code>, <code>sorted()</code>). <strong>Terminal Operations</strong> trigger processing and produce a result or side-effect (e.g., <code>collect()</code>, <code>forEach()</code>, <code>reduce()</code>).</p>\n<pre><code>List&lt;String&gt; names = List.of(\"Anna\", \"Bob\", \"Alex\", \"Charlie\");\n\nList&lt;String&gt; filtered = names.stream()\n    .filter(name -&gt; name.startsWith(\"A\"))\n    .map(String::toUpperCase)\n    .collect(Collectors.toList());\n// Output: [\"ANNA\", \"ALEX\"]</code></pre>"
+    },
+    {
+      "id": "stream-pipeline-order",
+      "title": "Stream Pipeline Execution Order",
+      "type": "order",
+      "duration": "120s",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Obtain a stream from a data source (e.g., list.stream())"
+          },
+          {
+            "id": "2",
+            "text": "Apply lazy intermediate filters (e.g., filter(predicate))"
+          },
+          {
+            "id": "3",
+            "text": "Transform elements using intermediate mappings (e.g., map(mapper))"
+          },
+          {
+            "id": "4",
+            "text": "Apply a terminal operation (e.g., collect()) to trigger lazy evaluation and compile final results"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    },
+    {
+      "id": "var-type-inference",
+      "title": "Local Variable Type Inference (var)",
+      "type": "content",
+      "duration": "150s",
+      "content": "<p>Introduced in Java 10, the <code>var</code> keyword allows local variable type inference. The compiler infers the exact type based on the initialization value.</p>\n<pre><code>// Instead of:\nMap&lt;String, List&lt;Integer&gt;&gt; map = new HashMap&lt;String, List&lt;Integer&gt;&gt;();\n\n// You can write:\nvar map = new HashMap&lt;String, List&lt;Integer&gt;&gt;();</code></pre>\n<p><strong>Crucial Rules:</strong></p>\n<ul>\n  <li>Only works inside local blocks (methods, loops, try-with-resources).</li>\n  <li>Cannot be used for member fields, method parameters, or return types.</li>\n  <li>Must have an explicit initializer statement.</li>\n</ul>"
+    },
+    {
+      "id": "var-usage-blank",
+      "title": "Completing Local Variable Declarations",
+      "type": "blank",
+      "duration": "120s",
+      "content": {
+        "text": "Complete the declaration of an implicit local variable: '[blank]' myMap = new HashMap<String, String>();. Note that this type inference feature cannot be used for class '[blank]'.",
+        "answers": [
+          "var",
+          "fields"
+        ]
+      }
+    },
+    {
+      "id": "records-sealed-classes",
+      "title": "Records & Sealed Classes",
+      "type": "content",
+      "duration": "240s",
+      "content": "<p>Modern Java introduces powerful object-oriented constructs to represent clean data carriers and manage subclass hierarchies:</p>\n<p><strong>Records (Java 16):</strong> Immutable data classes that generate boilerplate code (getters, constructors, toString, equals, and hashCode) automatically.</p>\n<pre><code>public record User(String username, String email) {}</code></pre>\n<p><strong>Sealed Classes (Java 17):</strong> Restricts which classes or interfaces may extend or implement them using the <code>sealed</code> and <code>permits</code> modifiers.</p>\n<pre><code>public sealed class Shape permits Circle, Square {}\npublic final class Circle extends Shape {}\npublic final class Square extends Shape {}</code></pre>"
+    },
+    {
+      "id": "feature-version-match",
+      "title": "Match Features to Java Releases",
+      "type": "match",
+      "duration": "180s",
+      "content": {
+        "pairs": [
+          {
+            "left": "Lambda Expressions",
+            "right": "Java 8"
+          },
+          {
+            "left": "Local Variable Type Inference (var)",
+            "right": "Java 10"
+          },
+          {
+            "left": "Record Classes (Standard)",
+            "right": "Java 16"
+          },
+          {
+            "left": "Sealed Classes (Standard)",
+            "right": "Java 17"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pattern-matching-switch",
+      "title": "Pattern Matching for switch",
+      "type": "content",
+      "duration": "180s",
+      "content": "<p>With modern pattern matching, you can check object types and bind matching values to variables directly inside <code>switch</code> expressions, making boilerplate-heavy <code>instanceof</code> checks obsolete.</p>\n<pre><code>static String formatterPatternSwitch(Object obj) {\n    return switch (obj) {\n        case Integer i -> String.format(\"int %d\", i);\n        case Long l    -> String.format(\"long %d\", l);\n        case Double d  -> String.format(\"double %f\", d);\n        case String s  -> String.format(\"String %s\", s);\n        default        -> obj.toString();\n    };\n}</code></pre>"
+    },
+    {
+      "id": "sealed-classes-rules-mcq",
+      "title": "Sealed Classes Extension Requirements",
+      "type": "mcq",
+      "duration": "120s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Permitted subclasses must be defined within the same file without exception."
+          },
+          {
+            "id": "b",
+            "text": "Every permitted subclass of a sealed class must explicitly use one of: final, sealed, or non-sealed modifiers."
+          },
+          {
+            "id": "c",
+            "text": "Any subclass extending a sealed class is automatically marked final by the compiler."
+          },
+          {
+            "id": "d",
+            "text": "Permitted subclasses must implement all default interfaces implemented by the parent."
+          }
+        ],
+        "correctId": "b"
+      }
+    }
+  ]
+}

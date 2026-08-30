@@ -1,0 +1,225 @@
+{
+  "title": "Java Fundamentals",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "java-architecture-intro",
+      "title": "Introduction to Java Architecture",
+      "type": "content",
+      "duration": "3m",
+      "content": "<h1>Understanding JVM, JRE, and JDK</h1><p>To master Java, you must understand how your code runs. Java is platform-independent because of its write-once, run-anywhere design philosophy.</p><ul><li><strong>JDK (Java Development Kit):</strong> The full developer software suite. Contains JRE, compilers (javac), and tools.</li><li><strong>JRE (Java Runtime Environment):</strong> The environment in which Java applications run. Contains JVM and core library classes.</li><li><strong>JVM (Java Virtual Machine):</strong> The engine that executes Java bytecode by converting it into machine code.</li></ul>"
+    },
+    {
+      "id": "architecture-mcq",
+      "title": "Which component actually executes bytecode?",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "JDK (Java Development Kit)"
+          },
+          {
+            "id": "b",
+            "text": "JRE (Java Runtime Environment)"
+          },
+          {
+            "id": "c",
+            "text": "JVM (Java Virtual Machine)"
+          },
+          {
+            "id": "d",
+            "text": "javac"
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "java-data-types",
+      "title": "Java Primitive Data Types",
+      "type": "content",
+      "duration": "3m",
+      "content": "<h1>Primitive Types in Java</h1><p>Java has 8 primitive data types predefined by the language:</p><ul><li><strong>Integers:</strong> byte (8-bit), short (16-bit), int (32-bit), long (64-bit).</li><li><strong>Floating-Points:</strong> float (32-bit), double (64-bit).</li><li><strong>Characters:</strong> char (16-bit Unicode).</li><li><strong>Logical:</strong> boolean (true/false).</li></ul><p>Example definition:</p><pre><code>int index = 5;\ndouble temperature = 98.6;\nboolean isValid = true;</code></pre>"
+    },
+    {
+      "id": "primitive-blank",
+      "title": "Declare a Constant Variable",
+      "type": "blank",
+      "duration": "1m",
+      "content": {
+        "question": "Fill in the missing keyword to make the following variable immutable (constant) in Java.",
+        "expression": "______ int MAX_CONNECTIONS = 100;",
+        "correctAnswer": "final"
+      }
+    },
+    {
+      "id": "control-flow-content",
+      "title": "Control Flow Statements",
+      "type": "content",
+      "duration": "4m",
+      "content": "<h1>Directing Program Execution</h1><p>Java supports standard control flow mechanisms to branch and repeat processes:</p><h2>Conditionals</h2><p>Using <code>if-else</code> structures or the <code>switch</code> expression/statement to execute logic dynamically.</p><h2>Loops</h2><ul><li><strong>for loop:</strong> Best for running block code a defined number of times.</li><li><strong>while loop:</strong> Runs while a boolean statement remains true.</li><li><strong>do-while loop:</strong> Guarantees the block runs at least once before testing the condition.</li></ul>"
+    },
+    {
+      "id": "switch-case-order",
+      "title": "Order the Switch-Case Block",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "instruction": "Reorder the blocks of code to form a syntactically correct switch-case statement starting from the head evaluation.",
+        "items": [
+          {
+            "id": "item-1",
+            "text": "switch (day) {"
+          },
+          {
+            "id": "item-2",
+            "text": "  case 1:"
+          },
+          {
+            "id": "item-3",
+            "text": "    System.out.println(\"Monday\");"
+          },
+          {
+            "id": "item-4",
+            "text": "    break;"
+          },
+          {
+            "id": "item-5",
+            "text": "  default:"
+          },
+          {
+            "id": "item-6",
+            "text": "    System.out.println(\"Invalid Day\");"
+          },
+          {
+            "id": "item-7",
+            "text": "}"
+          }
+        ],
+        "correctOrder": [
+          "item-1",
+          "item-2",
+          "item-3",
+          "item-4",
+          "item-5",
+          "item-6",
+          "item-7"
+        ]
+      }
+    },
+    {
+      "id": "oop-pillars-content",
+      "title": "The Pillars of OOP",
+      "type": "content",
+      "duration": "5m",
+      "content": "<h1>Object-Oriented Programming (OOP) in Java</h1><p>Java is built entirely around OOP principles, which focus on structuring program logic around objects rather than actions.</p><ul><li><strong>Encapsulation:</strong> Hiding internal data (using private variables) and exposing access via public getters/setters.</li><li><strong>Inheritance:</strong> Allowing a new class (subclass) to adopt state and behavior from an existing class (superclass) using the <code>extends</code> keyword.</li><li><strong>Polymorphism:</strong> The ability of a single interface or class to take on different forms (e.g., dynamic method overriding).</li><li><strong>Abstraction:</strong> Hiding execution details and showing only external functional interfaces (using interfaces and abstract classes).</li></ul>"
+    },
+    {
+      "id": "oop-match",
+      "title": "Match OOP Pillars with Definitions",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "instruction": "Match each core Object-Oriented Programming pillar to its correct description.",
+        "pairs": [
+          {
+            "left": "Encapsulation",
+            "right": "Using access modifiers to hide state and control property access."
+          },
+          {
+            "left": "Inheritance",
+            "right": "Deriving a child class from a parent class to reuse features."
+          },
+          {
+            "left": "Polymorphism",
+            "right": "Overriding a method to provide unique class implementation at runtime."
+          },
+          {
+            "left": "Abstraction",
+            "right": "Using interfaces to hide underlying implementation details from consumers."
+          }
+        ]
+      }
+    },
+    {
+      "id": "class-and-object-content",
+      "title": "Classes, Objects, and Methods",
+      "type": "content",
+      "duration": "4m",
+      "content": "<h1>Defining Behavior and State</h1><p>A class serves as a blueprint from which individual objects are instantiated.</p><pre><code>public class Dog {\n    // Instance Variable\n    private String breed;\n\n    // Constructor\n    public Dog(String breed) {\n        this.breed = breed;\n    }\n\n    // Method\n    public void bark() {\n        System.out.println(\"Woof!\");\n    }\n}</code></pre><p>Instantiating and using this class requires the use of the <code>new</code> keyword:</p><pre><code>Dog myDog = new Dog(\"Beagle\");\nmyDog.bark();</code></pre>"
+    },
+    {
+      "id": "overloading-mcq",
+      "title": "Identify Overloading vs. Overriding",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Overriding defines two methods with the same name but different argument lists inside the same class."
+          },
+          {
+            "id": "b",
+            "text": "Overloading allows a subclass to define a method with the same name, parameters, and return type as one inherited from its superclass."
+          },
+          {
+            "id": "c",
+            "text": "Overloading represents static polymorphism (compile-time resolved), whereas Overriding represents dynamic polymorphism (runtime resolved)."
+          },
+          {
+            "id": "d",
+            "text": "There is no functional distinction between overloading and overriding in modern Java."
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "instantiation-blank",
+      "title": "Object Instantiation",
+      "type": "blank",
+      "duration": "1m",
+      "content": {
+        "question": "Fill in the keyword used to dynamically allocate memory and instantiate an object in Java.",
+        "expression": "Car tesla = ______ Car(\"Model S\");",
+        "correctAnswer": "new"
+      }
+    },
+    {
+      "id": "compilation-order",
+      "title": "Lifecycle of a Java Source File",
+      "type": "order",
+      "duration": "1m",
+      "content": {
+        "instruction": "Order the lifecycle steps of execution for a Java program from writing code to final processing.",
+        "items": [
+          {
+            "id": "step-1",
+            "text": "Develop human-readable source code saved with a `.java` extension."
+          },
+          {
+            "id": "step-2",
+            "text": "Run `javac MyProgram.java` to compile source code into `.class` bytecode."
+          },
+          {
+            "id": "step-3",
+            "text": "Execute program via JVM interpreter/compiler using `java MyProgram`."
+          },
+          {
+            "id": "step-4",
+            "text": "JVM JIT Compiler compiles bytecode into machine code optimized for target operating system."
+          }
+        ],
+        "correctOrder": [
+          "step-1",
+          "step-2",
+          "step-3",
+          "step-4"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "title": "Authentication in React",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "auth-vs-authz",
+      "title": "Authentication vs Authorization",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Before writing auth code in React, you must understand the distinction between these two key concepts:</p><ul><li><strong>Authentication (AuthN):</strong> Verifies <em>who</em> a user is (e.g., entering a username and password).</li><li><strong>Authorization (AuthZ):</strong> Determines <em>what</em> permissions an authenticated user has (e.g., checking if a user has access to an admin dashboard).</li></ul>"
+    },
+    {
+      "id": "react-auth-context",
+      "title": "Managing Auth State with React Context",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>React Context is the standard way to share authentication state globally across your component tree without prop drilling.</p><pre><code>const AuthContext = createContext(null);\n\nexport const AuthProvider = ({ children }) => {\n  const [user, setUser] = useState(null);\n  const login = (userData) => setUser(userData);\n  const logout = () => setUser(null);\n\n  return (\n    &lt;AuthContext.Provider value={{ user, login, logout }}&gt;\n      {children}\n    &lt;/AuthContext.Provider&gt;\n  );\n};</code></pre>"
+    },
+    {
+      "id": "token-storage-mcq",
+      "title": "Where to Store JWTs Safely?",
+      "type": "mcq",
+      "duration": "4m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "localStorage (vulnerable to Cross-Site Scripting / XSS)"
+          },
+          {
+            "id": "b",
+            "text": "In-memory React State (vulnerable to page refreshes)"
+          },
+          {
+            "id": "c",
+            "text": "HttpOnly Cookies (securely handled by the browser and resistant to XSS)"
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "protected-routes-blank",
+      "title": "Securing Routes in React Router",
+      "type": "blank",
+      "duration": "4m",
+      "content": {
+        "text": "To prevent unauthorized users from viewing private components in React Router v6, we use the [blank] component to programmatically redirect them to a login page.",
+        "answer": "Navigate"
+      }
+    },
+    {
+      "id": "auth-match",
+      "title": "Match Authentication Terms",
+      "type": "match",
+      "duration": "6m",
+      "content": {
+        "pairs": [
+          {
+            "key": "JWT",
+            "value": "A compact, URL-safe means of representing claims to be transferred between two parties."
+          },
+          {
+            "key": "HttpOnly Cookie",
+            "value": "An attribute that prevents client-side scripts from reading token data."
+          },
+          {
+            "key": "MFA",
+            "value": "A security system requiring more than one distinct credential for verification."
+          },
+          {
+            "key": "OAuth 2.0",
+            "value": "An industry-standard protocol for authorization enabling delegated access."
+          }
+        ]
+      }
+    },
+    {
+      "id": "auth-flow-order",
+      "title": "Order the Authentication Flow",
+      "type": "order",
+      "duration": "7m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "User enters username and password in a React-controlled form."
+          },
+          {
+            "id": "2",
+            "text": "React app sends a POST request with credentials to the backend API."
+          },
+          {
+            "id": "3",
+            "text": "Backend validates credentials and responds with an access token (JWT)."
+          },
+          {
+            "id": "4",
+            "text": "React app updates global Auth Context state and redirects user to dashboard."
+          },
+          {
+            "id": "5",
+            "text": "Subsequent API calls use the token in the Authorization HTTP request header."
+          }
+        ]
+      }
+    }
+  ]
+}

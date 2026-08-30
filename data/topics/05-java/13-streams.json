@@ -1,0 +1,198 @@
+{
+  "title": "Java Streams API",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-to-streams",
+      "title": "Introduction to Streams",
+      "type": "content",
+      "duration": "2m",
+      "content": "<h1>What is a Stream?</h1><p>Introduced in Java 8, the <code>java.util.stream</code> package provides a declarative API to process collections of elements.</p><p>Unlike collections, a stream is <strong>not a data structure</strong> that stores elements. Instead, it conveys elements from a source (such as a Collection, an Array, or an I/O channel) through a pipeline of computational steps.</p><h2>Key Characteristics:</h2><ul><li><strong>No Storage:</strong> A stream doesn't hold data; it processes data on demand.</li><li><strong>Functional in Nature:</strong> Operations on a stream produce a result but do not modify its source.</li><li><strong>Laziness-oriented:</strong> Many stream operations (like filtering) can be deferred and computed only when necessary.</li></ul>"
+    },
+    {
+      "id": "stream-lifecycle",
+      "title": "The Lifecycle of a Stream",
+      "type": "order",
+      "duration": "1m 30s",
+      "content": {
+        "items": [
+          "Define the Data Source (e.g., Collection.stream())",
+          "Apply Intermediate Operations (e.g., filter, map)",
+          "Invoke a Terminal Operation (e.g., collect, forEach)"
+        ]
+      }
+    },
+    {
+      "id": "creating-streams",
+      "title": "How to Create Streams",
+      "type": "content",
+      "duration": "2m 30s",
+      "content": "<h1>Creating Streams in Java</h1><p>There are several ways to instantiate a Stream depending on your data source:</p><h3>1. From Collections</h3><pre><code>List&lt;String&gt; names = List.of(\"Alice\", \"Bob\");\nStream&lt;String&gt; stream = names.stream();</code></pre><h3>2. From Arrays</h3><pre><code>String[] arr = {\"a\", \"b\", \"c\"};\nStream&lt;String&gt; streamOfArray = Arrays.stream(arr);</code></pre><h3>3. Using Static Factory Methods</h3><pre><code>Stream&lt;Integer&gt; directStream = Stream.of(1, 2, 3);</code></pre>"
+    },
+    {
+      "id": "stream-creation-quiz",
+      "title": "Stream Factory Method",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Stream.build(\"Apple\", \"Banana\");"
+          },
+          {
+            "id": "b",
+            "text": "Stream.of(\"Apple\", \"Banana\");"
+          },
+          {
+            "id": "c",
+            "text": "new Stream(\"Apple\", \"Banana\");"
+          },
+          {
+            "id": "d",
+            "text": "Stream.create(\"Apple\", \"Banana\");"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "intermediate-operations",
+      "title": "Intermediate Operations",
+      "type": "content",
+      "duration": "3m",
+      "content": "<h1>Transforming and Filtering Streams</h1><p>Intermediate operations return a new Stream and are lazy (not executed until a terminal operation runs).</p><h2>Common Intermediate Operations:</h2><ul><li><code>filter(Predicate)</code>: Discards elements that don't match the condition.</li><li><code>map(Function)</code>: Transforms each element into another object.</li><li><code>sorted()</code>: Returns a sorted view of the stream.</li><li><code>distinct()</code>: Removes duplicate elements.</li></ul><p>Example pipeline:</p><pre><code>names.stream()\n     .filter(name -&gt; name.startsWith(\"A\"))\n     .map(String::toUpperCase);</code></pre>"
+    },
+    {
+      "id": "intermediate-match",
+      "title": "Match Intermediate Operations",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "key": "filter",
+            "value": "Keeps elements matching a boolean predicate"
+          },
+          {
+            "key": "map",
+            "value": "Applies a function to transform each element"
+          },
+          {
+            "key": "distinct",
+            "value": "Filters out duplicate elements"
+          },
+          {
+            "key": "sorted",
+            "value": "Orders elements in natural or comparator sequence"
+          }
+        ]
+      }
+    },
+    {
+      "id": "terminal-operations",
+      "title": "Terminal Operations",
+      "type": "content",
+      "duration": "3m",
+      "content": "<h1>Closing the Pipeline</h1><p>Terminal operations trigger the stream pipeline execution and produce a final non-stream result (like a List, Map, single value, or void).</p><h2>Common Terminal Operations:</h2><ul><li><code>forEach(Consumer)</code>: Performs an action for each element.</li><li><code>collect(Collector)</code>: Accumulates elements into a collection.</li><li><code>reduce(BinaryOperator)</code>: Combines stream elements into a single summary value.</li><li><code>count()</code>: Returns the number of elements.</li></ul><p>Note: Once a terminal operation completes, the stream is considered <strong>consumed</strong> and cannot be reused.</p>"
+    },
+    {
+      "id": "terminal-execution-blank",
+      "title": "Execution Trigger",
+      "type": "blank",
+      "duration": "1m 30s",
+      "content": {
+        "text": "Stream pipeline evaluation is lazy and will only execute when a _______ operation is invoked.",
+        "answer": "terminal"
+      }
+    },
+    {
+      "id": "lazy-evaluation",
+      "title": "The Power of Lazy Evaluation",
+      "type": "content",
+      "duration": "3m",
+      "content": "<h1>Understanding Laziness</h1><p>In Java, intermediate operations are not evaluated instantly. They construct a recipe of execution paths instead.</p><p>Consider this example:</p><pre><code>Stream.of(\"one\", \"two\", \"three\")\n      .filter(s -&gt; {\n          System.out.println(\"Filtering: \" + s);\n          return s.length() &gt; 3;\n      });</code></pre><p>If you execute this code, <strong>nothing is printed</strong>! Because there is no terminal operation, the filter block is never evaluated. This optimization allows Java to minimize iterations over data.</p>"
+    },
+    {
+      "id": "lazy-evaluation-mcq",
+      "title": "Execution Output Predictor",
+      "type": "mcq",
+      "duration": "1m 30s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Prints: Filtering: one, Filtering: two, Filtering: three"
+          },
+          {
+            "id": "b",
+            "text": "Prints: Filtering: three"
+          },
+          {
+            "id": "c",
+            "text": "Prints nothing because there is no terminal operation invocation"
+          },
+          {
+            "id": "d",
+            "text": "Throws a StreamClosedException"
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "parallel-streams",
+      "title": "Parallel Streams",
+      "type": "content",
+      "duration": "3m",
+      "content": "<h1>Scaling Up with Parallel Processing</h1><p>Java Streams make concurrency accessible by letting you parallelize calculations effortlessly using <code>parallelStream()</code>.</p><p>Under the hood, parallel streams utilize the <strong>ForkJoinPool.commonPool()</strong> to distribute chunks of data across CPU cores.</p><h2>When to Use:</h2><ul><li>Large datasets.</li><li>CPU-intensive operations.</li><li>Stateless, independent computations (avoid shared mutable state!).</li></ul><pre><code>List&lt;Integer&gt; numbers = List.of(1, 2, 3, 4, 5);\nnumbers.parallelStream()\n       .map(n -&gt; n * 2)\n       .forEach(System.out::println);</code></pre>"
+    },
+    {
+      "id": "stream-concepts-match",
+      "title": "Match Stream Concepts",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "key": "parallelStream()",
+            "value": "Executes stream elements using multi-threaded execution"
+          },
+          {
+            "key": "Collectors",
+            "value": "Utility class containing strategies for terminal accumulations"
+          },
+          {
+            "key": "ForkJoinPool",
+            "value": "The default thread executor utilized by parallel streams"
+          },
+          {
+            "key": "IntStream",
+            "value": "A specialized stream optimized for primitive int values"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pipeline-construction-order",
+      "title": "Correct Pipeline Construction",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "items": [
+          "list.stream()",
+          "filter(name -> name.length() > 3)",
+          "map(String::toUpperCase)",
+          "collect(Collectors.toList())"
+        ]
+      }
+    },
+    {
+      "id": "stream-best-practices",
+      "title": "Stream Best Practices",
+      "type": "content",
+      "duration": "2m",
+      "content": "<h1>Write Clean, Safe Stream Pipelines</h1><p>Follow these rules of thumb to write maintainable Java Streams:</p><h2>1. Do Not Re-Use Streams</h2><p>Once a terminal operation is called, the stream is closed. Accessing it again throws an <code>IllegalStateException</code>.</p><h2>2. Avoid Side Effects in Lambdas</h2><p>Lambdas inside stream operations should be <strong>stateless</strong> and <strong>non-interfering</strong>. Avoid mutating outside variables from within map/filter blocks.</p><h2>3. Keep it Readable</h2><p>Avoid massive, nested, or overly complex stream pipelines. If a stream is unreadable, refactor it back to a standard loop or break it down into smaller helper methods.</p>"
+    }
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "title": "Java Versions and Dependency Versioning",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-semver",
+      "title": "Understanding Semantic Versioning (SemVer)",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Modern software development, including Java libraries, relies heavily on <strong>Semantic Versioning (SemVer)</strong>. A version number is formatted as <code>MAJOR.MINOR.PATCH</code>:</p>\n<ul>\n  <li><strong>MAJOR:</strong> Incremented for incompatible API changes.</li>\n  <li><strong>MINOR:</strong> Incremented for adding backward-compatible functionality.</li>\n  <li><strong>PATCH:</strong> Incremented for backward-compatible bug fixes.</li>\n</ul>\n<pre><code>// Example: Upgrading from 1.2.3 to 2.0.0 introduces breaking changes!\n// Upgrading from 1.2.3 to 1.3.0 is safe and adds new features.</code></pre>"
+    },
+    {
+      "id": "semver-mcq",
+      "title": "Identify the Version Increment",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "If you add a new public method to a Java helper library class without breaking existing client code, which SemVer component must be incremented?",
+        "options": [
+          {
+            "id": "a",
+            "text": "PATCH"
+          },
+          {
+            "id": "b",
+            "text": "MINOR"
+          },
+          {
+            "id": "c",
+            "text": "MAJOR"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "java-versioning-history",
+      "title": "Evolution of Java Versioning",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Java's versioning format underwent a massive shift over time:</p>\n<ul>\n  <li><strong>Pre-Java 9:</strong> Versions were formatted as <code>1.x</code> (e.g., Java 8 was technically <code>1.8.0</code>).</li>\n  <li><strong>Java 9 to 21+:</strong> A simplified scheme was adopted focusing on the system format: <code>$FEATURE.$INTERIM.$UPDATE.$PATCH</code>.</li>\n</ul>\n<p>This means Java 11 is represented simply as version <code>11</code>, not <code>1.11</code>.</p>"
+    },
+    {
+      "id": "java-version-string-blank",
+      "title": "Parsing the System Version",
+      "type": "blank",
+      "duration": "1m 30s",
+      "content": {
+        "text": "To programmatically retrieve the standard Java runtime version string using classic system properties, developers call System.getProperty(\"[blank]\").",
+        "answer": "java.version"
+      }
+    },
+    {
+      "id": "java-lts-cadence",
+      "title": "Java's Modern Release Cadence",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Since Java 9, Oracle and the OpenJDK community shifted to a predictable <strong>six-month release cadence</strong> (March and September of every year).</p>\n<p>To support enterprise users, certain releases are designated as <strong>Long-Term Support (LTS)</strong> releases, receiving updates and security patches for years, whereas non-LTS releases are supported for only six months.</p>"
+    },
+    {
+      "id": "java-features-match",
+      "title": "Match Java Version to Landmark Feature",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Java 8",
+            "right": "Lambda Expressions & Streams API"
+          },
+          {
+            "left": "Java 11",
+            "right": "Local-Variable Syntax for Lambda Parameters (var)"
+          },
+          {
+            "left": "Java 17",
+            "right": "Sealed Classes & Pattern Matching for Switch (Preview)"
+          },
+          {
+            "left": "Java 21",
+            "right": "Virtual Threads & Record Patterns"
+          }
+        ]
+      }
+    },
+    {
+      "id": "detecting-java-versions",
+      "title": "Detecting Java Version Programmatically",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>In modern Java (Java 9+), you can easily query the runtime version details using the <code>Runtime.Version</code> class instead of parsing complex property strings manually.</p>\n<pre><code>Runtime.Version version = Runtime.version();\nint major = version.feature(); // Returns the major feature version (e.g., 17 or 21)\nSystem.out.println(\"Running on Java Major: \" + major);</code></pre>"
+    },
+    {
+      "id": "java-lts-order",
+      "title": "Order Java LTS Versions Chronologically",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "instruction": "Arrange the following Java Long-Term Support (LTS) versions from oldest to newest release date:",
+        "items": [
+          "Java SE 8",
+          "Java SE 11",
+          "Java SE 17",
+          "Java SE 21"
+        ]
+      }
+    },
+    {
+      "id": "dependency-versioning",
+      "title": "Dependency Versioning in Build Tools",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>When defining external libraries in Maven (<code>pom.xml</code>) or Gradle (<code>build.gradle</code>), precise version control prevents runtime errors:</p>\n<ul>\n  <li><strong>Strict Versioning:</strong> Pinning exact coordinates (e.g., <code>&lt;version&gt;2.4.0&lt;/version&gt;</code>).</li>\n  <li><strong>SNAPSHOT Versions:</strong> Denoting ongoing development (e.g., <code>1.0.0-SNAPSHOT</code>). Build tools always check for updates to SNAPSHOT dependencies on remote repositories.</li>\n</ul>"
+    },
+    {
+      "id": "maven-snapshot-mcq",
+      "title": "Understanding SNAPSHOT Versions",
+      "type": "mcq",
+      "duration": "1m 30s",
+      "content": {
+        "question": "What behavior distinguishes a SNAPSHOT version (e.g., 1.5.0-SNAPSHOT) from a release version (e.g., 1.5.0) in Maven?",
+        "options": [
+          {
+            "id": "a",
+            "text": "SNAPSHOT versions are cached permanently on the client side and never re-downloaded."
+          },
+          {
+            "id": "b",
+            "text": "Maven will check the remote repository for newer builds of the same SNAPSHOT version dynamically on run/build configurations."
+          },
+          {
+            "id": "c",
+            "text": "SNAPSHOT versions prevent the project from compiling if local changes are detected."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "maven-version-range-blank",
+      "title": "Maven Version Range Syntax",
+      "type": "blank",
+      "duration": "1m 30s",
+      "content": {
+        "text": "In a Maven POM file, to specify a dynamic dependency range that includes any version starting from 1.0 (inclusive) up to 2.0 (exclusive), we write \"[blank]\".",
+        "answer": "[1.0,2.0)"
+      }
+    },
+    {
+      "id": "migration-best-practices",
+      "title": "Best Practices for Upgrading Java Versions",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>When upgrading your project's Java Version:</p>\n<ol>\n  <li><strong>Update Tooling:</strong> Ensure IDEs, build plugins (like <code>maven-compiler-plugin</code>), and CI/CD agents support the targeted JDK version.</li>\n  <li><strong>Verify Transitive Dependencies:</strong> Make sure third-party bytecode-manipulation tools (like ASM, ByteBuddy, or Lombok) are upgraded to support target runtime class file versions.</li>\n</ol>"
+    },
+    {
+      "id": "maven-range-match",
+      "title": "Match Maven Version Specifiers",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "left": "[1.0]",
+            "right": "Exactly version 1.0, no other version is allowed."
+          },
+          {
+            "left": "(1.0,)",
+            "right": "Any version strictly greater than 1.0."
+          },
+          {
+            "left": "[,1.0]",
+            "right": "Any version less than or equal to 1.0."
+          },
+          {
+            "left": "[1.0,2.0]",
+            "right": "Any version between 1.0 and 2.0, inclusive."
+          }
+        ]
+      }
+    }
+  ]
+}

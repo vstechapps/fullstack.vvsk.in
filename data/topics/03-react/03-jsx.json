@@ -1,0 +1,105 @@
+{
+  "title": "Mastering JSX",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "what-is-jsx",
+      "title": "What is JSX?",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>JSX stands for JavaScript XML. It is a syntax extension for JavaScript that allows us to write HTML-like code inside JavaScript.</p>\n<pre><code>const element = &lt;h1&gt;Hello, world!&lt;/h1&gt;;</code></pre>"
+    },
+    {
+      "id": "jsx-mcq",
+      "title": "Understanding JSX Syntax",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "JSX is executed directly by the browser without any compilation."
+          },
+          {
+            "id": "b",
+            "text": "JSX is a syntax extension that gets compiled to standard JavaScript function calls."
+          },
+          {
+            "id": "c",
+            "text": "JSX is a completely new programming language replacing JavaScript."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "jsx-expressions",
+      "title": "Embedding Expressions in JSX",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>You can put any valid JavaScript expression inside curly braces <code>{}</code> within JSX.</p>\n<pre><code>const name = 'React';\nconst element = &lt;h1&gt;Hello, {name}&lt;/h1&gt;;</code></pre>"
+    },
+    {
+      "id": "jsx-blank",
+      "title": "Fill in the Blank",
+      "type": "blank",
+      "duration": "3m",
+      "content": {
+        "text": "To embed JavaScript expressions in JSX, we wrap the expression in curly ____.",
+        "blanks": [
+          {
+            "id": "1",
+            "answer": "braces"
+          }
+        ]
+      }
+    },
+    {
+      "id": "jsx-rules",
+      "title": "Rules of JSX",
+      "type": "content",
+      "duration": "5m",
+      "content": "<ul>\n<li>Must return a single root element (or use fragments &lt;&gt;&lt;/&gt;).</li>\n<li>All tags must be closed.</li>\n<li>Use camelCase for most property names (e.g., <code>className</code> instead of <code>class</code>).</li>\n</ul>"
+    },
+    {
+      "id": "jsx-match",
+      "title": "Match JSX Attributes to HTML Equivalents",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "pairs": [
+          {
+            "left": "className",
+            "right": "class"
+          },
+          {
+            "left": "htmlFor",
+            "right": "for"
+          },
+          {
+            "left": "onClick",
+            "right": "onclick"
+          },
+          {
+            "left": "tabIndex",
+            "right": "tabindex"
+          }
+        ]
+      }
+    },
+    {
+      "id": "jsx-compilation-order",
+      "title": "Order the JSX Rendering Process",
+      "type": "order",
+      "duration": "7m",
+      "content": {
+        "steps": [
+          "Write JSX code in your React component file.",
+          "Babel or a bundler compiles JSX into React.createElement() calls.",
+          "React creates a Virtual DOM representation of the elements.",
+          "React updates the actual DOM to match the Virtual DOM."
+        ]
+      }
+    }
+  ]
+}

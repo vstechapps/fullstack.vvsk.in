@@ -1,0 +1,126 @@
+{
+  "title": "React Context API",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-prop-drilling",
+      "title": "The Prop Drilling Problem",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>In React, data is typically passed top-down via props. However, when deeply nested components require access to a global piece of state (like a theme, language, or authenticated user), passing props through every intermediate component becomes highly tedious.</p>\n<p>This pain point is known as <strong>Prop Drilling</strong>. It clutters component code and makes maintenance difficult.</p>\n<pre><code>// Prop drilling example:\nfunction App() {\n  return &lt;Parent theme=\"dark\" /&gt;;\n}\n\nfunction Parent({ theme }) {\n  return &lt;Child theme={theme} /&gt;;\n}\n\nfunction Child({ theme }) {\n  return &lt;GrandChild theme={theme} /&gt;;\n}</code></pre>"
+    },
+    {
+      "id": "creating-providing-context",
+      "title": "Creating & Providing Context",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>React Context provides a way to pass data through the component tree without having to pass props down manually at every level.</p>\n<p>It consists of three primary elements:</p>\n<ul>\n  <li><strong>createContext:</strong> Initializes a new context instance.</li>\n  <li><strong>Provider:</strong> A component wrapper that delivers the context value to all nested components.</li>\n  <li><strong>useContext:</strong> A Hook that reads the current value of the context.</li>\n</ul>\n<pre><code>import { createContext } from 'react';\n\n// 1. Create the context\nexport const ThemeContext = createContext('light');\n\n// 2. Provide the value\nfunction App() {\n  return (\n    &lt;ThemeContext.Provider value=\"dark\"&gt;\n      &lt;Parent /&gt;\n    &lt;/ThemeContext.Provider>\n  );\n}</code></pre>"
+    },
+    {
+      "id": "usecontext-hook-mcq",
+      "title": "Consuming Context",
+      "type": "mcq",
+      "duration": "3m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "const value = React.getContext(MyContext);"
+          },
+          {
+            "id": "b",
+            "text": "const value = useContext(MyContext);"
+          },
+          {
+            "id": "c",
+            "text": "const value = MyContext.use();"
+          },
+          {
+            "id": "d",
+            "text": "const value = React.useProvider(MyContext);"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "context-syntax-blank",
+      "title": "Syntax Check: Fill in the Blanks",
+      "type": "blank",
+      "duration": "4m",
+      "content": {
+        "text": "Fill in the missing React API features to correctly instantiate and consume Context:\n\nconst UserContext = React.[blank1](null);\n\nfunction UserProfile() {\n  const user = [blank2](UserContext);\n  return <p>{user.name}</p>;\n}",
+        "blanks": [
+          {
+            "id": "blank1",
+            "answer": "createContext"
+          },
+          {
+            "id": "blank2",
+            "answer": "useContext"
+          }
+        ]
+      }
+    },
+    {
+      "id": "context-terms-match",
+      "title": "Match Context Concepts",
+      "type": "match",
+      "duration": "4m",
+      "content": {
+        "pairs": [
+          {
+            "left": "createContext",
+            "right": "Initializes a context container object with an optional default value"
+          },
+          {
+            "left": "Provider",
+            "right": "Component that accepts a 'value' prop and broadcasts it to nested consumers"
+          },
+          {
+            "left": "useContext",
+            "right": "Hook used in functional components to access the active context value"
+          },
+          {
+            "left": "Prop Drilling",
+            "right": "The painful process of passing down data through multiple unused component levels"
+          }
+        ]
+      }
+    },
+    {
+      "id": "context-setup-order",
+      "title": "Order the Steps of Context Setup",
+      "type": "order",
+      "duration": "4m",
+      "content": {
+        "description": "Arrange the steps to properly implement and consume a Context API solution in React:",
+        "items": [
+          {
+            "id": "1",
+            "text": "Declare and export the context instance using React.createContext()."
+          },
+          {
+            "id": "2",
+            "text": "Wrap the relevant parent component hierarchy with the context Provider component."
+          },
+          {
+            "id": "3",
+            "text": "Pass the dynamic data payload to the Provider's 'value' prop."
+          },
+          {
+            "id": "4",
+            "text": "Import the context and useContext hook in child components to access the value."
+          }
+        ]
+      }
+    },
+    {
+      "id": "context-performance-caveat",
+      "title": "Context Performance & Best Practices",
+      "type": "content",
+      "duration": "6m",
+      "content": "<p>While Context is incredibly powerful, it has a notable drawback: performance. Every time the context value changes, <strong>all consumer components</strong> of that context will re-render automatically, regardless of which properties they actually use.</p>\n<p><strong>Tips to optimize:</strong></p>\n<ul>\n  <li><strong>Split Contexts:</strong> Create distinct, dedicated contexts for values that change at different rates (e.g., separate <code>UserAuthContext</code> from <code>ThemeContext</code>).</li>\n  <li><strong>Memoize Values:</strong> Wrap the context value in a <code>useMemo</code> hook to prevent unnecessary object reference changes during parent re-renders.</li>\n  <li><strong>Use State Managers for Fast State:</strong> Avoid using Context for high-frequency state updates (e.g., mouse coordinates or complex input forms).</li>\n</ul>"
+    }
+  ]
+}

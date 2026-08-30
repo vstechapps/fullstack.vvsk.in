@@ -1,0 +1,100 @@
+{
+  "title": "Essential JavaScript for React Developers",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "js-intro",
+      "title": "Why Modern JavaScript Matters for React",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>React is built entirely on JavaScript. To master React, you need a strong grasp of ES6+ features like arrow functions, destructuring, and array methods.</p>"
+    },
+    {
+      "id": "destructuring-mcq",
+      "title": "Object Destructuring",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "const { name } = user;"
+          },
+          {
+            "id": "b",
+            "text": "const name = user{name};"
+          },
+          {
+            "id": "c",
+            "text": "const [name] = user;"
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "arrow-func-blank",
+      "title": "Complete the Arrow Function",
+      "type": "blank",
+      "duration": "3m",
+      "content": {
+        "text": "To define an implicit return arrow function that takes a name parameter, we write: const greet = name => ___;",
+        "blank": "(`Hello ${name}`)"
+      }
+    },
+    {
+      "id": "array-methods-match",
+      "title": "Match Array Methods to Their Purpose",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "pairs": [
+          {
+            "left": "map()",
+            "right": "Transforms each element in an array"
+          },
+          {
+            "left": "filter()",
+            "right": "Creates a new array with elements passing a test"
+          },
+          {
+            "left": "reduce()",
+            "right": "Accumulates array elements into a single value"
+          }
+        ]
+      }
+    },
+    {
+      "id": "async-order",
+      "title": "Order the Async/Await Execution Flow",
+      "type": "order",
+      "duration": "5m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Define an async function"
+          },
+          {
+            "id": "2",
+            "text": "Awaits a fetch() request promise"
+          },
+          {
+            "id": "3",
+            "text": "Parse the response using .json()"
+          },
+          {
+            "id": "4",
+            "text": "Update the React component state"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    }
+  ]
+}

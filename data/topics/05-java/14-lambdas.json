@@ -1,0 +1,157 @@
+{
+  "title": "Java Lambdas and Functional Programming",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-lambdas",
+      "title": "Introduction to Lambdas in Java",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Java 8 introduced Lambda expressions to facilitate functional programming. A lambda expression is a short block of code which takes in parameters and returns a value. Lambda expressions are similar to methods, but they do not need a name and they can be implemented right in the body of a method.</p>\n<p><strong>Syntax:</strong></p>\n<pre><code>(parameter1, parameter2) -&gt; { code block }</code></pre>\n<p>Example compared to anonymous inner class:</p>\n<pre><code>// Anonymous Inner Class\nRunnable r1 = new Runnable() {\n    @Override\n    public void run() {\n        System.out.println(\"Hello World\");\n    }\n};\n\n// Lambda Expression\nRunnable r2 = () -&gt; System.out.println(\"Hello World\");</code></pre>"
+    },
+    {
+      "id": "lambda-syntax-mcq",
+      "title": "Identify the Valid Lambda Expression",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "(int x, int y) => x + y"
+          },
+          {
+            "id": "b",
+            "text": "(x, y) -> { return x + y; }"
+          },
+          {
+            "id": "c",
+            "text": "x, y -> x + y"
+          },
+          {
+            "id": "d",
+            "text": "(x, y) -> return x + y;"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "functional-interfaces",
+      "title": "Functional Interfaces",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>A lambda expression can only be used where a functional interface is expected. A functional interface is an interface that contains <strong>exactly one abstract method</strong>. These interfaces are also known as Single Abstract Method (SAM) interfaces.</p>\n<p>You can use the optional <code>@FunctionalInterface</code> annotation to have the compiler verify that the interface indeed contains only one abstract method.</p>\n<pre><code>@FunctionalInterface\ninterface MathOperation {\n    int operate(int a, int b);\n}</code></pre>\n<p>Note: Functional interfaces can have any number of <code>default</code> or <code>static</code> methods as long as they have only one abstract method.</p>"
+    },
+    {
+      "id": "sam-blank",
+      "title": "SAM Principle",
+      "type": "blank",
+      "duration": "1m 30s",
+      "content": {
+        "text": "A functional interface is an interface that contains exactly one [blank] method, which allows it to be represented by a lambda expression.",
+        "answer": "abstract"
+      }
+    },
+    {
+      "id": "builtin-interfaces",
+      "title": "Java's Built-in Functional Interfaces",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>The <code>java.util.function</code> package contains many built-in functional interfaces so you don't have to define your own. The four most commonly used are:</p>\n<ul>\n  <li><strong>Predicate&lt;T&gt;</strong>: Takes an argument and returns a boolean (<code>test</code> method).</li>\n  <li><strong>Consumer&lt;T&gt;</strong>: Takes an argument and returns nothing (<code>accept</code> method).</li>\n  <li><strong>Supplier&lt;T&gt;</strong>: Takes no argument and returns a value (<code>get</code> method).</li>\n  <li><strong>Function&lt;T, R&gt;</strong>: Takes an argument of type T and returns a result of type R (<code>apply</code> method).</li>\n</ul>"
+    },
+    {
+      "id": "match-interfaces",
+      "title": "Match Interfaces to Signatures",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Predicate<T>",
+            "right": "boolean test(T t)"
+          },
+          {
+            "left": "Consumer<T>",
+            "right": "void accept(T t)"
+          },
+          {
+            "left": "Supplier<T>",
+            "right": "T get()"
+          },
+          {
+            "left": "Function<T, R>",
+            "right": "R apply(T t)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "method-references",
+      "title": "Method References",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Method references are a shorthand notation of a lambda expression to call an existing method. They use the double colon operator (<code>::</code>).</p>\n<p>There are four kinds of method references:</p>\n<ul>\n  <li><strong>Reference to a static method:</strong> <code>ContainingClass::staticMethodName</code></li>\n  <li><strong>Reference to an instance method of a particular object:</strong> <code>containingObject::instanceMethodName</code></li>\n  <li><strong>Reference to an instance method of an arbitrary object of a particular type:</strong> <code>ContainingType::methodName</code></li>\n  <li><strong>Reference to a constructor:</strong> <code>ClassName::new</code></li>\n</ul>\n<p>Example: <code>System.out::println</code> is equivalent to <code>x -&gt; System.out.println(x)</code>.</p>"
+    },
+    {
+      "id": "stream-lambda-order",
+      "title": "Order Stream Processing Steps",
+      "type": "order",
+      "duration": "2m 30s",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Create or obtain a Stream sequence (e.g., list.stream())"
+          },
+          {
+            "id": "2",
+            "text": "Apply intermediate filtering operation (e.g., stream.filter(x -> x != null))"
+          },
+          {
+            "id": "3",
+            "text": "Apply intermediate mapping operation (e.g., stream.map(String::toUpperCase))"
+          },
+          {
+            "id": "4",
+            "text": "Execute a terminal operation to collect results (e.g., stream.toList())"
+          }
+        ]
+      }
+    },
+    {
+      "id": "variable-capture",
+      "title": "Variable Capture & Scope",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Like anonymous inner classes, lambda expressions can capture variables from the enclosing scope. However, they can only access local variables that are <strong>final</strong> or <strong>effectively final</strong>.</p>\n<p>An effectively final variable is one whose value is never changed after it is initialized.</p>\n<pre><code>int factor = 2; // effectively final\nNumericOperator op = n -&gt; n * factor; // Compile-OK\n\nint factor2 = 3;\nfactor2 = 4; // modified!\nNumericOperator op2 = n -&gt; n * factor2; // Compilation Error!</code></pre>"
+    },
+    {
+      "id": "effectively-final-mcq",
+      "title": "Scope and Variable Capture",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "It compiles successfully because dynamic bindings exist for local scope variable state changes."
+          },
+          {
+            "id": "b",
+            "text": "Compilation fails because local variables referenced inside lambdas must be final or effectively final."
+          },
+          {
+            "id": "c",
+            "text": "It compiles, but a RuntimeException is thrown when executing the lambda expression."
+          },
+          {
+            "id": "d",
+            "text": "It compiles because the lambda makes a copy of the variable at the exact moment of creation."
+          }
+        ],
+        "correctId": "b"
+      }
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "title": "Design Systems for React Developers",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-design-systems",
+      "title": "What is a Design System?",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>A <strong>Design System</strong> is a complete set of standards, documentation, and reusable code components that guide design and development teams to build consistent digital products.</p>\n<p>For React developers, a design system manifests as a package of reusable, accessible components (like Buttons, Inputs, and Modals) governed by global design rules.</p>"
+    },
+    {
+      "id": "design-tokens",
+      "title": "Design Tokens",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p><strong>Design Tokens</strong> are the visual atoms of a design system. They store raw values like colors, spacing, typography, and animation timing in a platform-agnostic format (usually JSON).</p>\n<pre><code>// tokens.json\n{\n  \"color\": {\n    \"brand-primary\": \"#0070f3\",\n    \"gray-100\": \"#f4f4f4\"\n  },\n  \"spacing\": {\n    \"small\": \"8px\",\n    \"medium\": \"16px\"\n  }\n}</code></pre>\n<p>In React, these tokens are consumed via CSS Variables, ThemeProviders, or CSS-in-JS configurations.</p>"
+    },
+    {
+      "id": "tokens-mcq",
+      "title": "Understand Design Tokens",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "question": "Which of the following is the primary purpose of Design Tokens?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To write performance testing scripts for production builds."
+          },
+          {
+            "id": "b",
+            "text": "To maintain platform-agnostic visual values like colors, typography, and spacing for visual consistency."
+          },
+          {
+            "id": "c",
+            "text": "To serve as automated databases for hosting user profile information."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "themeprovider-blank",
+      "title": "Implementing ThemeProvider",
+      "type": "blank",
+      "duration": "3m",
+      "content": "To share Design Tokens across styled-components or Emotion, you wrap the React tree in a specialized context. Fill in the blank to complete the package import and component application:\n\n```jsx\nimport React from 'react';\nimport { [blank] } from 'styled-components';\n\nconst theme = { colors: { brand: '#0070f3' } };\n\nfunction App() {\n  return (\n    <[blank] theme={theme}>\n       <MainLayout />\n    </[blank]>\n  );\n}\n```",
+      "correctAnswers": [
+        "ThemeProvider"
+      ]
+    },
+    {
+      "id": "storybook-intro",
+      "title": "Component Isolation with Storybook",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p><strong>Storybook</strong> is a development environment and playground for UI components. It allows React developers to render components in total isolation from the main application, mocking props, context, and state variants.</p>\n<p>This isolation ensures your design system components remain pure, reusable, and free of side-effects tied to global application state.</p>"
+    },
+    {
+      "id": "storybook-order",
+      "title": "Storybook Creation Workflow",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "instruction": "Put the steps for creating and documenting a React component in Storybook in the correct chronological order:",
+        "items": [
+          {
+            "id": "step-1",
+            "text": "Create the presentation-only React component (e.g., Tag.tsx)."
+          },
+          {
+            "id": "step-2",
+            "text": "Write a Storybook file (Tag.stories.tsx) to define default metadata and template shapes."
+          },
+          {
+            "id": "step-3",
+            "text": "Declare different story variations (e.g., Default, Large, Success) by passing different prop configurations."
+          },
+          {
+            "id": "step-4",
+            "text": "Launch the local Storybook dashboard to interactively test states and edge cases."
+          }
+        ],
+        "correctOrder": [
+          "step-1",
+          "step-2",
+          "step-3",
+          "step-4"
+        ]
+      }
+    },
+    {
+      "id": "terms-match",
+      "title": "Match Design System Terminology",
+      "type": "match",
+      "duration": "4m",
+      "content": {
+        "instruction": "Match each React and Design System concept to its correct architectural role:",
+        "pairs": [
+          {
+            "left": "Atomic Design",
+            "right": "A modular methodology breaking UI down into Atoms, Molecules, and Organisms."
+          },
+          {
+            "left": "Headless UI",
+            "right": "Unstyled component primitives managing only state, interactions, and accessibility (e.g., Radix UI)."
+          },
+          {
+            "left": "System Props",
+            "right": "Passing utility tokens directly to components via style utilities (e.g., padding={4})."
+          },
+          {
+            "left": "Storybook Controls",
+            "right": "Interactive UI panels allowing users to dynamically modify component props on the fly."
+          }
+        ]
+      }
+    },
+    {
+      "id": "accessibility-a11y",
+      "title": "Accessibility (a11y) in React",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>A design system's greatest advantage is bake-in <strong>accessibility (a11y)</strong>. If the design system elements (e.g., modals, dropdowns) are compliant, all apps consuming them inherit compliance.</p>\n<ul>\n  <li>Use semantic HTML tags (<code>&lt;button&gt;</code> instead of <code>&lt;div onClick&gt;</code>).</li>\n  <li>Manage keyboard focus with tools like React Aria or Headless UI.</li>\n  <li>Add appropriate <code>aria-*</code> attributes to custom visual markup.</li>\n</ul>"
+    },
+    {
+      "id": "a11y-mcq",
+      "title": "Choosing Accessible Strategies",
+      "type": "mcq",
+      "duration": "3m",
+      "content": {
+        "question": "What is the primary benefit of utilizing 'headless' React utility libraries like Radix UI or Reach UI when coding a design system?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They automatically inject pre-written CSS styles matching your brand guidelines."
+          },
+          {
+            "id": "b",
+            "text": "They provide highly optimized keyboard navigation, screen reader configurations, and DOM structure logic while leaving the styling completely to you."
+          },
+          {
+            "id": "c",
+            "text": "They eliminate the need to write standard JavaScript code inside components."
+          }
+        ],
+        "correctId": "b"
+      }
+    }
+  ]
+}

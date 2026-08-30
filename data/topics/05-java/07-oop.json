@@ -1,0 +1,159 @@
+{
+  "title": "Object-Oriented Programming (OOP) in Java",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "oop-intro",
+      "title": "Introduction to OOP",
+      "type": "content",
+      "duration": "3m",
+      "content": "<h3>What is Object-Oriented Programming?</h3>\n<p>Object-Oriented Programming (OOP) is a programming paradigm based on the concept of \"objects\", which can contain data (fields/attributes) and code (methods). Java is a class-based, object-oriented language designed to implement these principles.</p>\n<p>OOP is structured around four primary pillars:</p>\n<ul>\n  <li><strong>Encapsulation</strong></li>\n  <li><strong>Inheritance</strong></li>\n  <li><strong>Polymorphism</strong></li>\n  <li><strong>Abstraction</strong></li>\n</ul>"
+    },
+    {
+      "id": "classes-objects",
+      "title": "Classes vs Objects",
+      "type": "content",
+      "duration": "3m",
+      "content": "<h3>Classes and Objects in Java</h3>\n<p>A <strong>Class</strong> is a blueprint or template from which individual objects are created. It defines the state and behavior that objects of its type will have.</p>\n<p>An <strong>Object</strong> is an instance of a class. It has a state (represented by fields) and behavior (represented by methods).</p>\n<pre><code>// Class Definition\npublic class Car {\n    String color;\n    void drive() {\n        System.out.println(\"Car is moving\");\n    }\n}\n\n// Object Instantiation\nCar myCar = new Car();</code></pre>"
+    },
+    {
+      "id": "instantiation-mcq",
+      "title": "Instantiating an Object",
+      "type": "mcq",
+      "duration": "1m 30s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Car myCar = Car();"
+          },
+          {
+            "id": "b",
+            "text": "Car myCar = new Car();"
+          },
+          {
+            "id": "c",
+            "text": "new Car myCar = Car();"
+          },
+          {
+            "id": "d",
+            "text": "Car myCar = new class Car();"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "encapsulation-concept",
+      "title": "Encapsulation",
+      "type": "content",
+      "duration": "3m",
+      "content": "<h3>Encapsulation</h3>\n<p>Encapsulation is the mechanism of wrapping data (variables) and code (methods) together as a single unit. Under encapsulation, class variables are hidden from other classes and can only be accessed through public methods of their current class.</p>\n<p>This is achieved by:</p>\n<ul>\n  <li>Declaring class variables as <code>private</code>.</li>\n  <li>Providing public <code>getter</code> and <code>setter</code> methods to modify and view the values.</li>\n</ul>"
+    },
+    {
+      "id": "encapsulation-blank",
+      "title": "Encapsulation Mechanics",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To achieve encapsulation in Java, we declare the variables of a class as [blank] and access them via public getter and setter methods.",
+        "correct": "private"
+      }
+    },
+    {
+      "id": "inheritance-concept",
+      "title": "Inheritance",
+      "type": "content",
+      "duration": "3m",
+      "content": "<h3>Inheritance</h3>\n<p>Inheritance is a mechanism wherein one class acquires the properties (fields) and behaviors (methods) of another. It facilitates code reusability.</p>\n<p>We use the <code>extends</code> keyword to implement inheritance in Java.</p>\n<pre><code>class Vehicle {\n    void start() { System.out.println(\"Vehicle started\"); }\n}\n\nclass Bike extends Vehicle {\n    // Bike inherits start()\n}</code></pre>"
+    },
+    {
+      "id": "execution-order",
+      "title": "Constructor Execution Order",
+      "type": "order",
+      "duration": "2m 30s",
+      "content": {
+        "instruction": "Order the events chronologically when instantiating a subclass object (e.g., 'Child child = new Child()'):",
+        "items": [
+          "Static initializers/blocks of Parent class execution",
+          "Static initializers/blocks of Child class execution",
+          "Parent class constructor execution",
+          "Child class constructor execution"
+        ],
+        "correctOrder": [
+          "Static initializers/blocks of Parent class execution",
+          "Static initializers/blocks of Child class execution",
+          "Parent class constructor execution",
+          "Child class constructor execution"
+        ]
+      }
+    },
+    {
+      "id": "polymorphism-concept",
+      "title": "Polymorphism",
+      "type": "content",
+      "duration": "4m",
+      "content": "<h3>Polymorphism</h3>\n<p>Polymorphism allows objects to take on many forms. The most common use of polymorphism in OOP occurs when a parent class reference is used to refer to a child class object.</p>\n<p>There are two types of polymorphism in Java:</p>\n<ol>\n  <li><strong>Compile-time Polymorphism (Static Binding)</strong>: Achieved via <em>Method Overloading</em> (same method name, different signatures).</li>\n  <li><strong>Runtime Polymorphism (Dynamic Binding)</strong>: Achieved via <em>Method Overriding</em> (same method signature redefined in subclass).</li>\n</ol>"
+    },
+    {
+      "id": "oop-match",
+      "title": "Match OOP Concepts",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Method Overloading",
+            "right": "Compile-time Polymorphism"
+          },
+          {
+            "left": "Method Overriding",
+            "right": "Runtime Polymorphism"
+          },
+          {
+            "left": "Encapsulation",
+            "right": "Data hiding using private modifiers"
+          },
+          {
+            "left": "Abstraction",
+            "right": "Hiding details using interfaces/abstract classes"
+          }
+        ]
+      }
+    },
+    {
+      "id": "abstraction-concept",
+      "title": "Abstraction",
+      "type": "content",
+      "duration": "3m",
+      "content": "<h3>Abstraction</h3>\n<p>Abstraction is the process of hiding internal implementation details and showing only functionality to the user.</p>\n<p>In Java, abstraction is achieved in two ways:</p>\n<ul>\n  <li><strong>Abstract Classes</strong>: Can have both abstract (without body) and concrete (with body) methods. Achieves 0 to 100% abstraction.</li>\n  <li><strong>Interfaces</strong>: Used to achieve 100% abstraction (before Java 8 defaults). A class implements an interface using the <code>implements</code> keyword.</li>\n</ul>"
+    },
+    {
+      "id": "oop-final-mcq",
+      "title": "Multiple Inheritance in Java",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Yes, Java supports multiple inheritance through classes using 'extends classA, classB'."
+          },
+          {
+            "id": "b",
+            "text": "No, Java does not support multiple inheritance at all."
+          },
+          {
+            "id": "c",
+            "text": "Java does not support multiple inheritance through classes, but achieves it through interfaces."
+          },
+          {
+            "id": "d",
+            "text": "Yes, but only if all parent classes are declared as abstract."
+          }
+        ],
+        "correctId": "c"
+      }
+    }
+  ]
+}

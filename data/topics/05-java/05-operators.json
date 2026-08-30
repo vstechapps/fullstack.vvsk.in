@@ -1,0 +1,228 @@
+{
+  "title": "Mastering Java Operators",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-operators",
+      "title": "Introduction to Java Operators",
+      "type": "content",
+      "duration": "120s",
+      "content": "<p>Operators in Java are special symbols used to perform operations on variables and values. Java provides a rich set of operators grouped into several categories:</p><ul><li><strong>Arithmetic Operators</strong>: Perform basic mathematical operations.</li><li><strong>Unary Operators</strong>: Work with a single operand.</li><li><strong>Relational & Logical Operators</strong>: Form conditions and evaluate truths.</li><li><strong>Bitwise & Shift Operators</strong>: Manipulate individual bits of integer types.</li><li><strong>Ternary & Assignment Operators</strong>: Simplify assignment and conditional evaluation.</li></ul>"
+    },
+    {
+      "id": "arithmetic-operators",
+      "title": "Arithmetic Operators in Depth",
+      "type": "content",
+      "duration": "180s",
+      "content": "<p>Java offers five core arithmetic operators: <code>+</code> (addition), <code>-</code> (subtraction), <code>*</code> (multiplication), <code>/</code> (division), and <code>%</code> (modulo).</p><p>Key considerations for Java developers:</p><ul><li><strong>Integer Division</strong>: Dividing two integers truncates the fractional part. E.g., <code>5 / 2</code> evaluates to <code>2</code>.</li><li><strong>Floating-point Division</strong>: To get a decimal value, at least one operand must be a float or double. E.g., <code>5.0 / 2</code> yields <code>2.5</code>.</li><li><strong>Modulo Operator</strong>: <code>%</code> returns the remainder of a division. It also works on negative numbers and floating-point types in Java.</li></ul>"
+    },
+    {
+      "id": "arithmetic-mcq",
+      "title": "Test Your Arithmetic Understanding",
+      "type": "mcq",
+      "duration": "60s",
+      "content": {
+        "question": "What will be the output of the following Java expression?\n\nint result = 14 % 5 + 7 / 2;",
+        "options": [
+          {
+            "id": "a",
+            "text": "7"
+          },
+          {
+            "id": "b",
+            "text": "7.5"
+          },
+          {
+            "id": "c",
+            "text": "6"
+          },
+          {
+            "id": "d",
+            "text": "5"
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "unary-operators",
+      "title": "Unary Operators (Increment and Decrement)",
+      "type": "content",
+      "duration": "180s",
+      "content": "<p>Unary operators require only one operand. The most commonly used are the increment (<code>++</code>) and decrement (<code>--</code>) operators.</p><p>These can be applied in two ways:</p><ul><li><strong>Prefix (e.g., ++x)</strong>: Increments the value first, then returns the newly incremented value.</li><li><strong>Postfix (e.g., x++)</strong>: Returns the original value first, then increments the variable behind the scenes.</li></ul>"
+    },
+    {
+      "id": "unary-blank",
+      "title": "Predict Post-increment Value",
+      "type": "blank",
+      "duration": "120s",
+      "content": {
+        "question": "Analyze the following Java code fragment:\n\nint x = 10;\nint y = x++;\n\nWhat is the value of variable 'y' immediately after execution?",
+        "correctAnswer": "10"
+      }
+    },
+    {
+      "id": "relational-logical",
+      "title": "Relational and Logical Operators",
+      "type": "content",
+      "duration": "180s",
+      "content": "<p>Relational operators (<code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>) compare operands and return a boolean.</p><p>Logical operators combine multiple boolean expressions:</p><ul><li><code>&amp;&amp;</code> (Conditional-AND): Returns true if both conditions are true. Utilizes short-circuit evaluation.</li><li><code>||</code> (Conditional-OR): Returns true if at least one condition is true. Utilizes short-circuit evaluation.</li><li><code>!</code> (Logical NOT): Reverses the boolean value.</li></ul><p><em>Short-circuiting</em> means that if the left hand side of an <code>&amp;&amp;</code> evaluates to false, the right side is completely skipped, saving computing power and preventing runtime exceptions (like NullPointerExceptions).</p>"
+    },
+    {
+      "id": "short-circuit-mcq",
+      "title": "Understanding Short-Circuit Evaluation",
+      "type": "mcq",
+      "duration": "120s",
+      "content": {
+        "question": "Consider the following statement. What happens when it is executed?\n\nboolean result = (5 > 10) && (10 / 0 == 0);",
+        "options": [
+          {
+            "id": "a",
+            "text": "It throws an ArithmeticException because of division by zero."
+          },
+          {
+            "id": "b",
+            "text": "It compiles but fails to execute at runtime due to short-circuit evaluation."
+          },
+          {
+            "id": "c",
+            "text": "It successfully evaluates to false without throwing any exception due to short-circuiting."
+          },
+          {
+            "id": "d",
+            "text": "It successfully evaluates to true."
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "bitwise-operators",
+      "title": "Bitwise and Shift Operators",
+      "type": "content",
+      "duration": "180s",
+      "content": "<p>Java can manipulate integer types down to individual bits. These are critical for low-level systems programming, networking protocols, and performance-critical operations.</p><ul><li><code>&amp;</code> (Bitwise AND): Performs AND on individual bits.</li><li><code>|</code> (Bitwise OR): Performs OR on individual bits.</li><li><code>^</code> (Bitwise XOR): Performs exclusive OR on bits.</li><li><code>~</code> (Bitwise Complement): Inverts all bits (unary).</li><li><code>&lt;&lt;</code> (Left shift): Shifts bits to the left, filling empty spaces with 0.</li><li><code>&gt;&gt;</code> (Signed right shift): Shifts bits right, preserving the sign bit.</li><li><code>&gt;&gt;&gt;</code> (Unsigned right shift): Shifts bits right, padding the left with 0s.</li></ul>"
+    },
+    {
+      "id": "bitwise-match",
+      "title": "Match the Bitwise Symbols",
+      "type": "match",
+      "duration": "120s",
+      "content": {
+        "pairs": [
+          {
+            "left": "^",
+            "right": "Bitwise XOR"
+          },
+          {
+            "left": "~",
+            "right": "Bitwise Complement (Unary)"
+          },
+          {
+            "left": ">>>",
+            "right": "Unsigned Right Shift"
+          },
+          {
+            "left": "&",
+            "right": "Bitwise AND"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ternary-assignment",
+      "title": "Ternary and Compound Assignment Operators",
+      "type": "content",
+      "duration": "120s",
+      "content": "<p>The ternary operator (<code>? :</code>) is a shorthand for an <code>if-else</code> statement that returns a value: </p><pre><code>int min = (a &lt; b) ? a : b;</code></pre><p>Compound assignment operators combine an arithmetic/bitwise operator with an assignment (e.g., <code>+=</code>, <code>*=</code>, <code>&amp;=</code>). </p><p><strong>Pro-Tip:</strong> Compound assignments perform an implicit typecast. For instance, <code>short s = 5; s += 2;</code> compiles successfully, while <code>s = s + 2;</code> fails compilation because <code>s + 2</code> evaluates to an <code>int</code>.</p>"
+    },
+    {
+      "id": "precedence-order",
+      "title": "Order of Operator Precedence",
+      "type": "order",
+      "duration": "120s",
+      "content": {
+        "instruction": "Arrange these operator categories from highest priority (evaluates first) to lowest priority (evaluates last).",
+        "items": [
+          {
+            "id": "unary",
+            "text": "Unary Operators (e.g., ++, --, !)"
+          },
+          {
+            "id": "multiplicative",
+            "text": "Multiplicative Operators (e.g., *, /, %)"
+          },
+          {
+            "id": "shift",
+            "text": "Shift Operators (e.g., <<, >>)"
+          },
+          {
+            "id": "relational",
+            "text": "Relational Operators (e.g., <, >, <=)"
+          },
+          {
+            "id": "logical-and",
+            "text": "Logical AND (&&)"
+          },
+          {
+            "id": "assignment",
+            "text": "Assignment Operators (e.g., =, +=)"
+          }
+        ],
+        "correctOrder": [
+          "unary",
+          "multiplicative",
+          "shift",
+          "relational",
+          "logical-and",
+          "assignment"
+        ]
+      }
+    },
+    {
+      "id": "ternary-blank",
+      "title": "Ternary Operator Puzzle",
+      "type": "blank",
+      "duration": "120s",
+      "content": {
+        "question": "What is the string output value of this expression?\n\nint age = 16;\nString output = age >= 18 ? \"Adult\" : (age >= 13 ? \"Teenager\" : \"Child\");",
+        "correctAnswer": "Teenager"
+      }
+    },
+    {
+      "id": "implicit-cast-mcq",
+      "title": "Implicit Casting in Compound Operators",
+      "type": "mcq",
+      "duration": "120s",
+      "content": {
+        "question": "Consider this Java code fragment:\n\nbyte b = 10;\nb += 20;\nb = b + 10;\n\nWhich of the statements is true regarding compilation?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Both lines compile fine without errors."
+          },
+          {
+            "id": "b",
+            "text": "Line 2 (b += 20) fails compilation because of type mismatch."
+          },
+          {
+            "id": "c",
+            "text": "Line 3 (b = b + 10) fails compilation because b + 10 promotes to 'int'."
+          },
+          {
+            "id": "d",
+            "text": "Both lines fail compilation."
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "operators-summary",
+      "title": "Operator Best Practices & Summary",
+      "type": "content",
+      "duration": "180s",
+      "content": "<p>Writing high-quality Java code requires mastering operator side-effects and ensuring code clarity:</p><ul><li><strong>Use Parentheses:</strong> Even if you know operator precedence by heart, use parentheses to clarify intent. <code>(a &amp;&amp; b) || c</code> is much easier to digest than <code>a &amp;&amp; b || c</code>.</li><li><strong>Avoid Side-Effects in Expressions:</strong> Writing statements like <code>a[++i] = i++;</code> causes undefined behavior/confusion. Separate incremental steps from standard evaluations.</li><li><strong>Beware of Overflow:</strong> Operators in Java do not throw exceptions when numeric limits are exceeded. Multiplying large ints can silently wrap around to negative numbers.</li></ul>"
+    }
+  ]
+}

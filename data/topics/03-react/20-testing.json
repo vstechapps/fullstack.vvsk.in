@@ -1,0 +1,131 @@
+{
+  "title": "Testing in React",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-react-testing",
+      "title": "Introduction to React Testing",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>In modern web development, testing ensures your application works as expected. For React, the standard toolset is <strong>Jest</strong> (the test runner) and <strong>React Testing Library (RTL)</strong> (the UI testing library).</p>\n<p>RTL encourages testing behavior rather than implementation details (like component state or internal methods).</p>\n<pre><code>import { render, screen } from '@testing-library/react';\nimport MyComponent from './MyComponent';\n\ntest('renders welcome message', () => {\n  render(&lt;MyComponent /&gt;);\n  const linkElement = screen.getByText(/welcome/i);\n  expect(linkElement).toBeInTheDocument();\n});</code></pre>"
+    },
+    {
+      "id": "test-types-match",
+      "title": "Match Test Types",
+      "type": "match",
+      "duration": "4m",
+      "content": {
+        "pairs": [
+          {
+            "key": "Unit Test",
+            "value": "Tests an isolated function, hook, or small stateless component."
+          },
+          {
+            "id": "Integration Test",
+            "value": "Tests multiple components interacting together to achieve a workflow."
+          },
+          {
+            "id": "End-to-End Test",
+            "value": "Tests the complete user flow inside a real headless or physical browser."
+          }
+        ]
+      }
+    },
+    {
+      "id": "rtl-queries-mcq",
+      "title": "RTL Query Choices",
+      "type": "mcq",
+      "duration": "3m",
+      "content": {
+        "question": "Which React Testing Library query type should be used when expecting an element to appear asynchronously after an API call finishes?",
+        "options": [
+          {
+            "id": "a",
+            "text": "getByRole"
+          },
+          {
+            "id": "b",
+            "text": "queryByRole"
+          },
+          {
+            "id": "c",
+            "text": "findByRole"
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "basic-rtl-blank",
+      "title": "React Testing Syntax",
+      "type": "blank",
+      "duration": "4m",
+      "content": {
+        "sentence": "To mount a component into the virtual DOM for testing, we use the [blank1] utility. To simulate realistic user interactions (like keypresses), we should use the [blank2] library instead of fireEvent.",
+        "blanks": {
+          "blank1": "render",
+          "blank2": "userEvent"
+        }
+      }
+    },
+    {
+      "id": "aaa-pattern-order",
+      "title": "Arrange, Act, Assert Pattern",
+      "type": "order",
+      "duration": "5m",
+      "content": {
+        "instruction": "Order the steps of a React Testing Library test according to the industry standard AAA (Arrange, Act, Assert) workflow.",
+        "items": [
+          {
+            "id": "arrange",
+            "text": "Arrange: Render the React component under test and set up mocks/props."
+          },
+          {
+            "id": "act",
+            "text": "Act: Simulate user events like typing or clicking buttons."
+          },
+          {
+            "id": "assert",
+            "text": "Assert: Expect specific changes to have occurred in the DOM layout or mocks."
+          }
+        ],
+        "correctOrder": [
+          "arrange",
+          "act",
+          "assert"
+        ]
+      }
+    },
+    {
+      "id": "mocking-apis-msw",
+      "title": "Mocking APIs with MSW",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>When testing components that fetch data, we avoid hitting real APIs to keep tests fast and deterministic.</p>\n<p><strong>Mock Service Worker (MSW)</strong> is the recommended tool. It intercepts requests at the network level, allowing you to reuse the same mock handlers for development, testing, and debugging.</p>\n<pre><code>import { setupServer } from 'msw/node';\nimport { rest } from 'msw';\n\nconst server = setupServer(\n  rest.get('/api/user', (req, res, ctx) => {\n    return res(ctx.json({ name: 'John Doe' }));\n  })\n);</code></pre>"
+    },
+    {
+      "id": "user-event-mcq",
+      "title": "Events vs User Interactions",
+      "type": "mcq",
+      "duration": "5m",
+      "content": {
+        "question": "Why is userEvent generally preferred over fireEvent in React Testing Library?",
+        "options": [
+          {
+            "id": "a",
+            "text": "userEvent runs faster than fireEvent."
+          },
+          {
+            "id": "b",
+            "text": "userEvent simulates the entire dispatch sequence of browser events (hover, focus, click), whereas fireEvent only dispatches single targeted DOM events."
+          },
+          {
+            "id": "c",
+            "text": "userEvent automatically handles asynchronous assertions."
+          }
+        ],
+        "correctId": "b"
+      }
+    }
+  ]
+}

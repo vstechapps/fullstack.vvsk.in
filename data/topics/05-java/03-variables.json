@@ -1,0 +1,211 @@
+{
+  "title": "Variables in Java",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-variables",
+      "title": "Introduction to Variables",
+      "type": "content",
+      "duration": "120s",
+      "content": "<p>A <strong>variable</strong> is a container that holds data during the execution of a Java program. Every variable is assigned a data type, which designates the method and limits of its data storage.</p>\n<p>To use a variable, you must first <strong>declare</strong> it and then <strong>initialize</strong> it:</p>\n<pre><code>int age; // Declaration\nage = 25; // Initialization\n\nint score = 100; // Declaration and Initialization in one line</code></pre>"
+    },
+    {
+      "id": "data-types-overview",
+      "title": "Java Data Types Overview",
+      "type": "content",
+      "duration": "180s",
+      "content": "<p>Java is a <strong>strongly-typed language</strong>, meaning all variables must be declared with a specific type before they can be used. Java data types are divided into two main categories:</p>\n<ul>\n  <li><strong>Primitive Types:</strong> Predefined by the language (e.g., <code>int</code>, <code>double</code>, <code>boolean</code>, <code>char</code>). They store raw values directly in memory.</li>\n  <li><strong>Reference Types:</strong> Created by the programmer (except for <code>String</code>, which is built-in). They store references (memory addresses) to objects.</li>\n</ul>"
+    },
+    {
+      "id": "primitive-types-mcq",
+      "title": "Check Your Understanding: Primitive Types",
+      "type": "mcq",
+      "duration": "60s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "int, float, double, String"
+          },
+          {
+            "id": "b",
+            "text": "int, byte, boolean, char"
+          },
+          {
+            "id": "c",
+            "text": "Integer, Float, Double, Character"
+          },
+          {
+            "id": "d",
+            "text": "array, class, interface, enum"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "numeric-types",
+      "title": "Numeric Data Types",
+      "type": "content",
+      "duration": "180s",
+      "content": "<p>Java provides several primitive types for storing numbers, depending on their size and precision requirements:</p>\n<ul>\n  <li><strong>Integer Types:</strong> <code>byte</code> (8-bit), <code>short</code> (16-bit), <code>int</code> (32-bit), and <code>long</code> (64-bit).</li>\n  <li><strong>Floating-Point Types:</strong> <code>float</code> (32-bit single-precision) and <code>double</code> (64-bit double-precision).</li>\n</ul>\n<pre><code>long population = 8000000000L; // Note the 'L' suffix\nfloat temperature = 36.6f;     // Note the 'f' suffix\ndouble price = 19.99;</code></pre>"
+    },
+    {
+      "id": "declaration-blank",
+      "title": "Declaring Variables",
+      "type": "blank",
+      "duration": "60s",
+      "content": {
+        "text": "Complete the declaration of a float variable: [blank] pi = 3.14f;",
+        "answer": "float"
+      }
+    },
+    {
+      "id": "char-boolean",
+      "title": "Char and Boolean Types",
+      "type": "content",
+      "duration": "120s",
+      "content": "<p>Besides numbers, Java has types to manage characters and logical states:</p>\n<ul>\n  <li><strong>char:</strong> Represents a single 16-bit Unicode character. It must be enclosed in single quotes.</li>\n  <li><strong>boolean:</strong> Represents a logical state and can only hold the values <code>true</code> or <code>false</code>.</li>\n</ul>\n<pre><code>char grade = 'A';\nboolean isJavaFun = true;</code></pre>"
+    },
+    {
+      "id": "type-matching",
+      "title": "Match Types to Values",
+      "type": "match",
+      "duration": "120s",
+      "content": {
+        "pairs": [
+          {
+            "left": "char",
+            "right": "'Z'"
+          },
+          {
+            "left": "double",
+            "right": "12.34"
+          },
+          {
+            "left": "long",
+            "right": "9999999999L"
+          },
+          {
+            "left": "boolean",
+            "right": "false"
+          }
+        ]
+      }
+    },
+    {
+      "id": "naming-rules",
+      "title": "Variable Naming Rules & Conventions",
+      "type": "content",
+      "duration": "120s",
+      "content": "<p>When naming variables in Java, you must adhere to official rules and should follow community conventions:</p>\n<ul>\n  <li><strong>Rules (Compiler enforced):</strong> Must start with a letter, <code>$</code>, or <code>_</code>. Cannot contain spaces or special characters. Cannot be a Java reserved keyword (e.g., <code>class</code>, <code>void</code>).</li>\n  <li><strong>Conventions:</strong> Use <strong>camelCase</strong> (e.g., <code>userAge</code>, <code>totalPrice</code>). Names should be descriptive and meaningful.</li>\n</ul>"
+    },
+    {
+      "id": "order-declaration",
+      "title": "Order of Variable Statement",
+      "type": "order",
+      "duration": "90s",
+      "content": {
+        "items": [
+          "Data Type",
+          "Variable Name",
+          "Assignment Operator (=)",
+          "Value",
+          "Semicolon (;)"
+        ]
+      }
+    },
+    {
+      "id": "variable-scopes",
+      "title": "Scope of Variables",
+      "type": "content",
+      "duration": "240s",
+      "content": "<p>The scope of a variable determines where it can be accessed within your program:</p>\n<ul>\n  <li><strong>Local Variables:</strong> Declared inside a method, constructor, or block. Visible only within that block.</li>\n  <li><strong>Instance Variables (Fields):</strong> Declared inside a class but outside any method. Unique to each class instance.</li>\n  <li><strong>Static Variables:</strong> Declared with the <code>static</code> keyword inside a class. Shared across all instances of that class.</li>\n</ul>"
+    },
+    {
+      "id": "scope-mcq",
+      "title": "Identify Variable Scope",
+      "type": "mcq",
+      "duration": "90s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Local variables can be accessed anywhere in the class."
+          },
+          {
+            "id": "b",
+            "text": "Instance variables require an object instance to be accessed."
+          },
+          {
+            "id": "c",
+            "text": "Static variables cannot be accessed by non-static methods."
+          },
+          {
+            "id": "d",
+            "text": "Local variables must have the static modifier."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "final-variables",
+      "title": "Final Variables (Constants)",
+      "type": "content",
+      "duration": "120s",
+      "content": "<p>To prevent a variable's value from being reassigned after initialization, use the <code>final</code> keyword. This turns the variable into a <strong>constant</strong>.</p>\n<pre><code>final double PI = 3.14159;\n// PI = 3.14; // This line would cause a compile-time error</code></pre>\n<p>By convention, final variable names are written in ALL_CAPS with underscores separating words.</p>"
+    },
+    {
+      "id": "final-blank",
+      "title": "Constant Modifier",
+      "type": "blank",
+      "duration": "60s",
+      "content": {
+        "text": "Fill in the keyword used to make a variable read-only: [blank] int MAX_USERS = 100;",
+        "answer": "final"
+      }
+    },
+    {
+      "id": "var-keyword",
+      "title": "Local Variable Type Inference (var)",
+      "type": "content",
+      "duration": "180s",
+      "content": "<p>Starting in Java 10, you can use the <code>var</code> keyword for <strong>local variable type inference</strong>. The compiler automatically determines the type based on the assigned value.</p>\n<pre><code>var message = \"Hello, World!\"; // Compiler infers String\nvar count = 10;                // Compiler infers int</code></pre>\n<p><strong>Note:</strong> <code>var</code> can only be used for local variables inside methods and must be initialized immediately during declaration.</p>"
+    },
+    {
+      "id": "var-mcq",
+      "title": "Var Keyword Validity",
+      "type": "mcq",
+      "duration": "90s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "var x; x = 10;"
+          },
+          {
+            "id": "b",
+            "text": "public var limit = 100;"
+          },
+          {
+            "id": "c",
+            "text": "var name = \"Java\";"
+          },
+          {
+            "id": "d",
+            "text": "var[] arr = {1, 2, 3};"
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "summary-best-practices",
+      "title": "Variables Summary & Best Practices",
+      "type": "content",
+      "duration": "90s",
+      "content": "<p>Great job! Here is a recap of best practices for working with variables in Java:</p>\n<ul>\n  <li>Always choose the smallest data type appropriate for your numeric values to save memory.</li>\n  <li>Initialize variables as close as possible to their first use.</li>\n  <li>Use <code>final</code> by default unless a variable needs to change over time.</li>\n  <li>Follow camelCase conventions for readability across engineering teams.</li>\n</ul>"
+    }
+  ]
+}

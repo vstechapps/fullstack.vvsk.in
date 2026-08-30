@@ -1,0 +1,131 @@
+{
+  "title": "Custom Hooks in React",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-custom-hooks",
+      "title": "Introduction to Custom Hooks",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Custom Hooks are JavaScript functions whose names start with <code>use</code> and that may call other Hooks. They allow you to extract component logic into reusable functions.</p>\n<pre><code>function useWindowWidth() {\n  const [width, setWidth] = useState(window.innerWidth);\n  // ...\n  return width;\n}</code></pre>"
+    },
+    {
+      "id": "naming-convention-mcq",
+      "title": "Hook Naming Convention",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Start with 'get' like getUserData"
+          },
+          {
+            "id": "b",
+            "text": "Start with 'use' like useUserData"
+          },
+          {
+            "id": "c",
+            "text": "Start with 'custom' like customHook"
+          },
+          {
+            "id": "d",
+            "text": "Any function name is allowed"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "rules-of-hooks-blank",
+      "title": "Rules of Custom Hooks",
+      "type": "blank",
+      "duration": "3m",
+      "content": {
+        "text": "Custom Hooks must always start with the prefix '{{blank}}' and you should only call Hooks at the {{blank}} level.",
+        "blanks": [
+          {
+            "id": "1",
+            "answer": "use"
+          },
+          {
+            "id": "2",
+            "answer": "top"
+          }
+        ]
+      }
+    },
+    {
+      "id": "extracting-state-content",
+      "title": "Extracting State Logic",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>When you want to share logic between two JavaScript functions, you extract it to a third function. Both components and Hooks are functions, so this works for them too!</p>"
+    },
+    {
+      "id": "match-hook-concepts",
+      "title": "Match React Hook Concepts",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "pairs": [
+          {
+            "left": "useState",
+            "right": "Manages component local state"
+          },
+          {
+            "left": "useEffect",
+            "right": "Handles side effects and lifecycle"
+          },
+          {
+            "left": "useCustom",
+            "right": "Shares stateful logic across components"
+          },
+          {
+            "left": "useRef",
+            "right": "Persists mutable values without re-rendering"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-custom-hook-steps",
+      "title": "Order the steps to create a Custom Hook",
+      "type": "order",
+      "duration": "5m",
+      "content": {
+        "steps": [
+          {
+            "id": "step-1",
+            "text": "Identify the duplicated stateful logic in components"
+          },
+          {
+            "id": "step-2",
+            "text": "Create a new function starting with the prefix 'use'"
+          },
+          {
+            "id": "step-3",
+            "text": "Move state and effect logic inside the new function"
+          },
+          {
+            "id": "step-4",
+            "text": "Return the necessary variables and functions from the custom hook"
+          }
+        ],
+        "correctOrder": [
+          "step-1",
+          "step-2",
+          "step-3",
+          "step-4"
+        ]
+      }
+    },
+    {
+      "id": "summary-content",
+      "title": "Summary & Best Practices",
+      "type": "content",
+      "duration": "7m",
+      "content": "<p>Custom Hooks improve code readability and maintainability. Remember that each *call* to a hook has a completely isolated state—sharing a custom hook shares only the logic, not the state itself.</p>"
+    }
+  ]
+}

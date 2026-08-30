@@ -1,0 +1,165 @@
+{
+  "title": "Packaging for React Developers",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-to-packaging",
+      "title": "Introduction to React Packaging",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>In modern React development, <strong>packaging</strong> is the process of converting your raw component files, styles, and assets into optimized bundles that browsers can efficiently load and execute.</p>\n<p>Why do we need this?</p>\n<ul>\n  <li>Browsers cannot run JSX natively.</li>\n  <li>React applications typically contain dozens of components that need to be merged to minimize HTTP requests.</li>\n  <li>Production code needs to be minified, compressed, and stripped of development warnings.</li>\n</ul>"
+    },
+    {
+      "id": "package-json-anatomy",
+      "title": "The package.json File",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>The <code>package.json</code> file is the manifest of your React project. It defines metadata, project scripts, and dependency structures.</p>\n<pre><code>{\n  \"name\": \"my-react-app\",\n  \"version\": \"1.0.0\",\n  \"dependencies\": {\n    \"react\": \"^18.2.0\"\n  },\n  \"devDependencies\": {\n    \"vite\": \"^5.0.0\"\n  }\n}</code></pre>\n<p><strong>dependencies:</strong> Required to run the application in production.</p>\n<p><strong>devDependencies:</strong> Only needed during local development and build pipelines (e.g., bundlers, linters, and testing suites).</p>"
+    },
+    {
+      "id": "dependency-mcq",
+      "title": "Identify Dependency Types",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "dependencies"
+          },
+          {
+            "id": "b",
+            "text": "devDependencies"
+          },
+          {
+            "id": "c",
+            "text": "peerDependencies"
+          },
+          {
+            "id": "d",
+            "text": "optionalDependencies"
+          }
+        ],
+        "correctId": "b",
+        "explanation": "Testing frameworks like Jest or bundlers like Vite are only used during development/build time, meaning they belong in 'devDependencies'."
+      }
+    },
+    {
+      "id": "bundlers-webpack-vite",
+      "title": "Modern Bundlers: Webpack vs. Vite",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>React applications rely on bundlers to orchestrate the packaging process.</p>\n<ul>\n  <li><strong>Webpack:</strong> The classic bundler. It builds a dependency graph from your entry point and bundles everything before serving. Highly configurable but can be slow in large codebases.</li>\n  <li><strong>Vite:</strong> The modern standard. In development mode, Vite serves source code over native ESM, allowing the browser to do the bundling work. It uses <strong>esbuild</strong> for fast transpilation and <strong>Rollup</strong> for production builds.</li>\n</ul>"
+    },
+    {
+      "id": "order-build-steps",
+      "title": "Order the Build Process",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "instruction": "Arrange the steps of a typical React build pipeline from raw development code to production assets.",
+        "items": [
+          {
+            "id": "step1",
+            "text": "Parse JSX and transpile modern JS into browser-compatible JS"
+          },
+          {
+            "id": "step2",
+            "text": "Resolve import statements to construct a module dependency graph"
+          },
+          {
+            "id": "step3",
+            "text": "Apply tree shaking to eliminate unused modular code exports"
+          },
+          {
+            "id": "step4",
+            "text": "Minify and compress the resulting bundles to reduce file sizes"
+          }
+        ]
+      }
+    },
+    {
+      "id": "code-splitting-lazy",
+      "title": "Code Splitting & Dynamic Imports",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Packaging everything into one single giant bundle can harm initial load performance. <strong>Code splitting</strong> allows us to split code into smaller chunks loaded on demand.</p>\n<p>In React, we combine dynamic imports with <code>React.lazy</code> and <code>Suspense</code>:</p>\n<pre><code>import React, { Suspense } from 'react';\nconst HeavyComponent = React.lazy(() => import('./HeavyComponent'));\n\nfunction App() {\n  return (\n    &lt;Suspense fallback={&lt;div&gt;Loading...&lt;/div&gt;}&gt;\n      &lt;HeavyComponent /&gt;\n    &lt;/Suspense>\n  );\n}</code></pre>"
+    },
+    {
+      "id": "blank-lazy-loading",
+      "title": "Lazy Loading Syntax",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To split a React component dynamic bundle correctly, complete the React API statement: \n\nconst MyComponent = React.[blank](() => import('./MyComponent'));",
+        "answers": [
+          "lazy"
+        ]
+      }
+    },
+    {
+      "id": "publishing-libraries",
+      "title": "Packaging React Component Libraries",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>When publishing your own reusable React components to npm, you must package them differently than standard apps:</p>\n<ul>\n  <li><strong>Avoid bundling React:</strong> Never bundle React directly inside your package. Consumers will provide their own version.</li>\n  <li><strong>Formats:</strong> Export both <strong>ESM (ES Modules)</strong> for modern bundlers (allowing tree shaking) and <strong>CJS (CommonJS)</strong> for older Node environments.</li>\n  <li><strong>Peer Dependencies:</strong> Declare React in your <code>peerDependencies</code> to tell consumer apps which version of React your library is compatible with.</li>\n</ul>"
+    },
+    {
+      "id": "peer-deps-mcq",
+      "title": "Peer Dependencies Concept",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "It forces the consumer application to install a specific shared package (like React) to avoid duplicate instances."
+          },
+          {
+            "id": "b",
+            "text": "It downloads the package only during testing phases."
+          },
+          {
+            "id": "c",
+            "text": "It automatically bundles the peer library inside your own distribution output."
+          }
+        ],
+        "correctId": "a",
+        "explanation": "peerDependencies specify that your package requires a dependency that must be installed by the host application itself, preventing duplicate runtimes of React."
+      }
+    },
+    {
+      "id": "match-packaging-terms",
+      "title": "Match Packaging Terms",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Tree Shaking",
+            "right": "Dead-code elimination by analyzing import/export declarations."
+          },
+          {
+            "left": "Minification",
+            "right": "Removing white space, comments, and reducing variable length."
+          },
+          {
+            "left": "ESM",
+            "right": "Modern module format utilizing import and export statements."
+          },
+          {
+            "left": "CJS",
+            "right": "Legacy Node module format utilizing require() syntax."
+          }
+        ]
+      }
+    },
+    {
+      "id": "production-best-practices",
+      "title": "Production Packaging Best Practices",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Keep these packaging strategies in mind for production React apps:</p>\n<ul>\n  <li><strong>Analyze Bundles:</strong> Use plugins like <code>rollup-plugin-visualizer</code> or <code>webpack-bundle-analyzer</code> to identify large dependency culprits.</li>\n  <li><strong>Keep Dependencies Slim:</strong> Avoid importing whole utility libraries when you only need one function (e.g., import specific lodash sub-modules).</li>\n  <li><strong>Enable Gzip/Brotli:</strong> Ensure your production web server serves compressed assets.</li>\n  <li><strong>Caching:</strong> Use content hashing in output filenames (e.g., <code>index-[hash].js</code>) to support long-term browser caching while ensuring updates bust the cache.</li>\n</ul>"
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "title": "APIs for React Developers",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "api-intro",
+      "title": "Introduction to APIs in React",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>In modern web development, React components often need to fetch data from external servers using APIs (Application Programming Interfaces).</p>\n<p>React itself doesn't have a built-in HTTP client, so we rely on standard browser APIs like <code>fetch</code> or third-party libraries like <code>Axios</code> to retrieve data.</p>\n<pre><code>// Simple fetch call\nfetch('https://api.example.com/data')\n  .then(response => response.json())\n  .then(data => console.log(data));</code></pre>"
+    },
+    {
+      "id": "useeffect-fetching",
+      "title": "Data Fetching with useEffect",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>API requests are considered 'side effects' because they interact with the outside world. In React, side effects are performed inside the <code>useEffect</code> hook.</p>\n<p>Always provide a dependency array to prevent infinite fetch loops!</p>\n<pre><code>useEffect(() => {\n  fetch('https://api.example.com/users')\n    .then(res => res.json())\n    .then(data => setUsers(data));\n}, []); // Empty array ensures this runs once on mount</code></pre>"
+    },
+    {
+      "id": "mcq-dependency",
+      "title": "Understanding the Dependency Array",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "The API request runs on every single component re-render."
+          },
+          {
+            "id": "b",
+            "text": "The API request runs only once when the component mounts."
+          },
+          {
+            "id": "c",
+            "text": "The API request never executes."
+          },
+          {
+            "id": "d",
+            "text": "The API request runs only when the state changes."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "blank-dependency-term",
+      "title": "Fill in the Blank: Hook Dependencies",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "Inside useEffect, to ensure an API call only runs once when the component mounts, pass an empty [blank] array as the second argument.",
+        "correctAnswer": "dependency"
+      }
+    },
+    {
+      "id": "state-handling",
+      "title": "Handling Loading and Error States",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Users have varying internet speeds. Always manage three states when fetching data:</p>\n<ul>\n  <li><strong>Data:</strong> The actual payload returned from the API.</li>\n  <li><strong>Loading:</strong> A boolean indicating if the request is in progress.</li>\n  <li><strong>Error:</strong> An object or string capturing any network or server failures.</li>\n</ul>"
+    },
+    {
+      "id": "order-api-lifecycle",
+      "title": "Order the Fetching Lifecycle Steps",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "instructions": "Put the steps of a React API call lifecycle in the correct logical order:",
+        "items": [
+          {
+            "id": "step1",
+            "text": "Set loading state to true and error to null"
+          },
+          {
+            "id": "step2",
+            "text": "Trigger the asynchronous API request"
+          },
+          {
+            "id": "step3",
+            "text": "Await response and parse it into JSON"
+          },
+          {
+            "id": "step4",
+            "text": "Save the parsed data to your component state"
+          },
+          {
+            "id": "step5",
+            "text": "Set loading state to false"
+          }
+        ],
+        "correctOrder": [
+          "step1",
+          "step2",
+          "step3",
+          "step4",
+          "step5"
+        ]
+      }
+    },
+    {
+      "id": "axios-vs-fetch",
+      "title": "Axios vs. Fetch API",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>While <code>fetch</code> is built into browsers, <code>Axios</code> is a popular lightweight library. Axios simplifies code because it automatically transforms JSON data and throws errors for non-2xx status codes instantly.</p>\n<pre><code>// Axios syntax is cleaner\nimport axios from 'axios';\n\naxios.get('/api/users')\n  .then(response => setUsers(response.data))\n  .catch(error => console.error(error));</code></pre>"
+    },
+    {
+      "id": "match-api-features",
+      "title": "Match the Technology with its Feature",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Fetch API",
+            "right": "Native browser API; requires manual .json() parsing step"
+          },
+          {
+            "left": "Axios",
+            "right": "Third-party client; features automatic JSON transformation"
+          },
+          {
+            "left": "AbortController",
+            "right": "Used to cancel pending network requests on unmount"
+          },
+          {
+            "left": "useEffect",
+            "right": "React Hook where component side-effects are executed"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cleanup-effects",
+      "title": "Cleaning Up and Aborting Requests",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>If a component unmounts before an API request completes, updating state can cause memory leaks. We resolve this by cancelling the request in the <code>useEffect</code> cleanup function using an <code>AbortController</code>.</p>\n<pre><code>useEffect(() => {\n  const controller = new AbortController();\n  \n  fetch(url, { signal: controller.signal })\n    .then(res => res.json())\n    .then(data => setData(data));\n\n  return () => controller.abort(); // Cleanup\n}, [url]);</code></pre>"
+    }
+  ]
+}

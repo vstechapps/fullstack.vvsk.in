@@ -1,0 +1,122 @@
+{
+  "title": "Components in React",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-components",
+      "title": "Introduction to Components",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Components are the building blocks of any React application. They let you split the UI into independent, reusable pieces that can be thought of as isolated JavaScript functions.</p>\n<p>There are two main types of components in React: <strong>Functional Components</strong> and <strong>Class Components</strong>.</p>"
+    },
+    {
+      "id": "functional-component-syntax",
+      "title": "Functional Components",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Functional components are JavaScript functions that optionally receive inputs (called <code>props</code>) and return React elements describing what should appear on the screen.</p>\n<pre><code>function Welcome(props) {\n  return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;\n}</code></pre>"
+    },
+    {
+      "id": "component-mcq",
+      "title": "Identify the Functional Component",
+      "type": "mcq",
+      "duration": "3m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "class MyComponent extends React.Component { render() { return <div />; } }"
+          },
+          {
+            "id": "b",
+            "text": "function MyComponent() { return <div>Hello</div>; }"
+          },
+          {
+            "id": "c",
+            "text": "const MyComponent = new Component();"
+          },
+          {
+            "id": "d",
+            "text": "render MyComponent() { return <div>Hello</div>; }"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "props-intro",
+      "title": "Understanding Props",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Props (short for \"properties\") are passing data down from parent components to child components.</p>\n<p>Props are <strong>read-only</strong> (immutable). A component must never modify its own props.</p>\n<pre><code>&lt;UserProfile username=\"Alice\" age={25} /&gt;</code></pre>"
+    },
+    {
+      "id": "blank-props",
+      "title": "Fill in the Blank for Props",
+      "type": "blank",
+      "duration": "4m",
+      "content": {
+        "text": "Data is passed from parent to child components using read-only attributes called [blank].",
+        "blankAnswer": "props"
+      }
+    },
+    {
+      "id": "matching-react-concepts",
+      "title": "Match React Concepts",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Props",
+            "right": "Passed from parent, read-only"
+          },
+          {
+            "left": "JSX",
+            "right": "Syntax extension to JavaScript"
+          },
+          {
+            "left": "Functional Component",
+            "right": "JavaScript function returning JSX"
+          },
+          {
+            "left": "Component",
+            "right": "Reusable UI building block"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-rendering-steps",
+      "title": "Order the Component Lifecycle Steps",
+      "type": "order",
+      "duration": "6m",
+      "content": {
+        "steps": [
+          {
+            "id": "1",
+            "text": "Define the functional component function."
+          },
+          {
+            "id": "2",
+            "text": "Return JSX from the component."
+          },
+          {
+            "id": "3",
+            "text": "Import the component into a parent component or App.js."
+          },
+          {
+            "id": "4",
+            "text": "Render the component using JSX tags like <MyComponent />."
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "title": "State in React",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "what-is-state",
+      "title": "What is State?",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>State is an instance of React Component Class can be defined as an object of a set of observable properties that control the behavior of the component.</p><p>Unlike props, state is managed and updated within the component itself.</p>"
+    },
+    {
+      "id": "state-mcq",
+      "title": "Understanding State vs Props",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Props are mutable and managed inside the component."
+          },
+          {
+            "id": "b",
+            "text": "State is mutable and managed inside the component."
+          },
+          {
+            "id": "c",
+            "text": "State is passed from parent to child and cannot be changed."
+          },
+          {
+            "id": "d",
+            "text": "Props and state are identical in functionality."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "usestate-hook",
+      "title": "The useState Hook",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>The <code>useState</code> hook lets you add React state to functional components.</p>\n<pre><code>import { useState } from 'react';\n\nfunction Counter() {\n  const [count, setCount] = useState(0);\n  return &lt;button onClick={() => setCount(count + 1)}&gt;{count}&lt;/button&gt;\n}</code></pre>"
+    },
+    {
+      "id": "usestate-blank",
+      "title": "Fill in the Hook Name",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To declare a state variable in a functional component, we use the [blank] hook.",
+        "blanks": [
+          {
+            "id": "blank1",
+            "answer": "useState"
+          }
+        ]
+      }
+    },
+    {
+      "id": "match-state-concepts",
+      "title": "Match State Concepts",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "useState",
+            "right": "Hook for local state"
+          },
+          {
+            "left": "Setter function",
+            "right": "Updates the state value"
+          },
+          {
+            "left": "Initial value",
+            "right": "Argument passed to useState"
+          },
+          {
+            "left": "Re-render",
+            "right": "Triggered when state changes"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-usestate-steps",
+      "title": "Order the Steps to Use State",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "steps": [
+          {
+            "id": "1",
+            "text": "Import useState from 'react'"
+          },
+          {
+            "id": "2",
+            "text": "Call useState inside the functional component with an initial value"
+          },
+          {
+            "id": "3",
+            "text": "Destructure the current state variable and the setter function"
+          },
+          {
+            "id": "4",
+            "text": "Use the setter function inside an event handler to update the state"
+          }
+        ]
+      }
+    }
+  ]
+}

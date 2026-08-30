@@ -1,0 +1,166 @@
+{
+  "title": "React Application Deployment",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-to-deployment",
+      "title": "Introduction to React Deployment",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Deploying a React application involves compiling your source code into optimized, static assets (HTML, CSS, and JS) that can be served efficiently by web servers.</p>\n<p>Unlike development where files are compiled on-the-fly, production deployment requires running a build process:</p>\n<pre><code># For Vite-based React apps\nnpm run build\n\n# For Create React App (CRA)\nnpm run build</code></pre>\n<p>This generates a <code>dist/</code> or <code>build/</code> directory containing minified and bundled files ready for production hosting.</p>"
+    },
+    {
+      "id": "deployment-steps-order",
+      "title": "Order the steps to build and deploy a React application locally",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "items": [
+          {
+            "id": "step-1",
+            "text": "Run 'npm install' to ensure all dependencies are resolved."
+          },
+          {
+            "id": "step-2",
+            "text": "Configure environment variables in '.env.production'."
+          },
+          {
+            "id": "step-3",
+            "text": "Execute 'npm run build' to generate the production-ready static assets."
+          },
+          {
+            "id": "step-4",
+            "text": "Test the build locally using a static server tool like 'serve'."
+          }
+        ],
+        "correctOrder": [
+          "step-1",
+          "step-2",
+          "step-3",
+          "step-4"
+        ]
+      }
+    },
+    {
+      "id": "env-variables-production",
+      "title": "Environment Variables in Production",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>React applications run entirely in the user's browser, meaning your environment variables are embedded into the JS bundle during build-time.</p>\n<p><strong>Crucial Rule:</strong> Never store secret keys, passwords, or private credentials in React environment variables!</p>\n<p>Prefix requirements based on your build tool:</p>\n<ul>\n  <li><strong>Vite:</strong> Prefix variables with <code>VITE_</code> (e.g., <code>VITE_API_URL</code>) and access via <code>import.meta.env.VITE_API_URL</code>.</li>\n  <li><strong>Create React App:</strong> Prefix variables with <code>REACT_APP_</code> (e.g., <code>REACT_APP_API_URL</code>) and access via <code>process.env.REACT_APP_API_URL</code>.</li>\n</ul>"
+    },
+    {
+      "id": "env-prefix-blank",
+      "title": "Fill in the blank: Vite Environment Variables",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To expose an environment variable named 'API_KEY' to your React code in a Vite project, the variable must be named _____API_KEY inside your .env file.",
+        "correct": "VITE_"
+      }
+    },
+    {
+      "id": "spa-routing-challenge",
+      "title": "The Single Page Application (SPA) Routing Challenge",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>When using client-side routing libraries like <strong>React Router</strong>, navigating to <code>/dashboard</code> works fine internally. However, if a user refreshes the page on <code>/dashboard</code>, the hosting server will look for a physical file named <code>/dashboard/index.html</code>, resulting in a <strong>404 Not Found</strong> error.</p>\n<p>To fix this, you must configure your hosting provider to redirect all requests to your main <code>index.html</code> file, allowing React Router to handle the URL resolution on the client side.</p>\n<p>For example, Netlify uses a <code>_redirects</code> file containing:</p>\n<pre><code>/*    /index.html   200</code></pre>"
+    },
+    {
+      "id": "spa-routing-mcq",
+      "title": "Why do React SPAs require custom redirect configurations on hosting servers?",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Because client-side routes do not map to physical files on the server, causing server-side 404 errors on direct navigation or page refresh."
+          },
+          {
+            "id": "b",
+            "text": "Because hosting servers cannot run JavaScript files unless a redirect configuration is provided."
+          },
+          {
+            "id": "c",
+            "text": "Because React Router requires server-side authentication to load the index.html fallback file."
+          },
+          {
+            "id": "d",
+            "text": "To speed up application loading times by bypassing the index.html page execution."
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "hosting-services-match",
+      "title": "Match Host Providers with their Features",
+      "type": "match",
+      "duration": "4m",
+      "content": {
+        "pairs": [
+          {
+            "left": "GitHub Pages",
+            "right": "Free static hosting ideal for personal portfolios; requires configuring a homepage property in package.json."
+          },
+          {
+            "left": "Vercel",
+            "right": "Zero-configuration platform designed by creators of Next.js; features seamless preview deployments for pull requests."
+          },
+          {
+            "left": "AWS S3 & CloudFront",
+            "right": "Enterprise-grade static website hosting combined with a global CDN for low latency."
+          },
+          {
+            "left": "Netlify",
+            "right": "Popular static platform featuring simple drag-and-drop deployment and '_redirects' file support for SPAs."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cicd-for-react",
+      "title": "Automated Deployments with CI/CD",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Manually building and dragging static files to a hosting platform is error-prone. Modern engineering teams use <strong>CI/CD (Continuous Integration / Continuous Delivery)</strong> pipelines.</p>\n<p>With GitHub Actions, Netlify, or Vercel integration, every push to your <code>main</code> branch can trigger an automated pipeline that:</p>\n<ol>\n  <li>Lints your code for syntax issues.</li>\n  <li>Runs your unit tests (e.g., using Vitest or Jest).</li>\n  <li>Builds the static bundle.</li>\n  <li>Deploys the assets directly to your hosting server.</li>\n</ol>"
+    },
+    {
+      "id": "cicd-pipeline-order",
+      "title": "Order the stages of a standard React CI/CD GitHub Actions Workflow",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "items": [
+          {
+            "id": "pipeline-1",
+            "text": "Checkout the repository code onto a virtual runner."
+          },
+          {
+            "id": "pipeline-2",
+            "text": "Install dependencies using 'npm ci' to ensure clean, reproducible builds."
+          },
+          {
+            "id": "pipeline-3",
+            "text": "Run automated test suites with 'npm run test'."
+          },
+          {
+            "id": "pipeline-4",
+            "text": "Execute the production build process with environment variables configured."
+          },
+          {
+            "id": "pipeline-5",
+            "text": "Push the compiled directory (dist/build) to your chosen cloud hosting platform."
+          }
+        ],
+        "correctOrder": [
+          "pipeline-1",
+          "pipeline-2",
+          "pipeline-3",
+          "pipeline-4",
+          "pipeline-5"
+        ]
+      }
+    }
+  ]
+}

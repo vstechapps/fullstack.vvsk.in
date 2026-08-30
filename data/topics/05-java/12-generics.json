@@ -1,0 +1,218 @@
+{
+  "title": "Generics in Java",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-generics",
+      "title": "Introduction to Generics",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Introduced in Java 5, <strong>Generics</strong> enable types (classes and interfaces) to be parameters when defining classes, interfaces, and methods.</p>\n<p>Before generics, collections stored raw <code>Object</code> references, requiring explicit type casting and risking runtime exceptions:</p>\n<pre><code>// Pre-Java 5\nList list = new ArrayList();\nlist.add(\"Java\");\nString s = (String) list.get(0); // Explicit cast needed</code></pre>\n<p>With Generics, type casting is eliminated, and errors are caught at compile-time:</p>\n<pre><code>// Post-Java 5\nList&lt;String&gt; list = new ArrayList&lt;&gt;();\nlist.add(\"Java\");\nString s = list.get(0); // No cast needed!</code></pre>"
+    },
+    {
+      "id": "pre-generics-mcq",
+      "title": "Pre-Generics Drawbacks",
+      "type": "mcq",
+      "duration": "1m 30s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "They caused syntax compilation errors whenever any object was added to a List."
+          },
+          {
+            "id": "b",
+            "text": "They forced runtime Type Casting checks, risking ClassCastExceptions at runtime instead of compile-time."
+          },
+          {
+            "id": "c",
+            "text": "They prevented the JVM from running garbage collection on collections."
+          },
+          {
+            "id": "d",
+            "text": "They did not allow storing custom objects inside the ArrayList collections."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "generic-classes",
+      "title": "Generic Classes",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>A generic class is defined with a type parameter section delimited by angle brackets (<code>&lt;T&gt;</code>) following the class name.</p>\n<pre><code>public class Box&lt;T&gt; {\n    private T content;\n\n    public void set(T content) {\n        this.content = content;\n    }\n\n    public T get() {\n        return content;\n    }\n}</code></pre>\n<p>Commonly used type parameter names are:</p>\n<ul>\n  <li><code>E</code> - Element (used extensively by the Java Collections Framework)</li>\n  <li><code>K</code> - Key</li>\n  <li><code>V</code> - Value</li>\n  <li><code>T</code> - Type</li>\n</ul>"
+    },
+    {
+      "id": "generic-class-blank",
+      "title": "Declaring a Generic Class",
+      "type": "blank",
+      "duration": "1m 30s",
+      "content": {
+        "text": "Complete the generic class structure to allow storing any data type within the class:\n\npublic class Holder<[[box1]]> {\n    private [[box2]] value;\n\n    public void setValue([[box3]] value) {\n        this.value = value;\n    }\n}",
+        "blanks": {
+          "box1": "T",
+          "box2": "T",
+          "box3": "T"
+        }
+      }
+    },
+    {
+      "id": "generic-methods",
+      "title": "Generic Methods",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Generic methods introduce their own type parameters. The scope of the type parameter is limited to the method where it is declared.</p>\n<p>The type parameter section must appear <strong>before</strong> the method's return type:</p>\n<pre><code>public class Utility {\n    // Generic method declaration\n    public static &lt;K, V&gt; boolean compare(Pair&lt;K, V&gt; p1, Pair&lt;K, V&gt; p2) {\n        return p1.getKey().equals(p2.getKey()) && \n               p1.getValue().equals(p2.getValue());\n    }\n}</code></pre>\n<p>To call this method, specify the type arguments explicitly or let the Java compiler infer them:</p>\n<pre><code>boolean same = Utility.&lt;Integer, String&gt;compare(p1, p2); // Explicit\nboolean sameInferred = Utility.compare(p1, p2);           // Inferred</code></pre>"
+    },
+    {
+      "id": "generic-method-order",
+      "title": "Order of Generic Method Signature",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "items": [
+          {
+            "id": "modifier",
+            "text": "Access Modifier (e.g., public static)"
+          },
+          {
+            "id": "type-param",
+            "text": "Type Parameter Declaration (e.g., <T>)"
+          },
+          {
+            "id": "return-type",
+            "text": "Return Type (e.g., T or void)"
+          },
+          {
+            "id": "method-name",
+            "text": "Method Name (e.g., processData)"
+          },
+          {
+            "id": "parameters",
+            "text": "Method Parameters (e.g., T input)"
+          }
+        ],
+        "correctOrder": [
+          "modifier",
+          "type-param",
+          "return-type",
+          "method-name",
+          "parameters"
+        ]
+      }
+    },
+    {
+      "id": "bounded-type-parameters",
+      "title": "Bounded Type Parameters",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Sometimes you need to restrict the kinds of types allowed as arguments. For example, a method operating on numbers might only want to accept instances of <code>Number</code> or its subclasses.</p>\n<p>To declare a bounded type parameter, list the type parameter's name, followed by the <code>extends</code> keyword, and then its upper bound:</p>\n<pre><code>public class Calculator&lt;T extends Number&gt; {\n    private T value;\n    \n    public double doubleValue() {\n        return value.doubleValue(); // Safe to call Number methods!\n    }\n}</code></pre>\n<p>You can also define multiple bounds: <code>&lt;T extends ClassA & InterfaceB&gt;</code>. In this case, <code>ClassA</code> must be declared first.</p>"
+    },
+    {
+      "id": "bounded-types-mcq",
+      "title": "Multiple Bounded Types Syntax",
+      "type": "mcq",
+      "duration": "1m 30s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "T extends Runnable & Serializable & Number"
+          },
+          {
+            "id": "b",
+            "text": "T extends Number & Runnable & Serializable"
+          },
+          {
+            "id": "c",
+            "text": "T extends Number, Runnable, Serializable"
+          },
+          {
+            "id": "d",
+            "text": "T implements Number & Runnable"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "wildcards-pecs",
+      "title": "Wildcards & PECS Principle",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>In generics, wildcards represented by the question mark (<code>?</code>) represent an unknown type.</p>\n<ul>\n  <li><strong>Upper Bounded Wildcards:</strong> <code>List&lt;? extends Number&gt;</code>. Allows reading elements safely as <code>Number</code>, but prevents writing elements (except null).</li>\n  <li><strong>Lower Bounded Wildcards:</strong> <code>List&lt;? super Integer&gt;</code>. Allows writing elements of type <code>Integer</code> safely, but reading yields only <code>Object</code>.</li>\n</ul>\n<p>Remember the <strong>PECS</strong> guideline:</p>\n<blockquote><strong>P</strong>roducer <strong>E</strong>xtends, <strong>C</strong>onsumer <strong>S</strong>uper</blockquote>\n<p>If your generic collection produces data (you only read from it), use <code>? extends</code>. If it consumes data (you write to it), use <code>? super</code>.</p>"
+    },
+    {
+      "id": "match-pecs",
+      "title": "Match Wildcard Operations",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "source": "List<? extends Number>",
+            "target": "Producer: Read elements as Numbers; cannot write elements."
+          },
+          {
+            "source": "List<? super Integer>",
+            "target": "Consumer: Write Integers safely; read elements only as Object."
+          },
+          {
+            "source": "List<?>",
+            "target": "Unbounded: Read elements only as Object; cannot write elements."
+          },
+          {
+            "source": "List<Number>",
+            "target": "Invariant: Must match the exact List containing raw Number objects."
+          }
+        ]
+      }
+    },
+    {
+      "id": "type-erasure",
+      "title": "Type Erasure",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Generics were added to Java without breaking backwards compatibility with older versions. To achieve this, the compiler uses a process called <strong>Type Erasure</strong>.</p>\n<p>During Type Erasure, the compiler:</p>\n<ul>\n  <li>Replaces all type parameters in generic types with their bounds (e.g., <code>Object</code> if unbounded, or <code>Number</code> for <code>extends Number</code>).</li>\n  <li>Inserts explicit type casts where necessary to ensure type safety.</li>\n  <li>Generates synthetic methods (bridge methods) to preserve polymorphism in extended generic types.</li>\n</ul>\n<p>Because of this, generic type information is <strong>not</strong> available at runtime. For example, <code>List&lt;String&gt;</code> and <code>List&lt;Integer&gt;</code> both become the raw type <code>List</code> in byte code.</p>"
+    },
+    {
+      "id": "erasure-mcq",
+      "title": "Type Erasure Consequences",
+      "type": "mcq",
+      "duration": "1m 30s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "You can check generic types at runtime using 'instanceof List<String>'."
+          },
+          {
+            "id": "b",
+            "text": "The JVM creates a separate compiled class file for every generic type argument used."
+          },
+          {
+            "id": "c",
+            "text": "At runtime, 'new ArrayList<String>().getClass()' returns the exact same Class object as 'new ArrayList<Integer>().getClass()' due to type erasure."
+          },
+          {
+            "id": "d",
+            "text": "Array creation of generic types (e.g., 'new T[10]') is highly encouraged and safe."
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "bridge-methods-blank",
+      "title": "Compiler Bridge Methods",
+      "type": "blank",
+      "duration": "1m",
+      "content": {
+        "text": "During type erasure, to preserve polymorphism and inheritance behaviors on generic overriding methods, the Java compiler automatically generates a synthetic method called a [[blank1]] method.",
+        "blanks": {
+          "blank1": "bridge"
+        }
+      }
+    }
+  ]
+}

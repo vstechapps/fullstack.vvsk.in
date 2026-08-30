@@ -1,0 +1,154 @@
+{
+  "title": "Rendering in React",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "what-is-rendering",
+      "title": "Understanding React Rendering",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Rendering is the process where React calls your components to determine what the UI should look like. React builds a Virtual DOM and compares it with the previous version to figure out what changes are needed.</p>\n<pre><code>function MyComponent() {\n  return &lt;h>Hello, World!&lt;/h>;\n}</code></pre>"
+    },
+    {
+      "id": "trigger-render-mcq",
+      "title": "When does React re-render?",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Only when the browser window is resized"
+          },
+          {
+            "id": "b",
+            "text": "When a component's state changes or its parent re-renders"
+          },
+          {
+            "id": "c",
+            "text": "Every time the user moves the mouse"
+          },
+          {
+            "id": "d",
+            "text": "When the CSS file is updated"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "jsx-blank",
+      "title": "Fill in the JSX Element",
+      "type": "blank",
+      "duration": "3m",
+      "content": {
+        "sentence": "In React, we use _____ to describe what the UI should look like using a syntax that resembles HTML.",
+        "blanks": [
+          {
+            "id": "1",
+            "answer": "JSX"
+          }
+        ]
+      }
+    },
+    {
+      "id": "rendering-phases",
+      "title": "React Rendering Phases",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>React's rendering lifecycle is split into two main phases:</p>\n<ul>\n  <li><strong>Trigger:</strong> A render is initiated (initial load or state update).</li>\n  <li><strong>Render:</strong> React calls components to calculate UI changes.</li>\n  <li><strong>Commit:</strong> React interacts with the DOM to update the actual elements.</li>\n</ul>"
+    },
+    {
+      "id": "match-concepts",
+      "title": "Match React Rendering Terms",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Virtual DOM",
+            "right": "In-memory lightweight copy of the real DOM"
+          },
+          {
+            "left": "Reconciliation",
+            "right": "The process of comparing the new Virtual DOM with the old one"
+          },
+          {
+            "left": "ReactDOM.createRoot",
+            "right": "Method used to render a React app into a DOM container"
+          },
+          {
+            "left": "Commit Phase",
+            "right": "Phase where changes are actually applied to the DOM"
+          }
+        ]
+      }
+    },
+    {
+      "id": "render-steps-order",
+      "title": "Order the React Rendering Process",
+      "type": "order",
+      "duration": "5m",
+      "content": {
+        "items": [
+          {
+            "id": "step-1",
+            "text": "Trigger a render (state update or initial load)"
+          },
+          {
+            "id": "step-2",
+            "text": "Render the component to generate Virtual DOM"
+          },
+          {
+            "id": "step-3",
+            "text": "Diffing/Reconciliation to find differences"
+          },
+          {
+            "id": "step-4",
+            "text": "Commit changes to the actual DOM"
+          }
+        ],
+        "correctOrder": [
+          "step-1",
+          "step-2",
+          "step-3",
+          "step-4"
+        ]
+      }
+    },
+    {
+      "id": "conditional-rendering",
+      "title": "Conditional Rendering",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>React allows you to conditionally render UI elements using JavaScript operators like <code>if</code>, <code>&&</code>, and ternary operators (<code>? :</code>).</p>\n<pre><code>return (\n  &lt;div&gt;\n    {isLoggedIn ? &lt;AdminDashboard /&gt; : &lt;LoginForm /&gt;}\n  &lt;/div&gt;\n);</code></pre>"
+    },
+    {
+      "id": "final-mcq",
+      "title": "Conditional Operator Check",
+      "type": "mcq",
+      "duration": "3m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "if/else statements inside JSX directly"
+          },
+          {
+            "id": "b",
+            "text": "Ternary operator (? :) and logical AND (&&)"
+          },
+          {
+            "id": "c",
+            "text": "HTML switch-case tags"
+          },
+          {
+            "id": "d",
+            "text": "CSS display properties only"
+          }
+        ],
+        "correctId": "b"
+      }
+    }
+  ]
+}

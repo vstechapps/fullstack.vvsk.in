@@ -1,0 +1,178 @@
+{
+  "title": "Java Data Types Deep Dive",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "java-datatypes-intro",
+      "title": "Introduction to Java Data Types",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Java is a <strong>strongly-typed language</strong>, which means every variable must be declared with a specific data type before it can be used.</p>\n<p>Java data types are divided into two main categories:</p>\n<ul>\n  <li><strong>Primitive Data Types:</strong> Predefined by the language (e.g., <code>int</code>, <code>char</code>, <code>boolean</code>).</li>\n  <li><strong>Reference/Object Data Types:</strong> Created by the programmer or provided by classes (e.g., <code>String</code>, <code>Arrays</code>, <code>Classes</code>).</li>\n</ul>"
+    },
+    {
+      "id": "primitives-overview",
+      "title": "The 8 Primitive Data Types",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Java has exactly 8 primitive data types, designed for maximum efficiency in memory and performance:</p>\n<table>\n  <thead>\n    <tr><th>Type</th><th>Size</th><th>Default Value</th></tr>\n  </thead>\n  <tbody>\n    <tr><td><code>byte</code></td><td>1 byte (8-bit)</td><td>0</td></tr>\n    <tr><td><code>short</code></td><td>2 bytes (16-bit)</td><td>0</td></tr>\n    <tr><td><code>int</code></td><td>4 bytes (32-bit)</td><td>0</td></tr>\n    <tr><td><code>long</code></td><td>8 bytes (64-bit)</td><td>0L</td></tr>\n    <tr><td><code>float</code></td><td>4 bytes (32-bit)</td><td>0.0f</td></tr>\n    <tr><td><code>double</code></td><td>8 bytes (64-bit)</td><td>0.0d</td></tr>\n    <tr><td><code>char</code></td><td>2 bytes (16-bit Unicode)</td><td>'\\u0000'</td></tr>\n    <tr><td><code>boolean</code></td><td>1 bit (virtual)</td><td>false</td></tr>\n  </tbody>\n</table>"
+    },
+    {
+      "id": "primitive-size-mcq",
+      "title": "Check Your Knowledge: Size of double",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "What is the memory size of a 'double' primitive data type in Java?",
+        "options": [
+          {
+            "id": "a",
+            "text": "32-bit (4 bytes)"
+          },
+          {
+            "id": "b",
+            "text": "64-bit (8 bytes)"
+          },
+          {
+            "id": "c",
+            "text": "16-bit (2 bytes)"
+          },
+          {
+            "id": "d",
+            "text": "128-bit (16 bytes)"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "match-primitives",
+      "title": "Match Primitives with their Defaults",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "boolean",
+            "right": "false"
+          },
+          {
+            "left": "char",
+            "right": "'\\u0000'"
+          },
+          {
+            "left": "long",
+            "right": "0L"
+          },
+          {
+            "left": "float",
+            "right": "0.0f"
+          }
+        ]
+      }
+    },
+    {
+      "id": "reference-types",
+      "title": "Understanding Reference Types",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Unlike primitive types, <strong>Reference Types</strong> point to objects stored in the memory heap.</p>\n<ul>\n  <li>They default to <code>null</code> if not explicitly initialized.</li>\n  <li>They can be used to call methods (e.g., <code>string.toUpperCase()</code>).</li>\n  <li>Common reference types include class objects, interface types, and arrays.</li>\n</ul>\n<pre><code>String message = \"Hello Java!\"; // Reference type\nint number = 10;                // Primitive type</code></pre>"
+    },
+    {
+      "id": "autoboxing-blank",
+      "title": "Autoboxing and Unboxing",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "The automatic conversion that the Java compiler makes between the primitive types and their corresponding object wrapper classes (e.g., int to Integer) is called [blank].",
+        "correctAnswers": [
+          "autoboxing",
+          "Autoboxing"
+        ]
+      }
+    },
+    {
+      "id": "order-primitives",
+      "title": "Order by Memory Footprint",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "instruction": "Order the following Java numeric primitive types from smallest memory size to largest:",
+        "items": [
+          "byte",
+          "short",
+          "int",
+          "double"
+        ]
+      }
+    },
+    {
+      "id": "type-casting-content",
+      "title": "Type Casting in Java",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Type casting is assigning a value of one primitive data type to another type.</p>\n<p>There are two types of casting in Java:</p>\n<ol>\n  <li><strong>Widening Casting (automatically):</strong> Converting a smaller type to a larger type size.\n      <pre><code>int myInt = 9;\ndouble myDouble = myInt; // Automatic casting: int to double</code></pre>\n  </li>\n  <li><strong>Narrowing Casting (manually):</strong> Converting a larger type to a smaller type size.\n      <pre><code>double myDouble = 9.78d;\nint myInt = (int) myDouble; // Manual casting: double to int</code></pre>\n  </li>\n</ol>"
+    },
+    {
+      "id": "narrowing-cast-blank",
+      "title": "Manual Cast Check",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To convert a double value of '3.14' to a float manually, complete the code expression:\nfloat val = [blank] 3.14d;",
+        "correctAnswers": [
+          "(float)"
+        ]
+      }
+    },
+    {
+      "id": "precision-mcq",
+      "title": "Floating-Point Precision Warning",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "question": "Which data type class is recommended for precise calculations like financial transactions and currencies in Java?",
+        "options": [
+          {
+            "id": "a",
+            "text": "double"
+          },
+          {
+            "id": "b",
+            "text": "float"
+          },
+          {
+            "id": "c",
+            "text": "java.math.BigDecimal"
+          },
+          {
+            "id": "d",
+            "text": "java.lang.Integer"
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "casting-order-hierarchy",
+      "title": "Widening Conversion Order",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "instruction": "Arrange the types in order of implicit widening conversion hierarchy (from source to target):",
+        "items": [
+          "char",
+          "int",
+          "long",
+          "float"
+        ]
+      }
+    },
+    {
+      "id": "summary-card",
+      "title": "Key Takeaways",
+      "type": "content",
+      "duration": "1m",
+      "content": "<p>Congratulations! You have completed the Java Data Types module.</p>\n<p>Remember:</p>\n<ul>\n  <li>Primitives are high-performance and live on the Stack.</li>\n  <li>References refer to instances of classes and live on the Heap.</li>\n  <li>Always watch for precision loss when applying manual casting!</li>\n</ul>"
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "title": "Styling in React",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "inline-styles-intro",
+      "title": "React Inline Styles",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>In React, inline styles are not passed as standard CSS strings. Instead, they are defined using a JavaScript object where key names are camelCased versions of CSS properties.</p>\n<pre><code>const divStyle = {\n  color: \"blue\",\n  backgroundColor: \"lightgray\",\n  fontSize: \"16px\"\n};\n\nfunction MyComponent() {\n  return &lt;div style={divStyle}&gt;Styled Text&lt;/div&gt;;\n}</code></pre>\n<p>Note that values are generally strings, but pixel values can often be passed as numbers (e.g., <code>fontSize: 16</code>).</p>"
+    },
+    {
+      "id": "inline-styles-mcq",
+      "title": "Correct Inline Style Syntax",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "<div style=\"color: red; background-color: blue;\">"
+          },
+          {
+            "id": "b",
+            "text": "<div style={{color: 'red', backgroundColor: 'blue'}}>"
+          },
+          {
+            "id": "c",
+            "text": "<div style={color: 'red', background-color: 'blue'}>"
+          },
+          {
+            "id": "d",
+            "text": "<div inline-style={{color: 'red', backgroundColor: 'blue'}}>"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "css-modules-intro",
+      "title": "CSS Modules",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>CSS Modules allow you to write traditional CSS files but scope them locally to the component. This prevents class name collisions across your application.</p>\n<p>When imported, the CSS classes become properties of a JavaScript object, which you reference in your JSX.</p>\n<pre><code>/* Button.module.css */\n.errorButton {\n  background-color: red;\n}</code></pre>\n<pre><code>/* Button.jsx */\nimport styles from './Button.module.css';\n\nexport function Button() {\n  return &lt;button className={styles.errorButton}&gt;Delete&lt;/button&gt;;\n}</code></pre>"
+    },
+    {
+      "id": "css-modules-blank",
+      "title": "CSS Modules File Extension",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "question": "For build tools like Vite or Webpack to recognize a CSS file as a CSS Module, the file name must end with the suffix: ________ (include the dot and extension).",
+        "correctAnswer": ".module.css"
+      }
+    },
+    {
+      "id": "styled-components-intro",
+      "title": "CSS-in-JS & Styled Components",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Styled Components is a popular CSS-in-JS library that uses tagged template literals to style components directly in your JavaScript files.</p>\n<pre><code>import styled from 'styled-components';\n\nconst StyledButton = styled.button`\n  background: ${props => props.$primary ? \"blue\" : \"white\"};\n  color: ${props => props.$primary ? \"white\" : \"blue\"};\n  padding: 8px 16px;\n  border: 2px solid blue;\n`;\n\n// Usage:\n// &lt;StyledButton $primary&gt;Click Me&lt;/StyledButton&gt;</code></pre>\n<p>It automatically handles vendor prefixing, unique class names, and easily allows dynamic styling based on component props.</p>"
+    },
+    {
+      "id": "styling-match",
+      "title": "Match Styling Characteristics",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Inline Styles",
+            "right": "Passed as an object with camelCase properties, fast but cannot handle pseudo-selectors."
+          },
+          {
+            "left": "CSS Modules",
+            "right": "Traditional CSS syntax hashed at build-time to guarantee local scoping."
+          },
+          {
+            "left": "Styled Components",
+            "right": "CSS-in-JS approach offering prop-driven dynamic styling in JS files."
+          },
+          {
+            "left": "Tailwind CSS",
+            "right": "Utility-first framework styling components using pre-configured atomic classes."
+          }
+        ]
+      }
+    },
+    {
+      "id": "tailwind-intro",
+      "title": "Tailwind CSS in React",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Tailwind CSS is a utility-first CSS framework. Instead of writing custom CSS, you apply pre-defined utility classes directly to elements inside your <code>className</code> prop.</p>\n<pre><code>export default function Card() {\n  return (\n    &lt;div className=\"max-w-sm rounded overflow-hidden shadow-lg p-6 bg-white\"&gt;\n      &lt;h2 className=\"font-bold text-xl mb-2\"&gt;React + Tailwind&lt;/h2&gt;\n      &lt;p className=\"text-gray-700 text-base\"&gt;Easy styling without leaving JSX!&lt;/p&gt;\n    &lt;/div&gt;\n  );\n}</code></pre>\n<p>This approach minimizes the size of your final production CSS build since unused utilities are automatically purged.</p>"
+    },
+    {
+      "id": "css-modules-order",
+      "title": "Set Up and Use CSS Modules",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "items": [
+          {
+            "id": "step-1",
+            "text": "Create a CSS stylesheet file named 'Card.module.css'"
+          },
+          {
+            "id": "step-2",
+            "text": "Write classic CSS styles like '.container { padding: 16px; }' in the module file"
+          },
+          {
+            "id": "step-3",
+            "text": "Import the styled module into 'Card.jsx' as: import styles from './Card.module.css'"
+          },
+          {
+            "id": "step-4",
+            "text": "Apply the hash-scopable class to the element: className={styles.container}"
+          }
+        ]
+      }
+    },
+    {
+      "id": "styled-components-mcq",
+      "title": "Props in Styled Components",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Using CSS custom properties (--var) in the root sheet"
+          },
+          {
+            "id": "b",
+            "text": "Using normal HTML inline style override attributes"
+          },
+          {
+            "id": "c",
+            "text": "Evaluating an interpolation function: ${props => props.someValue} within the template literal"
+          },
+          {
+            "id": "d",
+            "text": "Importing a secondary .css template module"
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "tailwind-dynamic-blank",
+      "title": "Tailwind Dynamic Class Rule",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "question": "Because Tailwind relies on static code analysis to scan and purge unused styles, dynamic class name concatenations such as 'text-${color}-500' will not be compiled correctly. Standard class names must be written completely in your source code. (True / False)",
+        "correctAnswer": "True"
+      }
+    }
+  ]
+}

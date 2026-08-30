@@ -1,0 +1,118 @@
+{
+  "title": "React Props",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "what-are-props",
+      "title": "Understanding Props",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Props (short for properties) are arguments passed into React components.</p>\n<p>Props are passed to components via HTML attributes and are <strong>read-only</strong>.</p>\n<pre><code><User name=\"Alice\" age={25} /></code></pre>"
+    },
+    {
+      "id": "props-flow-mcq",
+      "title": "Data Flow in React",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "From child to parent"
+          },
+          {
+            "id": "b",
+            "text": "From parent to child"
+          },
+          {
+            "id": "c",
+            "text": "Bi-directional"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "destructuring-props",
+      "title": "Destructuring Props",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>You can destructure props directly in the component parameter list for cleaner code.</p>\n<pre><code>function Product({ title, price }) {\n  return <h2>{title} - ${price}</h2>;\n}</code></pre>"
+    },
+    {
+      "id": "fill-blank-props",
+      "title": "Component Syntax",
+      "type": "blank",
+      "duration": "3m",
+      "content": {
+        "text": "To pass a prop named 'title' with value 'Hello' to a Card component, you write: <Card [blank]=\"Hello\" />",
+        "answer": "title"
+      }
+    },
+    {
+      "id": "match-props-types",
+      "title": "Match Prop Concepts",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Props",
+            "right": "Read-only data"
+          },
+          {
+            "left": "State",
+            "right": "Mutable internal data"
+          },
+          {
+            "left": "Children",
+            "right": "Special prop for nested elements"
+          },
+          {
+            "left": "PropTypes",
+            "right": "Runtime type checking"
+          }
+        ]
+      }
+    },
+    {
+      "id": "passing-order",
+      "title": "Order of Operations",
+      "type": "order",
+      "duration": "5m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Define the React component function accepting props"
+          },
+          {
+            "id": "2",
+            "text": "Destructure or access properties from the props object"
+          },
+          {
+            "id": "3",
+            "text": "Render the component inside a parent component with attributes"
+          },
+          {
+            "id": "4",
+            "text": "React mounts the component displaying the passed data"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    },
+    {
+      "id": "props-summary",
+      "title": "Summary",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Key takeaways:</p>\n<ul>\n<li>Props make components reusable.</li>\n<li>Props flow downwards from parent to child.</li>\n<li>Props must never be modified inside the receiving component.</li>\n</ul>"
+    }
+  ]
+}

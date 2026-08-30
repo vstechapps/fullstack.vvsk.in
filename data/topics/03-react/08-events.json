@@ -1,0 +1,109 @@
+{
+  "title": "Handling Events in React",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-to-events",
+      "title": "Introduction to React Events",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Handling events with React elements is very similar to handling events on DOM elements. There are syntactic differences:</p>\n<ul>\n<li>React events are named using camelCase, rather than lowercase.</li>\n<li>With JSX you pass a function as the event handler, rather than a string.</li>\n</ul>\n<pre><code>&lt;button onClick={activateLasers}&gt;\n  Activate Lasers\n&lt;/button&gt;</code></pre>"
+    },
+    {
+      "id": "event-naming-mcq",
+      "title": "Event Naming Convention",
+      "type": "mcq",
+      "duration": "5m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "onclick"
+          },
+          {
+            "id": "b",
+            "text": "onClick"
+          },
+          {
+            "id": "c",
+            "text": "on-click"
+          },
+          {
+            "id": "d",
+            "text": "ONCLICK"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "prevent-default-blank",
+      "title": "Preventing Default Behavior",
+      "type": "blank",
+      "duration": "5m",
+      "content": "<p>In React, you cannot return <code>false</code> to prevent default behavior. You must call <code>e.________()</code> explicitly.</p>",
+      "answers": [
+        "preventDefault"
+      ]
+    },
+    {
+      "id": "synthetic-events-content",
+      "title": "SyntheticEvents",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>React wraps the native browser event in a <strong>SyntheticEvent</strong> object. This ensures that events work identically across different browsers, meaning you don't need to worry about cross-browser inconsistencies.</p>"
+    },
+    {
+      "id": "match-event-properties",
+      "title": "Match React Events to Use Cases",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "pairs": [
+          {
+            "id": "p1",
+            "left": "onClick",
+            "right": "Fires when an element is clicked"
+          },
+          {
+            "id": "p2",
+            "left": "onChange",
+            "right": "Fires when an input value changes"
+          },
+          {
+            "id": "p3",
+            "left": "onSubmit",
+            "right": "Fires when a form is submitted"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-event-steps",
+      "title": "Order the steps to handle a form submit",
+      "type": "order",
+      "duration": "5m",
+      "content": {
+        "items": [
+          {
+            "id": "step1",
+            "text": "Create a handleSubmit function."
+          },
+          {
+            "id": "step2",
+            "text": "Call e.preventDefault() inside the function."
+          },
+          {
+            "id": "step3",
+            "text": "Attach onSubmit={handleSubmit} to the form element."
+          }
+        ],
+        "correctOrder": [
+          "step1",
+          "step2",
+          "step3"
+        ]
+      }
+    }
+  ]
+}

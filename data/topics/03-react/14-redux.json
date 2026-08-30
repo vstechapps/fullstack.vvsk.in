@@ -1,0 +1,162 @@
+{
+  "title": "Redux State Management in React",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "redux-intro",
+      "title": "Introduction to Redux",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Redux is a pattern and library for managing and updating global application state. It serves as a centralized store for state that needs to be used across your entire application.</p><h3>Three Core Principles</h3><ul><li><strong>Single source of truth:</strong> The global state of your application is stored in an object tree within a single store.</li><li><strong>State is read-only:</strong> The only way to change the state is to emit an action, an object describing what happened.</li><li><strong>Changes are made with pure functions:</strong> To specify how the state tree is transformed by actions, you write pure reducers.</li></ul>"
+    },
+    {
+      "id": "redux-principles-mcq",
+      "title": "Core Principles of Redux",
+      "type": "mcq",
+      "duration": "1m 30s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "State is mutated directly; Components have multiple stores; Reducers are asynchronous"
+          },
+          {
+            "id": "b",
+            "text": "Single source of truth; State is read-only; Changes are made with pure functions"
+          },
+          {
+            "id": "c",
+            "text": "Actions are pure functions; Local state must always match global state; State can only be updated in UI components"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "redux-store-actions",
+      "title": "Actions & Reducers",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>An <strong>Action</strong> is a plain JavaScript object that has a <code>type</code> field and optional <code>payload</code>. It describes an event that happened.</p><pre><code>const addTodoAction = {\n  type: 'todos/todoAdded',\n  payload: 'Buy milk'\n};</code></pre><p>A <strong>Reducer</strong> is a pure function that receives the current <code>state</code> and an <code>action</code>, and returns the next state: <code>(state, action) => newState</code>.</p>"
+    },
+    {
+      "id": "redux-reducer-blank",
+      "title": "Anatomy of a Reducer",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "A reducer is a pure function that takes the current __blank1__ and an __blank2__ as arguments, calculates the next state based on them, and returns it without mutating the input state directly.",
+        "blanks": {
+          "blank1": "state",
+          "blank2": "action"
+        }
+      }
+    },
+    {
+      "id": "react-redux-hooks",
+      "title": "Connecting Redux to React",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>The <code>react-redux</code> library provides two main hooks to interact with the store:</p><ul><li><code>useSelector</code>: Extracts data from the Redux store state using a selector function.</li><li><code>useDispatch</code>: Returns a reference to the dispatch function from the Redux store, allowing you to dispatch actions.</li></ul><pre><code>import { useSelector, useDispatch } from 'react-redux';\n\nconst count = useSelector(state => state.value);\nconst dispatch = useDispatch();</code></pre>"
+    },
+    {
+      "id": "redux-terminology-match",
+      "title": "Match Redux Terms",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Store",
+            "right": "The centralized container that holds the state tree"
+          },
+          {
+            "left": "Action",
+            "right": "A plain object indicating an intention to change state"
+          },
+          {
+            "left": "Reducer",
+            "right": "A pure function that returns a new state based on actions"
+          },
+          {
+            "left": "Dispatch",
+            "right": "The function used to deliver actions to the store"
+          }
+        ]
+      }
+    },
+    {
+      "id": "redux-data-flow-order",
+      "title": "Redux Unidirectional Data Flow",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "A user interaction triggers an event in the React component."
+          },
+          {
+            "id": "2",
+            "text": "The component dispatches an action using useDispatch()."
+          },
+          {
+            "id": "3",
+            "text": "The Redux store passes current state and action to the Reducer."
+          },
+          {
+            "id": "4",
+            "text": "The Reducer computes and returns the updated state to the Store."
+          },
+          {
+            "id": "5",
+            "text": "React components subscribed via useSelector() re-render with the new state."
+          }
+        ]
+      }
+    },
+    {
+      "id": "redux-toolkit-intro",
+      "title": "Simplifying Redux with Redux Toolkit",
+      "type": "content",
+      "duration": "4m 30s",
+      "content": "<p>Standard Redux is powerful but can involve a lot of boilerplate code. <strong>Redux Toolkit (RTK)</strong> is the standard, recommended approach for writing Redux logic.</p><p>RTK's <code>createSlice</code> function simplifies state definition by generating actions and reducers automatically, allowing us to write 'mutating' code safely via Immer.</p><pre><code>import { createSlice } from '@reduxjs/toolkit';\n\nconst counterSlice = createSlice({\n  name: 'counter',\n  initialState: { value: 0 },\n  reducers: {\n    increment: state => {\n      state.value += 1;\n    }\n  }\n});</code></pre>"
+    },
+    {
+      "id": "rtk-slice-mcq",
+      "title": "Redux Toolkit Features",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "createSlice automatically generates action creators and action types based on your reducers."
+          },
+          {
+            "id": "b",
+            "text": "createSlice completely eliminates the need for any store configuration."
+          },
+          {
+            "id": "c",
+            "text": "createSlice makes Redux code run synchronously in the UI thread."
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "rtk-dispatch-blank",
+      "title": "Using useDispatch in React",
+      "type": "blank",
+      "duration": "3m",
+      "content": {
+        "text": "To send a trigger to your Redux slice to execute a state change, you import the hook __blank1__ from 'react-redux' and execute it like this: const dispatch = __blank2__(); dispatch(increment());",
+        "blanks": {
+          "blank1": "useDispatch",
+          "blank2": "useDispatch"
+        }
+      }
+    }
+  ]
+}

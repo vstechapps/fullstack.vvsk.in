@@ -1,0 +1,216 @@
+{
+  "title": "Java Syntax Basics",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "java-syntax-intro",
+      "title": "Introduction to Java Syntax",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Every Java program must have at least one class definition and a <code>main</code> method. Java is case-sensitive, and every statement must end with a semicolon.</p>\n<pre><code>public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n    }\n}</code></pre>"
+    },
+    {
+      "id": "main-method-mcq",
+      "title": "Identify the Main Method Signature",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "public static void Main(String args)"
+          },
+          {
+            "id": "b",
+            "text": "public void static main(String[] args)"
+          },
+          {
+            "id": "c",
+            "text": "public static void main(String[] args)"
+          },
+          {
+            "id": "d",
+            "text": "static public int main(String[] args)"
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "variables-datatypes",
+      "title": "Variables and Primitive Data Types",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Java is statically-typed, meaning variables must be declared with a data type before they can be used. Java provides primitive types (such as <code>int</code>, <code>double</code>, <code>char</code>, <code>boolean</code>) and reference types (such as <code>String</code>, arrays, and objects).</p>\n<pre><code>int age = 25;\ndouble price = 19.99;\nchar grade = 'A';\nboolean isJavaFun = true;</code></pre>"
+    },
+    {
+      "id": "final-keyword-blank",
+      "title": "Declaring Constants in Java",
+      "type": "blank",
+      "duration": "1m 30s",
+      "content": {
+        "text": "To prevent a variable from being reassigned (making it a constant), you must use the [blank] keyword in Java syntax.",
+        "correctAnswer": "final"
+      }
+    },
+    {
+      "id": "operators-intro",
+      "title": "Java Operators",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Operators perform operations on variables and values. Java includes:</p><ul><li><strong>Arithmetic:</strong> <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code></li><li><strong>Relational:</strong> <code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code></li><li><strong>Logical:</strong> <code>&amp;&amp;</code> (AND), <code>||</code> (OR), <code>!</code> (NOT)</li></ul>"
+    },
+    {
+      "id": "operators-match",
+      "title": "Match Operator Symbols",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "left": "&&",
+            "right": "Logical AND"
+          },
+          {
+            "left": "%",
+            "right": "Modulo / Remainder"
+          },
+          {
+            "left": "!=",
+            "right": "Not Equal"
+          },
+          {
+            "left": "||",
+            "right": "Logical OR"
+          }
+        ]
+      }
+    },
+    {
+      "id": "control-flow-intro",
+      "title": "Control Flow: Conditionals",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Conditional statements allow your program to execute different code blocks based on conditions using <code>if</code>, <code>else if</code>, <code>else</code>, and <code>switch</code> structures.</p>\n<pre><code>int score = 85;\nif (score >= 90) {\n    System.out.println(\"Grade: A\");\n} else if (score >= 80) {\n    System.out.println(\"Grade: B\");\n} else {\n    System.out.println(\"Grade: C\");\n}</code></pre>"
+    },
+    {
+      "id": "conditional-order",
+      "title": "Order the Conditional Code Block",
+      "type": "order",
+      "duration": "2m 30s",
+      "content": {
+        "instructions": "Arrange the code blocks to form a logically structured conditional check that executes starting with the highest check.",
+        "items": [
+          {
+            "id": "1",
+            "text": "if (temperature > 30) {"
+          },
+          {
+            "id": "2",
+            "text": "    System.out.println(\"It's hot outside!\");"
+          },
+          {
+            "id": "3",
+            "text": "} else if (temperature > 15) {"
+          },
+          {
+            "id": "4",
+            "text": "    System.out.println(\"It's warm.\");"
+          },
+          {
+            "id": "5",
+            "text": "} else { System.out.println(\"It's cold.\"); }"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      }
+    },
+    {
+      "id": "loops-intro",
+      "title": "Control Flow: Loops",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Loops execute a block of code repeatedly. Java supports <code>for</code> loops, <code>while</code> loops, and <code>do-while</code> loops.</p>\n<pre><code>// For loop\nfor (int i = 0; i &lt; 5; i++) {\n    System.out.println(i);\n}\n\n// While loop\nint x = 0;\nwhile (x &lt; 5) {\n    System.out.println(x);\n    x++;\n}</code></pre>"
+    },
+    {
+      "id": "loop-mcq",
+      "title": "Post-Test Loops",
+      "type": "mcq",
+      "duration": "1m 30s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "for loop"
+          },
+          {
+            "id": "b",
+            "text": "while loop"
+          },
+          {
+            "id": "c",
+            "text": "do-while loop"
+          },
+          {
+            "id": "d",
+            "text": "enhanced for loop"
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "comments-conventions",
+      "title": "Comments and Naming Conventions",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Java comments can be single-line (<code>//</code>) or multi-line (<code>/* ... */</code>). Additionally, Java developers follow naming conventions:</p><ul><li><strong>Classes:</strong> PascalCase (e.g., <code>MyService</code>)</li><li><strong>Variables &amp; Methods:</strong> camelCase (e.g., <code>calculateTotalValue()</code>)</li><li><strong>Constants:</strong> UPPER_SNAKE_CASE (e.g., <code>MAX_LIMIT</code>)</li></ul>"
+    },
+    {
+      "id": "file-structure-order",
+      "title": "Java File Structure Order",
+      "type": "order",
+      "duration": "3m 30s",
+      "content": {
+        "instructions": "Place the Java file components in the correct order of appearance from the top of the source file to the bottom.",
+        "items": [
+          {
+            "id": "1",
+            "text": "package declaration (e.g., package com.example;)"
+          },
+          {
+            "id": "2",
+            "text": "import statements (e.g., import java.util.List;)"
+          },
+          {
+            "id": "3",
+            "text": "class header definition (e.g., public class User {)"
+          },
+          {
+            "id": "4",
+            "text": "class members and methods (e.g., private String name;)"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    },
+    {
+      "id": "syntax-summary",
+      "title": "Syntax Essentials Summary",
+      "type": "content",
+      "duration": "1m",
+      "content": "<p>To summarize, writing clean Java requires keeping statements terminated with semicolons, establishing precise type constraints, writing structured condition checks and loop statements, and styling code following PascalCase for classes and camelCase for methods and variables.</p>"
+    }
+  ]
+}

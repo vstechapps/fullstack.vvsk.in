@@ -1,0 +1,188 @@
+{
+  "title": "Mastering Java Packaging",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-to-packages",
+      "title": "Introduction to Java Packages",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>A <strong>package</strong> in Java is a mechanism used to group related classes, interfaces, enumerations, and annotations. Think of it as a folder structure in a directory.</p>\n<p><strong>Why use packages?</strong></p>\n<ul>\n<li><strong>Namespace management:</strong> Resolves naming conflicts (e.g., you can have two classes named <code>User</code> in different packages).</li>\n<li><strong>Access Control:</strong> Packages help regulate access to classes and members.</li>\n<li><strong>Maintainability:</strong> Keeps large projects organized and easy to navigate.</li>\n</ul>"
+    },
+    {
+      "id": "declaring-packages",
+      "title": "Declaring a Package",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>To put a class inside a package, you must declare the package name at the very beginning of your Java file. It must be the first non-comment statement in the file.</p>\n<pre><code>package com.developer.utility;\n\npublic class Calculator {\n    public int add(int a, int b) {\n        return a + b;\n    }\n}</code></pre>\n<p><strong>Note:</strong> The directory structure of the source file must match the package structure exactly (e.g., <code>com/developer/utility/Calculator.java</code>).</p>"
+    },
+    {
+      "id": "importing-packages",
+      "title": "Importing Packages",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To use a class from another package, you must use the <code>import</code> statement. You can import a single class, an entire package (using wildcard <code>*</code>), or static members.</p>\n<pre><code>// Importing a specific class\nimport java.util.ArrayList;\n\n// Importing all classes in a package\nimport java.util.*;\n\n// Importing static members directly\nimport static java.lang.Math.PI;</code></pre>\n<p><strong>Note:</strong> The <code>java.lang</code> package is imported automatically by default in every Java application.</p>"
+    },
+    {
+      "id": "match-standard-packages",
+      "title": "Match Standard Java Packages",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "instructions": "Match each core Java standard package with its correct purpose.",
+        "pairs": [
+          {
+            "left": "java.lang",
+            "right": "Contains fundamental classes (String, System, Exception) imported automatically."
+          },
+          {
+            "left": "java.util",
+            "right": "Contains collection framework, utility classes, and date/time facilities."
+          },
+          {
+            "left": "java.io",
+            "right": "Provides classes for system input and output through data streams."
+          },
+          {
+            "left": "java.net",
+            "right": "Provides classes for implementing networking applications."
+          }
+        ]
+      }
+    },
+    {
+      "id": "package-statement-blank",
+      "title": "Complete the Package Declaration",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "<p>Fill in the missing keyword and identifier syntax to declare a package named <code>com.academy.helper</code>.</p>\n<pre><code>[blank] com.academy.helper;</code></pre>",
+        "correctAnswers": [
+          "package"
+        ]
+      }
+    },
+    {
+      "id": "packages-and-access",
+      "title": "Packages & Access Control",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Java packages are deeply connected to access levels:</p>\n<ul>\n<li><strong>package-private (default):</strong> If no access modifier is declared, members are only visible to classes within the same package.</li>\n<li><strong>protected:</strong> Members are accessible to classes within the same package AND subclasses in different packages.</li>\n<li><strong>public:</strong> Members are visible to classes in all packages.</li>\n</ul>\n<p>By default, classes inside the same package have implicit trust and can access each other's default/package-private elements.</p>"
+    },
+    {
+      "id": "access-modifier-mcq",
+      "title": "Access Modifier MCQ",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "question": "Which access modifier allows a class member to be accessed by any class within the same package, but ONLY subclasses outside of the package?",
+        "options": [
+          {
+            "id": "a",
+            "text": "public"
+          },
+          {
+            "id": "b",
+            "text": "private"
+          },
+          {
+            "id": "c",
+            "text": "protected"
+          },
+          {
+            "id": "d",
+            "text": "default (no modifier)"
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "jar-packaging",
+      "title": "JAR (Java Archive) Packaging",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To distribute your packaged application, you compile it into a ZIP-compressed archive file known as a <strong>JAR (Java Archive)</strong>.</p>\n<p>Key properties of JARs:</p>\n<ul>\n<li>They contain compiled <code>.class</code> files, resources (images, property files), and metadata.</li>\n<li>The <strong>MANIFEST.MF</strong> file inside the <code>META-INF/</code> directory specifies the entry point (the class containing the <code>main</code> method) using the <code>Main-Class</code> attribute.</li>\n</ul>\n<p>Example compile & run command:</p>\n<pre><code>jar cfm App.jar manifest.txt com/developer/utility/*.class\njava -jar App.jar</code></pre>"
+    },
+    {
+      "id": "order-jar-creation",
+      "title": "Order the JAR compilation process",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "instructions": "Place the steps of creating and executing a basic packaged Java program in the correct chronological order.",
+        "items": [
+          {
+            "id": "step-1",
+            "text": "Write java source files with proper package declarations matching their folders."
+          },
+          {
+            "id": "step-2",
+            "text": "Compile source code using 'javac -d bin src/**/*.java'."
+          },
+          {
+            "id": "step-3",
+            "text": "Create a manifest file declaring the Main-Class attribute."
+          },
+          {
+            "id": "step-4",
+            "text": "Package the classes and manifest into a JAR file using the 'jar' tool."
+          },
+          {
+            "id": "step-5",
+            "text": "Run the application package using the 'java -jar' CLI command."
+          }
+        ],
+        "correctOrder": [
+          "step-1",
+          "step-2",
+          "step-3",
+          "step-4",
+          "step-5"
+        ]
+      }
+    },
+    {
+      "id": "naming-best-practices",
+      "title": "Naming Best Practices",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>To ensure unique packages worldwide, follow these standard practices:</p>\n<ul>\n<li><strong>Reverse Domain Name:</strong> Use your organization's internet domain reversed as the prefix (e.g., <code>com.google</code>, <code>org.apache</code>).</li>\n<li><strong>Lowercase letters:</strong> Always use lowercase to avoid conflicts with class names.</li>\n<li><strong>Keyword escape:</strong> If your domain contains a Java keyword, prepend an underscore (e.g., <code>com.example.switch</code> should become <code>com.example._switch</code>).</li>\n</ul>"
+    },
+    {
+      "id": "modular-packaging",
+      "title": "Modular Packaging (Java 9+)",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Introduced in Java 9, the <strong>Java Platform Module System (JPMS)</strong> added a higher level of packaging abstraction above standard packages.</p>\n<p>A module is defined using a <code>module-info.java</code> file at the root source folder. It declares:</p>\n<ul>\n<li>Which internal packages are exported (made public) to other modules.</li>\n<li>Which other modules it requires to work.</li>\n</ul>\n<pre><code>module com.academy.app {\n    requires java.sql;\n    exports com.academy.app.services;\n}</code></pre>"
+    },
+    {
+      "id": "module-system-mcq",
+      "title": "Module System Quiz",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "question": "Which configuration file is used to specify module descriptors and define exports/requires statements in modern Java projects?",
+        "options": [
+          {
+            "id": "a",
+            "text": "package-info.java"
+          },
+          {
+            "id": "b",
+            "text": "module-info.java"
+          },
+          {
+            "id": "c",
+            "text": "manifest.mf"
+          },
+          {
+            "id": "d",
+            "text": "settings.gradle"
+          }
+        ],
+        "correctId": "b"
+      }
+    }
+  ]
+}

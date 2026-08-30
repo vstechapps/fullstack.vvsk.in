@@ -6,19 +6,19 @@
       "id": "why-typescript",
       "title": "Why TypeScript",
       "type": "content",
-      "content": "<h2>TypeScript Basics</h2>\n<p>TypeScript adds static typing to JavaScript, helping catch errors at compile time.</p>\n<pre><code>let name: string = \"Angular\";\nlet age: number = 17;\nlet isActive: boolean = true;</code></pre>"
+      "content": "<p>TypeScript adds static typing to JavaScript, helping catch errors at compile time.</p>\n<pre><code>let name: string = \"Angular\";\nlet age: number = 17;\nlet isActive: boolean = true;</code></pre>"
     },
     {
       "id": "interfaces-enums",
       "title": "Interfaces & Enums",
       "type": "content",
-      "content": "<h2>Interfaces and Enums</h2>\n<p><strong>Interfaces</strong> define the shape of objects. <strong>Enums</strong> define a set of named constants.</p>\n<pre><code>interface User {\n  id: number;\n  name: string;\n}\n\nenum Role {\n  Admin,\n  User\n}</code></pre>"
+      "content": "<p><strong>Interfaces</strong> define the shape of objects. <strong>Enums</strong> define a set of named constants.</p>\n<pre><code>interface User {\n  id: number;\n  name: string;\n}\n\nenum Role {\n  Admin,\n  User\n}</code></pre>"
     },
     {
       "id": "generics-union",
       "title": "Generics & Union Types",
       "type": "content",
-      "content": "<h2>Generics and Unions</h2>\n<p><strong>Union types</strong> allow a variable to hold multiple types. <strong>Generics</strong> allow creating reusable components that work with multiple types.</p>\n<pre><code>let id: string | number;\n\nfunction wrap&lt;T&gt;(value: T): T[] {\n  return [value];\n}</code></pre>"
+      "content": "<p><strong>Union types</strong> allow a variable to hold multiple types. <strong>Generics</strong> allow creating reusable components that work with multiple types.</p>\n<pre><code>let id: string | number;\n\nfunction wrap&lt;T&gt;(value: T): T[] {\n  return [value];\n}</code></pre>"
     },
     {
       "id": "ts-mcq",

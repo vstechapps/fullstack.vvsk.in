@@ -1,0 +1,185 @@
+{
+  "title": "Next.js for React Developers",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "nextjs-intro",
+      "title": "Introduction to Next.js",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Next.js is a React framework for building full-stack web applications. It provides production-ready features out of the box like routing, rendering optimizations, data fetching, and bundling, which means you don't need to manually configure Webpack or Babel.</p>\n<p>Key highlights include:</p>\n<ul>\n  <li><strong>App Router:</strong> A newer routing paradigm built on React Server Components.</li>\n  <li><strong>Optimizations:</strong> Automated image, font, and script performance enhancements.</li>\n  <li><strong>Server Actions:</strong> Direct database/mutation interaction without building an intermediate REST API.</li>\n</ul>"
+    },
+    {
+      "id": "rsc-vs-cc",
+      "title": "React Server vs. Client Components",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>In Next.js, components inside the <code>app</code> directory are <strong>React Server Components (RSC)</strong> by default.</p>\n<ul>\n  <li><strong>Server Components:</strong> Render on the server. They reduce client bundle size since their dependencies are not sent to the browser. They can safely access databases or backend APIs directly.</li>\n  <li><strong>Client Components:</strong> Rendered on the server initially (pre-rendered) and hydrated on the client. They are required if you need hooks (<code>useState</code>, <code>useEffect</code>), browser APIs, or interactive event listeners (<code>onClick</code>).</li>\n</ul>\n<pre><code>// Client Component declaration\n\"use client\";\n\nimport { useState } from 'react';\n\nexport default function Counter() {\n  const [count, setCount] = useState(0);\n  return &lt;button onClick={() =&gt; setCount(count + 1)}&gt;{count}&lt;/button&gt;;\n}</code></pre>"
+    },
+    {
+      "id": "rsc-mcq",
+      "title": "Default Component Behavior",
+      "type": "mcq",
+      "duration": "1m 30s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "They are Client Components by default and require \"use server\" to run on the server."
+          },
+          {
+            "id": "b",
+            "text": "They are Server Components by default and do not send JavaScript for rendering to the browser."
+          },
+          {
+            "id": "c",
+            "text": "They run only on the database layer and cannot return JSX."
+          },
+          {
+            "id": "d",
+            "text": "They are rendered purely on the client side without any server-side involvement."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "app-router-routing",
+      "title": "Routing in Next.js",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Next.js uses a <strong>file-system based router</strong> where folders define the paths, and special files define the UI.</p>\n<p>Some of the most important reserved filenames inside a route folder include:</p>\n<ul>\n  <li><code>page.js</code>: Unique UI for the route (makes the path publicly accessible).</li>\n  <li><code>layout.js</code>: Shared UI for a route segment and its children (preserves state on navigation).</li>\n  <li><code>loading.js</code>: Fallback UI wrapper using React Suspense.</li>\n  <li><code>error.js</code>: Error boundary wrapper for the segment.</li>\n</ul>"
+    },
+    {
+      "id": "routing-order",
+      "title": "Next.js Route File Hierarchy",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "items": [
+          {
+            "id": "layout",
+            "text": "layout.js (Outermost wrapper)"
+          },
+          {
+            "id": "template",
+            "text": "template.js (Instantiated wrapper)"
+          },
+          {
+            "id": "error",
+            "text": "error.js (React Error Boundary)"
+          },
+          {
+            "id": "loading",
+            "text": "loading.js (Suspense Boundary)"
+          },
+          {
+            "id": "page",
+            "text": "page.js (Innermost active route UI)"
+          }
+        ],
+        "correctOrder": [
+          "layout",
+          "template",
+          "error",
+          "loading",
+          "page"
+        ]
+      }
+    },
+    {
+      "id": "data-fetching",
+      "title": "Data Fetching & Server Actions",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Next.js extends the native <code>fetch</code> Web API to configure caching and revalidation directly on the server.</p>\n<p>Additionally, <strong>Server Actions</strong> allow you to execute asynchronous code directly on the server without creating APIs.</p>\n<pre><code>// Example Server Component fetching data\nasync function getProjects() {\n  const res = await fetch('https://api.example.com/projects', {\n    next: { revalidate: 3600 } // cache for 1 hour\n  });\n  return res.json();\n}\n\nexport default async function Dashboard() {\n  const projects = await getProjects();\n  return &lt;div&gt;{projects.map(p =&gt; &lt;p&gt;{p.name}&lt;/p&gt;)}&lt;/div&gt;;\n}</code></pre>"
+    },
+    {
+      "id": "server-action-directive",
+      "title": "Defining a Server Action",
+      "type": "blank",
+      "duration": "1m 30s",
+      "content": {
+        "text": "To declare that a function or an entire file should only execute on the server (often used for form actions), we use the \"[blank]\" directive at the top of the scope.",
+        "answer": "use server"
+      }
+    },
+    {
+      "id": "rendering-strategies",
+      "title": "Static vs. Dynamic Rendering",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Next.js automatically optimizes how routes are compiled:</p>\n<ul>\n  <li><strong>Static Rendering:</strong> Routes are rendered at <strong>build time</strong> or in the background. Good for blogs, marketing pages, or pages where data is identical for all users.</li>\n  <li><strong>Dynamic Rendering:</strong> Routes are rendered for each user at <strong>request time</strong>. This is triggered when Next.js detects dynamic functions (like cookies(), headers(), or searchParams) or uncached data fetches.</li>\n</ul>"
+    },
+    {
+      "id": "rendering-matching",
+      "title": "Match Rendering Terms",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Static Generation (SSG)",
+            "right": "HTML created once during build time, served instantly via CDN."
+          },
+          {
+            "left": "Server-Side Rendering (SSR)",
+            "right": "HTML created on demand for each incoming request dynamically."
+          },
+          {
+            "left": "Incremental Static Regeneration (ISR)",
+            "right": "Recreates individual static pages in the background without rebuilds."
+          },
+          {
+            "left": "Client-Side Rendering (CSR)",
+            "right": "Browser downloads minimal HTML and populates DOM using JS."
+          }
+        ]
+      }
+    },
+    {
+      "id": "optimizations-content",
+      "title": "Built-in Optimization Features",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Next.js features custom built-in React components that handle standard performance pitfalls:</p>\n<ul>\n  <li><code>next/image</code>: Automatically resizes, compresses, and serves modern formats (like WebP) with layout shift protection.</li>\n  <li><code>next/link</code>: Prefetches viewport-visible links in the background for instant navigation transition.</li>\n  <li><code>next/font</code>: Automatically downloads and hosts Google Fonts locally during build time to eliminate layout shifts.</li>\n</ul>"
+    },
+    {
+      "id": "image-opt-mcq",
+      "title": "Image Optimization advantages",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "It converts all images into SVG formats automatically."
+          },
+          {
+            "id": "b",
+            "text": "It resizes images, prevents Cumulative Layout Shift (CLS), and lazy loads files by default."
+          },
+          {
+            "id": "c",
+            "text": "It executes image compression using client-side WebAssembly after hydration."
+          },
+          {
+            "id": "d",
+            "text": "It completely prevents the browser from loading images on mobile viewports to save data."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "client-directive-blank",
+      "title": "Opting into Client-Side Rendering",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "When we want to build a component that utilizes the React hook `useEffect` or handles browser events like clicks, we must declare the \"[blank]\" directive at the very top of our file.",
+        "answer": "use client"
+      }
+    }
+  ]
+}

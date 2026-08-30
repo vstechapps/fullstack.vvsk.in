@@ -1,0 +1,104 @@
+{
+  "title": "React Hooks",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-to-hooks",
+      "title": "Introduction to React Hooks",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Hooks are functions that let you 'hook into' React state and lifecycle features from function components.</p>\n<pre><code>import React, { useState } from 'react';\n\nfunction Counter() {\n  const [count, setCount] = useState(0);\n  return <button onClick={() => setCount(count + 1)}>{count}</button>;\n}</code></pre>"
+    },
+    {
+      "id": "hooks-mcq-rules",
+      "title": "Rule of Hooks",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Call Hooks inside loops, conditions, or nested functions."
+          },
+          {
+            "id": "b",
+            "text": "Call Hooks only at the top level of your React function."
+          },
+          {
+            "id": "c",
+            "text": "Call Hooks from regular JavaScript functions."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "usestate-content",
+      "title": "Managing State with useState",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>The <code>useState</code> hook lets you add state to functional components. It returns an array with two values: the current state and a function to update it.</p>"
+    },
+    {
+      "id": "usestate-blank",
+      "title": "Fill in the useState Syntax",
+      "type": "blank",
+      "duration": "3m",
+      "content": "To declare a state variable for age initialized to 20, you write: const [age, setAge] = ___ (20);"
+    },
+    {
+      "id": "useeffect-content",
+      "title": "Side Effects with useEffect",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>The <code>useEffect</code> hook lets you perform side effects in components, such as data fetching, subscriptions, or manually changing the DOM.</p>"
+    },
+    {
+      "id": "hook-match-types",
+      "title": "Match the Hook to its Purpose",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "pairs": [
+          {
+            "left": "useState",
+            "right": "Manage component state"
+          },
+          {
+            "left": "useEffect",
+            "right": "Handle side effects"
+          },
+          {
+            "left": "useContext",
+            "right": "Consume React context"
+          },
+          {
+            "left": "useRef",
+            "right": "Access DOM elements directly"
+          }
+        ]
+      }
+    },
+    {
+      "id": "hook-order-lifecycle",
+      "title": "Order of Execution",
+      "type": "order",
+      "duration": "4m",
+      "content": {
+        "steps": [
+          "Component renders with initial state",
+          "React updates the DOM",
+          "Browser paints the screen",
+          "useEffect cleanup (if any) and effect callback runs"
+        ]
+      }
+    },
+    {
+      "id": "custom-hooks-content",
+      "title": "Building Custom Hooks",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Custom Hooks allow you to extract component logic into reusable functions. A custom hook is a JavaScript function whose name starts with <code>use</code> and that may call other Hooks.</p>"
+    }
+  ]
+}

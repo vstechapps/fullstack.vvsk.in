@@ -1,0 +1,290 @@
+{
+  "title": "Control Flow in Java",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-control-flow",
+      "title": "Introduction to Control Flow and Decision Making",
+      "type": "content",
+      "duration": "120s",
+      "content": "<p>Control flow statements break up the flow of execution by employing decision-making, looping, and branching mechanisms, enabling your program to conditionally execute blocks of code.</p>\n<p>The most basic decision-making statement is <code>if-else</code>:</p>\n<pre><code>int score = 85;\nif (score >= 90) {\n    System.out.println(\"Grade: A\");\n} else if (score >= 80) {\n    System.out.println(\"Grade: B\");\n} else {\n    System.out.println(\"Grade: C\");\n}</code></pre>\n<p>Java evaluates conditions from top to bottom. Once a condition evaluates to <code>true</code>, its block runs, and the remaining statements are bypassed.</p>"
+    },
+    {
+      "id": "mcq-short-circuit",
+      "title": "Understanding Short-Circuit Evaluation",
+      "type": "mcq",
+      "duration": "60s",
+      "content": {
+        "question": "What is the output of the following Java code snippet?\n\nString str = null;\nif (str != null && str.length() > 0) {\n    System.out.println(\"Success\");\n} else {\n    System.out.println(\"Bypassed\");\n}",
+        "options": [
+          {
+            "id": "a",
+            "text": "NullPointerException is thrown at runtime."
+          },
+          {
+            "id": "b",
+            "text": "Success"
+          },
+          {
+            "id": "c",
+            "text": "Bypassed"
+          },
+          {
+            "id": "d",
+            "text": "Compilation Error"
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "ternary-operator",
+      "title": "The Ternary Operator",
+      "type": "content",
+      "duration": "90s",
+      "content": "<p>The ternary operator is a shorthand way of writing an <code>if-else</code> statement that yields a value. It is the only operator in Java that takes three operands.</p>\n<p><strong>Syntax:</strong></p>\n<pre><code>variable = (condition) ? expressionIfTrue : expressionIfFalse;</code></pre>\n<p><strong>Example:</strong></p>\n<pre><code>int time = 20;\nString greeting = (time < 18) ? \"Good day\" : \"Good evening\";\nSystem.out.println(greeting); // Prints \"Good evening\"</code></pre>"
+    },
+    {
+      "id": "blank-ternary",
+      "title": "Complete the Ternary Statement",
+      "type": "blank",
+      "duration": "60s",
+      "content": {
+        "question": "Fill in the missing character/operator to make this ternary assignment valid: String status = (age >= 18) [blank] \"Adult\" : \"Minor\";",
+        "correctAnswer": "?"
+      }
+    },
+    {
+      "id": "switch-statements",
+      "title": "Switch Statements & Expressions",
+      "type": "content",
+      "duration": "180s",
+      "content": "<p>A <code>switch</code> statement allows you to test a variable for equality against a list of values. Traditional switch statements require a <code>break</code> statement to prevent falling through to subsequent blocks.</p>\n<p>Modern Java (Java 14+) introduced <strong>Switch Expressions</strong>, which can return a value and use the arrow (<code>-></code>) syntax to eliminate the need for manual break statements:</p>\n<pre><code>int numLetters = switch (day) {\n    case MONDAY, FRIDAY, SUNDAY -> 6;\n    case TUESDAY                -> 7;\n    case THURSDAY, SATURDAY     -> 8;\n    case WEDNESDAY              -> 9;\n    default -> throw new IllegalStateException(\"Invalid day: \" + day);\n};</code></pre>\n<p>If a multi-line block is required inside a Switch Expression, use the keyword <code>yield</code> to return the value.</p>"
+    },
+    {
+      "id": "order-switch-yield",
+      "title": "Order Switch Expression with Yield",
+      "type": "order",
+      "duration": "120s",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "int result = switch (mode) {"
+          },
+          {
+            "id": "2",
+            "text": "    case \"FAST\" -> {"
+          },
+          {
+            "id": "3",
+            "text": "        int speed = 100;"
+          },
+          {
+            "id": "4",
+            "text": "        yield speed;"
+          },
+          {
+            "id": "5",
+            "text": "    }"
+          },
+          {
+            "id": "6",
+            "text": "    default -> 0;"
+          },
+          {
+            "id": "7",
+            "text": "};"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ]
+      }
+    },
+    {
+      "id": "match-use-cases",
+      "title": "Match Control Flow to Use Cases",
+      "type": "match",
+      "duration": "120s",
+      "content": {
+        "pairs": [
+          {
+            "key": "Evaluating ranges of dynamic numbers",
+            "value": "if-else-if chains"
+          },
+          {
+            "key": "Routing exact values of enum or string instances",
+            "value": "switch expressions"
+          },
+          {
+            "key": "Executing a loop precisely N times",
+            "value": "traditional for loop"
+          },
+          {
+            "key": "Ensuring a segment of code runs at least once",
+            "value": "do-while loop"
+          }
+        ]
+      }
+    },
+    {
+      "id": "while-do-while",
+      "title": "While vs Do-While Loops",
+      "type": "content",
+      "duration": "120s",
+      "content": "<p>Loops repeat a block of statements while a boolean condition remains true.</p>\n<ul>\n  <li><strong>while loop:</strong> Evaluates the condition before executing the loop body (Entry-controlled).</li>\n  <li><strong>do-while loop:</strong> Evaluates the condition after executing the loop body (Exit-controlled).</li>\n</ul>\n<pre><code>// While Loop\nint count = 0;\nwhile (count < 3) {\n    System.out.print(count + \" \");\n    count++;\n}\n\n// Do-While Loop\nint num = 5;\ndo {\n    System.out.print(num + \" \");\n    num++;\n} while (num < 5);</code></pre>"
+    },
+    {
+      "id": "mcq-do-while",
+      "title": "Do-While Loop Execution",
+      "type": "mcq",
+      "duration": "60s",
+      "content": {
+        "question": "What will be printed when the following code executes?\n\nint x = 10;\ndo {\n    System.out.print(x + \" \");\n    x--;\n} while (x > 10);",
+        "options": [
+          {
+            "id": "a",
+            "text": "Nothing is printed."
+          },
+          {
+            "id": "b",
+            "text": "10"
+          },
+          {
+            "id": "c",
+            "text": "10 9"
+          },
+          {
+            "id": "d",
+            "text": "Infinite loop"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "for-loops",
+      "title": "For Loops: Traditional & Enhanced",
+      "type": "content",
+      "duration": "180s",
+      "content": "<p>Java provides two main styles of <code>for</code> loops:</p>\n<h3>1. Traditional For Loop</h3>\n<p>Used when you need to track the loop counter or control the step increment.</p>\n<pre><code>for (int i = 0; i < 5; i += 2) {\n    System.out.print(i + \" \"); // Prints 0 2 4\n}</code></pre>\n<h3>2. Enhanced For Loop (For-Each)</h3>\n<p>Used to iterate sequentially through elements of arrays or Collections without index tracking.</p>\n<pre><code>String[] fruits = {\"Apple\", \"Banana\", \"Cherry\"};\nfor (String fruit : fruits) {\n    System.out.print(fruit + \" \");\n}</code></pre>"
+    },
+    {
+      "id": "blank-foreach",
+      "title": "Syntax of For-Each Loops",
+      "type": "blank",
+      "duration": "90s",
+      "content": {
+        "question": "Fill in the missing single character divider in this enhanced for-loop expression: for (double price [blank] prices) { sum += price; }",
+        "correctAnswer": ":"
+      }
+    },
+    {
+      "id": "break-continue",
+      "title": "Branching: Break and Continue",
+      "type": "content",
+      "duration": "120s",
+      "content": "<p>Branching statements interrupt sequential execution flow inside loops.</p>\n<ul>\n  <li><strong>break:</strong> Immediately terminates the innermost looping structure and transfers execution to the statement following the loop.</li>\n  <li><strong>continue:</strong> Skips the remaining statements in the current iteration and evaluates the loop condition for the next pass.</li>\n</ul>\n<pre><code>for (int i = 1; i <= 5; i++) {\n    if (i == 3) {\n        continue; // skip 3\n    }\n    if (i == 5) {\n        break; // stop loop before printing 5\n    }\n    System.out.print(i + \" \"); // Prints 1 2 4\n}</code></pre>"
+    },
+    {
+      "id": "mcq-labeled-break",
+      "title": "Labeled Break Behavior",
+      "type": "mcq",
+      "duration": "120s",
+      "content": {
+        "question": "What is the exact output of this nested loop utilizing a labeled break?\n\nouter: for (int i = 0; i < 3; i++) {\n    for (int j = 0; j < 3; j++) {\n        if (i == 1 && j == 1) {\n            break outer;\n        }\n        System.out.print(i + \"\" + j + \" \");\n    }\n}",
+        "options": [
+          {
+            "id": "a",
+            "text": "00 01 02 10 11 12 20 21 22"
+          },
+          {
+            "id": "b",
+            "text": "00 01 02 10"
+          },
+          {
+            "id": "c",
+            "text": "00 01 02 10 12 20 21 22"
+          },
+          {
+            "id": "d",
+            "text": "00 01 02"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "order-for-execution",
+      "title": "Order of For Loop Phases",
+      "type": "order",
+      "duration": "90s",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Initialization expression executes once."
+          },
+          {
+            "id": "2",
+            "text": "Loop condition is evaluated."
+          },
+          {
+            "id": "3",
+            "text": "Loop body executes."
+          },
+          {
+            "id": "4",
+            "text": "Update expression (increment/decrement) executes."
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    },
+    {
+      "id": "match-keywords",
+      "title": "Match Branching Keywords with Behavior",
+      "type": "match",
+      "duration": "150s",
+      "content": {
+        "pairs": [
+          {
+            "key": "break",
+            "value": "Exits the closest enclosing loop structure."
+          },
+          {
+            "key": "continue",
+            "value": "Skips directly to the loop update phase."
+          },
+          {
+            "key": "return",
+            "value": "Exits the current method block entirely."
+          },
+          {
+            "key": "throw",
+            "value": "Transfers control to an exception handling block."
+          }
+        ]
+      }
+    },
+    {
+      "id": "control-flow-best-practices",
+      "title": "Control Flow Best Practices",
+      "type": "content",
+      "duration": "120s",
+      "content": "<p>Writing clean control flow logic prevents cognitive overload and maintains codebase health.</p>\n<h3>Key Best Practices:</h3>\n<ul>\n  <li><strong>Avoid Deep Nesting:</strong> Too many nested <code>if-else</code> or loop blocks make code unreadable. Use early exit (Guard Clauses) instead.</li>\n  <li><strong>Prefer Switch Expressions over nested If-Else:</strong> Modern switch structures are expressive, easy to read, and verify exhaustiveness.</li>\n  <li><strong>Keep Loop Iterations simple:</strong> If loop bodies exceed 15 lines of code, refactor loop logic into clear helper methods.</li>\n</ul>"
+    }
+  ]
+}

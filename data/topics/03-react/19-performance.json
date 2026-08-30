@@ -1,0 +1,138 @@
+{
+  "title": "React Performance Optimization",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-react-perf",
+      "title": "Understanding React's Rendering Engine",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To optimize a React application, you must first understand how rendering works. React updates the UI in two main steps:</p><ul><li><strong>Render Phase:</strong> React calls your components to determine what needs to be changed in the Virtual DOM.</li><li><strong>Commit Phase:</strong> React applies those changes to the actual browser DOM.</li></ul><p>Performance bottlenecks usually happen when unnecessary renders are triggered repeatedly down the component tree.</p>"
+    },
+    {
+      "id": "react-memo-content",
+      "title": "Skipping Renders with React.memo",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>By default, when a parent component re-renders, all of its child components re-render as well, regardless of whether their props changed.</p><p><code>React.memo</code> is a higher-order component that shallowly compares props and skips re-rendering the child if props have not changed.</p><pre><code>const MyComponent = React.memo(function MyComponent(props) {\n  return &lt;div&gt;{props.value}&lt;/div&gt;;\n});</code></pre>"
+    },
+    {
+      "id": "react-memo-mcq",
+      "title": "React.memo Behavior",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "question": "What kind of comparison does React.memo perform on props by default?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Deep comparison (recursively checking nested objects)"
+          },
+          {
+            "id": "b",
+            "text": "Shallow comparison (referential equality for objects, value equality for primitives)"
+          },
+          {
+            "id": "c",
+            "text": "No comparison; it always skips re-rendering"
+          },
+          {
+            "id": "d",
+            "text": "Strict equality comparison of the entire component function signature"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "memoization-hooks",
+      "title": "useMemo vs useCallback",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>When passing objects, arrays, or functions as props, <code>React.memo</code> can fail because those values get re-created on every render, changing their reference.</p><ul><li><strong>useMemo:</strong> Caches the *result* of a calculation.</li><li><strong>useCallback:</strong> Caches the *function definition* itself.</li></ul><pre><code>// Memoizing a value\nconst dynamicValue = useMemo(() => computeExpensiveValue(a), [a]);\n\n// Memoizing a function\nconst handleClick = useCallback(() => {\n  doSomething(b);\n}, [b]);</code></pre>"
+    },
+    {
+      "id": "usecallback-blank",
+      "title": "Fill in the blank: useMemo vs useCallback",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To prevent a child component from re-rendering because of a callback prop, you should wrap the handler function in the [blank] hook before passing it down.",
+        "correctAnswer": "useCallback"
+      }
+    },
+    {
+      "id": "code-splitting-lazy",
+      "title": "Code Splitting with React.lazy",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Large bundle sizes slow down the initial load time of your application. React allows you to split your bundle and load components on-demand using <code>React.lazy</code> and <code>Suspense</code>.</p><pre><code>import React, { lazy, Suspense } from 'react';\n\nconst HeavyComponent = lazy(() => import('./HeavyComponent'));\n\nfunction App() {\n  return (\n    &lt;Suspense fallback={&lt;div&gt;Loading...&lt;/div&gt;}&gt;\n      &lt;HeavyComponent /&gt;\n    &lt;/Suspense>\n  );\n}</code></pre>"
+    },
+    {
+      "id": "optimization-match",
+      "title": "Match Optimization Techniques",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "React.memo",
+            "right": "Skips re-rendering a component if its props haven't changed"
+          },
+          {
+            "left": "useMemo",
+            "right": "Caches the computed result of an expensive calculation"
+          },
+          {
+            "left": "useCallback",
+            "right": "Caches a function instance to maintain referential identity"
+          },
+          {
+            "left": "React.lazy",
+            "right": "Dynamically imports components to reduce initial bundle size"
+          }
+        ]
+      }
+    },
+    {
+      "id": "list-virtualization",
+      "title": "Rendering Large Lists: Virtualization",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>If you render thousands of items in a list, the browser DOM will struggle to handle so many elements. This causes lagging and slow UI updates.</p><p><strong>List Virtualization</strong> solves this by rendering only the items currently visible in the user's viewport (plus a tiny buffer). As the user scrolls, old items are destroyed and new items are mounted dynamically.</p><p>Popular libraries for this include <code>react-window</code> and <code>react-virtualized</code>.</p>"
+    },
+    {
+      "id": "render-phases-order",
+      "title": "Order the React Rendering Lifecycle Steps",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "instruction": "Arrange the steps of the React update cycle in chronological order from state trigger to execution of side effects.",
+        "items": [
+          {
+            "id": "step-1",
+            "text": "A state change is triggered via a setter function (e.g., setState)."
+          },
+          {
+            "id": "step-2",
+            "text": "React executes the component functions and runs the diffing algorithm (Render Phase)."
+          },
+          {
+            "id": "step-3",
+            "text": "React writes the changes to the real DOM (Commit Phase)."
+          },
+          {
+            "id": "step-4",
+            "text": "The browser paints the screen and the useEffect hooks run asynchronously."
+          }
+        ],
+        "correctOrder": [
+          "step-1",
+          "step-2",
+          "step-3",
+          "step-4"
+        ]
+      }
+    }
+  ]
+}
