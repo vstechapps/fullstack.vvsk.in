@@ -1,0 +1,129 @@
+{
+  "title": "Deployment for Flask Developer",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-deployment",
+      "title": "Introduction to Flask Deployment",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>When developing a Flask application, you typically use the built-in development server (<code>app.run()</code>). However, this server is not suitable for production because it is not designed to handle high loads, lacks security features, and does not scale well.</p><p>To deploy a Flask app to production, you need a <strong>WSGI server</strong> (like Gunicorn or uWSGI) behind a <strong>Reverse Proxy</strong> (like Nginx) running on a production-ready environment such as a Linux VPS or a cloud platform.</p>"
+    },
+    {
+      "id": "wsgi-concept-mcq",
+      "title": "Understanding WSGI",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "A database management system specifically for Flask."
+          },
+          {
+            "id": "b",
+            "text": "Web Server Gateway Interface, a standard for Python web apps to talk to web servers."
+          },
+          {
+            "id": "c",
+            "text": "A CSS framework used to style Flask administration panels."
+          },
+          {
+            "id": "d",
+            "text": "A package manager replacement for pip."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "prepare-flask-app",
+      "title": "Preparing Your Flask App",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Before deploying, you must make several changes to your Flask application:</p>\n<ul>\n<li><strong>Debug Mode:</strong> Ensure <code>debug=False</code> in production to prevent leaking sensitive traceback information.</li>\n<li><strong>Environment Variables:</strong> Use libraries like <code>python-dotenv</code> or OS environment variables to manage secrets (database URIs, secret keys).</li>\n<li><strong>Requirements File:</strong> Generate a pinned dependency file using <code>pip freeze > requirements.txt</code>.</li>\n</ul>\n<pre><code># Example production run configuration\nif __name__ == '__main__':\n    app.run(host='0.0.0.0', port=8000)</code></pre>"
+    },
+    {
+      "id": "env-vars-blank",
+      "title": "Environment Configuration",
+      "type": "blank",
+      "duration": "3m",
+      "content": "To securely manage sensitive data like API keys and database passwords in Flask without hardcoding them, we use _____ variables.",
+      "answer": "environment"
+    },
+    {
+      "id": "gunicorn-content",
+      "title": "Setting Up Gunicorn",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Gunicorn (Green Unicorn) is a pure-Python WSGI HTTP server. It is pre-cloned and ported from Ruby's Unicorn project.</p>\n<p>Install Gunicorn in your virtual environment:</p>\n<pre><code>pip install gunicorn</code></pre>\n<p>Run your Flask application with Gunicorn by specifying the module and app instance:</p>\n<pre><code>gunicorn -w 4 -b 0.0.0.0:8000 wsgi:app</code></pre>\n<p>Here, <code>-w 4</code> specifies 4 worker processes to handle concurrent requests.</p>"
+    },
+    {
+      "id": "deployment-steps-order",
+      "title": "Deployment Workflow Order",
+      "type": "order",
+      "duration": "5m",
+      "content": {
+        "instruction": "Arrange the standard steps of deploying a Flask app in the correct chronological order.",
+        "items": [
+          {
+            "id": "step1",
+            "text": "Freeze dependencies into requirements.txt"
+          },
+          {
+            "id": "step2",
+            "text": "Configure WSGI server (Gunicorn)"
+          },
+          {
+            "id": "step3",
+            "text": "Set up Nginx as a reverse proxy"
+          },
+          {
+            "id": "step4",
+            "text": "Configure SSL/TLS certificate with Let's Encrypt"
+          }
+        ],
+        "correctOrder": [
+          "step1",
+          "step2",
+          "step3",
+          "step4"
+        ]
+      }
+    },
+    {
+      "id": "nginx-proxy",
+      "title": "Configuring Nginx Reverse Proxy",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Nginx sits in front of Gunicorn. It handles incoming client requests, serves static files directly (improving performance), and manages SSL certificates.</p>\n<pre><code>server {\n    listen 80;\n    server_name example.com;\n\n    location / {\n        proxy_pass http://127.0.0.1:8000;\n        proxy_set_header Host $host;\n        proxy_set_header X-Real-IP $remote_addr;\n    }\n}</code></pre>"
+    },
+    {
+      "id": "match-deployment-terms",
+      "title": "Match Deployment Concepts",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "instruction": "Match each deployment component to its primary role.",
+        "pairs": [
+          {
+            "left": "Flask App",
+            "right": "Contains business logic and routes"
+          },
+          {
+            "left": "Gunicorn",
+            "right": "Executes Python WSGI code concurrently"
+          },
+          {
+            "left": "Nginx",
+            "right": "Reverse proxy and static file server"
+          },
+          {
+            "left": "PostgreSQL",
+            "right": "Production database system"
+          }
+        ]
+      }
+    }
+  ]
+}

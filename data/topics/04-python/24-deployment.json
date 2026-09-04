@@ -1,0 +1,130 @@
+{
+  "title": "Python Application Deployment",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-deployment",
+      "title": "Introduction to Deployment",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Deployment is the process of making your Python application available to users or other systems in a production environment.</p><p>Unlike running on <code>localhost:8000</code>, a production server requires security, stability, scalability, and automated process management.</p>"
+    },
+    {
+      "id": "deployment-targets-mcq",
+      "title": "Deployment Environments",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Your local laptop"
+          },
+          {
+            "id": "b",
+            "text": "A cloud server or Platform as a Service (PaaS)"
+          },
+          {
+            "id": "c",
+            "text": "Inside a text editor"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "wsgi-asgi-content",
+      "title": "WSGI and ASGI Servers",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Standard Python web frameworks (like Flask or Django) run on development servers that cannot handle heavy production traffic.</p><p>We use production-grade application servers like <strong>Gunicorn</strong> (WSGI for synchronous apps) or <strong>Uvicorn</strong> (ASGI for asynchronous apps like FastAPI).</p><pre><code>gunicorn myproject.wsgi:application --bind 0.0.0.0:8000</code></pre>"
+    },
+    {
+      "id": "wsgi-asgi-match",
+      "title": "Match Python Servers to Use Cases",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Flask",
+            "right": "Gunicorn (WSGI)"
+          },
+          {
+            "left": "FastAPI",
+            "right": "Uvicorn (ASGI)"
+          },
+          {
+            "left": "Django (Sync)",
+            "right": "Gunicorn / uWSGI"
+          }
+        ]
+      }
+    },
+    {
+      "id": "env-variables-content",
+      "title": "Environment Variables & Security",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Never hardcode secrets like database passwords or API keys in your Python code.</p><p>Use the <code>python-dotenv</code> package or environment variables configured in your operating system/cloud host.</p><pre><code>import os\nDATABASE_URL = os.getenv('DATABASE_URL')</code></pre>"
+    },
+    {
+      "id": "env-blank",
+      "title": "Fill in the Environment Variable Function",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "sentence": "To retrieve an environment variable securely in Python, we use the os._______('KEY_NAME') function.",
+        "answer": "getenv"
+      }
+    },
+    {
+      "id": "containerization-docker",
+      "title": "Containerization with Docker",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Docker packages your Python application, its dependencies, and the exact Python runtime into a single container image.</p><pre><code>FROM python:3.10-slim\nWORKDIR /app\nCOPY requirements.txt .\nRUN pip install -r requirements.txt\nCOPY . .\nCMD [\"python\", \"main.py\"]</code></pre>"
+    },
+    {
+      "id": "docker-steps-order",
+      "title": "Order the Dockerfile Creation Steps",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "items": [
+          "Choose a base Python image (FROM python:3.10)",
+          "Set the working directory (WORKDIR /app)",
+          "Copy and install dependencies (pip install)",
+          "Copy the application source code",
+          "Specify the command to run the app (CMD)"
+        ]
+      }
+    },
+    {
+      "id": "ci-cd-content",
+      "title": "CI/CD Pipelines",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Continuous Integration and Continuous Deployment (CI/CD) automates testing and deployment.</p><p>Tools like GitHub Actions run your pytest test suite and automatically deploy to your server upon pushing to the main branch.</p>"
+    },
+    {
+      "id": "deployment-summary-mcq",
+      "title": "Final Deployment Check",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Commit debug=True and hardcoded passwords to public GitHub"
+          },
+          {
+            "id": "b",
+            "text": "Use environment variables, production WSGI/ASGI servers, and automated CI/CD"
+          }
+        ],
+        "correctId": "b"
+      }
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "title": "Automation with Python",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-automation",
+      "title": "Introduction to Python Automation",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Automation is the use of software and scripts to perform repetitive, manual tasks without human intervention.</p><p>Python is the premier language for automation due to its rich ecosystem of libraries and readable syntax.</p><pre><code>import time\nprint('Starting automated task...')\ntime.sleep(1)\nprint('Task complete!')</code></pre>"
+    },
+    {
+      "id": "file-mgmt-content",
+      "title": "File and Directory Management",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Python's built-in <code>os</code> and <code>shutil</code> modules allow you to automate file organization, renaming, and moving.</p><pre><code>import os\nimport shutil\n\n# Create a directory\nos.makedirs('backup', exist_ok=True)\n\n# Move a file\nshutil.move('data.txt', 'backup/data.txt')</code></pre>"
+    },
+    {
+      "id": "automation-mcq-1",
+      "title": "Choose the best library for file operations",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "requests"
+          },
+          {
+            "id": "b",
+            "text": "shutil"
+          },
+          {
+            "id": "c",
+            "text": "tkinter"
+          },
+          {
+            "id": "d",
+            "text": "json"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "web-scraping-content",
+      "title": "Web Scraping & Browser Automation",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Web automation involves extracting data from websites or interacting with web pages programmatically.</p><p>Libraries like <code>BeautifulSoup</code> parse HTML, while <code>Selenium</code> controls a real web browser to click buttons and fill forms.</p><pre><code>from selenium import webdriver\n\ndriver = webdriver.Chrome()\ndriver.get('https://example.com')\n# Automate interactions here\ndriver.quit()</code></pre>"
+    },
+    {
+      "id": "blank-task-scheduler",
+      "title": "Task Scheduling Blank",
+      "type": "blank",
+      "duration": "2m",
+      "content": "To run automation scripts at specific intervals or times, Python developers often use the ___ library."
+    },
+    {
+      "id": "match-libraries",
+      "title": "Match Python Libraries to Tasks",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "requests",
+            "right": "HTTP API calls"
+          },
+          {
+            "left": "openpyxl",
+            "right": "Excel spreadsheet manipulation"
+          },
+          {
+            "left": "smtplib",
+            "right": "Sending automated emails"
+          },
+          {
+            "left": "PyPDF2",
+            "right": "Reading and manipulating PDFs"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-workflow",
+      "title": "Order the Email Automation Workflow",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "steps": [
+          "Import smtplib and email modules",
+          "Establish a connection to the SMTP server",
+          "Log in with sender credentials",
+          "Compose the email message object",
+          "Send the email and close the connection"
+        ]
+      }
+    },
+    {
+      "id": "error-handling-content",
+      "title": "Error Handling in Automation",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Automated scripts often run unattended. Robust error handling ensures your script fails gracefully or retries when network issues or missing files occur.</p><pre><code>try:\n    os.remove('temp.log')\nexcept FileNotFoundError:\n    print('File already deleted or missing.')</code></pre>"
+    },
+    {
+      "id": "automation-mcq-2",
+      "title": "Why is exception handling critical in automation?",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "It makes the code run twice as fast."
+          },
+          {
+            "id": "b",
+            "text": "It prevents unattended scripts from crashing unexpectedly."
+          },
+          {
+            "id": "c",
+            "text": "It automatically writes unit tests for you."
+          },
+          {
+            "id": "d",
+            "text": "It eliminates the need for variables."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "conclusion-content",
+      "title": "Summary and Next Steps",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>You have explored the core components of Python automation: file handling, web tools, scheduling, and error management.</p><p>Start small by automating a tedious daily task, like organizing your downloads folder!</p>"
+    }
+  ]
+}

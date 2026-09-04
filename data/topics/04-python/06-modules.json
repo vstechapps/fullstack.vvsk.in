@@ -1,0 +1,128 @@
+{
+  "title": "Python Modules and Packages",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-modules",
+      "title": "Introduction to Python Modules",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>A module is simply a file containing Python code, definitions, and statements. Using modules allows you to logically organize your Python code into separate, manageable files.</p><p>You can use any Python source file as a module by executing an <code>import</code> statement in another Python file.</p><pre><code># my_module.py\ndef greet(name):\n    return f\"Hello, {name}!\"</code></pre>"
+    },
+    {
+      "id": "import-mcq",
+      "title": "Importing Modules",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "include my_module"
+          },
+          {
+            "id": "b",
+            "text": "import my_module"
+          },
+          {
+            "id": "c",
+            "text": "using my_module"
+          },
+          {
+            "id": "d",
+            "text": "require('my_module')"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "from-import-blank",
+      "title": "Fill in the Blank for Imports",
+      "type": "blank",
+      "duration": "3m",
+      "content": "To import a specific function called 'sqrt' from the 'math' module, you write: <blank> math import sqrt"
+    },
+    {
+      "id": "module-search-path",
+      "title": "The Module Search Path",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>When you import a module, Python searches for it in several locations in a specific order:</p><ul><li>The directory of the current script</li><li>The PYTHONPATH (a list of directory names)</li><li>The standard library directories</li><li>The site-packages directory of third-party libraries</li></ul><p>You can inspect this search path using the <code>sys</code> module:</p><pre><code>import sys\nprint(sys.path)</code></pre>"
+    },
+    {
+      "id": "match-components",
+      "title": "Match Module Concepts",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Module",
+            "right": "A single Python file containing code"
+          },
+          {
+            "left": "Package",
+            "right": "A directory containing multiple modules and an __init__.py file"
+          },
+          {
+            "left": "from ... import ...",
+            "right": "Syntax to bring specific attributes into the global namespace"
+          },
+          {
+            "left": "as",
+            "right": "Keyword used to create an alias"
+          }
+        ]
+      }
+    },
+    {
+      "id": "packages-content",
+      "title": "Understanding Python Packages",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>A package is a way of structuring Python's module namespace by using 'dotted module names'. A directory containing a file named <code>__init__.py</code> is treated as a package by Python.</p><pre><code>my_package/\n│\n├── __init__.py\n├── math_operations.py\n└── string_operations.py</code></pre><p>You can import from a package using dot notation: <code>from my_package import math_operations</code>.</p>"
+    },
+    {
+      "id": "order-execution",
+      "title": "Order of Module Import Resolution",
+      "type": "order",
+      "duration": "4m",
+      "content": {
+        "steps": [
+          "Check if the module is already loaded in sys.modules",
+          "Search the current directory where the running script is located",
+          "Search directories defined in the PYTHONPATH environment variable",
+          "Search the installation-dependent default standard library and site-packages paths"
+        ]
+      }
+    },
+    {
+      "id": "if-name-main-mcq",
+      "title": "Understanding __main__",
+      "type": "mcq",
+      "duration": "3m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "It executes every time the module is imported."
+          },
+          {
+            "id": "b",
+            "text": "It runs code only when the file is executed directly as a script."
+          },
+          {
+            "id": "c",
+            "text": "It deletes the module from memory."
+          },
+          {
+            "id": "d",
+            "text": "It is a syntax error in Python 3."
+          }
+        ],
+        "correctId": "b"
+      }
+    }
+  ]
+}

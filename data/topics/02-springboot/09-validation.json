@@ -1,0 +1,167 @@
+{
+  "title": "Spring Boot Validation",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-validation",
+      "title": "Introduction to Bean Validation",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Validation is a critical aspect of any application to ensure data integrity. In Spring Boot, validation is built on top of the <strong>Jakarta Bean Validation</strong> specification (formerly JSR 380), with <strong>Hibernate Validator</strong> serving as the default implementation.</p><p>To get started, you must include the starter dependency in your <code>pom.xml</code>:</p><pre><code>&lt;dependency&gt;\n  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;\n  &lt;artifactId&gt;spring-boot-starter-validation&lt;/artifactId&gt;\n&lt;/dependency&gt;</code></pre>"
+    },
+    {
+      "id": "standard-annotations",
+      "title": "Common Validation Annotations",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Bean Validation provides several built-in annotations that you can apply directly to your fields:</p><ul><li><code>@NotNull</code>: Checks that the annotated value is not null.</li><li><code>@NotEmpty</code>: Checks that the annotated property is not null and not empty (works for Strings, Collections).</li><li><code>@NotBlank</code>: Checks that the annotated string is not null and its trimmed length is greater than zero.</li><li><code>@Size(min=, max=)</code>: Validates that the size of a string, collection, or map is within the boundaries.</li><li><code>@Min</code> / <code>@Max</code>: Validates numeric values boundaries.</li><li><code>@Email</code>: Asserts that the string is a well-formed email address.</li></ul>"
+    },
+    {
+      "id": "mcq-notblank",
+      "title": "Choosing the Right String Validator",
+      "type": "mcq",
+      "duration": "1m 30s",
+      "content": {
+        "question": "Which annotation should you use to ensure a user's password contains characters and is not just empty spaces?",
+        "options": [
+          {
+            "id": "a",
+            "text": "@NotNull"
+          },
+          {
+            "id": "b",
+            "text": "@NotEmpty"
+          },
+          {
+            "id": "c",
+            "text": "@NotBlank"
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "controller-validation",
+      "title": "Triggering Validation in Controllers",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To instruct Spring Boot to validate incoming payloads, you must annotate incoming RequestBody parameter with the <code>@Valid</code> annotation.</p><pre><code>@PostMapping(\"/users\")\npublic ResponseEntity&lt;String&gt; createUser(@Valid @RequestBody UserDto userDto) {\n    return ResponseEntity.ok(\"User is valid!\");\n}</code></pre><p>If validation fails, Spring Boot automatically throws a <code>MethodArgumentNotValidException</code> and returns a <code>400 Bad Request</code> status.</p>"
+    },
+    {
+      "id": "blank-valid-annotation",
+      "title": "Identifying the Validator Trigger",
+      "type": "blank",
+      "duration": "1m 30s",
+      "content": {
+        "text": "To trigger the validation process on a controller method parameter in Spring, you must prefix the parameter with the [blank] annotation.",
+        "answer": "@Valid"
+      }
+    },
+    {
+      "id": "custom-validation",
+      "title": "Creating Custom Validators",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>When built-in annotations are not enough, you can create a custom constraint. This requires two main components:</p><ol><li>An <strong>annotation interface</strong> declared with <code>@Constraint(validatedBy = CustomValidator.class)</code>.</li><li>A <strong>validator class</strong> implementing <code>ConstraintValidator&lt;Annotation, FieldType&gt;</code>.</li></ol><pre><code>@Target({ElementType.FIELD})\n@Retention(RetentionPolicy.RUNTIME)\n@Constraint(validatedBy = IpAddressValidator.class)\npublic @interface IpAddress {\n    String message() default \"Invalid IP Address\";\n    Class&lt;?&gt;[] groups() default {};\n    Class&lt;?&gt;[] payload() default {};\n}</code></pre>"
+    },
+    {
+      "id": "match-constraints",
+      "title": "Match Constraints to Behavior",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "key": "@Email",
+            "value": "Validates a well-formed email address format"
+          },
+          {
+            "key": "@Size",
+            "value": "Validates boundaries of String length or collection size"
+          },
+          {
+            "key": "@Future",
+            "value": "Validates that a date/time field is in the future"
+          },
+          {
+            "key": "@Pattern",
+            "value": "Validates a field against a specific regular expression"
+          }
+        ]
+      }
+    },
+    {
+      "id": "exception-handling",
+      "title": "Handling Validation Exceptions",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>By default, Spring Boot returns a standard error layout when validation fails. To customize the payload structure, you can use <code>@RestControllerAdvice</code> alongside an <code>@ExceptionHandler</code> for <code>MethodArgumentNotValidException</code>.</p><pre><code>@RestControllerAdvice\npublic class GlobalExceptionHandler {\n    @ExceptionHandler(MethodArgumentNotValidException.class)\n    public ResponseEntity&lt;Map&lt;String, String&gt;&gt; handleValidationExceptions(MethodArgumentNotValidException ex) {\n        Map&lt;String, String&gt; errors = new HashMap&lt;&gt;();\n        ex.getBindingResult().getFieldErrors().forEach(error -&gt; \n            errors.put(error.getField(), error.getDefaultMessage()));\n        return ResponseEntity.badRequest().body(errors);\n    }\n}</code></pre>"
+    },
+    {
+      "id": "validation-order",
+      "title": "Order of execution in Spring Boot Validation",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "instruction": "Order the lifecycle phases of a request with invalid data entering your application:",
+        "items": [
+          {
+            "id": "1",
+            "text": "The incoming HTTP Request reaches the DispatcherServlet"
+          },
+          {
+            "id": "2",
+            "text": "Spring binds the request payload data to the Java object"
+          },
+          {
+            "id": "3",
+            "text": "The @Valid processor invokes validation annotations checking field rules"
+          },
+          {
+            "id": "4",
+            "text": "MethodArgumentNotValidException is raised due to validation failures"
+          },
+          {
+            "id": "5",
+            "text": "The @RestControllerAdvice captures the exception and serializes a structured JSON error response"
+          }
+        ]
+      }
+    },
+    {
+      "id": "validation-groups",
+      "title": "Validation Groups",
+      "type": "content",
+      "duration": "3m 30s",
+      "content": "<p>Sometimes, validation requirements differ depending on the application state. For example, a User ID must be null during user creation, but cannot be null during updates.</p><p>Using Validation Groups, you can assign constraints to specific interfaces:</p><pre><code>public interface OnCreate {}\npublic interface OnUpdate {}\n\npublic class UserDto {\n    @Null(groups = OnCreate.class)\n    @NotNull(groups = OnUpdate.class)\n    private Long id;\n}</code></pre><p>In the Controller, use <code>@Validated(OnCreate.class)</code> instead of <code>@Valid</code> to activate only creation rules.</p>"
+    },
+    {
+      "id": "mcq-valid-vs-validated",
+      "title": "@Valid vs @Validated",
+      "type": "mcq",
+      "duration": "1m 30s",
+      "content": {
+        "question": "Which of the following annotations is Spring-native and natively supports grouping validation rules?",
+        "options": [
+          {
+            "id": "a",
+            "text": "@Valid"
+          },
+          {
+            "id": "b",
+            "text": "@Validated"
+          },
+          {
+            "id": "c",
+            "text": "@GroupValid"
+          },
+          {
+            "id": "d",
+            "text": "@GroupValidated"
+          }
+        ],
+        "correctId": "b"
+      }
+    }
+  ]
+}

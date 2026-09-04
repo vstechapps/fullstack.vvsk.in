@@ -1,0 +1,170 @@
+{
+  "title": "Testing in Spring Boot",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-spring-testing",
+      "title": "Introduction to Spring Boot Testing",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Spring Boot provides excellent support for automated testing across different layers of your application. It categorizes tests into two main types:</p><ul><li><strong>Unit Tests:</strong> Test individual components in isolation without loading the Spring ApplicationContext.</li><li><strong>Integration Tests:</strong> Test components together, often starting a full or partial Spring ApplicationContext.</li></ul><p>The <code>spring-boot-starter-test</code> dependency automatically imports JUnit 5, Mockito, AssertJ, and Spring Test modules.</p>"
+    },
+    {
+      "id": "junit-mockito-basics",
+      "title": "Unit Testing with JUnit 5 & Mockito",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>When unit testing service classes, isolate them using Mockito. Use <code>@ExtendWith(MockitoExtension.class)</code> to enable Mockito annotations.</p><pre><code>@ExtendWith(MockitoExtension.class)\nclass UserServiceTest {\n    @Mock\n    private UserRepository userRepository;\n\n    @InjectMocks\n    private UserService userService;\n}</code></pre>"
+    },
+    {
+      "id": "junit-mcq",
+      "title": "JUnit 5 Extension Annotation",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "Which annotation is used in JUnit 5 to enable Mockito extensions?",
+        "options": [
+          {
+            "id": "a",
+            "text": "@RunWith(MockitoJUnitRunner.class)"
+          },
+          {
+            "id": "b",
+            "text": "@ExtendWith(MockitoExtension.class)"
+          },
+          {
+            "id": "c",
+            "text": "@EnableMockito"
+          },
+          {
+            "id": "d",
+            "text": "@SpringBootTest"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "mockbean-explanation",
+      "title": "Mocking Spring Beans with @MockBean",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>When testing within a Spring Context (e.g., Integration or Slice tests), standard <code>@Mock</code> isn't registered in the Spring Container. Use <code>@MockBean</code> to add a Mockito mock into the Spring ApplicationContext, replacing any existing bean of the same type.</p>"
+    },
+    {
+      "id": "mockbean-blank",
+      "title": "Spring Test Mocking Keyword",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "sentence": "To replace a bean with a Mockito mock inside the Spring ApplicationContext, use the annotation _____.",
+        "correctAnswer": "@MockBean"
+      }
+    },
+    {
+      "id": "web-layer-testing",
+      "title": "Testing Web Layer with @WebMvcTest",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p><code>@WebMvcTest</code> is used for slice testing REST Controllers. It disables full autoconfiguration and loads only beans relevant to Web MVC (e.g., Controllers, ControllerAdvice, Filters).</p><pre><code>@WebMvcTest(UserController.class)\nclass UserControllerTest {\n    @Autowired\n    private MockMvc mockMvc;\n\n    @MockBean\n    private UserService userService;\n}</code></pre>"
+    },
+    {
+      "id": "mockmvc-order",
+      "title": "MockMvc Request Execution Flow",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "instructions": "Order the steps to build and verify a MockMvc HTTP request test.",
+        "items": [
+          {
+            "id": "step-1",
+            "text": "Call mockMvc.perform(get(\"/api/users\"))"
+          },
+          {
+            "id": "step-2",
+            "text": "Chain .andExpect(status().isOk())"
+          },
+          {
+            "id": "step-3",
+            "text": "Chain .andExpect(jsonPath(\"$.name\").value(\"John\"))"
+          },
+          {
+            "id": "step-4",
+            "text": "Chain .andDo(print()) for output logging"
+          }
+        ]
+      }
+    },
+    {
+      "id": "data-jpa-testing",
+      "title": "Data JPA Testing with @DataJpaTest",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p><code>@DataJpaTest</code> focuses only on JPA components. It configures an in-memory database by default, scans for <code>@Entity</code> classes, and configures Spring Data JPA repositories.</p><p>By default, tests annotated with <code>@DataJpaTest</code> are transactional and roll back at the end of each test.</p>"
+    },
+    {
+      "id": "test-annotation-match",
+      "title": "Match Annotations with Test Scopes",
+      "type": "match",
+      "duration": "4m",
+      "content": {
+        "pairs": [
+          {
+            "left": "@SpringBootTest",
+            "right": "Loads complete ApplicationContext for integration tests"
+          },
+          {
+            "left": "@WebMvcTest",
+            "right": "Focuses only on Spring MVC components (Controllers)"
+          },
+          {
+            "left": "@DataJpaTest",
+            "right": "Focuses only on JPA repositories and entities with transactional rollback"
+          },
+          {
+            "left": "@JsonTest",
+            "right": "Tests JSON serialization and deserialization"
+          }
+        ]
+      }
+    },
+    {
+      "id": "test-slice-mcq",
+      "title": "Selecting the Right Test Slice",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "question": "Which annotation should you use if you want to test ONLY the Controller layer without booting up the entire application context?",
+        "options": [
+          {
+            "id": "a",
+            "text": "@SpringBootTest"
+          },
+          {
+            "id": "b",
+            "text": "@WebMvcTest"
+          },
+          {
+            "id": "c",
+            "text": "@DataJpaTest"
+          },
+          {
+            "id": "d",
+            "text": "@ContextConfiguration"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "mockmvc-blank",
+      "title": "MockMvc Assertion Method",
+      "type": "blank",
+      "duration": "3m",
+      "content": {
+        "sentence": "In MockMvc fluent assertions, method used to verify responses is _____.",
+        "correctAnswer": "andExpect"
+      }
+    }
+  ]
+}

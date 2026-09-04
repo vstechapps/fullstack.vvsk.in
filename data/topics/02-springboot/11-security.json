@@ -1,0 +1,211 @@
+{
+  "title": "Spring Security Essentials for Spring Boot Developers",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "sec-intro",
+      "title": "Introduction to Spring Security",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Spring Security is a powerful, highly customizable framework for authentication and access control in Java applications.</p><p>Key concepts include:</p><ul><li><strong>Authentication:</strong> Verifying who a user is (\"Who are you?\").</li><li><strong>Authorization:</strong> Determining whether a user is allowed to perform an action (\"What can you do?\").</li></ul>"
+    },
+    {
+      "id": "sec-filter-chain-concept",
+      "title": "The Security Filter Chain",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Spring Security is built on top of Servlet <code>Filter</code>s. Every HTTP request passes through a chain of filters before reaching your controller.</p><pre><code>Request -&gt; Filter 1 -&gt; Filter 2 -&gt; SecurityFilterChain -&gt; Controller</code></pre><p>Common filters in the chain include <code>UsernamePasswordAuthenticationFilter</code>, <code>BearerTokenAuthenticationFilter</code>, and <code>ExceptionTranslationFilter</code>.</p>"
+    },
+    {
+      "id": "auth-vs-authz-match",
+      "title": "Match Security Terms",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Authentication",
+            "right": "Verifying identity using credentials like login/password"
+          },
+          {
+            "left": "Authorization",
+            "right": "Checking permissions to grant access to a resource"
+          },
+          {
+            "left": "Principal",
+            "right": "The currently authenticated user or entity"
+          },
+          {
+            "left": "GrantedAuthority",
+            "right": "A permission or role assigned to a user"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sec-config-code",
+      "title": "Configuring SecurityFilterChain in Spring Boot 3",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>In Spring Boot 3, security is configured using a bean definition of type <code>SecurityFilterChain</code> rather than extending legacy adapter classes.</p><pre><code>@Configuration\n@EnableWebSecurity\npublic class SecurityConfig {\n\n    @Bean\n    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {\n        http\n            .authorizeHttpRequests(auth -&gt; auth\n                .requestMatchers(\"/public/**\").permitAll()\n                .anyRequest().authenticated()\n            )\n            .formLogin(Customizer.withDefaults());\n        return http.build();\n    }\n}</code></pre>"
+    },
+    {
+      "id": "sec-chain-mcq",
+      "title": "Configuring Endpoint Access",
+      "type": "mcq",
+      "duration": "1m 30s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "http.authorizeHttpRequests().antMatchers('/public/**').permitAll()"
+          },
+          {
+            "id": "b",
+            "text": "auth.requestMatchers(\"/public/**\").permitAll()"
+          },
+          {
+            "id": "c",
+            "text": "@WebSecurityAllow(\"/public/**\")"
+          },
+          {
+            "id": "d",
+            "text": "http.ignore(\"/public/**\")"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "password-encoder-content",
+      "title": "Password Hashing with PasswordEncoder",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Passwords must never be stored in plain text. Spring Security provides the <code>PasswordEncoder</code> interface for one-way password hashing.</p><p>The recommended implementation is <code>BCryptPasswordEncoder</code>, which uses the BCrypt strong hashing function with salt.</p><pre><code>@Bean\npublic PasswordEncoder passwordEncoder() {\n    return new BCryptPasswordEncoder();\n}</code></pre>"
+    },
+    {
+      "id": "password-encoder-blank",
+      "title": "Identify Recommended Password Encoder",
+      "type": "blank",
+      "duration": "1m",
+      "content": {
+        "text": "The default and recommended implementation for secure password hashing in modern Spring Security applications is _____PasswordEncoder.",
+        "correctAnswer": "BCrypt"
+      }
+    },
+    {
+      "id": "user-details-service",
+      "title": "Loading Users via UserDetailsService",
+      "type": "content",
+      "duration": "3m 30s",
+      "content": "<p>To load user-specific data during authentication, implement the <code>UserDetailsService</code> interface and override its single method:</p><pre><code>@Service\npublic class CustomUserDetailsService implements UserDetailsService {\n\n    @Override\n    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {\n        // Load user from database or external source\n        return new User(user.getUsername(), user.getPassword(), authorities);\n    }\n}</code></pre>"
+    },
+    {
+      "id": "method-security-content",
+      "title": "Method-Level Authorization",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>You can secure individual service methods using annotations. Enable method security on a configuration class with <code>@EnableMethodSecurity</code>.</p><pre><code>@Service\npublic class DocumentService {\n\n    @PreAuthorize(\"hasRole('ADMIN')\")\n    public void deleteDocument(Long id) {\n        // Admin only operation\n    }\n}</code></pre>"
+    },
+    {
+      "id": "annotation-match",
+      "title": "Match Annotations to Their Purposes",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "left": "@EnableWebSecurity",
+            "right": "Enables Spring Security web integration"
+          },
+          {
+            "left": "@EnableMethodSecurity",
+            "right": "Enables annotations like @PreAuthorize"
+          },
+          {
+            "left": "@PreAuthorize",
+            "right": "Checks expression before invoking the target method"
+          },
+          {
+            "left": "@PostAuthorize",
+            "right": "Checks expression after method execution using returned value"
+          }
+        ]
+      }
+    },
+    {
+      "id": "csrf-mcq",
+      "title": "Understanding CSRF Protection",
+      "type": "mcq",
+      "duration": "1m 30s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "CSRF protection should always be disabled for browser-based session applications."
+          },
+          {
+            "id": "b",
+            "text": "CSRF protection is enabled by default and recommended for browser endpoints using session cookies."
+          },
+          {
+            "id": "c",
+            "text": "CSRF stands for Cross-Site Resource Filtering."
+          },
+          {
+            "id": "d",
+            "text": "Stateless REST APIs using Bearer JWT tokens strictly require CSRF tokens."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "auth-flow-order",
+      "title": "Order the Authentication Flow",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "items": [
+          {
+            "id": "step-1",
+            "text": "HTTP request with credentials arrives at Security Filter"
+          },
+          {
+            "id": "step-2",
+            "text": "Filter extracts credentials and creates an unauthenticated Authentication Token"
+          },
+          {
+            "id": "step-3",
+            "text": "AuthenticationManager delegates verification to appropriate AuthenticationProvider"
+          },
+          {
+            "id": "step-4",
+            "text": "UserDetailsService retrieves UserDetails and PasswordEncoder matches password"
+          },
+          {
+            "id": "step-5",
+            "text": "Fully authenticated Authentication object is stored in SecurityContextHolder"
+          }
+        ],
+        "correctOrder": [
+          "step-1",
+          "step-2",
+          "step-3",
+          "step-4",
+          "step-5"
+        ]
+      }
+    },
+    {
+      "id": "security-context-blank",
+      "title": "Accessing Current User Context",
+      "type": "blank",
+      "duration": "1m 30s",
+      "content": {
+        "text": "In Spring Security, the current security details and authenticated principal are stored in the SecurityContext, which is retrieved via SecurityContext_____.getContext().",
+        "correctAnswer": "Holder"
+      }
+    }
+  ]
+}

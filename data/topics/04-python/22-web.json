@@ -1,0 +1,118 @@
+{
+  "title": "Web Development for Python Developers",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-web-dev",
+      "title": "Introduction to Web Development",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>As a Python developer, understanding web development involves bridging the gap between Python backend frameworks (like Django or FastAPI) and frontend technologies (HTML, CSS, JavaScript) that run in the browser.</p>"
+    },
+    {
+      "id": "http-request-mcq",
+      "title": "HTTP Methods",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "GET is used to send sensitive data securely in the URL."
+          },
+          {
+            "id": "b",
+            "text": "POST is typically used to send data to create or update a resource."
+          },
+          {
+            "id": "c",
+            "text": "PUT is used exclusively for deleting resources."
+          },
+          {
+            "id": "d",
+            "text": "DELETE cannot be handled by standard web browsers."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "html-css-basics",
+      "title": "HTML and CSS Essentials",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>HTML provides the structure of a webpage, while CSS handles the styling.</p>\n<pre><code>&lt;div class=\"container\"&gt;\n  &lt;h1&gt;Hello World&lt;/h1&gt;\n&lt;/div&gt;</code></pre>\n<p>CSS:</p>\n<pre><code>.container {\n  background-color: #f0f0f0;\n}</code></pre>"
+    },
+    {
+      "id": "python-web-match",
+      "title": "Match Python Frameworks to their Concepts",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Django",
+            "right": "Batteries-included full-stack framework"
+          },
+          {
+            "left": "FastAPI",
+            "right": "Modern, fast API framework with automatic docs"
+          },
+          {
+            "left": "Flask",
+            "right": "Microframework focused on simplicity"
+          }
+        ]
+      }
+    },
+    {
+      "id": "javascript-blank",
+      "title": "JavaScript DOM Manipulation",
+      "type": "blank",
+      "duration": "5m",
+      "content": {
+        "text": "To select an element by its ID in JavaScript, we commonly use the document._____('my-id') method.",
+        "correctAnswers": [
+          "getElementById"
+        ]
+      }
+    },
+    {
+      "id": "request-lifecycle-order",
+      "title": "HTTP Request Lifecycle",
+      "type": "order",
+      "duration": "5m",
+      "content": {
+        "steps": [
+          {
+            "id": "1",
+            "text": "Client enters URL and browser sends an HTTP request."
+          },
+          {
+            "id": "2",
+            "text": "Web server receives request and routes it to the Python application."
+          },
+          {
+            "id": "3",
+            "text": "Python code processes business logic and queries database."
+          },
+          {
+            "id": "4",
+            "text": "Server returns an HTTP response containing HTML/JSON."
+          },
+          {
+            "id": "5",
+            "text": "Browser renders the response for the user."
+          }
+        ]
+      }
+    },
+    {
+      "id": "summary-conclusion",
+      "title": "Conclusion",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>You now have a foundational understanding of how web development concepts map to Python development. Continue building full-stack applications to solidify these skills!</p>"
+    }
+  ]
+}

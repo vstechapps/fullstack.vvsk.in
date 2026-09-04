@@ -1,0 +1,217 @@
+{
+  "title": "Spring Data JPA",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "jpa-orm-intro",
+      "title": "Introduction to ORM and JPA",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Object-Relational Mapping (ORM) bridges the gap between object-oriented programming (Java) and relational databases (SQL).</p><p><strong>JPA (Jakarta Persistence API)</strong> is a specification (a set of interfaces and rules), while <strong>Hibernate</strong> is the most common implementation of this specification.</p>"
+    },
+    {
+      "id": "spring-data-jpa-overview",
+      "title": "What is Spring Data JPA?",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Spring Data JPA is a part of the umbrella Spring Data project. It makes it easy to implement JPA-based repositories.</p><p>Instead of writing boilerplate EntityManager code and transaction management manually, Spring Data JPA allows you to simply define repository interfaces, and it generates the implementations automatically at runtime.</p>"
+    },
+    {
+      "id": "entity-mapping",
+      "title": "Entity Mapping Basics",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>An entity represents a table in your database. Every entity class must be annotated with <code>@Entity</code> and have a primary key marked with <code>@Id</code>.</p>\n<pre><code>@Entity\npublic class User {\n    @Id\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\n    private Long id;\n    \n    @Column(name = \"user_name\", nullable = false)\n    private String username;\n}</code></pre>"
+    },
+    {
+      "id": "entity-annotations-mcq",
+      "title": "JPA Entity Annotation",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "Which annotation is used to specify that a Java class represents a database table in JPA?",
+        "options": [
+          {
+            "id": "a",
+            "text": "@TableOnly"
+          },
+          {
+            "id": "b",
+            "text": "@Entity"
+          },
+          {
+            "id": "c",
+            "text": "@Repository"
+          },
+          {
+            "id": "d",
+            "text": "@DatabaseTable"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "repository-interfaces",
+      "title": "Repository Interfaces hierarchy",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Spring Data JPA provides built-in interfaces to handle common CRUD operations:</p><ul><li><strong>Repository</strong>: The base marker interface.</li><li><strong>CrudRepository</strong>: Provides basic CRUD operations (save, findById, delete).</li><li><strong>PagingAndSortingRepository</strong>: Adds pagination and sorting capabilities.</li><li><strong>JpaRepository</strong>: Combines all of the above plus JPA-specific operations like flushing the persistence context and deleting in batches.</li></ul>"
+    },
+    {
+      "id": "repository-blank",
+      "title": "Defining a Repository",
+      "type": "blank",
+      "duration": "1m",
+      "content": {
+        "text": "Complete the repository definition for an entity named 'Product' with a primary key of type 'Long':\n\npublic interface ProductRepository extends JpaRepository<Product, [blank]> { }",
+        "answer": "Long"
+      }
+    },
+    {
+      "id": "derived-query-methods",
+      "title": "Derived Query Methods",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>One of the most powerful features of Spring Data JPA is the ability to derive queries directly from method names.</p><p>Spring parses the method name and automatically creates the SQL query. For example:</p>\n<pre><code>List&lt;User&gt; findByEmailAddressAndLastName(String emailAddress, String lastName);</code></pre>\n<p>It supports operators like <code>Like</code>, <code>Between</code>, <code>LessThan</code>, <code>GreaterThan</code>, and <code>Containing</code>.</p>"
+    },
+    {
+      "id": "derived-query-order",
+      "title": "Execution Steps of Derived Queries",
+      "type": "order",
+      "duration": "1m 30s",
+      "content": {
+        "instruction": "Order the steps Spring Data JPA takes to execute a derived query method at runtime:",
+        "items": [
+          {
+            "id": "step-1",
+            "text": "Spring parses the repository method name (e.g., findByEmail)."
+          },
+          {
+            "id": "step-2",
+            "text": "Spring translates the method name into an abstract JPQL query representation."
+          },
+          {
+            "id": "step-3",
+            "text": "Hibernate compiles JPQL into database-specific SQL dialect."
+          },
+          {
+            "id": "step-4",
+            "text": "Spring binds the method arguments to the SQL statement parameters."
+          },
+          {
+            "id": "step-5",
+            "text": "SQL is executed on the database, and JDBC ResultSet is mapped back to Entity objects."
+          }
+        ],
+        "correctOrder": [
+          "step-1",
+          "step-2",
+          "step-3",
+          "step-4",
+          "step-5"
+        ]
+      }
+    },
+    {
+      "id": "query-annotation",
+      "title": "Custom Queries with @Query",
+      "type": "content",
+      "duration": "2m 30s",
+      "content": "<p>When derived query methods become too complex, use the <code>@Query</code> annotation. It supports both JPQL (default) and native SQL queries.</p>\n<pre><code>// JPQL (deals with Entity classes and fields)\n@Query(\"SELECT u FROM User u WHERE u.status = :status\")\nList&lt;User&gt; findByStatus(@Param(\"status\") String status);\n\n// Native SQL (deals with actual tables and columns)\n@Query(value = \"SELECT * FROM users WHERE status = ?1\", nativeQuery = true)\nList&lt;User&gt; findByStatusNative(String status);</code></pre>"
+    },
+    {
+      "id": "jpql-vs-native-match",
+      "title": "JPQL vs Native SQL Match",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "instruction": "Match each feature to its corresponding query type:",
+        "pairs": [
+          {
+            "key": "JPQL",
+            "value": "Operates directly on Java Entities and object properties"
+          },
+          {
+            "key": "Native SQL",
+            "value": "Operates on physical database tables and column names"
+          },
+          {
+            "key": "Database Portability",
+            "value": "JPQL automatically adapts to different database dialects"
+          },
+          {
+            "key": "Database-Specific Functions",
+            "value": "Native SQL is ideal for accessing non-standard database extensions"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pagination-sorting",
+      "title": "Pagination and Sorting",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To prevent performance issues when querying large tables, use pagination. Spring Data JPA makes this simple by accepting a <code>Pageable</code> parameter and returning a <code>Page</code> or <code>Slice</code>.</p>\n<pre><code>Pageable pageable = PageRequest.of(0, 10, Sort.by(\"username\").descending());\nPage&lt;User&gt; usersPage = userRepository.findAll(pageable);</code></pre>\n<p><code>Page</code> returns the requested data plus the total count of matching records (requires an extra SQL count query).</p>"
+    },
+    {
+      "id": "page-vs-slice-mcq",
+      "title": "Page vs Slice",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "What is the primary performance advantage of returning Slice instead of Page?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Slice does not trigger an extra count query to the database, which is faster for large datasets."
+          },
+          {
+            "id": "b",
+            "text": "Slice automatically compresses the data returned over the network."
+          },
+          {
+            "id": "c",
+            "text": "Slice does not support sorting, making execution simpler."
+          },
+          {
+            "id": "d",
+            "text": "Slice allows you to bypass transactional boundaries."
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "transaction-management",
+      "title": "Transaction Management",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Database operations must be performed within transaction boundaries to ensure consistency (ACID properties).</p><p>Use the Spring Framework's <code>@Transactional</code> annotation on your service classes or methods. Spring Data JPA's built-in repository methods (like <code>save()</code> or <code>delete()</code>) are transactional by default.</p>"
+    },
+    {
+      "id": "transaction-blank",
+      "title": "Enabling Transactions",
+      "type": "blank",
+      "duration": "1m",
+      "content": {
+        "text": "What annotation is used to declare that a service method must execute within a transactional context?\n\n@[blank]",
+        "answer": "Transactional"
+      }
+    },
+    {
+      "id": "jpa-auditing",
+      "title": "Auditing in Spring Data JPA",
+      "type": "content",
+      "duration": "2m 30s",
+      "content": "<p>Auditing allows you to automatically track metadata like who created or modified an entity and when.</p><p>By adding <code>@EnableJpaAuditing</code> to your configuration, you can use annotations inside your entities:</p><ul><li><code>@CreatedDate</code>: Captures when the entity was created.</li><li><code>@LastModifiedDate</code>: Captures when the entity was last updated.</li><li><code>@CreatedBy</code>: Captures who created the entity (integrates with Spring Security).</li></ul>"
+    },
+    {
+      "id": "jpa-summary",
+      "title": "Summary & Best Practices",
+      "type": "content",
+      "duration": "1m",
+      "content": "<p>Congratulations! You've learned the core tenets of Spring Data JPA:</p><ul><li>Define entities with <code>@Entity</code> and <code>@Id</code></li><li>Extend <code>JpaRepository</code> for instant CRUD</li><li>Leverage Derived Queries and custom <code>@Query</code> when needed</li><li>Implement Pagination with <code>Pageable</code> to safeguard performance</li><li>Protect data integrity using <code>@Transactional</code></li></ul>"
+    }
+  ]
+}

@@ -1,0 +1,192 @@
+{
+  "title": "JSON Web Tokens (JWT) in Spring Boot",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "jwt-intro",
+      "title": "Introduction to JSON Web Tokens",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>A <strong>JSON Web Token (JWT)</strong> is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object.</p><p>A JWT consists of three parts separated by dots (<code>.</code>):</p><ul><li><strong>Header</strong>: Algorithm & token type</li><li><strong>Payload</strong>: Claims (data)</li><li><strong>Signature</strong>: Used to verify message integrity</li></ul><pre><code>eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMTIzIn0.s3crM7...</code></pre>"
+    },
+    {
+      "id": "jwt-structure-mcq",
+      "title": "JWT Encoding Standard",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "Which encoding scheme is used to encode the Header and Payload of a JWT?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Hexadecimal Encoding"
+          },
+          {
+            "id": "b",
+            "text": "Base64URL Encoding"
+          },
+          {
+            "id": "c",
+            "text": "URLEncoded UTF-8"
+          },
+          {
+            "id": "d",
+            "text": "ASCII Plain Text"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "stateless-auth",
+      "title": "Stateless Authentication in Spring Boot",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>In RESTful APIs, session management should ideally be <strong>stateless</strong>. Traditional session IDs require backend session storage, scaling challenges, and sticky sessions.</p><p>With JWTs:</p><ul><li> backend server does not store session state.</li><li>Every HTTP request contains the JWT in the <code>Authorization</code> header: <code>Bearer &lt;token&gt;</code>.</li><li>Spring Security extracts and validates the token per request.</li></ul>"
+    },
+    {
+      "id": "jwt-components-match",
+      "title": "Match JWT Parts to Their Role",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Header",
+            "right": "Specifies signing algorithm (e.g. HS256) and token type"
+          },
+          {
+            "left": "Payload",
+            "right": "Contains statements about an entity (claims) like user roles and expiry"
+          },
+          {
+            "left": "Signature",
+            "right": "Calculated by signing encoded header and payload with a secret key"
+          }
+        ]
+      }
+    },
+    {
+      "id": "jjwt-dependencies",
+      "title": "Adding JJWT Dependencies",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To work with JWTs in Spring Boot, we commonly use the <code>jjwt</code> library by Java JWT.</p><pre><code>&lt;dependency&gt;\n  &lt;groupId&gt;io.jsonwebtoken&lt;/groupId&gt;\n  &lt;artifactId&gt;jjwt-api&lt;/artifactId&gt;\n  &lt;version&gt;0.11.5&lt;/version&gt;\n&lt;/dependency&gt;\n&lt;dependency&gt;\n  &lt;groupId&gt;io.jsonwebtoken&lt;/groupId&gt;\n  &lt;artifactId&gt;jjwt-impl&lt;/artifactId&gt;\n  &lt;version&gt;0.11.5&lt;/version&gt;\n  &lt;scope&gt;runtime&lt;/scope&gt;\n&lt;/dependency&gt;</code></pre>"
+    },
+    {
+      "id": "jwt-blank-filter",
+      "title": "Custom Filter Class Base",
+      "type": "blank",
+      "duration": "1m",
+      "content": {
+        "question": "In Spring Security, a custom JWT filter usually extends the ______ class to guarantee a single execution per request dispatch.",
+        "correctAnswer": "OncePerRequestFilter"
+      }
+    },
+    {
+      "id": "jwt-generator",
+      "title": "Generating Tokens with Jwts.builder()",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Create a utility class to build and sign JWT tokens:</p><pre><code>public String generateToken(UserDetails userDetails) {\n  return Jwts.builder()\n    .setSubject(userDetails.getUsername())\n    .setIssuedAt(new Date())\n    .setExpiration(new Date(System.currentTimeMillis() + 86400000))\n    .signWith(getSigningKey(), SignatureAlgorithm.HS256)\n    .compact();\n}</code></pre>"
+    },
+    {
+      "id": "jwt-creation-order",
+      "title": "Sequence of JWT Building",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Initialize Jwts.builder()"
+          },
+          {
+            "id": "2",
+            "text": "Set Subject, IssuedAt, and Expiration claims"
+          },
+          {
+            "id": "3",
+            "text": "Sign with Secret Key and SignatureAlgorithm"
+          },
+          {
+            "id": "4",
+            "text": "Invoke compact() to produce serialized JWT String"
+          }
+        ]
+      }
+    },
+    {
+      "id": "jwt-validation",
+      "title": "Validating and Parsing Tokens",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>When receiving requests, validate token signature and expiration:</p><pre><code>public Claims extractClaims(String token) {\n  return Jwts.parserBuilder()\n    .setSigningKey(getSigningKey())\n    .build()\n    .parseClaimsJws(token)\n    .getBody();\n}</code></pre><p>Common exceptions thrown during parsing: <code>ExpiredJwtException</code>, <code>MalformedJwtException</code>, <code>SignatureException</code>.</p>"
+    },
+    {
+      "id": "jwt-exception-mcq",
+      "title": "JWT Exception Handling",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "Which exception is thrown by JJWT when parsing a token whose expiration time (exp) has passed?",
+        "options": [
+          {
+            "id": "a",
+            "text": "SignatureException"
+          },
+          {
+            "id": "b",
+            "text": "ExpiredJwtException"
+          },
+          {
+            "id": "c",
+            "text": "UnsupportedJwtException"
+          },
+          {
+            "id": "d",
+            "text": "IllegalArgumentException"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "security-config",
+      "title": "Integrating JWT with SecurityFilterChain",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Disable session creation and add the custom JWT filter before Spring Security's authentication filter:</p><pre><code>@Bean\npublic SecurityFilterChain filterChain(HttpSecurity http) throws Exception {\n  http.csrf(csrf -&gt; csrf.disable())\n      .sessionManagement(s -&gt; s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))\n      .authorizeHttpRequests(auth -&gt; auth\n          .requestMatchers(\"/api/auth/**\").permitAll()\n          .anyRequest().authenticated()\n      )\n      .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);\n  return http.build();\n}</code></pre>"
+    },
+    {
+      "id": "jwt-flow-order",
+      "title": "End-to-End Request Authentication Flow",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Client sends HTTP request with 'Authorization: Bearer <token>' header"
+          },
+          {
+            "id": "2",
+            "text": "JwtAuthFilter intercepts request and extracts token"
+          },
+          {
+            "id": "3",
+            "text": "Token is parsed and validated using secret key"
+          },
+          {
+            "id": "4",
+            "text": "UsernamePasswordAuthenticationToken is placed in SecurityContextHolder"
+          },
+          {
+            "id": "5",
+            "text": "Request proceeds to REST Controller"
+          }
+        ]
+      }
+    }
+  ]
+}

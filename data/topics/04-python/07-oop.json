@@ -1,0 +1,147 @@
+{
+  "title": "Object-Oriented Programming in Python",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "oop-intro",
+      "title": "Introduction to OOP",
+      "type": "content",
+      "duration": "1m",
+      "content": "<p>Object-Oriented Programming (OOP) is a programming paradigm that uses <strong>classes</strong> and <strong>objects</strong> to practice code reusability, organization, and modularity.</p><p>Python is a multi-paradigm language, meaning it fully supports OOP principles.</p>"
+    },
+    {
+      "id": "class-and-object",
+      "title": "Classes and Objects",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>A <strong>class</strong> is a blueprint for creating objects, while an <strong>object</strong> is an instance of a class.</p>\n<pre><code>class Car:\n    def __init__(self, brand):\n        self.brand = brand\n\nmy_car = Car(\"Toyota\")\nprint(my_car.brand)  # Output: Toyota</code></pre>"
+    },
+    {
+      "id": "oop-mcq-1",
+      "title": "Understanding Classes and Objects",
+      "type": "mcq",
+      "duration": "45s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "An object is the blueprint of a class."
+          },
+          {
+            "id": "b",
+            "text": "A class is an instance of an object."
+          },
+          {
+            "id": "c",
+            "text": "An object is an instance of a class."
+          },
+          {
+            "id": "d",
+            "text": "Classes and objects are unrelated concepts."
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "four-pillars",
+      "title": "The Four Pillars of OOP",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Object-Oriented Programming relies on four fundamental principles:</p><ul><li><strong>Encapsulation:</strong> Bundling data and methods that work on that data within one unit.</li><li><strong>Inheritance:</strong> Creating a new class from an existing class to reuse code.</li><li><strong>Polymorphism:</strong> Using a uniform interface for different data types or classes.</li><li><strong>Abstraction:</strong> Hiding complex implementation details and showing only the essential features.</li></ul>"
+    },
+    {
+      "id": "oop-match-pillars",
+      "title": "Match OOP Pillars with Descriptions",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Inheritance",
+            "right": "Reusing code by deriving a new class from an existing one"
+          },
+          {
+            "left": "Encapsulation",
+            "right": "Restricting direct access to data using private variables"
+          },
+          {
+            "left": "Polymorphism",
+            "right": "Allowing different classes to have methods with the same name"
+          },
+          {
+            "left": "Abstraction",
+            "right": "Hiding internal details and exposing only necessary features"
+          }
+        ]
+      }
+    },
+    {
+      "id": "constructor-blank",
+      "title": "Python Constructor Syntax",
+      "type": "blank",
+      "duration": "1m",
+      "content": {
+        "text": "In Python, the special method used to initialize an object's attributes is called __[blank]__.",
+        "correctAnswers": [
+          "init"
+        ]
+      }
+    },
+    {
+      "id": "inheritance-content",
+      "title": "Inheritance in Python",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Inheritance allows a class (child class) to inherit attributes and methods from another class (parent class).</p>\n<pre><code>class Animal:\n    def speak(self):\n        return \"Animal speaks\"\n\nclass Dog(Animal):\n    def speak(self):\n        return \"Woof!\"\n\nd = Dog()\nprint(d.speak())  # Output: Woof!</code></pre>"
+    },
+    {
+      "id": "oop-order-execution",
+      "title": "Order of Class Instantiation",
+      "type": "order",
+      "duration": "1m",
+      "content": {
+        "steps": [
+          "Define the class using the 'class' keyword",
+          "Implement the __init__ constructor method",
+          "Pass the required arguments to the class",
+          "Call methods on the instantiated object"
+        ]
+      }
+    },
+    {
+      "id": "oop-mcq-super",
+      "title": "The super() Function",
+      "type": "mcq",
+      "duration": "45s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "It refers to the child class itself."
+          },
+          {
+            "id": "b",
+            "text": "It is used to call methods and constructors from a parent class."
+          },
+          {
+            "id": "c",
+            "text": "It deletes an object from memory."
+          },
+          {
+            "id": "d",
+            "text": "It makes all class attributes private."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "summary",
+      "title": "OOP Summary",
+      "type": "content",
+      "duration": "1m",
+      "content": "<p>You have learned the core concepts of Object-Oriented Programming in Python:</p><ul><li>Classes and Objects</li><li>The <code>__init__</code> constructor</li><li>The Four Pillars: Encapsulation, Inheritance, Polymorphism, and Abstraction</li></ul><p>Use these principles to write clean, modular, and maintainable Python applications.</p>"
+    }
+  ]
+}

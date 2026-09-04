@@ -1,0 +1,142 @@
+{
+  "title": "Spring Boot Deployment",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-deployment",
+      "title": "Introduction to Spring Boot Deployment",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Spring Boot makes deployment easy because it comes with an embedded servlet container (like Tomcat or Jetty). You don't need to manually set up an external application server.</p>\n<p>Common deployment targets include executable JAR files, Docker containers, and Cloud platforms like AWS, Heroku, or GCP.</p>"
+    },
+    {
+      "id": "jar-vs-war",
+      "title": "JAR vs WAR Packaging",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>By default, Spring Boot projects are packaged as <strong>JAR</strong> files, running via <code>java -jar app.jar</code>.</p>\n<p>You can also configure your project to build a <strong>WAR</strong> file if you need to deploy it to a traditional external application server.</p>"
+    },
+    {
+      "id": "packaging-mcq",
+      "title": "Default Packaging Format",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "WAR"
+          },
+          {
+            "id": "b",
+            "text": "JAR"
+          },
+          {
+            "id": "ear",
+            "text": "EAR"
+          },
+          {
+            "id": "zip",
+            "text": "ZIP"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "executable-jar-blank",
+      "title": "Running the Application",
+      "type": "blank",
+      "duration": "2m",
+      "content": "To run a Spring Boot packaged application from the command line, you use the command: java [blank] application.jar"
+    },
+    {
+      "id": "dockerizing-spring-boot",
+      "title": "Containerization with Docker",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Docker allows you to package your Spring Boot application along with its runtime environment into a container.</p>\n<pre><code>FROM eclipse-temurin:17-jre\nVOLUME /tmp\nCOPY target/*.jar app.jar\nENTRYPOINT [\"java\",\"-jar\",\"/app.jar\"]</code></pre>"
+    },
+    {
+      "id": "docker-steps-order",
+      "title": "Docker Deployment Workflow",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "steps": [
+          "Write a Dockerfile specifying the base image and jar location",
+          "Build the Spring Boot jar using Maven or Gradle",
+          "Build the Docker image using 'docker build'",
+          "Run the container using 'docker run'"
+        ]
+      }
+    },
+    {
+      "id": "spring-boot-profiles",
+      "title": "Environment Profiles",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Profiles help segregate configuration parts of your application and make them available only in certain environments.</p>\n<p>You can activate a profile using <code>spring.profiles.active=prod</code> in your <code>application.properties</code> or via command line arguments: <code>--spring.profiles.active=prod</code>.</p>"
+    },
+    {
+      "id": "match-deployment-terms",
+      "title": "Match Deployment Concepts",
+      "type": "match",
+      "duration": "4m",
+      "content": {
+        "pairs": [
+          {
+            "left": "JAR",
+            "right": "Executable archive with embedded Tomcat"
+          },
+          {
+            "left": "Dockerfile",
+            "right": "Instructions to build a container image"
+          },
+          {
+            "left": "Profiles",
+            "right": "Environment-specific configurations"
+          },
+          {
+            "left": "Actuator",
+            "right": "Production-ready monitoring endpoints"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cloud-platforms",
+      "title": "Cloud Deployment Options",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Spring Boot applications can be easily deployed to modern cloud providers:</p>\n<ul>\n<li><strong>AWS Elastic Beanstalk / ECS:</strong> For containerized or raw jar deployments.</li>\n<li><strong>Google Cloud Run:</strong> Excellent for serverless container deployments.</li>\n<li><strong>Heroku:</strong> Quick deployment using buildpacks.</li>\n</ul>"
+    },
+    {
+      "id": "deployment-final-mcq",
+      "title": "Cloud Run Compatibility",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Spring Boot apps must be packaged as WAR for Cloud Run"
+          },
+          {
+            "id": "b",
+            "text": "Spring Boot apps can be deployed to Cloud Run using Docker containers"
+          },
+          {
+            "id": "c",
+            "text": "Spring Boot cannot be deployed to any cloud platform"
+          },
+          {
+            "id": "d",
+            "text": "Spring Boot requires a dedicated physical server"
+          }
+        ],
+        "correctId": "b"
+      }
+    }
+  ]
+}

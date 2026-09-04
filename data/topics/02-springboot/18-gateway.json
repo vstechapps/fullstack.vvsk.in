@@ -1,0 +1,128 @@
+{
+  "title": "API Gateway in Spring Boot",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-api-gateway",
+      "title": "Introduction to API Gateway",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>An <strong>API Gateway</strong> acts as a single entry point for all client requests to a backend microservices architecture. It handles routing, composition, and cross-cutting concerns like security, rate limiting, and monitoring.</p>\n<p>In the Spring ecosystem, <strong>Spring Cloud Gateway</strong> is the modern, reactive replacement for Zuul, built on top of Spring WebFlux, Project Reactor, and Netty.</p>"
+    },
+    {
+      "id": "gateway-features-mcq",
+      "title": "Core Features of Spring Cloud Gateway",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "It is built on blocking Servlet APIs for traditional thread-per-request handling."
+          },
+          {
+            "id": "b",
+            "text": "It provides non-blocking, reactive routing based on Spring WebFlux."
+          },
+          {
+            "id": "c",
+            "text": "It directly manages database transactions for all downstream microservices."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "routing-config-content",
+      "title": "Configuring Routes in Spring Cloud Gateway",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Routes can be defined using Java configuration or YAML. A route consists of an ID, a destination URI, a collection of predicates, and filters.</p>\n<pre><code>@Bean\npublic RouteLocator customRouteLocator(RouteLocatorBuilder builder) {\n    return builder.routes()\n        .route(\"user_service_route\", r -> r.path(\"/users/**\")\n            .uri(\"lb://user-service\"))\n        .build();\n}</code></pre>"
+    },
+    {
+      "id": "blank-predicates",
+      "title": "Fill in the Blank: Route Matching",
+      "type": "blank",
+      "duration": "3m",
+      "content": {
+        "template": "Spring Cloud Gateway uses _____ to match HTTP requests based on paths, headers, or parameters before routing them to the destination URI.",
+        "blanks": [
+          {
+            "id": "1",
+            "answer": "predicates"
+          }
+        ]
+      }
+    },
+    {
+      "id": "match-components",
+      "title": "Match Gateway Concepts",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Route",
+            "right": "Has an ID, destination URI, predicates, and filters"
+          },
+          {
+            "left": "Predicate",
+            "right": "Matches incoming requests against Java 8 Function conditions"
+          },
+          {
+            "left": "Filter",
+            "right": "Modifies incoming requests or outgoing responses"
+          },
+          {
+            "left": "DiscoveryClient",
+            "right": "Enables service discovery integration using lb:// URIs"
+          }
+        ]
+      }
+    },
+    {
+      "id": "filters-content",
+      "title": "Working with Gateway Filters",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Filters allow you to modify the incoming HTTP request or the outgoing HTTP response. Spring Cloud Gateway provides many built-in factories like <code>AddRequestHeader</code>, <code>RewritePath</code>, and <code>CircuitBreaker</code>.</p>\n<pre><code>spring:\n  cloud:\n    gateway:\n      routes:\n        - id: example_route\n          uri: https://example.org\n          predicates:\n            - Path=/example/**\n          filters:\n            - AddRequestHeader=X-Request-Foo, Bar</code></pre>"
+    },
+    {
+      "id": "order-request-lifecycle",
+      "title": "Order the Request Lifecycle",
+      "type": "order",
+      "duration": "4m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Client sends an HTTP request to the API Gateway."
+          },
+          {
+            "id": "2",
+            "text": "Gateway Handler Mapping evaluates routing predicates."
+          },
+          {
+            "id": "3",
+            "text": "Gateway pre-filters modify the request."
+          },
+          {
+            "id": "4",
+            "text": "Request is forwarded to the downstream microservice."
+          },
+          {
+            "id": "5",
+            "text": "Gateway post-filters modify the response before returning to the client."
+          }
+        ]
+      }
+    },
+    {
+      "id": "summary-content",
+      "title": "Summary & Best Practices",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>You have learned how Spring Cloud Gateway provides a scalable, reactive entry point for microservices.</p>\n<ul>\n<li>Always use reactive libraries to prevent blocking the Netty event loop.</li>\n<li>Combine with Spring Cloud Discovery for dynamic service routing.</li>\n<li>Implement Resiliency4j circuit breakers for fault tolerance.</li>\n</ul>"
+    }
+  ]
+}

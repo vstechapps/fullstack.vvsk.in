@@ -1,0 +1,185 @@
+{
+  "title": "Logging in Spring Boot",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-logging",
+      "title": "Introduction to Logging in Spring Boot",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Spring Boot uses <strong>Commons Logging</strong> for all internal logging, but leaves the underlying log implementation open.</p><p>By default, starter dependencies (like <code>spring-boot-starter-web</code>) use <strong>SLF4J</strong> as the abstraction layer with <strong>Logback</strong> as the default logging implementation.</p><pre><code>// SLF4J Logger interface usage\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\n\npublic class MyService {\n    private static final Logger logger = LoggerFactory.getLogger(MyService.class);\n    \n    public void doSomething() {\n        logger.info(\"Processing request...\");\n    }\n}</code></pre>"
+    },
+    {
+      "id": "log-levels-overview",
+      "title": "Understanding Log Levels",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Logging levels help filter the detail of log output depending on the environment (e.g., Development vs. Production).</p><p>The standard logging levels available in Spring Boot, ordered from lowest to highest severity, are:</p><ul><li><strong>TRACE</strong>: Fine-grained diagnostic information.</li><li><strong>DEBUG</strong>: Detailed information useful during debugging.</li><li><strong>INFO</strong>: General operational progress updates (Default level).</li><li><strong>WARN</strong>: Potential issues or unexpected events that are not errors.</li><li><strong>ERROR</strong>: Error events that might allow the application to continue running.</li></ul>"
+    },
+    {
+      "id": "mcq-default-framework",
+      "title": "Default Logging Framework",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "Which logging implementation does Spring Boot use by default when using standard starters?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Log4j2"
+          },
+          {
+            "id": "b",
+            "text": "Logback"
+          },
+          {
+            "id": "c",
+            "text": "Java Util Logging (JUL)"
+          },
+          {
+            "id": "d",
+            "text": "System.out.println"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "configuring-log-levels",
+      "title": "Configuring Log Levels in application.properties",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>You can configure log levels directly in <code>application.properties</code> or <code>application.yml</code> without creating complex XML configurations.</p><pre><code># Root logger level\nlogging.level.root=INFO\n\n# Specific package log level\nlogging.level.com.example.demo=DEBUG\n\n# Specific Spring framework package\nlogging.level.org.springframework.web=WARN</code></pre><p>This allows granular control over which components log detailed messages.</p>"
+    },
+    {
+      "id": "blank-config-property",
+      "title": "Log Level Configuration",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To change the root log level to DEBUG in application.properties, set the property: ___ = DEBUG",
+        "answer": "logging.level.root"
+      }
+    },
+    {
+      "id": "lombok-slf4j",
+      "title": "Simplifying Logging with Lombok",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Instead of manually declaring a <code>Logger</code> instance in every class, you can use Project Lombok's <code>@Slf4j</code> annotation.</p><pre><code>import lombok.extern.slf4j.Slf4j;\nimport org.springframework.stereotype.Service;\n\n@Service\n@Slf4j\npublic class UserService {\n    public void registerUser(String username) {\n        log.info(\"Registering new user: {}\", username);\n    }\n}</code></pre><p>Lombok automatically generates the field <code>private static final org.slf4j.Logger log = ...</code> at compile time.</p>"
+    },
+    {
+      "id": "order-log-levels",
+      "title": "Order Log Severity",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "question": "Order the following log levels from LEAST severe (most verbose) to MOST severe (least verbose):",
+        "items": [
+          {
+            "id": "1",
+            "text": "TRACE"
+          },
+          {
+            "id": "2",
+            "text": "DEBUG"
+          },
+          {
+            "id": "3",
+            "text": "INFO"
+          },
+          {
+            "id": "4",
+            "text": "WARN"
+          },
+          {
+            "id": "5",
+            "text": "ERROR"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      }
+    },
+    {
+      "id": "logback-custom-xml",
+      "title": "Custom Logback Configuration",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>For advanced logging features (custom appenders, advanced patterns, conditional configuration), create a <code>logback-spring.xml</code> file in the <code>src/main/resources</code> directory.</p><pre><code>&lt;configuration&gt;\n    &lt;appender name=\"CONSOLE\" class=\"ch.qos.logback.core.ConsoleAppender\"&gt;\n        &lt;encoder&gt;\n            &lt;pattern&gt;%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n&lt;/pattern&gt;\n        &lt;/encoder&gt;\n    &lt;/appender&gt;\n\n    &lt;root level=\"INFO\"&gt;\n        &lt;appender-ref ref=\"CONSOLE\" /&gt;\n    &lt;/root&gt;\n&lt;/configuration&gt;</code></pre><p>Using <code>logback-spring.xml</code> instead of <code>logback.xml</code> allows Spring Boot to control log initialization and use Spring profile tags like <code>&lt;springProfile name=\"dev\"&gt;</code>.</p>"
+    },
+    {
+      "id": "match-concepts",
+      "title": "Match Logging Terminology",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "SLF4J",
+            "right": "Logging facade interface abstraction"
+          },
+          {
+            "left": "Logback",
+            "right": "Default underlying logging implementation"
+          },
+          {
+            "left": "Appender",
+            "right": "Destination component (e.g., Console, File, DB)"
+          },
+          {
+            "left": "Pattern",
+            "right": "Format string defining log message appearance"
+          }
+        ]
+      }
+    },
+    {
+      "id": "logging-to-files",
+      "title": "File Output and Log Rotation",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Spring Boot can write log messages to a file in addition to the console.</p><pre><code># Write logs to a specific file\nlogging.file.name=myapp.log\n\n# Or write logs to a specific directory (creates spring.log inside)\nlogging.file.path=/var/logs/myapp</code></pre><p>Spring Boot includes automatic log rotation for Logback, rolling logs when they reach 10MB by default.</p>"
+    },
+    {
+      "id": "mcq-custom-xml-name",
+      "title": "Logback Naming Convention",
+      "type": "mcq",
+      "duration": "1m 30s",
+      "content": {
+        "question": "Why is 'logback-spring.xml' preferred over 'logback.xml' in Spring Boot applications?",
+        "options": [
+          {
+            "id": "a",
+            "text": "logback.xml is deprecated in modern Java."
+          },
+          {
+            "id": "b",
+            "text": "It allows Spring Boot to fully control log initialization and support environment profiles."
+          },
+          {
+            "id": "c",
+            "text": "logback.xml only supports JSON formatting."
+          },
+          {
+            "id": "d",
+            "text": "logback-spring.xml runs faster than standard logback configuration."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "best-practices",
+      "title": "Logging Best Practices",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Follow these best practices for effective application logging:</p><ul><li><strong>Use Parameterized Messages:</strong> Avoid String concatenation to prevent unnecessary memory allocations when log levels are disabled.</li></ul><pre><code>// GOOD\nlogger.debug(\"User {} logged in from IP {}\", user, ip);\n\n// BAD\nlogger.debug(\"User \" + user + \" logged in from IP \" + ip);</code></pre><ul><li><strong>Never log sensitive data:</strong> Mask or omit passwords, API keys, and PII (Personally Identifiable Information).</li><li><strong>Use appropriate log levels:</strong> Avoid over-logging in INFO or ERROR levels.</li></ul>"
+    }
+  ]
+}

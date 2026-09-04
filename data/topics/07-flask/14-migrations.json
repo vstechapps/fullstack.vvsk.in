@@ -1,0 +1,169 @@
+{
+  "title": "Database Migrations in Flask",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-migrations",
+      "title": "Introduction to Migrations",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>As your Flask application evolves, your database schema needs to change too. Database migrations allow you to safely manage these structural changes over time without losing data.</p>\n<p>Instead of manually altering tables in SQLite or PostgreSQL, we use migration tools to track and apply these changes programmatically.</p>"
+    },
+    {
+      "id": "flask-migrate-tool",
+      "title": "Flask-Migrate and Alembic",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>In the Flask ecosystem, database migrations are handled by <strong>Flask-Migrate</strong>, which is a wrapper around <strong>Alembic</strong> (a database migration tool for SQLAlchemy).</p>\n<pre><code>pip install Flask-Migrate</code></pre>\n<p>It integrates seamlessly with Flask-SQLAlchemy to automatically generate migration scripts based on your model definitions.</p>"
+    },
+    {
+      "id": "mcq-migration-library",
+      "title": "Underlying Migration Engine",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Flask-Migrate uses Django ORM migrations."
+          },
+          {
+            "id": "b",
+            "text": "Flask-Migrate is a wrapper around Alembic."
+          },
+          {
+            "id": "c",
+            "text": "Flask-Migrate relies directly on raw SQL scripts only."
+          },
+          {
+            "id": "d",
+            "text": "Flask-Migrate replaces Flask-SQLAlchemy."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "initializing-migrations",
+      "title": "Initializing the Migration Repository",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To start using migrations in your Flask app, you need to initialize the extension and create a migration repository.</p>\n<pre><code>from flask import Flask\nfrom flask_sqlalchemy import SQLAlchemy\nfrom flask_migrate import Migrate\n\napp = Flask(__name__)\napp.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'\n\ndb = SQLAlchemy(app)\nmigrate = Migrate(app, db)</code></pre>\n<p>This adds the <code>db</code> CLI commands to your Flask application.</p>"
+    },
+    {
+      "id": "blank-init-command",
+      "title": "CLI Initialization Command",
+      "type": "blank",
+      "duration": "1m",
+      "content": "To initialize the migration folder structure in your project directory, you run the command: flask db [blank] ."
+    },
+    {
+      "id": "workflow-steps",
+      "title": "Migration Workflow",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "instructions": "Order the standard workflow steps for applying a schema change in Flask-Migrate.",
+        "items": [
+          {
+            "id": "step-1",
+            "text": "Modify or create your SQLAlchemy models in Python code."
+          },
+          {
+            "id": "step-2",
+            "text": "Run 'flask db migrate -m \"description\"' to generate the migration script."
+          },
+          {
+            "id": "step-3",
+            "text": "Review the generated Alembic migration script in the migrations folder."
+          },
+          {
+            "id": "step-4",
+            "text": "Run 'flask db upgrade' to apply the changes to the database."
+          }
+        ]
+      }
+    },
+    {
+      "id": "matching-commands",
+      "title": "Match Flask-Migrate Commands",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "flask db init",
+            "right": "Creates the migrations folder"
+          },
+          {
+            "left": "flask db migrate",
+            "right": "Generates a revision script"
+          },
+          {
+            "left": "flask db upgrade",
+            "right": "Applies migrations to the database"
+          },
+          {
+            "left": "flask db downgrade",
+            "right": "Reverts the last applied migration"
+          }
+        ]
+      }
+    },
+    {
+      "id": "inspecting-script",
+      "title": "Anatomy of a Migration Script",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>A generated Alembic migration script contains two main functions: <code>upgrade()</code> and <code>downgrade()</code>.</p>\n<pre><code>def upgrade():\n    # Operations to apply the change\n    op.add_column('user', sa.Column('twitter_handle', sa.String(length=80)))\n\ndef downgrade():\n    # Operations to reverse the change\n    op.drop_column('user', 'twitter_handle')</code></pre>\n<p>Always inspect these scripts before running upgrade, especially when doing auto-generation.</p>"
+    },
+    {
+      "id": "mcq-auto-detect",
+      "title": "Auto-generation limitations",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "It can automatically detect every single table rename and column rename accurately."
+          },
+          {
+            "id": "b",
+            "text": "It detects table structure changes like new columns, but complex changes like renames often require manual script adjustments."
+          },
+          {
+            "id": "c",
+            "text": "It connects to production databases directly to guess changes."
+          },
+          {
+            "id": "d",
+            "text": "It completely eliminates the need for the upgrade command."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "production-migrations",
+      "title": "Migrations in Production",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>When deploying your Flask application to production, running migrations safely is critical.</p>\n<ul>\n  <li>Never run <code>flask db migrate</code> in production; generate scripts locally and commit them to version control.</li>\n  <li>Run <code>flask db upgrade</code> as part of your CI/CD deployment pipeline before starting the new app server.</li>\n  <li>Always take a database backup before upgrading production databases.</li>\n</ul>"
+    },
+    {
+      "id": "blank-upgrade-cmd",
+      "title": "Applying Migrations in Production",
+      "type": "blank",
+      "duration": "1m",
+      "content": "To apply pending database migrations on your production server, you execute the terminal command: flask db [blank] ."
+    },
+    {
+      "id": "conclusion-summary",
+      "title": "Summary",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>You have learned how to manage database schemas using Flask-Migrate and Alembic.</p>\n<p>Key takeaways:</p>\n<ul>\n  <li>Use <strong>init</strong> once, <strong>migrate</strong> for new changes, and <strong>upgrade</strong> to apply them.</li>\n  <li>Always review auto-generated Alembic scripts.</li>\n  <li>Keep migration history in version control.</li>\n</ul>"
+    }
+  ]
+}

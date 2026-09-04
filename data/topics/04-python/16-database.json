@@ -1,0 +1,138 @@
+{
+  "title": "Databases for Python Developers",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-databases",
+      "title": "Introduction to Databases in Python",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Python applications frequently need to store, retrieve, and manipulate persistent data. We achieve this using databases, which fall primarily into two categories: <strong>Relational (SQL)</strong> and <strong>Non-Relational (NoSQL)</strong>.</p>"
+    },
+    {
+      "id": "db-types-mcq",
+      "title": "Identifying Database Types",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "PostgreSQL is a NoSQL document store."
+          },
+          {
+            "id": "b",
+            "text": "SQLite is a lightweight, file-based relational database."
+          },
+          {
+            "id": "c",
+            "text": "MongoDB requires a predefined rigid schema for all collections."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "sqlite-python",
+      "title": "Using SQLite with Python",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Python comes with a built-in library for SQLite called <code>sqlite3</code>. No external installation is required.</p>\n<pre><code>import sqlite3\n\nconn = sqlite3.connect('my_database.db')\ncursor = conn.cursor()\n\ncursor.execute('''\n    CREATE TABLE IF NOT EXISTS users (\n        id INTEGER PRIMARY KEY AUTOINCREMENT,\n        name TEXT NOT NULL\n    )\n''')\nconn.commit()\nconn.close()</code></pre>"
+    },
+    {
+      "id": "fill-sqlite-blank",
+      "title": "Complete the SQLite Connection",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To connect to an SQLite database file named 'app.db', you import sqlite3 and call sqlite3._____('app.db').",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "connect"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orm-concept",
+      "title": "Object-Relational Mapping (ORM)",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Writing raw SQL queries can become cumbersome. An ORM allows you to interact with your database using Python classes and objects instead of writing raw SQL strings. Popular Python ORMs include <strong>SQLAlchemy</strong> and <strong>Django ORM</strong>.</p>"
+    },
+    {
+      "id": "sqlalchemy-match",
+      "title": "Match SQLAlchemy Concepts",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Engine",
+            "right": "The starting point for any SQLAlchemy application."
+          },
+          {
+            "left": "Session",
+            "right": "Handles the dialog with the database (add, commit, rollback)."
+          },
+          {
+            "left": "Model Class",
+            "right": "Maps Python classes to database tables."
+          }
+        ]
+      }
+    },
+    {
+      "id": "query-lifecycle-order",
+      "title": "Order the SQLAlchemy Workflow",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Create the SQLAlchemy engine."
+          },
+          {
+            "id": "2",
+            "text": "Define base classes and model classes."
+          },
+          {
+            "id": "3",
+            "text": "Create a session instance."
+          },
+          {
+            "id": "4",
+            "text": "Add new model instances to the session."
+          },
+          {
+            "id": "5",
+            "text": "Commit the session to save changes to the database."
+          }
+        ]
+      }
+    },
+    {
+      "id": "nosql-mongodb",
+      "title": "Working with NoSQL (MongoDB)",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>For unstructured or rapidly changing data, document databases like MongoDB are ideal. In Python, we use the <code>pymongo</code> library to interact with MongoDB.</p>\n<pre><code>from pymongo import MongoClient\n\nclient = MongoClient('mongodb://localhost:27017/')\ndb = client['my_database']\ncollection = db['users']\n\ncollection.insert_one({'name': 'Alice', 'role': 'Developer'})</code></pre>"
+    },
+    {
+      "id": "migrations-content",
+      "title": "Database Migrations with Alembic",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>When your database schema evolves over time (e.g., adding a new column), you use migrations. In the SQLAlchemy ecosystem, <strong>Alembic</strong> is the standard tool used to manage and version schema changes.</p>"
+    },
+    {
+      "id": "database-wrapup",
+      "title": "Summary",
+      "type": "content",
+      "duration": "1m",
+      "content": "<p>You now understand the basics of connecting Python to SQLite, structuring queries, utilizing ORMs like SQLAlchemy, working with NoSQL via PyMongo, and managing migrations!</p>"
+    }
+  ]
+}

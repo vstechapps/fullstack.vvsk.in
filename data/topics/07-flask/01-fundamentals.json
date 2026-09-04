@@ -1,0 +1,162 @@
+{
+  "title": "Flask Developer Fundamentals",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "flask-intro",
+      "title": "Introduction to Flask",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Flask is a lightweight WSGI web application framework in Python. It is designed to make getting started quick and easy, with the ability to scale up to complex applications.</p>\n<pre><code>from flask import Flask\napp = Flask(__name__)\n\n@app.route('/')\ndef hello():\n    return 'Hello, World!'</code></pre>"
+    },
+    {
+      "id": "flask-definition-mcq",
+      "title": "What is Flask?",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "A heavy-duty Java enterprise framework"
+          },
+          {
+            "id": "b",
+            "text": "A lightweight WSGI web application framework in Python"
+          },
+          {
+            "id": "c",
+            "text": "A relational database management system"
+          },
+          {
+            "id": "d",
+            "text": "A CSS styling library"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "flask-routing",
+      "title": "Routing in Flask",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Routing is used to bind a URL to a function. In Flask, the <code>route()</code> decorator is used to tell Flask what URL should trigger our function.</p>\n<pre><code>@app.route('/profile/&lt;username&gt;')\ndef show_profile(username):\n    return f'User {username}'</code></pre>"
+    },
+    {
+      "id": "blank-decorator",
+      "title": "Complete the Route Decorator",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "sentence": "To bind a URL to a function in Flask, we use the @app.____() decorator.",
+        "answer": "route"
+      }
+    },
+    {
+      "id": "request-response",
+      "title": "Request and Response Cycle",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Flask provides access to request data via the global <code>request</code> object. You can access form data, query parameters, and JSON payloads easily.</p>\n<pre><code>from flask import request\n\n@app.route('/login', methods=['POST'])\ndef login():\n    username = request.form['username']\n    return f'Welcome {username}'</code></pre>"
+    },
+    {
+      "id": "match-components",
+      "title": "Match Flask Concepts",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "render_template",
+            "right": "Returns an HTML file"
+          },
+          {
+            "left": "request.args",
+            "right": "Accesses query parameters"
+          },
+          {
+            "left": "jsonify",
+            "right": "Returns a JSON response"
+          },
+          {
+            "left": "redirect",
+            "right": "Sends user to a different URL"
+          }
+        ]
+      }
+    },
+    {
+      "id": "flask-lifecycle-order",
+      "title": "Order the Request Lifecycle",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "steps": [
+          "Client sends HTTP request to the Flask server",
+          "Flask matches the URL path to a registered route function",
+          "The view function executes and processes the logic",
+          "Flask returns the HTTP response back to the client"
+        ]
+      }
+    },
+    {
+      "id": "templates-jinja",
+      "title": "Templates with Jinja2",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Flask uses the Jinja2 template engine to dynamically generate HTML. Variables can be passed from Python to HTML using double curly braces.</p>\n<pre><code>&lt;!-- templates/index.html --&gt;\n&lt;h1&gt;Hello {{ name }}&lt;/h1&gt;</code></pre>"
+    },
+    {
+      "id": "jinja-syntax-mcq",
+      "title": "Jinja2 Variable Syntax",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "{% variable %}"
+          },
+          {
+            "id": "b",
+            "text": "{{ variable }}"
+          },
+          {
+            "id": "c",
+            "text": "#{ variable }"
+          },
+          {
+            "id": "d",
+            "text": "[[ variable ]]"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "running-app",
+      "title": "Running the Application",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>To run your Flask application locally, use the <code>app.run()</code> method inside a conditional check.</p>\n<pre><code>if __name__ == '__main__':\n    app.run(debug=True, port=5000)</code></pre>"
+    },
+    {
+      "id": "blank-debug",
+      "title": "Flask Development Mode",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "sentence": "Passing debug=____ inside app.run() enables the interactive debugger and auto-reloader.",
+        "answer": "True"
+      }
+    },
+    {
+      "id": "summary-conclusion",
+      "title": "Conclusion & Next Steps",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>You have learned the fundamentals of Flask: creating an app, defining routes, handling requests, rendering Jinja2 templates, and running the development server.</p>\n<p>Next, explore database integration using SQLAlchemy and Flask-Migrate!</p>"
+    }
+  ]
+}

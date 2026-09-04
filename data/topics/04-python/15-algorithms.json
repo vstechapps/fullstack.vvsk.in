@@ -1,0 +1,145 @@
+{
+  "title": "Algorithms in Python",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "algo-intro",
+      "title": "Introduction to Algorithms",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>An algorithm is a step-by-step set of instructions for solving a problem or completing a task. In Python, we use efficient algorithms to process data structures quickly.</p>\n<pre><code># A simple algorithm to find the maximum number\ndef find_max(numbers):\n    max_val = numbers[0]\n    for num in numbers:\n        if num > max_val:\n            max_val = num\n    return max_val</code></pre>"
+    },
+    {
+      "id": "algo-definition-mcq",
+      "title": "What is an Algorithm?",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "A hardware component in a computer"
+          },
+          {
+            "id": "b",
+            "text": "A step-by-step procedure for solving a problem"
+          },
+          {
+            "id": "c",
+            "text": "A specific Python library for data science"
+          },
+          {
+            "id": "d",
+            "text": "An error in the code syntax"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "big-o-notation",
+      "title": "Understanding Big O Notation",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Big O notation describes the performance or complexity of an algorithm, specifically how scaling the input size affects execution time or memory usage.</p>\n<ul>\n<li><strong>O(1)</strong>: Constant time</li>\n<li><strong>O(n)</strong>: Linear time</li>\n<li><strong>O(n^2)</strong>: Quadratic time</li>\n</ul>"
+    },
+    {
+      "id": "big-o-blank",
+      "title": "Complete the Big O term",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "An algorithm whose execution time directly and linearly scales with the input size has a Big O complexity of O(__1__).",
+        "blanks": {
+          "1": "n"
+        }
+      }
+    },
+    {
+      "id": "sorting-algorithms",
+      "title": "Sorting Algorithms",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Sorting arranges data in a particular order. Common algorithms include Bubble Sort, Merge Sort, and Quick Sort.</p>\n<p>Python's built-in <code>sorted()</code> and <code>list.sort()</code> use Timsort, a hybrid sorting algorithm derived from merge sort and insertion sort.</p>"
+    },
+    {
+      "id": "match-complexities",
+      "title": "Match Algorithm to Best/Average Complexity",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Binary Search",
+            "right": "O(log n)"
+          },
+          {
+            "left": "Linear Search",
+            "right": "O(n)"
+          },
+          {
+            "left": "Merge Sort",
+            "right": "O(n log n)"
+          },
+          {
+            "left": "Bubble Sort",
+            "right": "O(n^2)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "searching-algorithms",
+      "title": "Searching Algorithms: Linear vs Binary",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Searching is the process of finding a specific item in a collection.</p>\n<p><strong>Linear Search:</strong> Checks every element one by one. Works on unsorted data. O(n).</p>\n<p><strong>Binary Search:</strong> Repeatedly divides a sorted collection in half. Much faster with O(log n).</p>\n<pre><code># Binary Search implementation in Python\ndef binary_search(arr, target):\n    low, high = 0, len(arr) - 1\n    while low <= high:\n        mid = (low + high) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return -1</code></pre>"
+    },
+    {
+      "id": "order-binary-search",
+      "title": "Order Binary Search Steps",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "items": [
+          {
+            "id": "step1",
+            "text": "Initialize low and high pointers at the start and end of the sorted array."
+          },
+          {
+            "id": "step2",
+            "text": "Calculate the middle index (mid)."
+          },
+          {
+            "id": "step3",
+            "text": "Compare the middle element with the target value."
+          },
+          {
+            "id": "step4",
+            "text": "Adjust pointers (low or high) based on the comparison to narrow the search range."
+          }
+        ],
+        "correctOrder": [
+          "step1",
+          "step2",
+          "step3",
+          "step4"
+        ]
+      }
+    },
+    {
+      "id": "recursion-memoization",
+      "title": "Recursion and Memoization",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Recursion occurs when a function calls itself to solve a smaller instance of the same problem. Dynamic programming uses memoization to cache results of expensive function calls.</p>\n<pre><code># Fibonacci with memoization using functools\nfrom functools import lru_cache\n\n@lru_cache(maxsize=None)\ndef fibonacci(n):\n    if n < 2:\n        return n\n    return fibonacci(n-1) + fibonacci(n-2)</code></pre>"
+    },
+    {
+      "id": "algo-wrap-up",
+      "title": "Conclusion",
+      "type": "content",
+      "duration": "1m",
+      "content": "<p>You have reviewed the core concepts of algorithms in Python, including Big O notation, searching, sorting, and recursion. Practice implementing these to write optimized code!</p>"
+    }
+  ]
+}

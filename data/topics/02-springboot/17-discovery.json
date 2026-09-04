@@ -1,0 +1,240 @@
+{
+  "title": "Service Discovery in Spring Boot Microservices",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "dynamic-ip-problem",
+      "title": "The Dynamic IP Problem in Microservices",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>In traditional monolithic applications, components communicate in-process or via static backend URLs. However, modern microservice architectures deployed on auto-scaling cloud environments face a dynamic network location problem.</p><p>Key challenges include:</p><ul><li><strong>Dynamic Auto-scaling:</strong> Instances scale up or down dynamically based on traffic.</li><li><strong>Ephemeral Containers:</strong> IP addresses change constantly whenever pods or containers restart.</li><li><strong>Manual Management Complexity:</strong> Hardcoding IP addresses or maintaining dynamic DNS records manually is fragile and unsustainable.</li></ul>"
+    },
+    {
+      "id": "what-is-service-discovery",
+      "title": "What is Service Discovery?",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p><strong>Service Discovery</strong> acts as a dynamic lookup registry (like a phonebook) for microservices.</p><p>Instead of hardcoding hostnames and ports, services interact via a central Service Registry:</p><ol><li><strong>Registration:</strong> Microservice instances register their host, port, and health status upon startup.</li><li><strong>Discovery:</strong> Client services query the registry to locate available instances of target services.</li><li><strong>Deregistration:</strong> Instances unregister on graceful shutdown or are evicted when unhealthy.</li></ol>"
+    },
+    {
+      "id": "mcq-registry-purpose",
+      "title": "Primary Purpose of Service Discovery",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "To hardcode IP addresses inside application.properties for security."
+          },
+          {
+            "id": "b",
+            "text": "To dynamically locate network addresses of service instances in cloud environments."
+          },
+          {
+            "id": "c",
+            "text": "To compile Spring Boot Java code into native binary executables."
+          },
+          {
+            "id": "d",
+            "text": "To replace database connection pooling in microservices."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "client-vs-server-discovery",
+      "title": "Client-Side vs. Server-Side Discovery",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>There are two main architectural patterns for Service Discovery:</p><h3>1. Client-Side Discovery</h3><p>The client queries the service registry directly, receives a list of available instances, and selects one using a client-side load balancing algorithm (e.g., Spring Cloud Eureka + Spring Cloud LoadBalancer).</p><h3>2. Server-Side Discovery</h3><p>The client makes a request to a router/load balancer (e.g., AWS ALB or Kubernetes Service). The load balancer queries the registry and routes the request (e.g., Kubernetes DNS & ClusterIP).</p>"
+    },
+    {
+      "id": "match-discovery-patterns",
+      "title": "Match Discovery Patterns with Characteristics",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Client-Side Discovery",
+            "right": "Client queries registry and decides load balancing destination directly"
+          },
+          {
+            "left": "Server-Side Discovery",
+            "right": "Client sends request to a intermediate proxy/router which handles lookup"
+          },
+          {
+            "left": "Service Registry",
+            "right": "Central database storing dynamic instances and health status"
+          },
+          {
+            "left": "Heartbeat Signal",
+            "right": "Periodic ping sent by instance to confirm health to the registry"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eureka-overview",
+      "title": "Spring Cloud Netflix Eureka Overview",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p><strong>Spring Cloud Netflix Eureka</strong> is one of the most widely used Service Discovery toolsets in the Java ecosystem.</p><ul><li><strong>Eureka Server:</strong> The central service registry server application where all services register.</li><li><strong>Eureka Client:</strong> A Java/Spring Boot application that registers itself with Eureka Server and queries it to locate other services.</li></ul><pre><code>// Dependency in pom.xml\n&lt;dependency&gt;\n    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;\n    &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;\n&lt;/dependency&gt;</code></pre>"
+    },
+    {
+      "id": "blank-eureka-server-annotation",
+      "title": "Eureka Server Enabling Annotation",
+      "type": "blank",
+      "duration": "1m",
+      "content": {
+        "text": "To turn a Spring Boot application into a Eureka Service Registry server, annotate the main class with @___EurekaServer.",
+        "correctAnswer": "Enable"
+      }
+    },
+    {
+      "id": "eureka-server-configuration",
+      "title": "Configuring Eureka Server",
+      "type": "content",
+      "duration": "2.5m",
+      "content": "<p>When running a standalone Eureka Server, it shouldn't try to register with itself as a client.</p><p>Example <code>application.yml</code>:</p><pre><code>server:\n  port: 8761\n\neureka:\n  client:\n    register-with-eureka: false\n    fetch-registry: false\n  server:\n    enable-self-preservation: true</code></pre>"
+    },
+    {
+      "id": "order-eureka-client-steps",
+      "title": "Order the Steps to Setup a Eureka Client",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Add 'spring-cloud-starter-netflix-eureka-client' dependency to pom.xml"
+          },
+          {
+            "id": "2",
+            "text": "Configure 'eureka.client.service-url.defaultZone' in application.yml"
+          },
+          {
+            "id": "3",
+            "text": "Set 'spring.application.name' to define the service identifier"
+          },
+          {
+            "id": "4",
+            "text": "Start the Spring Boot application and verify registration on Eureka Dashboard"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eureka-heartbeats-preservation",
+      "title": "Heartbeats & Self-Preservation Mode",
+      "type": "content",
+      "duration": "2.5m",
+      "content": "<p>Eureka clients send periodic <strong>heartbeats</strong> (default every 30 seconds) to inform the server that they are alive.</p><h3>Self-Preservation Mode</h3><p>If network issues occur, Eureka Server might stop receiving heartbeats from many instances simultaneously. Instead of evicting all instances from the registry, Eureka enters <strong>Self-Preservation Mode</strong>:</p><ul><li>It freezes registry evictions to protect against transient network partitions.</li><li>It serves stale client instance data until network stability is restored.</li></ul>"
+    },
+    {
+      "id": "mcq-self-preservation",
+      "title": "Understanding Eureka Self-Preservation",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "It automatically restarts failed Spring Boot microservice instances."
+          },
+          {
+            "id": "b",
+            "text": "It stops evicting instances when a sudden drop in heartbeats is detected to prevent false deletions during network issues."
+          },
+          {
+            "id": "c",
+            "text": "It encrypts all payload traffic between registered microservices."
+          },
+          {
+            "id": "d",
+            "text": "It scales out the number of running containers automatically."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "spring-cloud-loadbalancer",
+      "title": "Client-Side Call with Spring Cloud LoadBalancer",
+      "type": "content",
+      "duration": "2.5m",
+      "content": "<p>Once Eureka Client resolves hostnames, <strong>Spring Cloud LoadBalancer</strong> enables inter-service HTTP calls using virtual service names instead of physical IPs.</p><pre><code>@Bean\n@LoadBalanced\npublic RestTemplate restTemplate() {\n    return new RestTemplate();\n}\n\n// Usage inside service layer:\nString response = restTemplate.getForObject(\"http://ORDER-SERVICE/orders/1\", String.class);</code></pre>"
+    },
+    {
+      "id": "blank-loadbalanced-annotation",
+      "title": "Load Balancer Annotation",
+      "type": "blank",
+      "duration": "1m",
+      "content": {
+        "text": "To enable client-side load balancing on a RestTemplate or WebClient.Builder bean, apply the @___ annotation.",
+        "correctAnswer": "LoadBalanced"
+      }
+    },
+    {
+      "id": "match-eureka-props",
+      "title": "Match Eureka Configuration Properties",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "left": "spring.application.name",
+            "right": "Registers microservice under this name in registry"
+          },
+          {
+            "left": "eureka.client.service-url.defaultZone",
+            "right": "URL pointing to the running Eureka Server instance"
+          },
+          {
+            "left": "eureka.client.register-with-eureka",
+            "right": "Flag determining whether this app registers itself with Eureka"
+          },
+          {
+            "left": "eureka.instance.prefer-ip-address",
+            "right": "Forces client registration using IP addresses rather than hostname"
+          }
+        ]
+      }
+    },
+    {
+      "id": "consul-and-k8s",
+      "title": "Alternative Discovery Tools: Consul & Kubernetes",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>While Netflix Eureka is standard in Spring Cloud, alternative solutions exist for diverse enterprise stacks:</p><ul><li><strong>HashiCorp Consul:</strong> Language-agnostic service discovery providing key-value store, health checks, and service mesh support. Integrated via <code>spring-cloud-starter-consul-discovery</code>.</li><li><strong>Kubernetes Native Discovery:</strong> Utilizes Kubernetes native DNS and Services (`Kube-DNS` / `CoreDNS`), avoiding the need for a dedicated Spring Cloud Eureka Server cluster.</li></ul>"
+    },
+    {
+      "id": "order-inter-service-request",
+      "title": "Order the Inter-Service Request Lifecycle",
+      "type": "order",
+      "duration": "1.5m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "ORDER-SERVICE queries local cached registry or Eureka for IP of PAYMENT-SERVICE"
+          },
+          {
+            "id": "2",
+            "text": "Eureka Client returns available active instances (e.g., 192.168.1.5:8081, 192.168.1.6:8081)"
+          },
+          {
+            "id": "3",
+            "text": "Spring Cloud LoadBalancer selects an instance using Round Robin algorithm"
+          },
+          {
+            "id": "4",
+            "text": "ORDER-SERVICE sends HTTP request directly to target instance IP"
+          }
+        ]
+      }
+    }
+  ]
+}

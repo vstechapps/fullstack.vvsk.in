@@ -1,0 +1,130 @@
+{
+  "title": "Flask Application Structure",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-flask-structure",
+      "title": "Introduction to Flask Project Structure",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>As a Flask application grows, keeping all your code in a single <code>app.py</code> file becomes unmaintainable. A scalable Flask application uses a structured layout separating configuration, routes, models, and static assets.</p>\n<p>We typically achieve this modularity by using the <strong>Application Factory</strong> pattern and Flask <strong>Blueprints</strong>.</p>"
+    },
+    {
+      "id": "app-factory-mcq",
+      "title": "Understanding the Application Factory",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "question": "What is the primary benefit of using the Application Factory pattern in Flask?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It automatically generates a database schema."
+          },
+          {
+            "id": "b",
+            "text": "It allows you to create multiple instances of the app with different configurations."
+          },
+          {
+            "id": "c",
+            "text": "It compiles Python bytecode into machine code for faster routing."
+          },
+          {
+            "id": "d",
+            "text": "It eliminates the need for HTML templates."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "standard-directories",
+      "title": "Standard Directory Layout",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>A production-ready Flask project often looks like this:</p>\n<pre><code>my_flask_app/\n│\n├── instance/\n│   └── config.py\n├── app/\n│   ├── __init__.py\n│   ├── models.py\n│   ├── static/\n│   ├── templates/\n│   └── main/\n│       ├── __init__.py\n│       └── routes.py\n├── tests/\n├── .env\n├── requirements.txt\n└── run.py</code></pre>"
+    },
+    {
+      "id": "match-components",
+      "title": "Match Directory Components",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "instructions": "Match each Flask directory or file with its primary responsibility.",
+        "pairs": [
+          {
+            "left": "static/",
+            "right": "Holds CSS, JavaScript, and images"
+          },
+          {
+            "left": "templates/",
+            "right": "Contains Jinja2 HTML files"
+          },
+          {
+            "left": "instance/",
+            "right": "Stores sensitive configuration files not tracked by Git"
+          },
+          {
+            "left": "requirements.txt",
+            "right": "Lists Python package dependencies"
+          }
+        ]
+      }
+    },
+    {
+      "id": "blueprints-content",
+      "title": "Modularizing with Blueprints",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Blueprints allow you to organize your Flask application into distinct components. Instead of registering all routes on the main application object, a blueprint records operations to be executed when registered on an application.</p>\n<pre><code>from flask import Blueprint\n\nmain_bp = Blueprint('main', __name__)\n\n@main_bp.route('/')\ndef index():\n    return 'Hello from the Blueprint!'</code></pre>"
+    },
+    {
+      "id": "factory-order",
+      "title": "Order the Initialization Steps",
+      "type": "order",
+      "duration": "5m",
+      "content": {
+        "instructions": "Put the steps of creating and running a structured Flask app in the correct order.",
+        "items": [
+          {
+            "id": "step1",
+            "text": "Create the application factory function inside app/__init__.py"
+          },
+          {
+            "id": "step2",
+            "text": "Initialize extensions (like SQLAlchemy) inside the factory"
+          },
+          {
+            "id": "step3",
+            "text": "Register your Blueprints to the app instance"
+          },
+          {
+            "id": "step4",
+            "text": "Import and call the factory function in run.py to start the server"
+          }
+        ],
+        "correctOrder": [
+          "step1",
+          "step2",
+          "step3",
+          "step4"
+        ]
+      }
+    },
+    {
+      "id": "blank-config",
+      "title": "Fill in the Application Factory",
+      "type": "blank",
+      "duration": "5m",
+      "content": {
+        "text": "Complete the basic application factory function in Python:\n\n```python\nfrom flask import Flask\n\ndef create_app(config_name=None):\n    app = Flask(__name__)\n    \n    if config_name:\n        app.config.from_object(config_name)\n        \n    # Register blueprint\n    from app.main.routes import main_bp\n    app.______(main_bp)\n    \n    return app\n```",
+        "blanks": [
+          {
+            "id": 1,
+            "answer": "register_blueprint"
+          }
+        ]
+      }
+    }
+  ]
+}

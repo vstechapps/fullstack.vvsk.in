@@ -1,0 +1,147 @@
+{
+  "title": "ASP.NET Core Developer Fundamentals",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-aspnet-core",
+      "title": "Introduction to ASP.NET Core",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>ASP.NET Core is a cross-platform, high-performance, open-source framework for building modern, cloud-enabled, Internet-connected applications.</p>\n<p>It unifies MVC and Web API into a single programming model.</p>"
+    },
+    {
+      "id": "aspnet-core-mcq",
+      "title": "Key Feature of ASP.NET Core",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "It only runs on Windows operating systems."
+          },
+          {
+            "id": "b",
+            "text": "It is cross-platform and runs on Windows, macOS, and Linux."
+          },
+          {
+            "id": "c",
+            "text": "It requires the .NET Framework 4.8."
+          },
+          {
+            "id": "d",
+            "text": "It does not support dependency injection natively."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "middleware-concept",
+      "title": "Understanding Middleware",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Middleware are assemblies that are piped into the request pipeline to handle requests and responses.</p>\n<p>Each component chooses whether to pass the request to the next component in the pipeline and can perform work before and after the next component.</p>"
+    },
+    {
+      "id": "middleware-blank",
+      "title": "Middleware Pipeline Completion",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "In ASP.NET Core, the app._____ method is used to define terminal middleware that short-circuits the request pipeline.",
+        "blanks": [
+          {
+            "id": "1",
+            "answer": "Run"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dependency-injection",
+      "title": "Dependency Injection in ASP.NET Core",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>ASP.NET Core has built-in support for Dependency Injection (DI), which is a technique for achieving Inversion of Control (IoC) between classes and their dependencies.</p>\n<pre><code>builder.Services.AddTransient&lt;IMyService, MyService&gt;();</code></pre>"
+    },
+    {
+      "id": "di-lifetimes-match",
+      "title": "Match DI Lifetimes to Definitions",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "instructions": "Match each service lifetime to its correct behavior.",
+        "pairs": [
+          {
+            "id": "p1",
+            "left": "Transient",
+            "right": "Created each time they are requested."
+          },
+          {
+            "id": "p2",
+            "left": "Scoped",
+            "right": "Created once per client request."
+          },
+          {
+            "id": "p3",
+            "left": "Singleton",
+            "right": "Created the first time they are requested and live forever."
+          }
+        ]
+      }
+    },
+    {
+      "id": "request-lifecycle-order",
+      "title": "HTTP Request Lifecycle Order",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "instructions": "Order the steps of an incoming HTTP request handling in ASP.NET Core from first to last.",
+        "items": [
+          {
+            "id": "step1",
+            "text": "HTTP Request arrives at the web server (Kestrel)."
+          },
+          {
+            "id": "step2",
+            "text": "Request enters the Middleware Pipeline."
+          },
+          {
+            "id": "step3",
+            "text": "Routing middleware determines the endpoint."
+          },
+          {
+            "id": "step4",
+            "text": "Endpoint executes controller action or Razor page."
+          },
+          {
+            "id": "step5",
+            "text": "HTTP Response is sent back to the client."
+          }
+        ],
+        "correctOrder": [
+          "step1",
+          "step2",
+          "step3",
+          "step4",
+          "step5"
+        ]
+      }
+    },
+    {
+      "id": "configuration-options",
+      "title": "Configuration and appsettings.json",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>ASP.NET Core uses a configuration system based on key-value pairs. The default configuration source is <code>appsettings.json</code>.</p>\n<p>Environment-specific overrides can be handled using files like <code>appsettings.Development.json</code>.</p>"
+    },
+    {
+      "id": "conclusion-summary",
+      "title": "Summary of Fundamentals",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>You have covered the core building blocks of ASP.NET Core:</p>\n<ul>\n<li>Cross-platform architecture</li>\n<li>The Middleware pipeline</li>\n<li>Built-in Dependency Injection</li>\n<li>Service lifetimes</li>\n<li>Configuration management</li>\n</ul>"
+    }
+  ]
+}

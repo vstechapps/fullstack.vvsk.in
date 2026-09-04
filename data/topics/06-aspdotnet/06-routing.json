@@ -1,0 +1,138 @@
+{
+  "title": "Routing in ASP.NET Core",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "routing-intro",
+      "title": "Introduction to Routing",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Routing in ASP.NET Core is responsible for matching incoming HTTP requests and dispatching them to the app's executable endpoints, such as controllers or Minimal APIs.</p>\n<p>Routing is typically configured in <code>Program.cs</code> using middleware.</p>"
+    },
+    {
+      "id": "routing-mcq-1",
+      "title": "Routing Middleware Purpose",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "To connect to the database and execute queries."
+          },
+          {
+            "id": "b",
+            "text": "To match incoming HTTP requests to executable endpoints."
+          },
+          {
+            "id": "c",
+            "text": "To serialize objects into JSON format."
+          },
+          {
+            "id": "d",
+            "text": "To handle user authentication and authorization only."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "convention-vs-attribute",
+      "title": "Convention-based vs Attribute Routing",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>ASP.NET Core supports two primary types of routing:</p>\n<ul>\n<li><strong>Convention-based routing:</strong> Defines global routing patterns that apply to all controllers in the application. Commonly used for traditional MVC apps (e.g., <code>{controller=Home}/{action=Index}/{id?}</code>).</li>\n<li><strong>Attribute routing:</strong> Uses attributes (like <code>[HttpGet(\"products/{id}\")]</code>) on controllers and action methods to define routes directly. Highly recommended for REST APIs.</li>\n</ul>"
+    },
+    {
+      "id": "routing-blank-1",
+      "title": "Configure Routing Method",
+      "type": "blank",
+      "duration": "3m",
+      "content": {
+        "text": "To add routing services to the Dependency Injection container in Program.cs, we typically call builder.Services.AddControllers(); which includes routing, but to configure the middleware pipeline we must call app.Use______(); before MapControllers().",
+        "answer": "Routing"
+      }
+    },
+    {
+      "id": "route-parameters",
+      "title": "Route Parameters and Constraints",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Route parameters are captured using curly braces <code>{id}</code>. You can also apply inline constraints to validate parameter types.</p>\n<pre><code>[HttpGet(\"users/{id:int}\")]\npublic IActionResult GetUser(int id)\n{\n    return Ok();\n}</code></pre>\n<p>Common constraints include <code>int</code>, <code>bool</code>, <code>guid</code>, <code>minlength</code>, and <code>alpha</code>.</p>"
+    },
+    {
+      "id": "routing-match-1",
+      "title": "Match Route Constraints",
+      "type": "match",
+      "duration": "4m",
+      "content": {
+        "pairs": [
+          {
+            "id": "1",
+            "left": "{id:int}",
+            "right": "Ensures the parameter is a valid integer"
+          },
+          {
+            "id": "2",
+            "left": "{code:length(5)}",
+            "right": "Ensures the string length is exactly 5"
+          },
+          {
+            "id": "3",
+            "left": "{date:datetime}",
+            "right": "Ensures the parameter parses as a DateTime"
+          },
+          {
+            "id": "4",
+            "left": "{slug:alpha}",
+            "right": "Ensures the string contains only alphabetic characters"
+          }
+        ]
+      }
+    },
+    {
+      "id": "middleware-pipeline-order",
+      "title": "Pipeline Execution Order",
+      "type": "order",
+      "duration": "4m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "WebApplication.CreateBuilder(args)"
+          },
+          {
+            "id": "2",
+            "text": "app.UseRouting()"
+          },
+          {
+            "id": "3",
+            "text": "app.UseAuthentication()"
+          },
+          {
+            "id": "4",
+            "text": "app.UseAuthorization()"
+          },
+          {
+            "id": "5",
+            "text": "app.MapControllers()"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      }
+    },
+    {
+      "id": "routing-summary",
+      "title": "Routing Best Practices",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Key takeaways for ASP.NET Core Routing:</p>\n<ul>\n<li>Prefer <strong>Attribute Routing</strong> for RESTful APIs to keep route definitions close to actions.</li>\n<li>Use <strong>Route Constraints</strong> to enforce types and prevent unnecessary model validation failures.</li>\n<li>Ensure correct middleware order in <code>Program.cs</code>: Routing must execute before Authorization and Endpoint mapping.</li>\n</ul>"
+    }
+  ]
+}

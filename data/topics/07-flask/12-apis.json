@@ -1,0 +1,131 @@
+{
+  "title": "REST APIs with Flask",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-rest",
+      "title": "Introduction to REST APIs",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p><strong>REST</strong> (Representational State Transfer) is an architectural style for designing networked applications. It relies on a stateless, client-server, cacheable communications protocol — and essentially all of HTTP is used.</p><p>In Flask, we can build RESTful APIs easily by returning JSON responses.</p>"
+    },
+    {
+      "id": "http-methods-mcq",
+      "title": "HTTP Methods in REST",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "GET is used to create new resources."
+          },
+          {
+            "id": "b",
+            "text": "POST is typically used to create new resources."
+          },
+          {
+            "id": "c",
+            "text": "PUT is used exclusively for deleting resources."
+          },
+          {
+            "id": "d",
+            "text": "DELETE cannot be used in a Flask application."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "flask-jsonify",
+      "title": "Returning JSON in Flask",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To send JSON data back to the client in Flask, we use the <code>jsonify</code> function.</p>\n<pre><code>from flask import Flask, jsonify\n\napp = Flask(__name__)\n\n@app.route('/api/hello', methods=['GET'])\ndef hello():\n    return jsonify(message=\"Hello, World!\")</code></pre>"
+    },
+    {
+      "id": "blank-jsonify",
+      "title": "Fill in the Flask Function",
+      "type": "blank",
+      "duration": "2m",
+      "content": "<p>To convert a Python dictionary into a JSON response in Flask, you import and use the function called {blank_1}.</p>",
+      "answers": {
+        "blank_1": "jsonify"
+      }
+    },
+    {
+      "id": "match-http-status",
+      "title": "Match HTTP Status Codes",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "instructions": "Match the HTTP status code with its correct meaning.",
+        "pairs": [
+          {
+            "left": "200 OK",
+            "right": "Standard response for successful HTTP requests"
+          },
+          {
+            "left": "201 Created",
+            "right": "Request has been fulfilled and resulted in a new resource being created"
+          },
+          {
+            "left": "400 Bad Request",
+            "right": "Server cannot process the request due to a client error"
+          },
+          {
+            "left": "404 Not Found",
+            "right": "Requested resource could not be found"
+          }
+        ]
+      }
+    },
+    {
+      "id": "request-lifecycle-order",
+      "title": "API Request Lifecycle",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "instructions": "Order the steps of a typical Flask REST API request lifecycle from start to finish.",
+        "items": [
+          {
+            "id": "step1",
+            "text": "Client sends an HTTP request to a specific route URL."
+          },
+          {
+            "id": "step2",
+            "text": "Flask router matches the URL pattern to a view function."
+          },
+          {
+            "id": "step3",
+            "text": "The view function processes the request and interacts with data."
+          },
+          {
+            "id": "step4",
+            "text": "Flask returns a serialized JSON response back to the client."
+          }
+        ],
+        "correctOrder": [
+          "step1",
+          "step2",
+          "step3",
+          "step4"
+        ]
+      }
+    },
+    {
+      "id": "handling-request-data",
+      "title": "Handling Incoming JSON Data",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>When clients send data to a POST or PUT endpoint, it usually arrives as JSON. We use <code>request.get_json()</code> to access this data in Flask.</p>\n<pre><code>from flask import Flask, request, jsonify\n\napp = Flask(__name__)\n\n@app.route('/api/items', methods=['POST'])\ndef create_item():\n    data = request.get_json()\n    item_name = data.get('name')\n    return jsonify({\"created\": item_name}), 201</code></pre>"
+    },
+    {
+      "id": "summary-rest",
+      "title": "REST API Best Practices",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Key takeaways for building REST APIs in Flask:</p><ul><li>Use plural nouns for resource endpoints (e.g., <code>/api/users</code> instead of <code>/api/getUser</code>).</li><li>Leverage appropriate HTTP methods (GET, POST, PUT, DELETE).</li><li>Always return correct HTTP status codes alongside your JSON payloads.</li></ul>"
+    }
+  ]
+}

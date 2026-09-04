@@ -1,0 +1,144 @@
+{
+  "title": "Mastering Requests in Flask",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-to-requests",
+      "title": "Introduction to Flask Request Object",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>In Flask, the <code>request</code> object is a global proxy that contains all the data sent by the client to the server during an HTTP request.</p>\n<p>It allows you to access form data, query parameters, headers, JSON payloads, and uploaded files.</p>\n<pre><code>from flask import request\n\n@app.route('/login', methods=['POST'])\ndef login():\n    username = request.form['username']\n    return f'Welcome {username}!'</code></pre>"
+    },
+    {
+      "id": "query-vs-form",
+      "title": "Query Parameters vs Form Data",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Depending on how the client sends data, you access it differently:</p>\n<ul>\n<li><strong>Query Parameters:</strong> Sent in the URL (e.g., <code>/search?q=flask</code>). Accessed via <code>request.args.get('q')</code>.</li>\n<li><strong>Form Data:</strong> Sent via HTML forms using POST. Accessed via <code>request.form.get('username')</code>.</li>\n</ul>"
+    },
+    {
+      "id": "request-attribute-mcq",
+      "title": "Accessing Query Parameters",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "request.form"
+          },
+          {
+            "id": "b",
+            "text": "request.args"
+          },
+          {
+            "id": "c",
+            "text": "request.files"
+          },
+          {
+            "id": "d",
+            "text": "request.json"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "json-requests",
+      "title": "Handling JSON Data in APIs",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>When building REST APIs, clients usually send data in JSON format with the <code>Content-Type: application/json</code> header.</p>\n<p>You can easily parse this data using <code>request.get_json()</code> or the shorthand <code>request.json</code>.</p>\n<pre><code>@app.route('/api/data', methods=['POST'])\ndef receive_data():\n    content = request.get_json()\n    name = content.get('name')\n    return {\"status\": \"success\", \"received\": name}, 201</code></pre>"
+    },
+    {
+      "id": "json-blank",
+      "title": "Complete the JSON extraction code",
+      "type": "blank",
+      "duration": "2m",
+      "content": "To parse incoming JSON data from a POST request in Flask, you use the method request.______().",
+      "answer": "get_json"
+    },
+    {
+      "id": "match-request-attributes",
+      "title": "Match Request Attributes to Their Use Case",
+      "type": "match",
+      "duration": "4m",
+      "content": {
+        "pairs": [
+          {
+            "left": "request.args",
+            "right": "URL query parameters"
+          },
+          {
+            "left": "request.form",
+            "right": "HTML POST form data"
+          },
+          {
+            "left": "request.files",
+            "right": "Uploaded files"
+          },
+          {
+            "left": "request.headers",
+            "right": "HTTP request headers"
+          }
+        ]
+      }
+    },
+    {
+      "id": "request-lifecycle",
+      "title": "Order of Request Handling Steps",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "steps": [
+          "Client sends an HTTP request to the Flask server",
+          "Flask routes the URL to the matching view function",
+          "The view function accesses data using the global request object",
+          "The view function returns a response object or string",
+          "Flask sends the HTTP response back to the client"
+        ]
+      }
+    },
+    {
+      "id": "file-uploads",
+      "title": "Handling File Uploads",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Files sent via a multipart HTML form can be accessed using <code>request.files</code>.</p>\n<pre><code>@app.route('/upload', methods=['POST'])\ndef upload_file():\n    file = request.files['file']\n    file.save(f\"/var/www/uploads/{file.filename}\")\n    return 'File uploaded successfully!'</code></pre>"
+    },
+    {
+      "id": "file-upload-mcq",
+      "title": "File Upload Requirement",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "HTML forms must use enctype='multipart/form-data'"
+          },
+          {
+            "id": "b",
+            "text": "Files must be sent via JSON payloads"
+          },
+          {
+            "id": "c",
+            "text": "Files are accessed using request.args"
+          },
+          {
+            "id": "d",
+            "text": "GET method must be used for file uploads"
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "summary-requests",
+      "title": "Summary of Flask Requests",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>You have learned how to handle various types of client input in Flask:</p>\n<ul>\n<li><code>request.args</code> for query parameters</li>\n<li><code>request.form</code> for form submissions</li>\n<li><code>request.json</code> for API payloads</li>\n<li><code>request.files</code> for file uploads</li>\n</ul>\n<p>Mastering these tools enables you to build robust web applications and APIs.</p>"
+    }
+  ]
+}

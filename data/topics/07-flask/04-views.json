@@ -1,0 +1,126 @@
+{
+  "title": "Flask Developer: Mastering Views",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-to-views",
+      "title": "Introduction to Flask Views",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>In Flask, <strong>Views</strong> are the functions that respond to web requests. They handle the business logic and return a response, which is typically rendered HTML, JSON, or plain text.</p>\n<p>Flask uses the <code>@app.route()</code> decorator to bind a URL to a specific view function.</p>\n<pre><code>from flask import Flask\napp = Flask(__name__)\n\n@app.route('/')\ndef home():\n    return 'Hello, World!'</code></pre>"
+    },
+    {
+      "id": "what-is-decorator",
+      "title": "Identify the Route Decorator",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "@app.route()"
+          },
+          {
+            "id": "b",
+            "text": "@flask.view()"
+          },
+          {
+            "id": "c",
+            "text": "@app.mapping()"
+          },
+          {
+            "id": "d",
+            "text": "@route.get()"
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "view-return-types",
+      "title": "Return Types in Flask Views",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Flask views can return various data types:</p>\n<ul>\n<li><strong>Strings:</strong> Converted into an HTML response by Flask.</li>\n<li><strong>Dictionaries:</strong> Automatically converted into a JSON response (Flask 1.1+).</li>\n<li><strong>Response Objects:</strong> Created using <code>make_response()</code> for custom status codes and headers.</li>\n<li><strong>Rendered Templates:</strong> Using <code>render_template()</code> to serve HTML files.</li>\n</ul>"
+    },
+    {
+      "id": "fill-blank-return",
+      "title": "Complete the JSON Return Code",
+      "type": "blank",
+      "duration": "3m",
+      "content": {
+        "sentence": "To render an HTML template named index.html inside a view, you use the function ___('index.html').",
+        "answer": "render_template"
+      }
+    },
+    {
+      "id": "http-methods-views",
+      "title": "Handling HTTP Methods",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>By default, a Flask route only answers to <code>GET</code> requests. You can handle other HTTP methods like <code>POST</code>, <code>PUT</code>, or <code>DELETE</code> by passing the <code>methods</code> argument to the route decorator.</p>\n<pre><code>from flask import request\n\n@app.route('/login', methods=['GET', 'POST'])\ndef login():\n    if request.method == 'POST':\n        return 'Logging in...'\n    return 'Render login form'</code></pre>"
+    },
+    {
+      "id": "match-methods",
+      "title": "Match HTTP Methods to Use Cases",
+      "type": "match",
+      "duration": "4m",
+      "content": {
+        "pairs": [
+          {
+            "left": "GET",
+            "right": "Retrieve resources"
+          },
+          {
+            "left": "POST",
+            "right": "Create a new resource"
+          },
+          {
+            "left": "PUT",
+            "right": "Update an existing resource entirely"
+          },
+          {
+            "left": "DELETE",
+            "right": "Remove a resource"
+          }
+        ]
+      }
+    },
+    {
+      "id": "variable-rules",
+      "title": "Variable Rules in Routes",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>You can add variable sections to a URL by marking sections as <code>&lt;variable_name&gt;</code>. Your view function then receives the value as a keyword argument.</p>\n<pre><code>@app.route('/user/&lt;username&gt;')\ndef profile(username):\n    return f'User profile for {username}'</code></pre>\n<p>You can also specify converters like <code>&lt;int:user_id&gt;</code> or <code>&lt;float:price&gt;</code>.</p>"
+    },
+    {
+      "id": "order-request-flow",
+      "title": "Order the Flask Request Lifecycle",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "steps": [
+          "Client sends an HTTP request to the server.",
+          "Flask matches the URL path to a registered route.",
+          "The corresponding view function executes and processes logic.",
+          "The view returns a response object or rendered template.",
+          "Flask sends the HTTP response back to the client."
+        ]
+      },
+      "correctOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "summary-views",
+      "title": "Conclusion",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>You have learned how to create basic views, handle multiple HTTP methods, return various data types, utilize URL variables, and structure the request lifecycle in Flask.</p>\n<p>Next up: Class-based views and Blueprints!</p>"
+    }
+  ]
+}

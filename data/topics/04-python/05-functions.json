@@ -1,0 +1,152 @@
+{
+  "title": "Python Functions",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-to-functions",
+      "title": "Introduction to Functions",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>A function is a block of organized, reusable code that is used to perform a single, related action. Functions provide better modularity for your application and a high degree of code reusing.</p><p>In Python, a function is defined using the <code>def</code> keyword.</p>\n<pre><code>def greet(name):\n    return f\"Hello, {name}!\"</code></pre>"
+    },
+    {
+      "id": "function-syntax-mcq",
+      "title": "Function Keyword",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "function"
+          },
+          {
+            "id": "b",
+            "text": "def"
+          },
+          {
+            "id": "c",
+            "text": "fun"
+          },
+          {
+            "id": "d",
+            "text": "define"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "parameters-and-arguments",
+      "title": "Parameters vs Arguments",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Information can be passed into functions as arguments. Parameters are specified after the function name, inside the parentheses.</p>\n<pre><code># x and y are parameters\ndef add(x, y):\n    return x + y\n\n# 5 and 3 are arguments\nresult = add(5, 3)</code></pre>"
+    },
+    {
+      "id": "fill-blank-default-args",
+      "title": "Default Arguments",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To specify a default value for a parameter, you use the _____ operator in the function definition.",
+        "correctAnswer": "="
+      }
+    },
+    {
+      "id": "args-kwargs-content",
+      "title": "*args and **kwargs",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Sometimes you do not know how many arguments that will be passed into your function. You can use <code>*args</code> and <code>**kwargs</code> to handle variable numbers of arguments.</p>\n<p><code>*args</code> passes non-keyworded arguments as a tuple, while <code>**kwargs</code> passes keyworded arguments as a dictionary.</p>"
+    },
+    {
+      "id": "match-function-concepts",
+      "title": "Match Function Concepts",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "def",
+            "right": "Keyword to define a function"
+          },
+          {
+            "left": "return",
+            "right": "Keyword to exit function and pass back a value"
+          },
+          {
+            "left": "*args",
+            "right": "Arbitrary positional arguments"
+          },
+          {
+            "left": "**kwargs",
+            "right": "Arbitrary keyword arguments"
+          }
+        ]
+      }
+    },
+    {
+      "id": "lambda-functions",
+      "title": "Lambda Functions",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>A lambda function is a small anonymous function. A lambda function can take any number of arguments, but can only have one expression.</p>\n<pre><code>x = lambda a : a + 10\nprint(x(5))  # Outputs: 15</code></pre>"
+    },
+    {
+      "id": "order-function-execution",
+      "title": "Order of Function Definition & Call",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "steps": [
+          "Define the function using 'def my_func():'",
+          "Write the body of the function indented",
+          "Call the function by its name followed by parentheses",
+          "Receive and process the return value"
+        ]
+      }
+    },
+    {
+      "id": "scope-content",
+      "title": "Variable Scope",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>A variable is only available from inside the region it is created. This is called scope.</p><ul><li><strong>Local Scope:</strong> Variables created inside a function.</li><li><strong>Global Scope:</strong> Variables created in the main body of the Python code.</li></ul>"
+    },
+    {
+      "id": "scope-mcq",
+      "title": "Local vs Global Scope",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Local variables can be accessed anywhere in the file."
+          },
+          {
+            "id": "b",
+            "text": "Global variables are only accessible inside functions."
+          },
+          {
+            "id": "c",
+            "text": "Local variables are created inside a function and only accessible there."
+          },
+          {
+            "id": "d",
+            "text": "There is no difference between local and global scope."
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "conclusion-functions",
+      "title": "Summary",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>You have learned the fundamentals of Python functions:</p><ul><li>Defining functions with <code>def</code></li><li>Passing arguments and using default values</li><li>Handling variable arguments with <code>*args</code> and <code>**kwargs</code></li><li>Using anonymous <code>lambda</code> functions</li><li>Understanding variable scope</li></ul>"
+    }
+  ]
+}

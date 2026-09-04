@@ -1,0 +1,167 @@
+{
+  "title": "Virtual Environments in Python",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-venv",
+      "title": "What is a Virtual Environment?",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>A Python virtual environment is an isolated space where you can install specific versions of Python packages without affecting your global Python installation or other projects.</p>\n<p>It creates a folder containing a copy of the Python interpreter and all necessary site-packages.</p>"
+    },
+    {
+      "id": "why-venv-mcq",
+      "title": "Purpose of Virtual Environments",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "What is the primary benefit of using a Python virtual environment?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It makes your Python code execute faster."
+          },
+          {
+            "id": "b",
+            "text": "It isolates project dependencies to prevent version conflicts."
+          },
+          {
+            "id": "c",
+            "text": "It automatically converts Python 2 code to Python 3."
+          },
+          {
+            "id": "d",
+            "text": "It compiles Python code into native machine binaries."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "creating-venv",
+      "title": "Creating a Virtual Environment",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To create a virtual environment, navigate to your project directory in the terminal and run the built-in <code>venv</code> module:</p>\n<pre><code>python -m venv venv</code></pre>\n<p>This will generate a new folder named <code>venv</code> containing the isolated Python environment.</p>"
+    },
+    {
+      "id": "blank-create-venv",
+      "title": "Fill in the Command",
+      "type": "blank",
+      "duration": "1m",
+      "content": {
+        "text": "To create a virtual environment using the built-in module, you run: python -m ___ myenv",
+        "answer": "venv"
+      }
+    },
+    {
+      "id": "activating-venv",
+      "title": "Activating the Environment",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Before you can use the virtual environment, you must activate it:</p>\n<ul>\n<li><strong>Windows (Command Prompt):</strong> <code>venv\\Scripts\\activate.bat</code></li>\n<li><strong>Windows (PowerShell):</strong> <code>venv\\Scripts\\Activate.ps1</code></li>\n<li><strong>macOS / Linux:</strong> <code>source venv/bin/activate</code></li>\n</ul>"
+    },
+    {
+      "id": "workflow-order",
+      "title": "Virtual Environment Workflow",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "instruction": "Arrange the steps to set up and use a new virtual environment in the correct order:",
+        "items": [
+          {
+            "id": "step1",
+            "text": "Open terminal in project directory"
+          },
+          {
+            "id": "step2",
+            "text": "Run python -m venv venv"
+          },
+          {
+            "id": "step3",
+            "text": "Activate the virtual environment"
+          },
+          {
+            "id": "step4",
+            "text": "Install required packages using pip"
+          }
+        ],
+        "correctOrder": [
+          "step1",
+          "step2",
+          "step3",
+          "step4"
+        ]
+      }
+    },
+    {
+      "id": "managing-packages",
+      "title": "Managing Packages with Pip",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Once activated, any package you install via <code>pip</code> goes exclusively into this virtual environment.</p>\n<pre><code>pip install requests\npip freeze > requirements.txt</code></pre>\n<p>The <code>requirements.txt</code> file is used to list all dependencies so they can be easily reinstalled later.</p>"
+    },
+    {
+      "id": "match-commands",
+      "title": "Match Command to Action",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "instruction": "Match each command with its correct function.",
+        "pairs": [
+          {
+            "left": "python -m venv env",
+            "right": "Create a virtual environment"
+          },
+          {
+            "left": "source env/bin/activate",
+            "right": "Activate environment (Unix)"
+          },
+          {
+            "left": "pip freeze > req.txt",
+            "right": "Export installed dependencies"
+          },
+          {
+            "left": "deactivate",
+            "right": "Exit the virtual environment"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deactivating-venv",
+      "title": "Deactivation and Cleanup",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>When you are done working on your project, you can leave the virtual environment by simply typing:</p>\n<pre><code>deactivate</code></pre>\n<p>This returns your terminal session to the global Python environment.</p>"
+    },
+    {
+      "id": "final-mcq",
+      "title": "Review Question",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "How do you restore all project dependencies from a requirements.txt file inside an active virtual environment?",
+        "options": [
+          {
+            "id": "a",
+            "text": "pip install -r requirements.txt"
+          },
+          {
+            "id": "b",
+            "text": "python setup-packages.py"
+          },
+          {
+            "id": "c",
+            "text": "venv load requirements.txt"
+          },
+          {
+            "id": "d",
+            "text": "pip restore"
+          }
+        ],
+        "correctId": "a"
+      }
+    }
+  ]
+}

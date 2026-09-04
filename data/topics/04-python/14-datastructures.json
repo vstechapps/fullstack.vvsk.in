@@ -1,0 +1,129 @@
+{
+  "title": "Data Structures in Python",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-ds",
+      "title": "Introduction to Data Structures",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Data structures are ways of organizing and storing data efficiently in Python.</p>\n<p>Python provides built-in data structures like <strong>Lists</strong>, <strong>Tuples</strong>, <strong>Dictionaries</strong>, and <strong>Sets</strong>.</p>"
+    },
+    {
+      "id": "list-vs-tuple",
+      "title": "Lists vs Tuples",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Lists are immutable and tuples are mutable."
+          },
+          {
+            "id": "b",
+            "text": "Lists are mutable and tuples are immutable."
+          },
+          {
+            "id": "c",
+            "text": "Both lists and tuples are immutable."
+          },
+          {
+            "id": "d",
+            "text": "Both lists and tuples are mutable."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "dict-concept",
+      "title": "Python Dictionaries",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Dictionaries store data in <code>key: value</code> pairs.</p>\n<pre><code>my_dict = {\"name\": \"Alice\", \"age\": 30}\nprint(my_dict[\"name\"])  # Output: Alice</code></pre>"
+    },
+    {
+      "id": "blank-set",
+      "title": "Fill in the Blank for Sets",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To create an empty set in Python, you cannot use {}, because that creates an empty dictionary. Instead, you must use the ________() function.",
+        "answer": "set"
+      }
+    },
+    {
+      "id": "match-ds",
+      "title": "Match Data Structure Characteristics",
+      "type": "match",
+      "duration": "4m",
+      "content": {
+        "pairs": [
+          {
+            "left": "List",
+            "right": "Ordered, mutable, allows duplicate values"
+          },
+          {
+            "left": "Tuple",
+            "right": "Ordered, immutable, allows duplicate values"
+          },
+          {
+            "left": "Set",
+            "right": "Unordered, mutable, unique values only"
+          },
+          {
+            "left": "Dictionary",
+            "right": "Key-value pairs, mutable keys"
+          }
+        ]
+      }
+    },
+    {
+      "id": "time-complexity-content",
+      "title": "Big-O Efficiency in Python",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Understanding time complexity helps write performant code.</p>\n<ul>\n<li><strong>List lookup by index:</strong> O(1)</li>\n<li><strong>List search (<code>in</code> operator):</strong> O(n)</li>\n<li><strong>Dictionary lookup/insertion:</strong> O(1) average</li>\n</ul>"
+    },
+    {
+      "id": "order-operations",
+      "title": "Order of Stack Operations (LIFO)",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Initialize an empty list to act as a stack"
+          },
+          {
+            "id": "2",
+            "text": "Use append() to push an item onto the stack"
+          },
+          {
+            "id": "3",
+            "text": "Check the top of the stack using negative indexing (stack[-1])"
+          },
+          {
+            "id": "4",
+            "text": "Use pop() to remove the top item from the stack"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    },
+    {
+      "id": "wrap-up",
+      "title": "Data Structures Summary",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Choosing the right data structure is crucial for writing efficient Python applications.</p>\n<p>Review the complexities and properties before building large-scale systems.</p>"
+    }
+  ]
+}

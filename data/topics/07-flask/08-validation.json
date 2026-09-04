@@ -1,0 +1,110 @@
+{
+  "title": "Validation in Flask Developer",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "val-intro",
+      "title": "Introduction to Validation in Flask",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Data validation is a critical step in web development. Never trust user input! In Flask, while you can manually check request data, using libraries like <strong>WTForms</strong> or <strong>Pydantic</strong> makes the process secure, robust, and maintainable.</p>"
+    },
+    {
+      "id": "wtforms-concept",
+      "title": "What is Flask-WTF?",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p><strong>Flask-WTF</strong> integrates WTForms with Flask, providing features like CSRF protection, secure form rendering, and built-in validators for email, length, data required, and more.</p>\n<pre><code>from flask_wtf import FlaskForm\nfrom wtforms import StringField, PasswordField\nfrom wtforms.validators import DataRequired, Email\n\nclass SignupForm(FlaskForm):\n    email = StringField('Email', validators=[DataRequired(), Email()])\n    password = PasswordField('Password', validators=[DataRequired()])</code></pre>"
+    },
+    {
+      "id": "val-mcq-1",
+      "title": "Choose the primary benefit of using Flask-WTF",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Automatic database migrations"
+          },
+          {
+            "id": "b",
+            "text": "Built-in CSRF protection and form validation"
+          },
+          {
+            "id": "c",
+            "text": "Faster server response times"
+          },
+          {
+            "id": "d",
+            "text": "Automatic CSS styling"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "blank-wtforms",
+      "title": "Fill in the WTForm Validator",
+      "type": "blank",
+      "duration": "3m",
+      "content": "To ensure that a form field is not left empty, you use the _____ validator from wtforms.validators.",
+      "answer": "DataRequired"
+    },
+    {
+      "id": "request-args-content",
+      "title": "Validating JSON APIs",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>When building REST APIs with Flask, requests usually come as JSON rather than HTML forms. You can validate incoming JSON payloads using libraries like <strong>Marshmallow</strong> or <strong>Pydantic</strong>.</p>\n<pre><code>from flask import request, jsonify\n\n@app.route('/api/user', methods=['POST'])\ndef create_user():\n    data = request.get_json()\n    if not data or 'username' not in data:\n        return jsonify({'error': 'Username is required'}), 400\n    return jsonify({'success': True}), 201</code></pre>"
+    },
+    {
+      "id": "match-validators",
+      "title": "Match the WTForms Validator to its Purpose",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Email()",
+            "right": "Validates email format"
+          },
+          {
+            "left": "Length(min=6)",
+            "right": "Checks string size constraints"
+          },
+          {
+            "left": "DataRequired()",
+            "right": "Ensures field is not empty"
+          },
+          {
+            "left": "NumberRange(min=1)",
+            "right": "Validates numeric limits"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-validation-flow",
+      "title": "Order the Flask Form Validation Lifecycle",
+      "type": "order",
+      "duration": "5m",
+      "content": {
+        "steps": [
+          "User submits the form via the browser",
+          "Flask receives the POST request and instantiates the form class with request.form",
+          "Form calls form.validate_on_submit()",
+          "Individual field validators execute sequentially",
+          "If valid, process data; if invalid, render form with error messages"
+        ]
+      }
+    },
+    {
+      "id": "val-summary",
+      "title": "Validation Best Practices Summary",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Always remember these key rules for robust validation in Flask:</p>\n<ul>\n<li>Validate on the server side, even if client-side validation exists.</li>\n<li>Always enable CSRF protection for HTML form submissions.</li>\n<li>Sanitize inputs to prevent XSS and SQL injection attacks.</li>\n<li>Use established libraries like Flask-WTF or Marshmallow instead of writing custom regex for everything.</li>\n</ul>"
+    }
+  ]
+}

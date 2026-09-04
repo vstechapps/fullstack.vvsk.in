@@ -1,0 +1,153 @@
+{
+  "title": "Configuration in ASP.NET Core",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-config",
+      "title": "Introduction to Configuration",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>ASP.NET Core provides a robust configuration system based on key-value pairs. These values can be loaded from various sources at runtime, including JSON files, environment variables, command-line arguments, and Azure Key Vault.</p>"
+    },
+    {
+      "id": "appsettings-json",
+      "title": "appsettings.json Structure",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>The default configuration source is usually <code>appsettings.json</code> located in the project root.</p>\n<pre><code>{\n  \"Logging\": {\n    \"LogLevel\": {\n      \"Default\": \"Information\"\n    }\n  },\n  \"ConnectionStrings\": {\n    \"DefaultConnection\": \"Server=(localdb)\\mssqllocaldb;Database=TestDb;\"\n  }\n}</code></pre>"
+    },
+    {
+      "id": "config-source-mcq",
+      "title": "Default Configuration Source",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "web.config"
+          },
+          {
+            "id": "b",
+            "text": "appsettings.json"
+          },
+          {
+            "id": "c",
+            "text": "config.xml"
+          },
+          {
+            "id": "d",
+            "text": "settings.yaml"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "accessing-config",
+      "title": "Accessing Configuration with IConfiguration",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>ASP.NET Core uses Dependency Injection to provide access to configuration values via the <code>IConfiguration</code> interface.</p>\n<pre><code>public class HomeController : Controller\n{\n    private readonly IConfiguration _configuration;\n\n    public HomeController(IConfiguration configuration)\n    {\n        _configuration = configuration;\n    }\n\n    public IActionResult Index()\n    {\n        string connString = _configuration.GetConnectionString(\"DefaultConnection\");\n        return View();\n    }\n}</code></pre>"
+    },
+    {
+      "id": "options-pattern",
+      "title": "The Options Pattern",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>The Options pattern uses C# classes to strongly type and strongly validate configuration settings. This avoids using magic strings throughout your codebase.</p>\n<pre><code>public class SmtpSettings\n{\n    public string Host { get; set; }\n    public int Port { get; set; }\n}\n\n// Registered in Program.cs\nbuilder.Services.Configure&lt;SmtpSettings&gt;(builder.Configuration.GetSection(\"Smtp\"));</code></pre>"
+    },
+    {
+      "id": "config-blank",
+      "title": "Injecting Configuration",
+      "type": "blank",
+      "duration": "2m",
+      "content": "To access configuration settings in a service via Dependency Injection, you request the interface named [blank].",
+      "options": [
+        "IConfiguration",
+        "IAppSettings",
+        "IConfigurationBuilder",
+        "IOptionsProvider"
+      ],
+      "correctId": "IConfiguration"
+    },
+    {
+      "id": "env-variables",
+      "title": "Environment Variables & Overrides",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>ASP.NET Core allows configuration providers to override values based on precedence. Environment variables typically override <code>appsettings.json</code> settings. To use environment-specific settings, use files like <code>appsettings.Development.json</code> or <code>appsettings.Production.json</code>.</p>"
+    },
+    {
+      "id": "match-providers",
+      "title": "Match Configuration Providers to their Syntax",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "JSON Files",
+            "right": "AddJsonFile()"
+          },
+          {
+            "left": "Environment Variables",
+            "right": "AddEnvironmentVariables()"
+          },
+          {
+            "left": "Command Line Arguments",
+            "right": "AddCommandLine()"
+          },
+          {
+            "left": "User Secrets",
+            "right": "AddUserSecrets()"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-precedence",
+      "title": "Configuration Precedence Order",
+      "type": "order",
+      "duration": "4m",
+      "content": {
+        "instructions": "Order the configuration sources from lowest precedence to highest precedence (later sources override earlier ones in the default setup).",
+        "items": [
+          {
+            "id": "step1",
+            "text": "appsettings.json"
+          },
+          {
+            "id": "step2",
+            "text": "appsettings.{Environment}.json"
+          },
+          {
+            "id": "step3",
+            "text": "User Secrets (in Development)"
+          },
+          {
+            "id": "step4",
+            "text": "Environment Variables"
+          },
+          {
+            "id": "step5",
+            "text": "Command-line arguments"
+          }
+        ],
+        "correctOrder": [
+          "step1",
+          "step2",
+          "step3",
+          "step4",
+          "step5"
+        ]
+      }
+    },
+    {
+      "id": "summary-config",
+      "title": "Configuration Summary",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>You have learned how ASP.NET Core handles configuration using hierarchical JSON files, environment variables, the <code>IConfiguration</code> interface, and strongly-typed settings using the Options pattern.</p>"
+    }
+  ]
+}

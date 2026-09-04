@@ -1,0 +1,165 @@
+{
+  "title": "ASP.NET Core Deployment",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "deployment-intro",
+      "title": "Introduction to ASP.NET Core Deployment",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Deploying an ASP.NET Core application involves publishing the app, packaging its dependencies, and hosting it on a web server or cloud platform like IIS, Kestrel with a reverse proxy (Nginx/Apache), or Azure App Service.</p>"
+    },
+    {
+      "id": "dotnet-publish-mcq",
+      "title": "The Publish Command",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "dotnet build"
+          },
+          {
+            "id": "b",
+            "text": "dotnet publish -c Release"
+          },
+          {
+            "id": "c",
+            "text": "dotnet deploy"
+          },
+          {
+            "id": "d",
+            "text": "dotnet run"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "hosting-models",
+      "title": "Hosting Models",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>ASP.NET Core supports two primary hosting models:</p><ul><li><strong>In-process hosting:</strong> Runs the app in the same process as the IIS worker process for better performance.</li><li><strong>Out-of-process hosting:</strong> Relies on Kestrel as a web server, typically behind a reverse proxy like IIS, Nginx, or Apache.</li></ul>"
+    },
+    {
+      "id": "deployment-steps-order",
+      "title": "Order of Standard Linux Deployment",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "items": [
+          {
+            "id": "step1",
+            "text": "Publish the application using 'dotnet publish'"
+          },
+          {
+            "id": "step2",
+            "text": "Transfer the published files to the server"
+          },
+          {
+            "id": "step3",
+            "text": "Configure Nginx as a reverse proxy"
+          },
+          {
+            "id": "step4",
+            "text": "Set up Systemd service to run Kestrel"
+          }
+        ],
+        "correctOrder": [
+          "step1",
+          "step2",
+          "step3",
+          "step4"
+        ]
+      }
+    },
+    {
+      "id": "env-variables-blank",
+      "title": "Environment Variables",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To set the ASP.NET Core environment to production in a Linux environment, you typically set the environment variable [blank] to Production.",
+        "blanks": [
+          {
+            "id": "blank1",
+            "answer": "ASPNETCORE_ENVIRONMENT"
+          }
+        ]
+      }
+    },
+    {
+      "id": "match-terms",
+      "title": "Match Deployment Concepts",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "id": "p1",
+            "left": "Kestrel",
+            "right": "Cross-platform web server"
+          },
+          {
+            "id": "p2",
+            "left": "Nginx",
+            "right": "Reverse proxy server"
+          },
+          {
+            "id": "p3",
+            "left": "IIS",
+            "right": "Windows web server"
+          },
+          {
+            "id": "p4",
+            "left": "Azure App Service",
+            "right": "Fully managed platform as a service"
+          }
+        ]
+      }
+    },
+    {
+      "id": "docker-deployment",
+      "title": "Containerizing with Docker",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Docker allows you to package your ASP.NET Core application with all its dependencies into a container image. This ensures consistent behavior across development, testing, and production environments.</p><pre><code>FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build\nWORKDIR /src\nCOPY . .\nRUN dotnet publish -c Release -o /app</code></pre>"
+    },
+    {
+      "id": "dockerfile-mcq",
+      "title": "Docker Base Image",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "mcr.microsoft.com/dotnet/aspnet:8.0"
+          },
+          {
+            "id": "b",
+            "text": "java:latest"
+          },
+          {
+            "id": "c",
+            "text": "node:alpine"
+          },
+          {
+            "id": "d",
+            "text": "ubuntu:latest"
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "summary",
+      "title": "Deployment Summary",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Choosing the right deployment strategy depends on your infrastructure. Whether using IIS on Windows, Nginx with Kestrel on Linux, or Docker containers in Kubernetes, understanding the publish and hosting mechanisms is vital for robust ASP.NET Core applications.</p>"
+    }
+  ]
+}

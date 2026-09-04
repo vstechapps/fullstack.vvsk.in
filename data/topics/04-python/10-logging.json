@@ -1,0 +1,129 @@
+{
+  "title": "Logging in Python",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-logging",
+      "title": "Introduction to Logging",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Logging is a crucial part of any Python application. Instead of using <code>print()</code> statements, the built-in <code>logging</code> module provides a flexible framework for emitting log messages from applications.</p>\n<pre><code>import logging\nlogging.basicConfig(level=logging.INFO)\nlogging.info('Application started')</code></pre>"
+    },
+    {
+      "id": "log-levels-mcq",
+      "title": "Understanding Log Levels",
+      "type": "mcq",
+      "duration": "3m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "DEBUG"
+          },
+          {
+            "id": "b",
+            "text": "INFO"
+          },
+          {
+            "id": "c",
+            "text": "WARNING"
+          },
+          {
+            "id": "d",
+            "text": "All of the above"
+          }
+        ],
+        "correctId": "d"
+      }
+    },
+    {
+      "id": "severity-order",
+      "title": "Order Log Levels by Severity",
+      "type": "order",
+      "duration": "5m",
+      "content": {
+        "instructions": "Order the standard Python log levels from lowest severity to highest severity.",
+        "items": [
+          {
+            "id": "1",
+            "text": "DEBUG"
+          },
+          {
+            "id": "2",
+            "text": "INFO"
+          },
+          {
+            "id": "3",
+            "text": "WARNING"
+          },
+          {
+            "id": "4",
+            "text": "ERROR"
+          },
+          {
+            "id": "5",
+            "text": "CRITICAL"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      }
+    },
+    {
+      "id": "basic-config-blank",
+      "title": "Configuring the Basic Logger",
+      "type": "blank",
+      "duration": "5m",
+      "content": {
+        "text": "To set the minimum severity threshold for the root logger, you use logging.______(level=logging.DEBUG).",
+        "answer": "basicConfig"
+      }
+    },
+    {
+      "id": "handlers-formatters",
+      "title": "Components of Logging",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Advanced logging involves multiple components:</p>\n<ul>\n<li><strong>Loggers:</strong> Expose the interface that application code uses directly.</li>\n<li><strong>Handlers:</strong> Send the log records (created by loggers) to the appropriate destination.</li>\n<li><strong>Filters:</strong> Provide a finer grained facility for determining which log records to output.</li>\n<li><strong>Formatters:</strong> Specify the layout of log records in the final output.</li>\n</ul>"
+    },
+    {
+      "id": "match-logging-terms",
+      "title": "Match Logging Components to Roles",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "instructions": "Match each logging component with its correct description.",
+        "pairs": [
+          {
+            "left": "Logger",
+            "right": "Exposes the interface for application code"
+          },
+          {
+            "left": "Handler",
+            "right": "Sends log records to destinations like files or console"
+          },
+          {
+            "left": "Formatter",
+            "right": "Specifies the final layout of the log record"
+          },
+          {
+            "left": "Filter",
+            "right": "Determines which records to output based on criteria"
+          }
+        ]
+      }
+    },
+    {
+      "id": "best-practices",
+      "title": "Logging Best Practices",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Always use the appropriate log level. Do not log sensitive data like passwords or tokens. Use lazy formatting in log messages (e.g., <code>logging.info('User %s logged in', username)</code> instead of f-strings) to save CPU cycles when logging is disabled.</p>"
+    }
+  ]
+}

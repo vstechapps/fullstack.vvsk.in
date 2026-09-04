@@ -1,0 +1,93 @@
+{
+  "title": "Dependency Injection in ASP.NET Core",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "di-intro",
+      "title": "Introduction to Dependency Injection",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Dependency Injection (DI) is a design pattern used to achieve Inversion of Control (IoC) between classes and their dependencies.</p>\n<p>In ASP.NET Core, DI is built-in and first-class, making your applications loosely coupled, maintainable, and easily testable.</p>"
+    },
+    {
+      "id": "di-lifetimes-content",
+      "title": "Service Lifetimes in ASP.NET Core",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>ASP.NET Core supports three service lifetimes:</p>\n<ul>\n<li><strong>Transient:</strong> Created each time they are requested. Best for lightweight, stateless services.</li>\n<li><strong>Scoped:</strong> Created once per client request (connection). Best for web applications (e.g., Entity Framework DbContext).</li>\n<li><strong>Singleton:</strong> Created the first time they are requested and then every subsequent request uses the same instance.</li>\n</ul>"
+    },
+    {
+      "id": "lifetime-mcq",
+      "title": "Choose the Correct Service Lifetime",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Transient services are created once per HTTP request."
+          },
+          {
+            "id": "b",
+            "text": "Singleton services are created once and persist for the lifetime of the application."
+          },
+          {
+            "id": "c",
+            "text": "Scoped services are created every time they are requested."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "di-registration-blank",
+      "title": "Registering Services",
+      "type": "blank",
+      "duration": "4m",
+      "content": "To register a service with a scoped lifetime in the DI container, you use the <code>builder.Services.Add____{Scoped}&lt;IMyService, MyService&gt;();</code> method inside the Program.cs file."
+    },
+    {
+      "id": "match-lifetimes",
+      "title": "Match Lifetime to Description",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Transient",
+            "right": "New instance every time"
+          },
+          {
+            "left": "Scoped",
+            "right": "New instance per HTTP request"
+          },
+          {
+            "left": "Singleton",
+            "right": "Single instance for app lifetime"
+          }
+        ]
+      }
+    },
+    {
+      "id": "di-order-steps",
+      "title": "Order the DI Setup Steps",
+      "type": "order",
+      "duration": "6m",
+      "content": {
+        "steps": [
+          "Define an interface for the service (e.g., IEmailService).",
+          "Implement the interface in a concrete class (e.g., SmtpEmailService).",
+          "Register the service in Program.cs using builder.Services.",
+          "Inject the interface into a controller's constructor."
+        ]
+      }
+    },
+    {
+      "id": "di-best-practices",
+      "title": "DI Best Practices and Traps",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Avoid the <strong>Captured Dependency</strong> trap: Do not inject a Transient or Scoped service into a Singleton service, as this can cause scoped services to live indefinitely and lead to memory leaks or stale data.</p>\n<p>Always rely on constructor injection whenever possible.</p>"
+    }
+  ]
+}

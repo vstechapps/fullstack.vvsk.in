@@ -1,0 +1,107 @@
+{
+  "title": "Databases in Flask",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-databases",
+      "title": "Introduction to Databases in Flask",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Flask does not come with a built-in database layer. Instead, we use extensions like Flask-SQLAlchemy to interact with relational databases easily using an Object-Relational Mapper (ORM).</p>\n<pre><code>from flask_sqlalchemy import SQLAlchemy\ndb = SQLAlchemy(app)</code></pre>"
+    },
+    {
+      "id": "orm-mcq",
+      "title": "Understanding ORM",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Object-Relational Mapping allows interacting with the database using Python objects."
+          },
+          {
+            "id": "b",
+            "text": "Object-Relational Mapping is a new type of database engine."
+          },
+          {
+            "id": "c",
+            "text": "It is used exclusively to write raw SQL queries in Flask."
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "defining-models",
+      "title": "Defining Database Models",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Models in Flask-SQLAlchemy are Python classes that inherit from <code>db.Model</code>. Each class represents a table in the database, and attributes represent columns.</p>\n<pre><code>class User(db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    username = db.Column(db.String(80), unique=True, nullable=False)</code></pre>"
+    },
+    {
+      "id": "blank-model-field",
+      "title": "Complete the Column Definition",
+      "type": "blank",
+      "duration": "2m",
+      "content": "To define an integer column that acts as the primary key in a Flask-SQLAlchemy model, you use: id = db.Column(db.Integer, [blanks_0]=True)"
+    },
+    {
+      "id": "migration-steps",
+      "title": "Database Migrations Order",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "instructions": "Order the steps required to set up and apply database migrations using Flask-Migrate.",
+        "items": [
+          {
+            "id": "step1",
+            "text": "Initialize Flask-Migrate using 'flask db init'"
+          },
+          {
+            "id": "step2",
+            "text": "Create a migration script using 'flask db migrate -m \"Initial migration\"'"
+          },
+          {
+            "id": "step3",
+            "text": "Apply the migration to the database using 'flask db upgrade'"
+          }
+        ]
+      }
+    },
+    {
+      "id": "match-components",
+      "title": "Match Flask Database Terms",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "instructions": "Match the Flask database concept to its correct description.",
+        "pairs": [
+          {
+            "left": "Flask-SQLAlchemy",
+            "right": "ORM extension for Flask"
+          },
+          {
+            "left": "Flask-Migrate",
+            "right": "Extension for handling SQLAlchemy database migrations"
+          },
+          {
+            "left": "db.create_all()",
+            "right": "Creates database tables based on defined models"
+          },
+          {
+            "left": "db.session.commit()",
+            "right": "Saves the current transaction to the database"
+          }
+        ]
+      }
+    },
+    {
+      "id": "crud-operations",
+      "title": "Performing CRUD Operations",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>CRUD stands for Create, Read, Update, and Delete. With Flask-SQLAlchemy, we use the database session to manage these operations.</p>\n<pre><code># Create\nnew_user = User(username='alice')\ndb.session.add(new_user)\ndb.session.commit()\n\n# Read\nusers = User.query.all()</code></pre>"
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "title": "Error Handling in Python",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-error-handling",
+      "title": "Introduction to Exceptions",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Errors in Python broadly fall into two categories: syntax errors and exceptions. Syntax errors are detected by the parser, while exceptions occur during execution even if the code is syntactically correct.</p>"
+    },
+    {
+      "id": "try-except-basics",
+      "title": "The try-except Block",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To catch and handle runtime errors gracefully, we use the <code>try</code> and <code>except</code> blocks.</p>\n<pre><code>try:\n    result = 10 / 0\nexcept ZeroDivisionError:\n    print(\"Cannot divide by zero!\")</code></pre>"
+    },
+    {
+      "id": "mcq-zero-division",
+      "title": "Identify the Exception",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "SyntaxError"
+          },
+          {
+            "id": "b",
+            "text": "ZeroDivisionError"
+          },
+          {
+            "id": "c",
+            "text": "IndexError"
+          },
+          {
+            "id": "d",
+            "text": "KeyError"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "else-finally-blocks",
+      "title": "Else and Finally Clauses",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>The <code>else</code> block runs if no exceptions occur, and the <code>finally</code> block always executes, regardless of whether an exception occurred or not.</p>\n<pre><code>try:\n    f = open('data.txt')\nexcept FileNotFoundError:\n    print('File not found')\nelse:\n    print('File read successfully')\nfinally:\n    f.close()</code></pre>"
+    },
+    {
+      "id": "blank-try-except",
+      "title": "Complete the Exception Block",
+      "type": "blank",
+      "duration": "2m",
+      "content": "Fill in the missing keyword to catch an exception:\n\n<code>try:\n    # risky code\n[blank] Exception as e:\n    print(e)</code>",
+      "answer": "except"
+    },
+    {
+      "id": "raising-exceptions",
+      "title": "Raising Exceptions",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>You can force an exception to occur using the <code>raise</code> keyword. This is useful for validating inputs or enforcing business logic.</p>\n<pre><code>def set_age(age):\n    if age < 0:\n        raise ValueError(\"Age cannot be negative\")\n    return age</code></pre>"
+    },
+    {
+      "id": "match-exceptions",
+      "title": "Match Errors to Descriptions",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "TypeError",
+            "right": "Operation applied to inappropriate type"
+          },
+          {
+            "left": "KeyError",
+            "right": "Dictionary key not found"
+          },
+          {
+            "left": "IndexError",
+            "right": "Sequence index out of range"
+          },
+          {
+            "left": "ImportError",
+            "right": "Module or member cannot be imported"
+          }
+        ]
+      }
+    },
+    {
+      "id": "custom-exceptions",
+      "title": "Creating Custom Exceptions",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Python allows you to define your own exception classes by inheriting from the built-in <code>Exception</code> class.</p>\n<pre><code>class InsufficientFundsError(Exception):\n    pass\n\nraise InsufficientFundsError(\"Balance is too low\")</code></pre>"
+    },
+    {
+      "id": "order-try-except-flow",
+      "title": "Order of Execution Blocks",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "steps": [
+          "1. try block executes",
+          "2. except block runs if an error occurs",
+          "3. else block runs if no error occurs",
+          "4. finally block runs at the very end"
+        ]
+      }
+    },
+    {
+      "id": "mcq-best-practices",
+      "title": "Error Handling Best Practice",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Catch broad exceptions like 'Exception' everywhere"
+          },
+          {
+            "id": "b",
+            "text": "Catch specific exceptions to avoid masking bugs"
+          },
+          {
+            "id": "c",
+            "text": "Never use finally blocks"
+          },
+          {
+            "id": "d",
+            "text": "Ignore all runtime errors using pass"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "summary-error-handling",
+      "title": "Summary",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Proper error handling makes your Python applications robust and user-friendly. Remember to:</p>\n<ul>\n<li>Use specific <code>except</code> clauses.</li>\n<li>Utilize <code>else</code> for code that depends on success.</li>\n<li>Always clean up resources in <code>finally</code>.</li>\n<li>Create custom exceptions when domain logic requires it.</li>\n</ul>"
+    }
+  ]
+}

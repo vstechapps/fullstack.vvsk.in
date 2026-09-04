@@ -1,0 +1,104 @@
+{
+  "title": "Logging in Flask Developer",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-to-logging",
+      "title": "Introduction to Logging in Flask",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Logging is crucial for monitoring application health, debugging errors, and tracking user activity in Flask. Python's built-in <code>logging</code> module is seamlessly integrated into Flask via <code>app.logger</code>.</p>"
+    },
+    {
+      "id": "flask-logger-mcq",
+      "title": "Accessing Flask Logger",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "import logging; logging.app"
+          },
+          {
+            "id": "b",
+            "text": "from flask import app; app.log()"
+          },
+          {
+            "id": "c",
+            "text": "app.logger.info('message')"
+          },
+          {
+            "id": "d",
+            "text": "flask.log.info('message')"
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "log-levels-content",
+      "title": "Understanding Log Levels",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Logging levels indicate the severity of an event. In Python and Flask, standard levels in increasing order of severity are:</p><ul><li><strong>DEBUG</strong>: Detailed information for diagnosing problems.</li><li><strong>INFO</strong>: Confirmation that things are working as expected.</li><li><strong>WARNING</strong>: Indication that something unexpected happened or a problem might occur soon.</li><li><strong>ERROR</strong>: A more serious problem preventing the software from performing a function.</li><li><strong>CRITICAL</strong>: A severe error indicating the program itself may be unable to continue running.</li></ul>"
+    },
+    {
+      "id": "match-log-levels",
+      "title": "Match Log Level to Scenario",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Database query executed successfully",
+            "right": "INFO"
+          },
+          {
+            "left": "Variable value inside a loop for debugging",
+            "right": "DEBUG"
+          },
+          {
+            "left": "Deprecated API endpoint being accessed",
+            "right": "WARNING"
+          },
+          {
+            "left": "Database connection lost entirely",
+            "right": "CRITICAL"
+          }
+        ]
+      }
+    },
+    {
+      "id": "configuring-handlers",
+      "title": "Configuring Handlers and Formatters",
+      "type": "content",
+      "duration": "7m",
+      "content": "<p>By default, Flask logs to the standard error stream. You can configure handlers to write logs to files, rotation files, or external services.</p>\n<pre><code>import logging\nfrom logging.handlers import RotatingFileHandler\n\nif not app.debug:\n    file_handler = RotatingFileHandler('logs/flaskapp.log', maxBytes=10240, backupCount=10)\n    file_handler.setLevel(logging.INFO)\n    app.logger.addHandler(file_handler)</code></pre>"
+    },
+    {
+      "id": "fill-in-handler",
+      "title": "Complete the Logging Handler Code",
+      "type": "blank",
+      "duration": "3m",
+      "content": {
+        "template": "To add a custom handler to your Flask application logger, you use the method app.logger.__(blank)__(handler).",
+        "answer": "addHandler"
+      }
+    },
+    {
+      "id": "order-logging-setup",
+      "title": "Order the Logging Configuration Steps",
+      "type": "order",
+      "duration": "5m",
+      "content": {
+        "steps": [
+          "Import the logging module and necessary handlers.",
+          "Create a handler instance (e.g., RotatingFileHandler or StreamHandler).",
+          "Set the desired logging level on the handler.",
+          "Add the handler to the Flask application's logger instance."
+        ]
+      }
+    }
+  ]
+}

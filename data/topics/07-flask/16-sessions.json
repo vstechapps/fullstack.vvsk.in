@@ -1,0 +1,162 @@
+{
+  "title": "Sessions in Flask",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-sessions",
+      "title": "Introduction to Sessions",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>HTTP is a stateless protocol, meaning each request from a browser is independent. <strong>Sessions</strong> allow you to store information specific to a user across multiple requests.</p>\n<p>In Flask, sessions are implemented on top of signed cookies, meaning the user can view the content of the session, but cannot modify it without knowing the secret key.</p>"
+    },
+    {
+      "id": "flask-session-import",
+      "title": "Importing the Session Object",
+      "type": "content",
+      "duration": "1m",
+      "content": "<p>To use sessions in Flask, you need to import the <code>session</code> object from the <code>flask</code> module.</p>\n<pre><code>from flask import Flask, session\n\napp = Flask(__name__)\napp.secret_key = 'your_super_secret_key'</code></pre>\n<p>Note: A <code>secret_key</code> is strictly required to securely sign the session cookie.</p>"
+    },
+    {
+      "id": "session-mcq-1",
+      "title": "Secret Key Requirement",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "Why is a `secret_key` required when using Flask sessions?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To encrypt the database passwords"
+          },
+          {
+            "id": "b",
+            "text": "To securely sign the session cookie and prevent tampering"
+          },
+          {
+            "id": "c",
+            "text": "To connect to the Flask development server"
+          },
+          {
+            "id": "d",
+            "text": "To log user IP addresses"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "using-sessions-code",
+      "title": "Reading and Writing Sessions",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Flask's <code>session</code> acts like a standard Python dictionary. You can assign values to keys and read them back later.</p>\n<pre><code>@app.route('/login')\ndef login():\n    session['username'] = 'john_doe'\n    return \"Logged in!\"\n\n@app.route('/profile')\ndef profile():\n    if 'username' in session:\n        return f\"Hello, {session['username']}!\"\n    return \"You are not logged in.\"</code></pre>"
+    },
+    {
+      "id": "session-blank-1",
+      "title": "Writing to Session Blank",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To store a user's role in the Flask session dictionary, you write: session[___] = 'admin'",
+        "blank": "'role'"
+      }
+    },
+    {
+      "id": "clearing-sessions",
+      "title": "Removing Data and Logging Out",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>To remove a specific key from the session, use the <code>pop()</code> method. To clear the entire session completely, use the <code>clear()</code> method.</p>\n<pre><code>@app.route('/logout')\ndef logout():\n    # Remove username if it exists\n    session.pop('username', None)\n    # Or clear everything:\n    # session.clear()\n    return \"Logged out!\"</code></pre>"
+    },
+    {
+      "id": "session-methods-match",
+      "title": "Match Session Operations",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "instructions": "Match the session operation with its correct code snippet.",
+        "pairs": [
+          {
+            "left": "Check if key exists",
+            "right": "'user_id' in session"
+          },
+          {
+            "left": "Remove a single key safely",
+            "right": "session.pop('user_id', None)"
+          },
+          {
+            "left": "Clear all session data",
+            "right": "session.clear()"
+          },
+          {
+            "left": "Assign a value",
+            "right": "session['user_id'] = 42"
+          }
+        ]
+      }
+    },
+    {
+      "id": "session-lifecycle-order",
+      "title": "Order of Session Lifecycle",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "instructions": "Order the steps of using a session in a standard Flask login workflow.",
+        "steps": [
+          "Configure the app.secret_key",
+          "Set session['user'] upon successful authentication",
+          "Access session['user'] in a protected dashboard route",
+          "Remove user data from session using session.pop() on logout"
+        ],
+        "correctOrder": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "session-security",
+      "title": "Session Security Best Practices",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Because Flask stores session data in client-side cookies, keep these security guidelines in mind:</p>\n<ul>\n  <li><strong>Never store sensitive data</strong> like raw passwords or credit card numbers in the session.</li>\n  <li>Keep your <code>secret_key</code> complex and secret (use environment variables).</li>\n  <li>Flask sessions have a default lifetime (non-permanent cookies expire when the browser closes, unless <code>session.permanent = True</code> is set).</li>\n</ul>"
+    },
+    {
+      "id": "session-mcq-2",
+      "title": "Client vs Server Storage",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "question": "Where does Flask store the actual session data by default?",
+        "options": [
+          {
+            "id": "a",
+            "text": "In a server-side SQL database"
+          },
+          {
+            "id": "b",
+            "text": "In the server's local file system cache"
+          },
+          {
+            "id": "c",
+            "text": "In a signed client-side cookie"
+          },
+          {
+            "id": "d",
+            "text": "In the browser's LocalStorage API"
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "session-summary",
+      "title": "Summary",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Congratulations! You have learned how sessions work in Flask.</p>\n<p>Key takeaways:</p>\n<ul>\n  <li>Always define <code>app.secret_key</code>.</li>\n  <li>Treat the <code>session</code> object like a Python dictionary.</li>\n  <li>Use <code>session.pop()</code> or <code>session.clear()</code> to log users out.</li>\n  <li>Never store sensitive credentials directly in session cookies.</li>\n</ul>"
+    }
+  ]
+}

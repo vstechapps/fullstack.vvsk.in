@@ -1,0 +1,187 @@
+{
+  "title": "Spring Core Fundamentals",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "spring-core-intro",
+      "title": "Introduction to Spring Core & IoC Container",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>At the heart of the Spring Framework is the <strong>Inversion of Control (IoC)</strong> container. IoC is a design principle where the control of object creation and lifecycle management is transferred from the application code to a framework container.</p><p>The container is responsible for instantiating, configuring, and assembling objects known as <strong>Spring Beans</strong>.</p><pre><code>ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);\nMyService service = context.getBean(MyService.class);</code></pre>"
+    },
+    {
+      "id": "ioc-vs-di",
+      "title": "IoC vs. Dependency Injection (DI)",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>While often used interchangeably, IoC and DI are distinct concepts:</p><ul><li><strong>Inversion of Control (IoC)</strong> is the broad principle (e.g., \"Don't call us, we'll call you\").</li><li><strong>Dependency Injection (DI)</strong> is the specific pattern used to realize IoC, where dependencies are provided to an object rather than the object creating them itself.</li></ul>"
+    },
+    {
+      "id": "container-mcq",
+      "title": "Test Your Understanding: IoC Container",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "ApplicationContext is a sub-interface of BeanFactory with advanced enterprise capabilities."
+          },
+          {
+            "id": "b",
+            "text": "BeanFactory is a sub-interface of ApplicationContext."
+          },
+          {
+            "id": "c",
+            "text": "ApplicationContext cannot load external configuration files."
+          },
+          {
+            "id": "d",
+            "text": "BeanFactory is preferred over ApplicationContext for most standard web applications."
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "bean-lifecycle-content",
+      "title": "The Spring Bean Lifecycle",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>A Spring Bean undergoes a well-defined lifecycle managed entirely by the IoC container. Key phases include:</p><ol><li><strong>Instantiation:</strong> The bean instance is created in memory.</li><li><strong>Property Population:</strong> Dependencies are injected via setter or constructor injection.</li><li><strong>Initialization:</strong> Custom initialization methods (e.g., annotated with <code>@PostConstruct</code>) are invoked.</li><li><strong>Destruction:</strong> Bean resources are cleaned up before termination (e.g., annotated with <code>@PreDestroy</code>).</li></ol>"
+    },
+    {
+      "id": "lifecycle-order",
+      "title": "Order the Bean Lifecycle Steps",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "items": [
+          {
+            "id": "step-instantiation",
+            "text": "Bean Instantiation"
+          },
+          {
+            "id": "step-properties",
+            "text": "Dependency Injection (Populate Properties)"
+          },
+          {
+            "id": "step-init",
+            "text": "Initialization (e.g., @PostConstruct)"
+          },
+          {
+            "id": "step-destroy",
+            "text": "Destruction (e.g., @PreDestroy)"
+          }
+        ],
+        "correctOrder": [
+          "step-instantiation",
+          "step-properties",
+          "step-init",
+          "step-destroy"
+        ]
+      }
+    },
+    {
+      "id": "config-styles-content",
+      "title": "Spring Configuration Styles",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Spring allows you to configure your container using three main approaches:</p><ul><li><strong>Java-based Configuration:</strong> Uses classes annotated with <code>@Configuration</code> and methods annotated with <code>@Bean</code>.</li><li><strong>Annotation-based Configuration:</strong> Uses stereotype annotations (like <code>@Component</code>) and automatic component scanning.</li><li><strong>XML-based Configuration:</strong> Legacy approach defining beans in XML documents (discouraged in modern Spring Boot applications).</li></ul>"
+    },
+    {
+      "id": "config-annotations-match",
+      "title": "Match Configuration Annotations",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "left": "@Configuration",
+            "right": "Marks a class as a source of bean definitions."
+          },
+          {
+            "left": "@Bean",
+            "right": "Explicitly declares a single bean returned by a configuration method."
+          },
+          {
+            "left": "@Component",
+            "right": "Marks a generic class as a candidate for component scanning."
+          },
+          {
+            "left": "@ComponentScan",
+            "right": "Configures the packages to scan for components."
+          }
+        ]
+      }
+    },
+    {
+      "id": "stereotype-annotations-content",
+      "title": "Understanding Stereotype Annotations",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Stereotype annotations are specialized forms of <code>@Component</code> that align with enterprise architecture layers:</p><ul><li><code>@Controller</code>: Handles web requests.</li><li><code>@Service</code>: Encapsulates business logic.</li><li><code>@Repository</code>: Interacts with the database and translates platform-specific exceptions into Spring DataAccessException.</li></ul>"
+    },
+    {
+      "id": "stereotype-blank",
+      "title": "Fill in the Blank: Stereotypes",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "The [blank] annotation is specifically optimized for database access classes and automatically handles exception translation.",
+        "correctAnswer": "@Repository"
+      }
+    },
+    {
+      "id": "di-types-content",
+      "title": "Types of Dependency Injection",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Spring supports three main flavors of Dependency Injection:</p><ul><li><strong>Constructor Injection:</strong> Dependencies are passed via the constructor. Best practice as it allows for immutable beans and ensures required dependencies are not null.</li><li><strong>Setter Injection:</strong> Dependencies are passed via setter methods. Useful for optional dependencies.</li><li><strong>Field Injection:</strong> Injection directly into class fields using <code>@Autowired</code>. Discouraged as it hides dependencies and makes unit testing harder.</li></ul>"
+    },
+    {
+      "id": "di-types-mcq",
+      "title": "Best Injection Practice",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Field injection because it reduces boilerplate code lines."
+          },
+          {
+            "id": "b",
+            "text": "Constructor injection because it promotes immutability and facilitates safe unit testing."
+          },
+          {
+            "id": "c",
+            "text": "Setter injection because it is executed before any constructor calls."
+          },
+          {
+            "id": "d",
+            "text": "XML injection because it keeps configuration decoupled from source code."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "best-practices-content",
+      "title": "Spring Core Best Practices",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>To build robust Spring applications, keep the following principles in mind:</p><ul><li>Prefer <strong>Constructor Injection</strong> for mandatory dependencies.</li><li>Keep beans stateless by utilizing the default <strong>singleton</strong> scope carefully.</li><li>Avoid circular dependencies by refactoring code to separate responsibilities.</li><li>Utilize profile-based configurations (<code>@Profile</code>) to handle environment-specific configurations cleanly.</li></ul>"
+    },
+    {
+      "id": "scopes-blank",
+      "title": "Fill in the Blank: Default Bean Scope",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "By default, every bean created by the Spring container is scoped as a [blank], meaning only one shared instance is created for the entire application context.",
+        "correctAnswer": "singleton"
+      }
+    }
+  ]
+}

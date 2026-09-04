@@ -1,0 +1,204 @@
+{
+  "title": "OAuth2 Implementation in Spring Boot",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "oauth2-overview",
+      "title": "OAuth2 Core Concepts and Roles",
+      "type": "content",
+      "duration": "3m",
+      "content": "<h3>Understanding OAuth 2.0 Roles</h3><p>OAuth 2.0 is an authorization framework that enables third-party applications to obtain limited access to an HTTP service.</p><ul><li><strong>Resource Owner:</strong> The user who grants access to a protected resource.</li><li><strong>Client:</strong> The application making protected resource requests on behalf of the resource owner.</li><li><strong>Resource Server:</strong> The server hosting the protected resources (e.g., your Spring Boot REST API).</li><li><strong>Authorization Server:</strong> The server issuing access tokens to the client after successfully authenticating the resource owner.</li></ul>"
+    },
+    {
+      "id": "oauth2-roles-mcq",
+      "title": "Identify OAuth2 Components",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "In a Spring Boot application acting as a REST API protecting user profiles, what OAuth2 role does the Spring Boot application serve?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Authorization Server"
+          },
+          {
+            "id": "b",
+            "text": "Resource Server"
+          },
+          {
+            "id": "c",
+            "text": "Client"
+          },
+          {
+            "id": "d",
+            "text": "Resource Owner"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "auth-code-flow-explain",
+      "title": "Authorization Code Grant Flow with PKCE",
+      "type": "content",
+      "duration": "4m",
+      "content": "<h3>Authorization Code Flow with PKCE</h3><p>The standard flow for modern web applications and mobile clients:</p><ol><li><strong>Client Initiates:</strong> Directs browser to Authorization Server with a Code Challenge (PKCE).</li><li><strong>User Authenticates:</strong> User logs in and consents to permissions (scopes).</li><li><strong>Authorization Code Issued:</strong> Authorization Server redirects back to Client with a temporary code.</li><li><strong>Token Exchange:</strong> Client sends the code along with Code Verifier to `/oauth2/token`.</li><li><strong>JWT Issued:</strong> Authorization Server validates parameters and returns Access & Refresh Tokens.</li></ol>"
+    },
+    {
+      "id": "order-auth-flow",
+      "title": "Sequence OAuth2 Authorization Code Flow",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "instruction": "Arrange the steps of the Authorization Code Flow in correct order:",
+        "items": [
+          {
+            "id": "step1",
+            "text": "Client redirects user to Authorization Server authorization endpoint"
+          },
+          {
+            "id": "step2",
+            "text": "User authenticates and grants permission"
+          },
+          {
+            "id": "step3",
+            "text": "Authorization Server redirects back to Client with authorization code"
+          },
+          {
+            "id": "step4",
+            "text": "Client exchanges authorization code for Access Token at token endpoint"
+          },
+          {
+            "id": "step5",
+            "text": "Client uses Access Token to request protected endpoints on Resource Server"
+          }
+        ],
+        "correctOrder": [
+          "step1",
+          "step2",
+          "step3",
+          "step4",
+          "step5"
+        ]
+      }
+    },
+    {
+      "id": "resource-server-setup",
+      "title": "Configuring Spring Boot Resource Server",
+      "type": "content",
+      "duration": "4m",
+      "content": "<h3>Configuring Spring Boot as a Resource Server</h3><p>Add the Maven dependency:</p><pre><code>&lt;dependency&gt;\n  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;\n  &lt;artifactId&gt;spring-boot-starter-oauth2-resource-server&lt;/artifactId&gt;\n&lt;/dependency&gt;</code></pre><p>Configure application properties to point to the Issuer URI (e.g., Keycloak, Okta, Auth0):</p><pre><code>spring.security.oauth2.resourceserver.jwt.issuer-uri=https://auth.example.com/realms/demo</code></pre>"
+    },
+    {
+      "id": "blank-security-config",
+      "title": "Complete Spring Security FilterChain Configuration",
+      "type": "blank",
+      "duration": "3m",
+      "content": {
+        "text": "@Bean\npublic SecurityFilterChain filterChain(HttpSecurity http) throws Exception {\n    http\n        .authorizeHttpRequests(auth -> auth\n            .requestMatchers(\"/public/**\").permitAll()\n            .anyRequest().[[blank1]]()\n        )\n        .oauth2ResourceServer(oauth2 -> oauth2\n            .[[blank2]](Customizer.withDefaults())\n        );\n    return http.build();\n}",
+        "blanks": [
+          {
+            "id": "blank1",
+            "correctAnswer": "authenticated"
+          },
+          {
+            "id": "blank2",
+            "correctAnswer": "jwt"
+          }
+        ]
+      }
+    },
+    {
+      "id": "method-security-scopes",
+      "title": "Enforcing Scopes and Roles with Method Security",
+      "type": "content",
+      "duration": "4m",
+      "content": "<h3>Scope and Authority Mapping</h3><p>OAuth2 scopes present in a JWT payload (e.g. <code>\"scope\": \"read write\"</code>) are automatically converted into Spring Security granted authorities prefixed with <code>SCOPE_</code>.</p><p>Enable method security with <code>@EnableMethodSecurity</code> and annotate controller methods:</p><pre><code>@PreAuthorize(\"hasAuthority('SCOPE_read')\")\n@GetMapping(\"/api/orders\")\npublic List&lt;Order&gt; getOrders() {\n    return orderService.findAll();\n}</code></pre>"
+    },
+    {
+      "id": "match-oauth2-spring-concepts",
+      "title": "Match Spring Security OAuth2 Components",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "instruction": "Match the Spring Security OAuth2 component to its purpose:",
+        "pairs": [
+          {
+            "id": "p1",
+            "left": "JwtDecoder",
+            "right": "Parses and verifies signature/expiration of JWT tokens"
+          },
+          {
+            "id": "p2",
+            "left": "JwtAuthenticationToken",
+            "right": "Spring Security Authentication object representing OAuth2 user identity"
+          },
+          {
+            "id": "p3",
+            "left": "JwtGrantedAuthoritiesConverter",
+            "right": "Extracts custom roles or claims from JWT into GrantedAuthority collection"
+          },
+          {
+            "id": "p4",
+            "left": "OAuth2AuthorizedClientManager",
+            "right": "Manages client credentials and token acquisition for outbound requests"
+          }
+        ]
+      }
+    },
+    {
+      "id": "webclient-oauth2-content",
+      "title": "Making Authenticated Calls with WebClient",
+      "type": "content",
+      "duration": "4m",
+      "content": "<h3>Using OAuth2 Authorized Client with WebClient</h3><p>When your Spring application acts as an OAuth2 Client invoking downstream microservices, configure <code>ServletOAuth2AuthorizedClientExchangeFilterFunction</code> on <code>WebClient</code>.</p><pre><code>@Bean\npublic WebClient webClient(OAuth2AuthorizedClientManager authorizedClientManager) {\n    ServletOAuth2AuthorizedClientExchangeFilterFunction filter =\n        new ServletOAuth2AuthorizedClientExchangeFilterFunction(authorizedClientManager);\n    return WebClient.builder()\n        .apply(filter.oauth2Configuration())\n        .build();\n}</code></pre>"
+    },
+    {
+      "id": "mcq-jwt-validation",
+      "title": "JWT Validation Mechanics",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "question": "How does a Spring Boot Resource Server verify the signature of an incoming JWT without keeping private keys locally?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "By calling the Authorization Server on every single HTTP request"
+          },
+          {
+            "id": "opt2",
+            "text": "By downloading and caching public keys from the issuer's JWKS (JSON Web Key Set) URI"
+          },
+          {
+            "id": "opt3",
+            "text": "By decrypting the token using a shared symmetric database key"
+          },
+          {
+            "id": "opt4",
+            "text": "JWT signatures are not verified by Resource Servers, only by gateways"
+          }
+        ],
+        "correctId": "opt2"
+      }
+    },
+    {
+      "id": "blank-scope-preauthorize",
+      "title": "Method Security Annotations",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To protect a method requiring the 'write' scope, use:\n\n@[[blank1]](\"hasAuthority('[[blank2]]_write')\")\npublic void updateResource() { ... }",
+        "blanks": [
+          {
+            "id": "blank1",
+            "correctAnswer": "PreAuthorize"
+          },
+          {
+            "id": "blank2",
+            "correctAnswer": "SCOPE"
+          }
+        ]
+      }
+    }
+  ]
+}

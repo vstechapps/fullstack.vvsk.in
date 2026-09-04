@@ -1,0 +1,140 @@
+{
+  "title": "Error Handling in Spring Boot",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "spring-boot-default-error-handling",
+      "title": "Default Error Handling in Spring Boot",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Spring Boot provides a default error handling mechanism out of the box. When an unhandled exception occurs, Spring forwards the request internally to the <code>/error</code> endpoint managed by <code>BasicErrorController</code>.</p><p>For REST services, it returns a standard JSON payload containing details like timestamp, HTTP status, error description, and path:</p><pre><code>{\n  \"timestamp\": \"2023-10-24T12:00:00.000+00:00\",\n  \"status\": 500,\n  \"error\": \"Internal Server Error\",\n  \"path\": \"/api/products/999\"\n}</code></pre>"
+    },
+    {
+      "id": "local-exception-handler",
+      "title": "Handling Exceptions Locally with @ExceptionHandler",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>You can handle exceptions directly within a controller using the <code>@ExceptionHandler</code> annotation. This method will catch the specified exception thrown by any mapping method in that specific controller.</p><pre><code>@RestController\n@RequestMapping(\"/api/users\")\npublic class UserController {\n\n    @GetMapping(\"/{id}\")\n    public User getUser(@PathVariable String id) {\n        throw new UserNotFoundException(\"User not found: \" + id);\n    }\n\n    @ExceptionHandler(UserNotFoundException.class)\n    public ResponseEntity&lt;String&gt; handleUserNotFound(UserNotFoundException ex) {\n        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());\n    }\n}</code></pre>"
+    },
+    {
+      "id": "mcq-exception-scope",
+      "title": "Understanding Exception Handler Scope",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "It handles exceptions across all controllers in the application."
+          },
+          {
+            "id": "b",
+            "text": "It only handles exceptions thrown within the controller class where it is declared."
+          },
+          {
+            "id": "c",
+            "text": "It automatically logs exceptions to a database."
+          },
+          {
+            "id": "d",
+            "text": "It handles exceptions thrown by Spring Security filters."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "global-exception-handling",
+      "title": "Global Exception Handling with @RestControllerAdvice",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>To decouple exception handling from individual controllers and apply it globally across the entire application, use <code>@RestControllerAdvice</code> (or <code>@ControllerAdvice</code>).</p><pre><code>@RestControllerAdvice\npublic class GlobalExceptionHandler {\n\n    @ExceptionHandler(UserNotFoundException.class)\n    @ResponseStatus(HttpStatus.NOT_FOUND)\n    public ErrorResponse handleUserNotFound(UserNotFoundException ex) {\n        return new ErrorResponse(\"USER_NOT_FOUND\", ex.getMessage());\n    }\n\n    @ExceptionHandler(Exception.class)\n    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)\n    public ErrorResponse handleGenericException(Exception ex) {\n        return new ErrorResponse(\"GENERIC_ERROR\", \"An unexpected error occurred\");\n    }\n}</code></pre>"
+    },
+    {
+      "id": "blank-rest-controller-advice",
+      "title": "Fill in the Global Handler Annotation",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "sentence": "To create a centralized class for handling exceptions across all controllers returning JSON responses, annotate the class with @[RestControllerAdvice].",
+        "correctAnswer": "RestControllerAdvice"
+      }
+    },
+    {
+      "id": "custom-error-response",
+      "title": "Creating Structured Error Responses",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Returning raw strings or default Spring errors is bad practice. Define a clean DTO/Record to present errors consistently across your API.</p><pre><code>public record ErrorDetails(\n    LocalDateTime timestamp,\n    String message,\n    String details\n) {}</code></pre><p>Using this record inside your <code>@RestControllerAdvice</code> ensures clients receive structured, predictable JSON on failure.</p>"
+    },
+    {
+      "id": "match-exception-annotations",
+      "title": "Match Spring Error Handling Components",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "id": "p1",
+            "left": "@ExceptionHandler",
+            "right": "Marks a method to handle custom exception types"
+          },
+          {
+            "id": "p2",
+            "left": "@ResponseStatus",
+            "right": "Specifies the HTTP status code to return"
+          },
+          {
+            "id": "p3",
+            "left": "@RestControllerAdvice",
+            "right": "Defines global exception handling rules"
+          },
+          {
+            "id": "p4",
+            "left": "ProblemDetail",
+            "right": "RFC 7807 specification class introduced in Spring Boot 3"
+          }
+        ]
+      }
+    },
+    {
+      "id": "spring-boot-3-problem-details",
+      "title": "Spring Boot 3 & ProblemDetail (RFC 7807)",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Spring Boot 3 introduces native support for <strong>RFC 7807 Problem Details</strong> for HTTP APIs via the <code>ProblemDetail</code> class.</p><pre><code>@ExceptionHandler(OrderNotFoundException.class)\npublic ProblemDetail handleOrderNotFound(OrderNotFoundException ex) {\n    ProblemDetail problem = ProblemDetail.forStatusAndDetail(\n        HttpStatus.NOT_FOUND, \n        ex.getMessage()\n    );\n    problem.setTitle(\"Order Not Found\");\n    problem.setProperty(\"orderId\", ex.getOrderId());\n    return problem;\n}</code></pre>"
+    },
+    {
+      "id": "order-exception-flow",
+      "title": "Order the Spring Exception Resolution Flow",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "items": [
+          {
+            "id": "step1",
+            "text": "Controller throws a RuntimeException during request processing"
+          },
+          {
+            "id": "step2",
+            "text": "Spring checks for local @ExceptionHandler inside the Controller"
+          },
+          {
+            "id": "step3",
+            "text": "Spring checks for global @RestControllerAdvice methods matching the exception"
+          },
+          {
+            "id": "step4",
+            "text": "Fallback to BasicErrorController to render default /error response"
+          }
+        ],
+        "correctOrder": [
+          "step1",
+          "step2",
+          "step3",
+          "step4"
+        ]
+      }
+    }
+  ]
+}

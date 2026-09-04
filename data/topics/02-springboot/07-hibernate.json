@@ -1,0 +1,168 @@
+{
+  "title": "Hibernate & JPA Fundamentals for Spring Boot Developers",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-to-orm",
+      "title": "What is ORM and Hibernate?",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p><strong>Object-Relational Mapping (ORM)</strong> is a technique that lets you query and manipulate data from a database using an object-oriented paradigm.</p><p><strong>Hibernate</strong> is the most popular Java ORM framework. It implements the Java Persistence API (JPA) specification, allowing developers to map Java classes to database tables and minimize boilerplate SQL code.</p><pre><code>// Instead of writing: INSERT INTO users VALUES (...) \nuserRepository.save(new User(\"Alice\"));</code></pre>"
+    },
+    {
+      "id": "jpa-vs-hibernate",
+      "title": "JPA vs. Hibernate",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Understanding the distinction between JPA and Hibernate is critical for Spring Boot developers:</p><ul><li><strong>JPA (Java Persistence API):</strong> A specification (a set of interfaces and guidelines) that defines how to manage relational data in Java applications.</li><li><strong>Hibernate:</strong> An ORM provider that implements the JPA specification. It provides the actual engine, database dialect engines, and session management underneath.</li></ul><p>In Spring Boot, we typically program against JPA interfaces, while Hibernate runs under the hood as the default provider.</p>"
+    },
+    {
+      "id": "jpa-relationship-mcq",
+      "title": "JPA & Hibernate Relationship",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "JPA is the concrete implementation, and Hibernate is the specification."
+          },
+          {
+            "id": "b",
+            "text": "JPA is the specification (interface), and Hibernate is the implementation."
+          },
+          {
+            "id": "c",
+            "text": "Hibernate is a SQL database, while JPA is a Java library."
+          },
+          {
+            "id": "d",
+            "text": "There is no relationship; they are competing frameworks."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "entity-mapping",
+      "title": "Basic Entity Mapping",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To map a Java class to a database table, we use JPA/Hibernate annotations. Here is a basic mapped entity:</p><pre><code>@Entity\n@Table(name = \"employees\")\npublic class Employee {\n    @Id\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\n    private Long id;\n\n    @Column(name = \"first_name\", nullable = false)\n    private String firstName;\n}</code></pre><ul><li><code>@Entity</code>: Marks the class as a JPA entity.</li><li><code>@Table</code>: Specifies the target table name.</li><li><code>@Id</code>: Defines the primary key.</li><li><code>@GeneratedValue</code>: Specifies the primary key generation strategy (e.g., auto-increment).</li></ul>"
+    },
+    {
+      "id": "blank-id-generation",
+      "title": "Identify Primary Key Generation Annotation",
+      "type": "blank",
+      "duration": "1m 30s",
+      "content": {
+        "question": "To delegate primary key generation to a database auto-increment column, you annotate the field with @Id and @______(strategy = GenerationType.IDENTITY).",
+        "correctAnswer": "GeneratedValue"
+      }
+    },
+    {
+      "id": "entity-lifecycle",
+      "title": "Hibernate Entity Lifecycle",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>An entity instance in Hibernate transition through four distinct lifecycle states:</p><ul><li><strong>Transient:</strong> The object is newly created using the <code>new</code> operator and is not associated with a Hibernate Session or Database.</li><li><strong>Persistent (Managed):</strong> The object is associated with a Session and has an identifier. Any changes made to this object will be detected and written to the database on transaction commit.</li><li><strong>Detached:</strong> The session is closed or cleared, and the object is no longer tracked, though its database representation still exists.</li><li><strong>Removed:</strong> The object is scheduled to be deleted from the database.</li></ul>"
+    },
+    {
+      "id": "order-lifecycle",
+      "title": "Order the Entity Lifecycle Transitions",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "instruction": "Order the states of a newly instantiated object as it gets saved to the database and then deleted during a session:",
+        "items": [
+          {
+            "id": "1",
+            "text": "Transient (Object created using 'new' keyword)"
+          },
+          {
+            "id": "2",
+            "text": "Persistent / Managed (entityManager.persist() is called)"
+          },
+          {
+            "id": "3",
+            "text": "Removed (entityManager.remove() is called)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "hibernate-caching",
+      "title": "First Level vs Second Level Cache",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Hibernate manages performance using a dual-layer caching architecture:</p><ul><li><strong>First-Level Cache (L1):</strong> Associated with the <code>Session</code> object. It is enabled by default and cannot be disabled. It ensures that within the same transaction, querying the same entity multiple times only hits the database once.</li><li><strong>Second-Level Cache (L2):</strong> Associated with the <code>SessionFactory</code>. It is optional and can be shared across multiple sessions/transactions. Third-party providers like Ehcache or Hazelcast are used for L2 caching.</li></ul>"
+    },
+    {
+      "id": "match-cache-scopes",
+      "title": "Match Caching Scopes",
+      "type": "match",
+      "duration": "2m 30s",
+      "content": {
+        "pairs": [
+          {
+            "source": "First-Level Cache",
+            "target": "Scoped to Hibernate Session, active by default"
+          },
+          {
+            "source": "Second-Level Cache",
+            "target": "Scoped to SessionFactory, JVM-wide, optional"
+          },
+          {
+            "source": "Dirty Checking",
+            "target": "Automatically syncs changes of managed entities on commit"
+          },
+          {
+            "source": "Evict",
+            "target": "Removes a specific entity from the session cache"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fetching-strategies",
+      "title": "Fetching Strategies: Lazy vs Eager",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>When fetching related entities (e.g., getting a Department's Employees), Hibernate uses two major fetching strategies:</p><ul><li><strong>LAZY:</strong> Relational data is loaded on-demand (when you call the getter method). This is the default for <code>@OneToMany</code> and <code>@ManyToMany</code> relationships to save memory and database overhead.</li><li><strong>EAGER:</strong> Relational data is loaded immediately along with the parent entity using a JOIN query. This is the default for <code>@ManyToOne</code> and <code>@OneToOne</code> relationships.</li></ul><p><em>Beware:</em> Accessing a Lazy association after the session has closed throws a <code>LazyInitializationException</code>.</p>"
+    },
+    {
+      "id": "nplusone-problem",
+      "title": "The N+1 Select Problem",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "By writing JPQL queries with 'JOIN FETCH' to load the parent and children in a single query."
+          },
+          {
+            "id": "b",
+            "text": "By marking all relationships as EAGER."
+          },
+          {
+            "id": "c",
+            "text": "By increasing the database connection pool size in Spring Boot configuration."
+          },
+          {
+            "id": "d",
+            "text": "By disabling the Hibernate First-Level Cache."
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "spring-integration",
+      "title": "Spring Boot & Hibernate Integration",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Spring Boot makes using Hibernate extremely straightforward through the <strong>Spring Data JPA</strong> starter dependency.</p><p>You configure database credentials in your <code>application.properties</code> or <code>application.yml</code> file:</p><pre><code>spring.datasource.url=jdbc:postgresql://localhost:5432/mydb\nspring.datasource.username=postgres\nspring.datasource.password=secret\nspring.jpa.hibernate.ddl-auto=update\nspring.jpa.show-sql=true</code></pre><p>Spring Boot automatically instantiates the <code>EntityManagerFactory</code> and configures Hibernate as the primary JPA dialect engine.</p>"
+    }
+  ]
+}

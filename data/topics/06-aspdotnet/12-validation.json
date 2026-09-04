@@ -1,0 +1,150 @@
+{
+  "title": "Validation in ASP.NET Core",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-validation",
+      "title": "Introduction to Validation",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Validation in ASP.NET Core ensures that data submitted by clients meets the business rules and constraints defined by the application before it is processed or stored.</p>\n<p>It protects your database from corrupt data and provides meaningful feedback to users.</p>"
+    },
+    {
+      "id": "data-annotations-overview",
+      "title": "Data Annotations",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Data Annotations are attributes in the <code>System.ComponentModel.DataAnnotations</code> namespace used to decorate model properties.</p>\n<pre><code>public class UserModel {\n    [Required]\n    [StringLength(100, MinimumLength = 3)]\n    public string Username { get; set; }\n\n    [EmailAddress]\n    public string Email { get; set; }\n}</code></pre>"
+    },
+    {
+      "id": "mcq-required-attr",
+      "title": "Data Annotation Purpose",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "To style the HTML output of a form."
+          },
+          {
+            "id": "b",
+            "text": "To enforce validation rules on model properties."
+          },
+          {
+            "id": "c",
+            "text": "To encrypt sensitive property values in the database."
+          },
+          {
+            "id": "d",
+            "text": "To map C# properties to SQL Server columns."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "blank-model-state",
+      "title": "ModelState Validation",
+      "type": "blank",
+      "duration": "2m",
+      "content": "In a Controller action, you can check if incoming data is valid by inspecting the <code>[BLANK]</code> property."
+    },
+    {
+      "id": "match-attributes",
+      "title": "Match Validation Attributes",
+      "type": "match",
+      "duration": "4m",
+      "content": {
+        "pairs": [
+          {
+            "left": "[Required]",
+            "right": "Ensures property is not null or empty"
+          },
+          {
+            "left": "[StringLength]",
+            "right": "Limits min and max length of strings"
+          },
+          {
+            "left": "[Range]",
+            "right": "Specifies numeric boundaries"
+          },
+          {
+            "left": "[RegularExpression]",
+            "right": "Validates against a regex pattern"
+          }
+        ]
+      }
+    },
+    {
+      "id": "custom-validation-content",
+      "title": "Custom Validation Attributes",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>When built-in attributes are not enough, you can create custom validation logic by inheriting from <code>ValidationAttribute</code>.</p>\n<pre><code>public class AllowedDomainAttribute : ValidationAttribute {\n    private readonly string _domain;\n    public AllowedDomainAttribute(string domain) => _domain = domain;\n    protected override ValidationResult IsValid(object value, ValidationContext validationContext) {\n        // Custom logic here\n        return ValidationResult.Success;\n    }\n}</code></pre>"
+    },
+    {
+      "id": "order-pipeline",
+      "title": "Validation Lifecycle Order",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "steps": [
+          "Client submits HTTP request with payload",
+          "Model binding populates C# model from request data",
+          "Data annotations and custom validation attributes execute",
+          "ModelState.IsValid is evaluated in the Controller action",
+          "Action executes or returns BadRequest with errors"
+        ]
+      }
+    },
+    {
+      "id": "fluent-validation-intro",
+      "title": "Introduction to FluentValidation",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p><strong>FluentValidation</strong> is a popular third-party library that uses a fluent interface and lambda expressions for building strongly-typed validation rules.</p>\n<pre><code>public class UserValidator : AbstractValidator&lt;UserModel&gt; {\n    public UserValidator() {\n        RuleFor(x => x.Email).NotEmpty().EmailAddress();\n    }\n}</code></pre>"
+    },
+    {
+      "id": "mcq-fluent-benefit",
+      "title": "FluentValidation Advantage",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "It keeps validation rules separate from model classes, adhering to the Single Responsibility Principle."
+          },
+          {
+            "id": "b",
+            "text": "It automatically generates database migrations."
+          },
+          {
+            "id": "c",
+            "text": "It replaces Entity Framework Core entirely."
+          },
+          {
+            "id": "d",
+            "text": "It runs exclusively on the client browser."
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "client-side-validation",
+      "title": "Client-Side Validation",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>ASP.NET Core integrates seamlessly with jQuery Validation to provide client-side validation out of the box in MVC and Razor Pages.</p>\n<p>By including scripts like <code>jquery.validate.js</code> and <code>jquery.validate.unobtrusive.js</code>, validation happens in the browser before a round-trip to the server occurs, improving user experience.</p>"
+    },
+    {
+      "id": "summary-validation",
+      "title": "Validation Summary",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>You have learned about:</p>\n<ul>\n  <li>Using built-in Data Annotations (<code>[Required]</code>, <code>[Range]</code>, etc.)</li>\n  <li>Checking <code>ModelState.IsValid</code> in controllers</li>\n  <li>Creating custom validation attributes</li>\n  <li>Using FluentValidation for clean separation of concerns</li>\n  <li>Enabling client-side validation for better performance and UX</li>\n</ul>"
+    }
+  ]
+}

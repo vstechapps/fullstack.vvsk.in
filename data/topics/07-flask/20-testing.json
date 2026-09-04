@@ -1,0 +1,163 @@
+{
+  "title": "Testing in Flask",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "flask-testing-intro",
+      "title": "Introduction to Flask Testing",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Testing is a crucial part of web development. In Flask, testing typically involves using the built-in test client provided by Werkzeug, which simulates requests to your application without running a live server.</p>"
+    },
+    {
+      "id": "flask-test-client-mcq",
+      "title": "Flask Test Client",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "app.run_client()"
+          },
+          {
+            "id": "b",
+            "text": "app.test_client()"
+          },
+          {
+            "id": "c",
+            "text": "app.get_client()"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "pytest-flask-setup",
+      "title": "Setting up Pytest for Flask",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Pytest is a popular testing framework for Python. To use it with Flask, we typically define a <code>conftest.py</code> file with fixtures for the app and the test client.</p>\n<pre><code>import pytest\nfrom myapp import create_app\n\n@pytest.fixture\ndef client():\n    app = create_app({'TESTING': True})\n    with app.test_client() as client:\n        yield client</code></pre>"
+    },
+    {
+      "id": "blank-test-config",
+      "title": "Fill in the Testing Configuration",
+      "type": "blank",
+      "duration": "2m",
+      "content": "When creating an app for testing, it is important to set the [blank] configuration flag to True so that error handling behaves correctly during tests.",
+      "answer": "TESTING"
+    },
+    {
+      "id": "order-test-lifecycle",
+      "title": "Pytest Fixture Execution Order",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "instruction": "Order the steps of how a pytest fixture with yield operates during a test lifecycle.",
+        "items": [
+          {
+            "id": "1",
+            "text": "Setup code before yield runs"
+          },
+          {
+            "id": "2",
+            "text": "Fixture yields the client object to the test function"
+          },
+          {
+            "id": "3",
+            "text": "Test function executes requests and assertions"
+          },
+          {
+            "id": "4",
+            "text": "Teardown code after yield executes"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    },
+    {
+      "id": "match-testing-concepts",
+      "title": "Match Testing Concepts",
+      "type": "match",
+      "duration": "4m",
+      "content": {
+        "instruction": "Match the testing term to its correct description.",
+        "pairs": [
+          {
+            "left": "Unit Test",
+            "right": "Tests a single component or function in isolation"
+          },
+          {
+            "left": "Integration Test",
+            "right": "Tests how multiple components work together"
+          },
+          {
+            "left": "Test Client",
+            "right": "Simulates HTTP requests without a live server"
+          },
+          {
+            "left": "Fixture",
+            "right": "Provides a fixed baseline state for tests"
+          }
+        ]
+      }
+    },
+    {
+      "id": "writing-first-test",
+      "title": "Writing Your First Route Test",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Here is how you write a simple test for an index route using pytest and the Flask test client:</p>\n<pre><code>def test_index_route(client):\n    response = client.get('/')\n    assert response.status_code == 200\n    assert b\"Welcome\" in response.data</code></pre>"
+    },
+    {
+      "id": "status-code-mcq",
+      "title": "Success Status Code",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "200 OK"
+          },
+          {
+            "id": "b",
+            "text": "404 Not Found"
+          },
+          {
+            "id": "c",
+            "text": "500 Internal Server Error"
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "testing-forms-json",
+      "title": "Testing POST Requests and JSON",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>You can also test POST requests and JSON payloads using the test client's <code>post()</code> method with the <code>json</code> argument:</p>\n<pre><code>def test_api_create(client):\n    response = client.post('/api/items', json={\"name\": \"Test Item\"})\n    assert response.status_code == 201\n    data = response.get_json()\n    assert data[\"name\"] == \"Test Item\"</code></pre>"
+    },
+    {
+      "id": "blank-json-method",
+      "title": "Retrieving JSON Response",
+      "type": "blank",
+      "duration": "2m",
+      "content": "To parse JSON data returned from a test client response in modern Flask, you use the [blank]() method.",
+      "answer": "get_json"
+    },
+    {
+      "id": "conclusion-best-practices",
+      "title": "Testing Best Practices",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Always keep your tests isolated, use a separate test database (like an in-memory SQLite database), and aim for high test coverage to ensure your Flask application is robust and maintainable.</p>"
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "title": "Packaging in Spring Boot",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-packaging",
+      "title": "Introduction to Spring Boot Packaging",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Spring Boot provides a convenient way to package your application into a self-contained executable archive, such as a <strong>JAR</strong> (Java Archive) or <strong>WAR</strong> (Web Archive).</p>\n<p>By default, Spring Boot builds an executable JAR that includes your application classes, dependencies, and an embedded web server like Tomcat or Jetty.</p>"
+    },
+    {
+      "id": "executable-jar-mcq",
+      "title": "Default Packaging Format",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "WAR"
+          },
+          {
+            "id": "b",
+            "text": "Executable JAR"
+          },
+          {
+            "id": "c",
+            "text": "EAR"
+          },
+          {
+            "id": "d",
+            "text": "Plain ZIP"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "build-plugins",
+      "title": "Spring Boot Build Plugins",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To package your Spring Boot application, you use either Maven or Gradle plugins. These plugins are responsible for re-packaging your compiled code into the final executable format.</p>\n<pre><code>&lt;plugin&gt;\n    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;\n    &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;\n&lt;/plugin&gt;</code></pre>"
+    },
+    {
+      "id": "plugin-match",
+      "title": "Match Build Tool with its Plugin",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Maven",
+            "right": "spring-boot-maven-plugin"
+          },
+          {
+            "left": "Gradle",
+            "right": "org.springframework.boot"
+          }
+        ]
+      }
+    },
+    {
+      "id": "jar-structure",
+      "title": "Inside the Executable JAR",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>A Spring Boot fat JAR has a specific internal layout:</p>\n<ul>\n  <li><code>META-INF/</code> - Contains MANIFEST.MF pointing to the Launcher</li>\n  <li><code>org/springframework/boot/loader/</code> - Contains the boot loader classes</li>\n  <li><code>BOOT-INF/classes/</code> - Contains your application's compiled classes</li>\n  <li><code>BOOT-INF/lib/</code> - Contains your external dependency JARs</li>\n</ul>"
+    },
+    {
+      "id": "jar-structure-blank",
+      "title": "Fill in the JAR Structure",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "sentence": "Application dependency JARs are stored inside the _____ directory of a Spring Boot fat JAR.",
+        "answer": "BOOT-INF/lib"
+      }
+    },
+    {
+      "id": "packaging-steps-order",
+      "title": "Standard Maven Build Order",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "steps": [
+          {
+            "id": "1",
+            "text": "Clean previous builds (mvn clean)"
+          },
+          {
+            "id": "2",
+            "text": "Compile application sources (mvn compile)"
+          },
+          {
+            "id": "3",
+            "text": "Run unit and integration tests (mvn test)"
+          },
+          {
+            "id": "4",
+            "text": "Package into executable JAR (mvn package)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "war-packaging",
+      "title": "Packaging as a WAR file",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>If you need to deploy your Spring Boot application to an external servlet container (like standalone Tomcat), you should package it as a <strong>WAR</strong>.</p>\n<p>Steps required:</p>\n<ol>\n  <li>Change packaging in build file to <code>war</code>.</li>\n  <li>Extend <code>SpringBootServletInitializer</code> in your main class.</li>\n  <li>Exclude the embedded servlet container dependency if necessary.</li>\n</ol>"
+    },
+    {
+      "id": "war-mcq",
+      "title": "External Servlet Container requirement",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "JAR"
+          },
+          {
+            "id": "b",
+            "text": "WAR"
+          },
+          {
+            "id": "c",
+            "text": "TXT"
+          },
+          {
+            "id": "d",
+            "text": "JSON"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "conclusion-packaging",
+      "title": "Summary of Spring Boot Packaging",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>You have learned how Spring Boot handles packaging using executable JARs and WARs, the role of Maven and Gradle plugins, and the internal anatomy of a fat JAR.</p>\n<p>This ensures your microservices are easily portable and ready to run in cloud environments!</p>"
+    }
+  ]
+}

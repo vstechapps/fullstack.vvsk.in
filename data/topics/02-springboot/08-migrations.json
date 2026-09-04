@@ -1,0 +1,187 @@
+{
+  "title": "Database Migrations in Spring Boot",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-migrations",
+      "title": "Introduction to Database Migrations",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>In production applications, managing database schema changes manually is highly error-prone. <strong>Database migration tools</strong> act like version control (like Git) for your database schemas.</p>\n<p>Instead of running manual DDL scripts on different environments (Dev, QA, Production), migrations allow you to track schema changes in your codebase and apply them automatically during application startup.</p>"
+    },
+    {
+      "id": "flyway-vs-liquibase",
+      "title": "Flyway vs. Liquibase",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Spring Boot supports the two most popular migration engines out of the box:</p>\n<ul>\n  <li><strong>Flyway:</strong> Simple, opinionated, and relies primarily on plain SQL scripts. Excellent for teams comfortable with SQL.</li>\n  <li><strong>Liquibase:</strong> Extremely flexible, database-agnostic, and uses XML, YAML, JSON, or SQL to define changes. Ideal for complex multi-database architectures.</li>\n</ul>"
+    },
+    {
+      "id": "flyway-naming",
+      "title": "Flyway Naming Conventions",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Flyway relies on a strict naming convention to discover and order migration scripts:</p>\n<pre><code>V&lt;Version&gt;__&lt;Description&gt;.sql</code></pre>\n<ul>\n  <li><strong>V:</strong> Versioned migration prefix (runs once, must increment).</li>\n  <li><strong>Version:</strong> Dot or underscore-separated numbers (e.g., <code>1</code>, <code>2_1</code>).</li>\n  <li><strong>Double underscore (<code>__</code>):</strong> Separator separating version and description.</li>\n  <li><strong>Description:</strong> Text describing the change (e.g., <code>create_users_table</code>).</li>\n</ul>"
+    },
+    {
+      "id": "flyway-naming-mcq",
+      "title": "Flyway Naming Convention Check",
+      "type": "mcq",
+      "duration": "1m 30s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "V1_create_employee_table.sql"
+          },
+          {
+            "id": "b",
+            "text": "v1__create_employee_table.sql"
+          },
+          {
+            "id": "c",
+            "text": "V1__create_employee_table.sql"
+          },
+          {
+            "id": "d",
+            "text": "V1.0__create_employee_table.db"
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "flyway-config",
+      "title": "Configuring Flyway in Spring Boot",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To enable Flyway, add the dependency to your <code>pom.xml</code>:</p>\n<pre><code>&lt;dependency&gt;\n  &lt;groupId&gt;org.flywaydb&lt;/groupId&gt;\n  &lt;artifactId&gt;flyway-core&lt;/artifactId&gt;\n&lt;/dependency&gt;</code></pre>\n<p>By default, Spring Boot scans the <code>src/main/resources/db/migration</code> directory for migration SQL files and applies them sequentially on application startup.</p>"
+    },
+    {
+      "id": "flyway-path-blank",
+      "title": "Flyway Default Migration Path",
+      "type": "blank",
+      "duration": "1m 30s",
+      "content": {
+        "text": "By default, Flyway scans classpath resources for SQL scripts under the directory path 'db/[blank]'.",
+        "solution": "migration"
+      }
+    },
+    {
+      "id": "liquibase-overview",
+      "title": "Liquibase Changesets & Changelogs",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Liquibase tracks database updates using a master <strong>Changelog</strong> file that points to one or more <strong>Changesets</strong>.</p>\n<p>Changesets contain instructions for modifying the database structure. Unlike Flyway, Liquibase abstractly defines these changes so they can run across PostgreSQL, MySQL, and Oracle without changing the code:</p>\n<pre><code>&lt;changeSet id=\"1\" author=\"developer\"&gt;\n    &lt;createTable tableName=\"customer\"&gt;\n        &lt;column name=\"id\" type=\"bigint\"&gt;\n            &lt;constraints primaryKey=\"true\"/&gt;\n        &lt;/column&gt;\n    &lt;/createTable&gt;\n&lt;/changeSet&gt;</code></pre>"
+    },
+    {
+      "id": "migration-order-steps",
+      "title": "Order Flyway Execution Cycle",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Flyway checks classpath for migration scripts."
+          },
+          {
+            "id": "2",
+            "text": "Flyway reads the 'flyway_schema_history' table to see what has been applied."
+          },
+          {
+            "id": "3",
+            "text": "Flyway compares and validates file checksums of applied files."
+          },
+          {
+            "id": "4",
+            "text": "Flyway executes any pending migration scripts and updates the history table."
+          }
+        ],
+        "correctSequence": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    },
+    {
+      "id": "migration-match-features",
+      "title": "Match Migration Tooling Features",
+      "type": "match",
+      "duration": "2m 30s",
+      "content": {
+        "pairs": [
+          {
+            "left": "Flyway",
+            "right": "Prefers SQL-based migrations"
+          },
+          {
+            "left": "Liquibase",
+            "right": "Prefers XML, YAML, or JSON-based migrations"
+          },
+          {
+            "left": "flyway_schema_history",
+            "right": "Metadata table for tracking Flyway executions"
+          },
+          {
+            "left": "DATABASECHANGELOG",
+            "right": "Metadata table for tracking Liquibase changesets"
+          }
+        ]
+      }
+    },
+    {
+      "id": "migration-best-practices",
+      "title": "Database Migration Best Practices",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>When using migration frameworks, follow these absolute rules:</p>\n<ul>\n  <li><strong>Never modify an already applied migration script:</strong> Changing existing scripts alters their SHA-256 checksum, causing startup failures.</li>\n  <li><strong>Create new scripts for updates:</strong> If you need to alter a table created in version 1, create a version 2 script to alter the table.</li>\n  <li><strong>Ensure scripts are idempotent:</strong> Under unexpected failures, ensure a script can either execute fully or fail safely without partial state side effects.</li>\n</ul>"
+    },
+    {
+      "id": "checksum-failure-mcq",
+      "title": "Handling Migration Modification",
+      "type": "mcq",
+      "duration": "1m 30s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "The migration engine automatically corrects and updates the database schema."
+          },
+          {
+            "id": "b",
+            "text": "The application fails to start due to a Checksum/Validation mismatch error."
+          },
+          {
+            "id": "c",
+            "text": "The migration engine ignores the changed files and only processes new ones."
+          },
+          {
+            "id": "d",
+            "text": "The database deletes the changed table and recreates it from scratch."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "liquibase-lock-blank",
+      "title": "Liquibase Locking Mechanism",
+      "type": "blank",
+      "duration": "1m 30s",
+      "content": {
+        "text": "To prevent concurrent schema updates in clustered cloud environments, Liquibase uses a database lock table named [blank].",
+        "solution": "DATABASECHANGELOGLOCK"
+      }
+    },
+    {
+      "id": "summary",
+      "title": "Migration Summary",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To summarize database migrations in Spring Boot:</p>\n<ul>\n  <li>Integrate migration frameworks like Flyway or Liquibase directly in your Spring Boot application lifecycle.</li>\n  <li>Avoid raw DDL scripts executed outside the application.</li>\n  <li>Deploy database schemas as version-controlled migration files in sync with code releases.</li>\n</ul>"
+    }
+  ]
+}

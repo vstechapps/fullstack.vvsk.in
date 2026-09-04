@@ -1,0 +1,161 @@
+{
+  "title": "Pandas for Python Developers",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-pandas",
+      "title": "Introduction to Pandas",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Pandas is a fast, powerful, flexible, and easy-to-use open-source data analysis and manipulation tool built on top of the Python programming language.</p>\n<p>It introduces two primary data structures: <code>Series</code> (1D) and <code>DataFrame</code> (2D).</p>\n<pre><code>import pandas as pd\ndf = pd.read_csv('data.csv')\nprint(df.head())</code></pre>"
+    },
+    {
+      "id": "pandas-data-structures",
+      "title": "Primary Data Structures",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "Which of the following represents a 2-dimensional labeled data structure in Pandas?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Series"
+          },
+          {
+            "id": "b",
+            "text": "DataFrame"
+          },
+          {
+            "id": "c",
+            "text": "Panel"
+          },
+          {
+            "id": "d",
+            "text": "Array"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "series-vs-dataframe",
+      "title": "Series Definition",
+      "type": "blank",
+      "duration": "1m",
+      "content": {
+        "sentence": "A one-dimensional labeled array capable of holding any data type in Pandas is called a [blank].",
+        "blanks": [
+          {
+            "id": "blank-1",
+            "answer": "Series"
+          }
+        ]
+      }
+    },
+    {
+      "id": "reading-data-methods",
+      "title": "Pandas I/O Functions",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Read CSV file",
+            "right": "pd.read_csv()"
+          },
+          {
+            "left": "Read Excel file",
+            "right": "pd.read_excel()"
+          },
+          {
+            "left": "Read JSON file",
+            "right": "pd.read_json()"
+          },
+          {
+            "left": "Read SQL query",
+            "right": "pd.read_sql()"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dataframe-operations",
+      "title": "Data Manipulation Basics",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Once you load data into a DataFrame, you can inspect and manipulate it using built-in methods.</p>\n<ul>\n<li><code>df.info()</code>: Provides summary of columns, null counts, and data types.</li>\n<li><code>df.describe()</code>: Generates descriptive statistics for numerical columns.</li>\n<li><code>df.dropna()</code>: Removes missing values.</li>\n<li><code>df.fillna(value)</code>: Replaces missing values with a specific value.</li>\n</ul>"
+    },
+    {
+      "id": "workflow-order",
+      "title": "Typical Data Analysis Workflow",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "steps": [
+          {
+            "id": "step-1",
+            "text": "Import the pandas library"
+          },
+          {
+            "id": "step-2",
+            "text": "Load data into a DataFrame using read_csv()"
+          },
+          {
+            "id": "step-3",
+            "text": "Inspect data structure using head() and info()"
+          },
+          {
+            "id": "step-4",
+            "text": "Clean data by handling missing values and duplicates"
+          },
+          {
+            "id": "step-5",
+            "text": "Perform grouping, aggregation, or visualization"
+          }
+        ],
+        "correctOrder": [
+          "step-1",
+          "step-2",
+          "step-3",
+          "step-4",
+          "step-5"
+        ]
+      }
+    },
+    {
+      "id": "grouping-aggregating",
+      "title": "Grouping and Aggregation",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>The <code>groupby</code> method allows you to split data into groups based on some criteria and apply functions to each group.</p>\n<pre><code># Calculate mean salary per department\ndf.groupby('Department')['Salary'].mean()</code></pre>\n<p>You can also use <code>agg()</code> to apply multiple aggregation functions at once.</p>"
+    },
+    {
+      "id": "groupby-mcq",
+      "title": "Groupby Concept",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "What is the primary purpose of the groupby() function in Pandas?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To sort data alphabetically"
+          },
+          {
+            "id": "b",
+            "text": "To merge two different DataFrames together"
+          },
+          {
+            "id": "c",
+            "text": "To split data into groups based on categories for aggregate analysis"
+          },
+          {
+            "id": "d",
+            "text": "To export DataFrame to a CSV file"
+          }
+        ],
+        "correctId": "c"
+      }
+    }
+  ]
+}

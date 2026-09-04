@@ -1,0 +1,153 @@
+{
+  "title": "Flask Blueprints",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "bp-intro",
+      "title": "Introduction to Blueprints",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>In Flask, a <strong>Blueprint</strong> is an object that allows you to record operations to be applied to an application when it is loaded.</p><p>Blueprints make it easy to structure large applications into distinct components and reusable modules.</p>"
+    },
+    {
+      "id": "bp-why-mcq",
+      "title": "Purpose of Blueprints",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "To replace HTML templates in Flask"
+          },
+          {
+            "id": "b",
+            "text": "To organize large applications into modular components"
+          },
+          {
+            "id": "c",
+            "text": "To connect directly to SQL databases"
+          },
+          {
+            "id": "d",
+            "text": "To manage server environment variables"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "bp-creation",
+      "title": "Creating a Blueprint",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To create a blueprint, you import the <code>Blueprint</code> class and instantiate it, typically in a dedicated module file.</p>\n<pre><code>from flask import Blueprint\n\nauth_bp = Blueprint('auth', __name__, url_prefix='/auth')\n\n@auth_bp.route('/login')\ndef login():\n    return 'Login Page'</code></pre>"
+    },
+    {
+      "id": "bp-syntax-blank",
+      "title": "Blueprint Initialization Syntax",
+      "type": "blank",
+      "duration": "2m",
+      "content": "To instantiate a Blueprint, you must provide a name and ____, usually set to <code>__name__</code>.<br><br>[BLANK]"
+    },
+    {
+      "id": "bp-registration",
+      "title": "Registering a Blueprint",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Once a blueprint is defined, it must be registered with your main Flask application using the <code>app.register_blueprint()</code> method.</p>\n<pre><code>from flask import Flask\nfrom auth import auth_bp\n\napp = Flask(__name__)\napp.register_blueprint(auth_bp)</code></pre>"
+    },
+    {
+      "id": "bp-steps-order",
+      "title": "Blueprint Workflow Order",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Import the Blueprint class from flask"
+          },
+          {
+            "id": "2",
+            "text": "Instantiate the Blueprint object with a name and module path"
+          },
+          {
+            "id": "3",
+            "text": "Define routes and views using the blueprint decorator"
+          },
+          {
+            "id": "4",
+            "text": "Register the blueprint in the main application file"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    },
+    {
+      "id": "bp-features-match",
+      "title": "Match Blueprint Concepts",
+      "type": "match",
+      "duration": "4m",
+      "content": {
+        "pairs": [
+          {
+            "left": "url_prefix",
+            "right": "A prefix added to all routes in the blueprint"
+          },
+          {
+            "left": "template_folder",
+            "right": "Directory containing HTML templates specific to the blueprint"
+          },
+          {
+            "left": "static_folder",
+            "right": "Directory containing static assets like CSS and JS for the blueprint"
+          },
+          {
+            "left": "register_blueprint",
+            "right": "Method used to attach the blueprint to the main Flask app"
+          }
+        ]
+      }
+    },
+    {
+      "id": "bp-advanced",
+      "title": "Advanced Blueprint Features",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Blueprints can also have their own static files and templates. When you specify a <code>template_folder</code>, Flask will check the blueprint's template folder if it cannot find the template in the main application's template directory.</p>\n<pre><code>admin_bp = Blueprint('admin', __name__, template_folder='templates')</code></pre>"
+    },
+    {
+      "id": "bp-final-mcq",
+      "title": "Blueprint Registration Check",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "app.add_blueprint()"
+          },
+          {
+            "id": "b",
+            "text": "app.register_blueprint()"
+          },
+          {
+            "id": "c",
+            "text": "flask.include_blueprint()"
+          },
+          {
+            "id": "d",
+            "text": "blueprint.init_app()"
+          }
+        ],
+        "correctId": "b"
+      }
+    }
+  ]
+}

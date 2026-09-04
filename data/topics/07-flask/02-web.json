@@ -1,0 +1,101 @@
+{
+  "title": "Web Basics for Flask Developer",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-web-basics",
+      "title": "Introduction to Web Basics",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>As a Flask developer, understanding how the web works is crucial. Flask is a Python web framework that handles HTTP requests and returns HTTP responses.</p>"
+    },
+    {
+      "id": "http-request-methods",
+      "title": "HTTP Methods",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Clients communicate with servers using HTTP methods:</p><ul><li><strong>GET:</strong> Retrieve data</li><li><strong>POST:</strong> Submit data</li><li><strong>PUT:</strong> Update data</li><li><strong>DELETE:</strong> Remove data</li></ul>"
+    },
+    {
+      "id": "http-method-mcq",
+      "title": "Identify the HTTP Method",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "GET is used to submit new data to the server securely."
+          },
+          {
+            "id": "b",
+            "text": "GET is used to request data from a specified resource."
+          },
+          {
+            "id": "c",
+            "text": "GET is used to delete records from a database."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "flask-route-blank",
+      "title": "Complete the Flask Route",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To create a route in Flask that listens for POST requests, we use the methods parameter: @app.route('/submit', _____=['POST'])",
+        "answer": "methods"
+      }
+    },
+    {
+      "id": "match-http-status",
+      "title": "Match Status Codes to Meanings",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "200",
+            "right": "OK"
+          },
+          {
+            "left": "404",
+            "right": "Not Found"
+          },
+          {
+            "left": "500",
+            "right": "Internal Server Error"
+          },
+          {
+            "left": "302",
+            "right": "Found / Redirect"
+          }
+        ]
+      }
+    },
+    {
+      "id": "request-lifecycle-order",
+      "title": "Order the Request Lifecycle",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "steps": [
+          "Client enters URL and sends HTTP Request",
+          "Web server receives request and forwards to WSGI gateway",
+          "Flask matches URL to a view function",
+          "Flask processes logic and returns HTTP Response",
+          "Client browser renders the HTML"
+        ]
+      }
+    },
+    {
+      "id": "client-server-summary",
+      "title": "Client-Server Architecture Summary",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>In a Flask application, the browser acts as the <strong>Client</strong>, and your Python application running via Werkzeug/Gunicorn acts as the <strong>Server</strong>. They talk entirely through HTTP.</p>"
+    }
+  ]
+}

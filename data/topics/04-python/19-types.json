@@ -1,0 +1,131 @@
+{
+  "title": "Type Hints in Python",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-type-hints",
+      "title": "Introduction to Type Hints",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Python is dynamically typed, but since PEP 484, you can use <strong>type hints</strong> (or type annotations) to specify the expected data types of variables, function arguments, and return values.</p>\n<pre><code>def greet(name: str) -> str:\n    return f\"Hello, {name}\"</code></pre>\n<p>Note that Python at runtime does not enforce these types. They are primarily used by static type checkers like <code>mypy</code>, IDEs, and linters to catch bugs early.</p>"
+    },
+    {
+      "id": "basic-types-mcq",
+      "title": "Basic Type Annotations",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "question": "How do you correctly annotate a function that takes an integer age and returns a boolean indicating if they are an adult?",
+        "options": [
+          {
+            "id": "a",
+            "text": "def is_adult(age: int) -> bool:"
+          },
+          {
+            "id": "b",
+            "text": "def is_adult(age = int) -> boolean:"
+          },
+          {
+            "id": "c",
+            "text": "def is_adult(age: int) = bool:"
+          },
+          {
+            "id": "d",
+            "text": "def is_adult(int age) -> bool:"
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "collections-generics",
+      "title": "Collections and Generics",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>When annotating collections like lists, dictionaries, or tuples, you specify the container type and the types of its elements.</p>\n<pre><code>from typing import List, Dict, Tuple\n\n# A list of strings\nnames: List[str] = [\"Alice\", \"Bob\"]\n\n# A dictionary mapping strings to integers\nscores: Dict[str, int] = {\"Alice\": 95, \"Bob\": 87}\n\n# A tuple with fixed types\npoint: Tuple[int, int] = (10, 20)</code></pre>\n<p><em>Tip:</em> In Python 3.9+, you can use built-in types directly (e.g., <code>list[str]</code>, <code>dict[str, int]</code>) without importing from the <code>typing</code> module.</p>"
+    },
+    {
+      "id": "blank-collection-syntax",
+      "title": "Fill in the Collection Type",
+      "type": "blank",
+      "duration": "3m",
+      "content": "Complete the code to annotate a variable representing a list of floating-point numbers using modern Python syntax:\n\n<code>prices: ___[float] = [19.99, 5.49, 12.00]</code>",
+      "correctAnswers": [
+        "list"
+      ]
+    },
+    {
+      "id": "advanced-types",
+      "title": "Optional, Union, and Any",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Real-world code often deals with variables that can hold multiple types or might be <code>None</code>.</p>\n<ul>\n  <li><strong>Union:</strong> Value can be one of several types. (e.g., <code>Union[int, str]</code>)</li>\n  <li><strong>Optional:</strong> Value can be a specific type or <code>None</code>. Equivalent to <code>Union[T, None]</code>.</li>\n  <li><strong>Any:</strong> Disables type checking for that value (escape hatch).</li>\n</ul>\n<pre><code>from typing import Optional, Union\n\ndef process_id(user_id: Union[int, str]) -> Optional[str]:\n    if not user_id:\n        return None\n    return str(user_id)</code></pre>"
+    },
+    {
+      "id": "match-types-definitions",
+      "title": "Match Type Annotations to Descriptions",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Optional[int]",
+            "right": "Can be an integer or None"
+          },
+          {
+            "left": "Union[str, int]",
+            "right": "Can be either a string or an integer"
+          },
+          {
+            "left": "Any",
+            "right": "Can be any type, disables type checking"
+          },
+          {
+            "left": "Callable[[int, int], int]",
+            "right": "A function taking two ints and returning an int"
+          }
+        ]
+      }
+    },
+    {
+      "id": "type-aliases-protocols",
+      "title": "Type Aliases and Protocols",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>As codebases grow, complex types can become hard to read. You can create <strong>Type Aliases</strong> to simplify them.</p>\n<pre><code>from typing import Dict, List\n\n# Type Alias\nVector = List[float]\n\ndef scale(scalar: float, vector: Vector) -> Vector:\n    return [scalar * num for num in vector]</code></pre>\n<p>Python also supports structural subtyping via <strong>Protocols</strong> (duck typing with static types), allowing you to define interfaces based on methods rather than explicit inheritance.</p>"
+    },
+    {
+      "id": "order-type-checking-workflow",
+      "title": "Order the Type Checking Workflow",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "instructions": "Put the typical workflow steps for using type hints in a Python project in the correct order:",
+        "items": [
+          {
+            "id": "step1",
+            "text": "Add type annotations to function signatures and variables."
+          },
+          {
+            "id": "step2",
+            "text": "Configure a static type checker like mypy (e.g., mypy.ini)."
+          },
+          {
+            "id": "step3",
+            "text": "Run the type checker in your CI/CD pipeline or terminal."
+          },
+          {
+            "id": "step4",
+            "text": "Fix any type mismatch errors reported by the checker."
+          }
+        ],
+        "correctOrder": [
+          "step1",
+          "step2",
+          "step3",
+          "step4"
+        ]
+      }
+    }
+  ]
+}

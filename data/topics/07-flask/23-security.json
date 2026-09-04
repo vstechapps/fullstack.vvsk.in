@@ -1,0 +1,101 @@
+{
+  "title": "Security for Flask Developer",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "sec-intro",
+      "title": "Introduction to Flask Security",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Security is a critical aspect of web development. Flask provides the building blocks, but developers must implement robust measures to protect against vulnerabilities such as XSS, CSRF, and SQL Injection.</p>"
+    },
+    {
+      "id": "sec-mcq-1",
+      "title": "Primary Vulnerability",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Cross-Site Scripting (XSS)"
+          },
+          {
+            "id": "b",
+            "text": "Excessive CPU usage"
+          },
+          {
+            "id": "c",
+            "text": "Too many database tables"
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "password-hashing",
+      "title": "Secure Password Hashing",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Never store plain-text passwords. Use libraries like Werkzeug's security module to hash and check passwords securely.</p>\n<pre><code>from werkzeug.security import generate_password_hash, check_password_hash\n\nhashd = generate_password_hash('secret')\nis_correct = check_password_hash(hashd, 'secret')</code></pre>"
+    },
+    {
+      "id": "blank-hashing",
+      "title": "Fill in the Hashing Function",
+      "type": "blank",
+      "duration": "3m",
+      "content": "To generate a secure password hash in Flask/Werkzeug, we use the function _______.",
+      "answer": "generate_password_hash"
+    },
+    {
+      "id": "csrf-protection",
+      "title": "Cross-Site Request Forgery (CSRF)",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>CSRF attacks trick the victim into submitting a malicious request. In Flask, extensions like <code>Flask-WTF</code> automatically handle CSRF tokens in forms to prevent this.</p>"
+    },
+    {
+      "id": "match-security-terms",
+      "title": "Match Security Concepts",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "pairs": [
+          {
+            "left": "SQL Injection",
+            "right": "Parameterized Queries"
+          },
+          {
+            "left": "XSS",
+            "right": "HTML Escaping"
+          },
+          {
+            "left": "CSRF",
+            "right": "Anti-CSRF Tokens"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-auth-flow",
+      "title": "Order the Authentication Steps",
+      "type": "order",
+      "duration": "4m",
+      "content": {
+        "steps": [
+          "User submits login form with username and password",
+          "Retrieve user record from the database",
+          "Verify password hash using check_password_hash",
+          "Log the user in by saving user ID in session"
+        ]
+      }
+    },
+    {
+      "id": "sec-conclusion",
+      "title": "Summary",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Always keep your dependencies updated, use HTTPS in production, never trust user input, and leverage built-in Flask extension security features.</p>"
+    }
+  ]
+}

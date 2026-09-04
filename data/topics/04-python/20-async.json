@@ -1,0 +1,121 @@
+{
+  "title": "Asynchronous Programming in Python",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "async-intro",
+      "title": "Introduction to Asynchronous Programming",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Asynchronous programming is a concurrent programming model that allows your program to perform other tasks while waiting for operations—like network requests or file I/O—to finish.</p>\n<p>In Python, this is primarily achieved using the <code>asyncio</code> library, <code>async/await</code> syntax, and event loops.</p>"
+    },
+    {
+      "id": "sync-vs-async-mcq",
+      "title": "Synchronous vs Asynchronous",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "question": "What is the primary benefit of asynchronous programming over synchronous programming in I/O bound tasks?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It executes CPU-heavy math operations faster."
+          },
+          {
+            "id": "b",
+            "text": "It prevents the main thread from blocking while waiting for I/O operations."
+          },
+          {
+            "id": "c",
+            "text": "It automatically uses all available CPU cores."
+          },
+          {
+            "id": "d",
+            "text": "It requires less memory than synchronous code."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "async-syntax",
+      "title": "Async and Await Syntax",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>To define a coroutine function in Python, you use the <code>async def</code> syntax.</p>\n<pre><code>import asyncio\n\nasync def main():\n    print(\"Hello\")\n    await asyncio.sleep(1)\n    print(\"World\")\n\nasyncio.run(main())</code></pre>\n<p>The <code>await</code> keyword pauses the execution of the coroutine until the awaited result is ready, allowing other tasks to run in the meantime.</p>"
+    },
+    {
+      "id": "fill-async-keyword",
+      "title": "Complete the Coroutine Definition",
+      "type": "blank",
+      "duration": "3m",
+      "content": {
+        "template": "To define a native coroutine in Python, we use the keyword [blank] before the function definition 'def', and the [blank] keyword to pause execution.",
+        "blanks": [
+          {
+            "id": "0",
+            "answer": "async"
+          },
+          {
+            "id": "1",
+            "answer": "await"
+          }
+        ]
+      }
+    },
+    {
+      "id": "asyncio-gather",
+      "title": "Running Tasks Concurrently",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>To run multiple coroutines concurrently, <code>asyncio.gather()</code> is commonly used.</p>\n<pre><code>import asyncio\n\nasync def fetch_data(id, delay):\n    print(f\"Task {id}: starting\")\n    await asyncio.sleep(delay)\n    print(f\"Task {id}: done\")\n    return f\"data {id}\"\n\nasync def main():\n    results = await asyncio.gather(\n        fetch_data(1, 2),\n        fetch_data(2, 1)\n    )\n    print(results)\n\nasyncio.run(main())</code></pre>"
+    },
+    {
+      "id": "match-async-concepts",
+      "title": "Match Async Concepts",
+      "type": "match",
+      "duration": "4m",
+      "content": {
+        "pairs": [
+          {
+            "left": "async def",
+            "right": "Defines a coroutine function"
+          },
+          {
+            "left": "await",
+            "right": "Pauses coroutine execution until result is ready"
+          },
+          {
+            "left": "asyncio.run()",
+            "right": "Entry point that manages the event loop"
+          },
+          {
+            "left": "asyncio.gather()",
+            "right": "Runs multiple coroutines concurrently"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-event-loop-steps",
+      "title": "Order the Async Execution Flow",
+      "type": "order",
+      "duration": "4m",
+      "content": {
+        "steps": [
+          "Import the asyncio module",
+          "Define a coroutine using async def",
+          "Await an asynchronous operation inside the coroutine",
+          "Pass the coroutine to asyncio.run() to execute the event loop"
+        ]
+      }
+    },
+    {
+      "id": "async-gotchas",
+      "title": "Common Pitfalls in Async Python",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Be careful not to block the event loop! Using synchronous blocking libraries (like <code>time.sleep()</code> or standard <code>requests</code>) inside an async function will freeze the entire event loop.</p>\n<p>Always use asynchronous alternatives like <code>asyncio.sleep()</code> or <code>httpx</code>/<code>aiohttp</code> for network requests.</p>"
+    }
+  ]
+}

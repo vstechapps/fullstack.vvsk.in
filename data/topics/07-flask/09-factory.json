@@ -1,0 +1,128 @@
+{
+  "title": "Factory Pattern in Flask Developer",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-factory-pattern",
+      "title": "Introduction to the Factory Pattern",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>In Flask, the <strong>Application Factory</strong> pattern is a design pattern where you define a function (the factory) responsible for creating and configuring the Flask application instance.</p>\n<pre><code>def create_app(config_name):\n    app = Flask(__name__)\n    app.config.from_object(config_name)\n    return app</code></pre>"
+    },
+    {
+      "id": "why-use-factory",
+      "title": "Why use Application Factory in Flask?",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "It makes the code run faster by caching routes."
+          },
+          {
+            "id": "b",
+            "text": "It allows creating multiple instances of the app with different configurations, easing testing and deployment."
+          },
+          {
+            "id": "c",
+            "text": "It is strictly required by Python to run Flask."
+          },
+          {
+            "id": "d",
+            "text": "It automatically generates database migrations."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "factory-structure",
+      "title": "Structuring the Factory Function",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>A typical factory setup initializes extensions outside the factory function without an app, and then binds them inside using <code>init_app()</code>.</p>\n<pre><code>from flask import Flask\nfrom flask_sqlalchemy import SQLAlchemy\n\ndb = SQLAlchemy()\n\ndef create_app(config_filename):\n    app = Flask(__name__)\n    app.config.from_pyfile(config_filename)\n    \n    db.init_app(app)\n    \n    return app</code></pre>"
+    },
+    {
+      "id": "complete-the-factory",
+      "title": "Complete the Flask Factory",
+      "type": "blank",
+      "duration": "2m",
+      "content": "Fill in the missing method to initialize the extension within the factory: \n\n```python\nfrom flask import Flask\nfrom flask_sqlalchemy import SQLAlchemy\n\ndb = SQLAlchemy()\n\ndef create_app():\n    app = Flask(__name__)\n    db.{{blank}}(app)\n    return app\n```",
+      "answers": [
+        {
+          "id": 0,
+          "text": "init_app"
+        }
+      ]
+    },
+    {
+      "id": "factory-steps-order",
+      "title": "Order of Operations in a Factory",
+      "type": "order",
+      "duration": "2m",
+      "content": "Arrange the steps of creating and configuring a Flask application using the factory pattern in the correct sequence.",
+      "items": [
+        {
+          "id": "1",
+          "text": "Define the create_app function"
+        },
+        {
+          "id": "2",
+          "text": "Instantiate the Flask object inside the function"
+        },
+        {
+          "id": "3",
+          "text": "Load configuration settings"
+        },
+        {
+          "id": "4",
+          "text": "Register blueprints and initialize extensions"
+        },
+        {
+          "id": "5",
+          "text": "Return the configured app instance"
+        }
+      ],
+      "correctOrder": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    {
+      "id": "registering-blueprints",
+      "title": "Registering Blueprints",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Blueprints are registered inside the factory function to modularize your application.</p>\n<pre><code>def create_app(config_name):\n    app = Flask(__name__)\n    app.config.from_object(config_name)\n    \n    from .auth import auth_bp\n    app.register_blueprint(auth_bp, url_prefix='/auth')\n    \n    return app</code></pre>"
+    },
+    {
+      "id": "match-components",
+      "title": "Match Flask Factory Concepts",
+      "type": "match",
+      "duration": "2m",
+      "content": "Match the Flask factory concept to its correct description.",
+      "pairs": [
+        {
+          "left": "create_app",
+          "right": "The function that returns the Flask instance"
+        },
+        {
+          "left": "init_app",
+          "right": "Method used to bind extensions to an app later"
+        },
+        {
+          "left": "Blueprint",
+          "right": "Modular component registered inside the factory"
+        },
+        {
+          "left": "config_name",
+          "right": "Parameter used to alter environments (dev/prod)"
+        }
+      ]
+    }
+  ]
+}

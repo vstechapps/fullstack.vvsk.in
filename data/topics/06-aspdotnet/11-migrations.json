@@ -1,0 +1,147 @@
+{
+  "title": "Entity Framework Core Migrations",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-migrations",
+      "title": "Introduction to Migrations",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>EF Core Migrations provide a way to incrementally update the database schema to match your application's data model changes while preserving existing data in the database.</p>"
+    },
+    {
+      "id": "core-commands-mcq",
+      "title": "Core Migration Commands",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "dotnet ef database update"
+          },
+          {
+            "id": "b",
+            "text": "dotnet ef update-db"
+          },
+          {
+            "id": "c",
+            "text": "dotnet migration apply"
+          },
+          {
+            "id": "d",
+            "text": "dotnet ef apply-migration"
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "migration-workflow",
+      "title": "Migration Workflow Order",
+      "type": "order",
+      "duration": "5m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Modify the C# entity classes or DbContext"
+          },
+          {
+            "id": "2",
+            "text": "Run 'dotnet ef migrations add <Name>' in the terminal"
+          },
+          {
+            "id": "3",
+            "text": "Review the generated migration code for accuracy"
+          },
+          {
+            "id": "4",
+            "text": "Run 'dotnet ef database update' to apply changes"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    },
+    {
+      "id": "anatomy-content",
+      "title": "Anatomy of a Migration",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>A migration file consists of two primary methods:</p>\n<ul>\n<li><code>Up()</code>: Applies the changes to move the database forward to the new state.</li>\n<li><code>Down()</code>: Reverts the changes to return the database to the previous state.</li>\n</ul>\n<pre><code>protected override void Up(MigrationBuilder migrationBuilder)\n{\n    migrationBuilder.AddColumn&lt;string&gt;(\n        name: \"Email\",\n        table: \"Users\",\n        nullable: true);\n}</code></pre>"
+    },
+    {
+      "id": "migration-blank",
+      "title": "Complete the Command",
+      "type": "blank",
+      "duration": "3m",
+      "content": "To generate a new migration file with a specific name in EF Core, you use the command: dotnet ef migrations ________ <MigrationName>",
+      "answer": "add"
+    },
+    {
+      "id": "match-commands",
+      "title": "Match EF Core Commands to Actions",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "pairs": [
+          {
+            "left": "dotnet ef migrations add",
+            "right": "Creates a new migration skeleton based on model changes"
+          },
+          {
+            "left": "dotnet ef database update",
+            "right": "Applies pending migrations to the database"
+          },
+          {
+            "left": "dotnet ef migrations remove",
+            "right": "Deletes the last migration if it hasn't been applied"
+          },
+          {
+            "left": "dotnet ef migrations script",
+            "right": "Generates a SQL script from migrations"
+          }
+        ]
+      }
+    },
+    {
+      "id": "production-best-practices",
+      "title": "Migrations in Production",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>When deploying to production, running <code>database update</code> automatically might not be ideal due to permission restrictions or lack of rollback control.</p>\n<p>Best practices include:</p>\n<ul>\n<li>Generating SQL scripts using <code>dotnet ef migrations script</code>.</li>\n<li>Reviewing the SQL scripts with DBAs before execution.</li>\n<li>Applying scripts manually during release pipelines.</li>\n</ul>"
+    },
+    {
+      "id": "rollback-mcq",
+      "title": "Rollback Strategy",
+      "type": "mcq",
+      "duration": "3m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "dotnet ef database update PreviousMigrationName"
+          },
+          {
+            "id": "b",
+            "text": "dotnet ef rollback PreviousMigrationName"
+          },
+          {
+            "id": "c",
+            "text": "dotnet ef undo PreviousMigrationName"
+          },
+          {
+            "id": "d",
+            "text": "dotnet ef database revert"
+          }
+        ],
+        "correctId": "a"
+      }
+    }
+  ]
+}

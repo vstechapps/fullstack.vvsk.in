@@ -1,0 +1,129 @@
+{
+  "title": "Logging in ASP.NET Core",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-logging",
+      "title": "Introduction to Logging",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Logging is crucial for monitoring the health and behavior of your ASP.NET Core applications. It helps you diagnose issues, audit user actions, and track performance.</p><p>ASP.NET Core comes with a built-in, high-performance logging framework that supports multiple logging providers like Console, Debug, EventSource, and third-party tools like Serilog or NLog.</p>"
+    },
+    {
+      "id": "log-levels-content",
+      "title": "Understanding Log Levels",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>ASP.NET Core defines several log levels in the <code>LogLevel</code> enum, ordered from lowest to highest severity:</p><ul><li><strong>Trace</strong>: Most detailed messages. Usually contain sensitive data.</li><li><strong>Debug</strong>: Short-term diagnostic messages.</li><li><strong>Information</strong>: Tracks the general flow of the application.</li><li><strong>Warning</strong>: Abnormal or unexpected events that don't stop execution.</li><li><strong>Error</strong>: Current flow is stopped due to a failure.</li><li><strong>Critical</strong>: Unrecoverable crashes requiring immediate attention.</li><li><strong>None</strong>: Specifies that a message should not be logged.</li></ul>"
+    },
+    {
+      "id": "log-levels-mcq",
+      "title": "Log Level Severity",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Error is more severe than Critical"
+          },
+          {
+            "id": "b",
+            "text": "Warning is less severe than Error"
+          },
+          {
+            "id": "c",
+            "text": "Information is more severe than Warning"
+          },
+          {
+            "id": "d",
+            "text": "Trace is the highest severity level"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "injecting-logger",
+      "title": "Using ILogger in Controllers",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>The standard way to write logs in ASP.NET Core is by injecting the generic <code>ILogger&lt;T&gt;</code> interface into your classes via Dependency Injection.</p><pre><code>public class HomeController : Controller\n{\n    private readonly ILogger&lt;HomeController&gt; _logger;\n\n    public HomeController(ILogger&lt;HomeController&gt; logger)\n    {\n        _logger = logger;\n    }\n\n    public IActionResult Index()\n    {\n        _logger.LogInformation(\"Index page visited at {Time}\", DateTime.UtcNow);\n        return View();\n    }\n}</code></pre>"
+    },
+    {
+      "id": "blank-logger-injection",
+      "title": "Complete the Logger Injection",
+      "type": "blank",
+      "duration": "2m",
+      "content": "Fill in the missing type parameter for the logger interface:\n<code>private readonly ILogger&lt;[blank]&gt; _logger;</code>",
+      "options": [
+        "HomeController",
+        "ILogger",
+        "DbContext",
+        "Controller"
+      ],
+      "correctId": "HomeController"
+    },
+    {
+      "id": "structured-logging",
+      "title": "Structured Logging & Message Templates",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>ASP.NET Core supports structured logging. Instead of string concatenation (e.g., <code>\"User \" + id + \" logged in\"</code>), use message templates with named placeholders.</p><pre><code>_logger.LogInformation(\"User {UserId} logged in from {IpAddress}\", userId, ipAddress);</code></pre><p>This allows logging providers to index parameters separately, making it easier to query logs in systems like Elasticsearch or Application Insights.</p>"
+    },
+    {
+      "id": "match-log-methods",
+      "title": "Match Log Method to Level",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "_logger.LogInformation(...)",
+            "right": "General application flow"
+          },
+          {
+            "left": "_logger.LogWarning(...)",
+            "right": "Unexpected event, app still runs"
+          },
+          {
+            "left": "_logger.LogError(...)",
+            "right": "Operation failed, exception caught"
+          },
+          {
+            "left": "_logger.LogCritical(...)",
+            "right": "System crash / App failure"
+          }
+        ]
+      }
+    },
+    {
+      "id": "configuring-logging",
+      "title": "Configuring Logging in appsettings.json",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>You can configure minimum log levels and provider-specific settings in <code>appsettings.json</code> under the <code>Logging</code> section:</p><pre><code>{\n  \"Logging\": {\n    \"LogLevel\": {\n      \"Default\": \"Information\",\n      \"Microsoft.AspNetCore\": \"Warning\"\n    }\n  }\n}</code></pre><p>This configuration sets the global default level to Information, while restricting ASP.NET Core internal framework logs to Warning and above.</p>"
+    },
+    {
+      "id": "order-logging-pipeline",
+      "title": "Order the Logging Steps",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "steps": [
+          "Register logging providers in Program.cs (or rely on defaults)",
+          "Inject ILogger<T> into your service or controller",
+          "Call extension methods like _logger.LogInformation()",
+          "View output in the Console, Debug window, or external sink"
+        ]
+      }
+    },
+    {
+      "id": "summary-logging",
+      "title": "Logging Best Practices Summary",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To wrap up, keep these best practices in mind:</p><ul><li>Use appropriate log levels (don't log everything as Error).</li><li>Leverage structured logging instead of string interpolation.</li><li>Avoid logging sensitive data (PII, passwords, connection strings).</li><li>Configure appropriate filtering in production to avoid log bloat.</li></ul>"
+    }
+  ]
+}

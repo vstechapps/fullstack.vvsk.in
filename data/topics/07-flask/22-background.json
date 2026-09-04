@@ -1,0 +1,162 @@
+{
+  "title": "Background Tasks in Flask",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-background-tasks",
+      "title": "Introduction to Background Tasks",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>In standard web applications, the request-response cycle must be fast. If a user triggers an action that takes a long time—like sending an email, processing an image, or generating a heavy PDF—the HTTP request will hang, leading to a poor user experience.</p><p>Background tasks allow offloading these heavy operations to worker processes that run asynchronously outside the main request thread.</p>"
+    },
+    {
+      "id": "why-celery-mcq",
+      "title": "Why Use Background Tasks?",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "To make the HTTP request block until the heavy task finishes."
+          },
+          {
+            "id": "b",
+            "text": "To prevent HTTP requests from timing out during long-running operations."
+          },
+          {
+            "id": "c",
+            "text": "To replace the database entirely with a message queue."
+          },
+          {
+            "id": "d",
+            "text": "To serve static HTML files faster."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "celery-architecture",
+      "title": "Celery and Message Brokers",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p><strong>Celery</strong> is the most popular task queue implementation for Python and Flask. To use Celery, you need a message broker that transmits messages between your Flask app and the Celery workers.</p><p>Common brokers include:</p><ul><li><strong>Redis</strong> (Fast, in-memory, very popular)</li><li><strong>RabbitMQ</strong> (Robust, feature-rich AMQP broker)</li></ul><pre><code>from celery import Celery\n\ndef make_celery(app):\n    celery = Celery(\n        app.import_name,\n        backend=app.config['CELERY_RESULT_BACKEND'],\n        broker=app.config['CELERY_BROKER_URL']\n    )\n    class ContextTask(celery.Task):\n        def __call__(self, *args, **kwargs):\n            with app.app_context():\n                return self.run(*args, **kwargs)\n    celery.Task = ContextTask\n    return celery</code></pre>"
+    },
+    {
+      "id": "fill-broker-blank",
+      "title": "Fill in the Message Broker",
+      "type": "blank",
+      "duration": "3m",
+      "content": {
+        "text": "To set up Celery in Flask, we typically use {blank_1} or RabbitMQ as the message broker.",
+        "blanks": [
+          {
+            "id": "blank_1",
+            "answer": "Redis"
+          }
+        ]
+      }
+    },
+    {
+      "id": "defining-tasks",
+      "title": "Defining and Calling Celery Tasks",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Once Celery is initialized, you define tasks using the <code>@celery.task</code> decorator. Instead of calling the function directly, you use the <code>.delay()</code> method to trigger it asynchronously.</p><pre><code>@celery.task\ndef send_async_email(email_address):\n    # Simulate sending email\n    time.sleep(5)\n    print(f\"Email sent to {email_address}\")\n\n@app.route('/register', methods=['POST'])\ndef register():\n    # Register user logic...\n    user_email = request.form['email']\n    \n    # Trigger background task\n    send_async_email.delay(user_email)\n    \n    return \"Registration successful! Check your email soon.\", 202</code></pre>"
+    },
+    {
+      "id": "match-components",
+      "title": "Match Celery Concepts",
+      "type": "match",
+      "duration": "4m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Broker",
+            "right": "Transfers messages between Flask and workers (e.g., Redis)"
+          },
+          {
+            "left": "Worker",
+            "right": "A separate process that executes the background tasks"
+          },
+          {
+            "left": ".delay()",
+            "right": "Shortcut method to execute a task asynchronously"
+          },
+          {
+            "left": "Backend",
+            "right": "Stores the state and return values of tasks"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-task-flow",
+      "title": "Order the Task Execution Flow",
+      "type": "order",
+      "duration": "4m",
+      "content": {
+        "instructions": "Place the lifecycle steps of a Flask background task in the correct chronological order.",
+        "items": [
+          {
+            "id": "1",
+            "text": "Client makes an HTTP POST request to a Flask route."
+          },
+          {
+            "id": "2",
+            "text": "Flask route calls task.delay() to enqueue the job."
+          },
+          {
+            "id": "3",
+            "text": "Message broker (Redis) receives and holds the task message."
+          },
+          {
+            "id": "4",
+            "text": "Celery worker pulls the task from the broker and executes it."
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    },
+    {
+      "id": "alternative-options",
+      "title": "Lighter Alternatives: Flask-Executor",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>If your application doesn't need a heavy distributed task queue like Celery, setting up Redis and worker processes might be overkill.</p><p>For simpler needs, libraries like <strong>Flask-Executor</strong> allow you to run tasks concurrently using standard threads or processes within the same application instance.</p><pre><code>from flask_executor import Executor\n\nexecutor = Executor(app)\n\n@app.route('/process')\ndef process():\n    executor.submit(heavy_task, arg1, arg2)\n    return \"Task submitted!\"</code></pre>"
+    },
+    {
+      "id": "summary-mcq",
+      "title": "Task Queue Selection",
+      "type": "mcq",
+      "duration": "3m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Always use Celery, even for simple single-server apps."
+          },
+          {
+            "id": "b",
+            "text": "Choose Celery for distributed, heavy, or scalable background workloads, and simpler thread pools (like Flask-Executor) for lightweight local tasks."
+          },
+          {
+            "id": "c",
+            "text": "Never run background tasks in Flask; always do synchronous processing."
+          },
+          {
+            "id": "d",
+            "text": "Background tasks cannot access database models."
+          }
+        ],
+        "correctId": "b"
+      }
+    }
+  ]
+}

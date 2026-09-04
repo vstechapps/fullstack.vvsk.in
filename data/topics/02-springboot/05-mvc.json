@@ -1,0 +1,164 @@
+{
+  "title": "Mastering Spring MVC in Spring Boot",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-spring-mvc",
+      "title": "Introduction to Spring MVC",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Spring MVC (Model-View-Controller) is a robust framework built on the Servlet API that implements the classic Model-View-Controller design pattern.</p>\n<ul>\n  <li><strong>Model:</strong> Encapsulates application data and business rules.</li>\n  <li><strong>View:</strong> Renders the data to the user interface (Thymeleaf, HTML, JSP).</li>\n  <li><strong>Controller:</strong> Processes requests, interacts with the model, and selects the view.</li>\n</ul>"
+    },
+    {
+      "id": "dispatcher-servlet",
+      "title": "The Front Controller & DispatcherServlet",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>At the heart of Spring MVC is the <strong>DispatcherServlet</strong>. It acts as the <em>Front Controller</em> pattern implementation.</p>\n<p>Instead of mapping multiple servlets to different URLs, all incoming HTTP requests are funneled through a single <code>DispatcherServlet</code>, which coordinates the work required to fulfill them by delegating to specialized components.</p>"
+    },
+    {
+      "id": "request-lifecycle-order",
+      "title": "Spring MVC Request Lifecycle",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "instructions": "Place the steps of a Spring MVC request in the correct sequence from start to finish:",
+        "items": [
+          "The client sends an HTTP request which is received by the DispatcherServlet.",
+          "DispatcherServlet queries HandlerMapping to find the appropriate Controller.",
+          "DispatcherServlet executes the Controller handler method to obtain a ModelAndView object.",
+          "DispatcherServlet consults the ViewResolver to locate the physical view template.",
+          "The resolved view renders the model data and returns the HTTP response to the client."
+        ]
+      }
+    },
+    {
+      "id": "mvc-controllers",
+      "title": "Creating Controllers in Spring MVC",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Controllers are declared using the <code>@Controller</code> or <code>@RestController</code> annotations.</p>\n<pre><code>@Controller\npublic class WebController {\n    @GetMapping(\"/home\")\n    public String home(Model model) {\n        model.addAttribute(\"message\", \"Hello World!\");\n        return \"index\"; // returns the index.html template\n    }\n}</code></pre>"
+    },
+    {
+      "id": "controller-vs-restcontroller",
+      "title": "@Controller vs @RestController",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "question": "What is the primary difference between @Controller and @RestController?",
+        "options": [
+          {
+            "id": "a",
+            "text": "@RestController is asynchronous by default, while @Controller is synchronous."
+          },
+          {
+            "id": "b",
+            "text": "@RestController implicitly adds @ResponseBody to all handler methods, returning raw serialized data instead of rendering HTML views."
+          },
+          {
+            "id": "c",
+            "text": "@Controller can only handle GET requests, whereas @RestController can handle all HTTP methods."
+          },
+          {
+            "id": "d",
+            "text": "Only @Controller classes can be picked up by Spring Boot's component scanner."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "request-mapping",
+      "title": "Handling HTTP Request Methods",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Spring MVC provides shortcut annotations for mapping HTTP methods directly to your Java methods:</p>\n<ul>\n  <li><code>@GetMapping</code> for HTTP GET requests (retrieving data).</li>\n  <li><code>@PostMapping</code> for HTTP POST requests (creating data).</li>\n  <li><code>@PutMapping</code> for HTTP PUT requests (updating data).</li>\n  <li><code>@DeleteMapping</code> for HTTP DELETE requests (removing data).</li>\n</ul>"
+    },
+    {
+      "id": "path-vs-query",
+      "title": "Path Variables vs Request Parameters",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Spring MVC makes it easy to extract inputs from requests using mapping annotations:</p>\n<pre><code>// 1. Path Variable: part of the URL path structure\n@GetMapping(\"/users/{id}\")\npublic User getUser(@PathVariable Long id) { ... }\n\n// 2. Request Parameter: query string trailing key-value pairs\n@GetMapping(\"/search\")\npublic List&lt;User&gt; searchUsers(@RequestParam String query) { ... }</code></pre>"
+    },
+    {
+      "id": "blank-annotations",
+      "title": "Extracting Data from URL Paths",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "question": "Complete the controller signature below to capture the product identifier from /products/123:\n\n@GetMapping(\"/products/{id}\")\npublic Product getProduct(@[blank] Long id)",
+        "correctAnswer": "PathVariable"
+      }
+    },
+    {
+      "id": "model-view-viewresolver",
+      "title": "Working with Models and ViewResolvers",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>The <strong>Model</strong> acts as a map of key-value pairs passed directly to the view rendering engine. The <strong>ViewResolver</strong> acts as the translator.</p>\n<p>For example, if a controller returns <code>\"about\"</code>, Spring Boot's configured ViewResolver looks for a resource in <code>src/main/resources/templates/about.html</code>.</p>"
+    },
+    {
+      "id": "matching-mvc",
+      "title": "Match Spring MVC Components",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "instructions": "Match the core Spring MVC component with its primary responsibility:",
+        "pairs": [
+          {
+            "key": "DispatcherServlet",
+            "value": "Acts as the central front controller, dispatching incoming requests."
+          },
+          {
+            "key": "HandlerMapping",
+            "value": "Identifies which controller method should process an incoming URI request."
+          },
+          {
+            "key": "ViewResolver",
+            "value": "Translates logical view names (like 'home') to physical templates."
+          },
+          {
+            "key": "Model",
+            "value": "A map-like container object holding data payload for frontend rendering."
+          }
+        ]
+      }
+    },
+    {
+      "id": "exception-handling",
+      "title": "Global Exception Handling",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Rather than managing try-catch blocks inside every handler method, Spring MVC offers dedicated global exception handling.</p>\n<p>Using <code>@ControllerAdvice</code> (or <code>@RestControllerAdvice</code>), you can define standard fallback behavior for custom exceptions throughout your application.</p>"
+    },
+    {
+      "id": "final-mcq",
+      "title": "Declaring Exception Handlers",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "Which annotation is placed on a method inside a @ControllerAdvice class to specify which exception type it handles?",
+        "options": [
+          {
+            "id": "a",
+            "text": "@Catch"
+          },
+          {
+            "id": "b",
+            "text": "@ExceptionHandler"
+          },
+          {
+            "id": "c",
+            "text": "@ErrorMapping"
+          },
+          {
+            "id": "d",
+            "text": "@FallbackResponse"
+          }
+        ],
+        "correctId": "b"
+      }
+    }
+  ]
+}

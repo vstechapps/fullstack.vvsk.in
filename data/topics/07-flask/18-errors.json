@@ -1,0 +1,134 @@
+{
+  "title": "Error Handling in Flask",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-error-handling",
+      "title": "Introduction to Error Handling",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>When building web applications with Flask, things can and will go wrong. Unhandled exceptions result in generic 500 Internal Server Errors, which provide a poor user experience.</p><p>Proper error handling ensures your app fails gracefully, logs errors for debugging, and returns meaningful HTTP status codes and responses to the client.</p>"
+    },
+    {
+      "id": "http-status-codes",
+      "title": "Match HTTP Status Codes to Meanings",
+      "type": "match",
+      "duration": "4m",
+      "content": {
+        "pairs": [
+          {
+            "id": "p1",
+            "left": "400",
+            "right": "Bad Request"
+          },
+          {
+            "id": "p2",
+            "left": "401",
+            "right": "Unauthorized"
+          },
+          {
+            "id": "p3",
+            "left": "404",
+            "right": "Not Found"
+          },
+          {
+            "id": "p4",
+            "left": "500",
+            "right": "Internal Server Error"
+          }
+        ]
+      }
+    },
+    {
+      "id": "abort-function",
+      "title": "Using Flask's abort()",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To abort request handling and return an error code immediately, Flask provides the <code>abort()</code> function.</p>\n<pre><code>from flask import abort, render_template\n\n@app.route('/user/&lt;int:user_id&gt;')\ndef get_user(user_id):\n    user = load_user(user_id)\n    if not user:\n        abort(404)\n    return render_template('user.html', user=user)</code></pre>"
+    },
+    {
+      "id": "abort-mcq",
+      "title": "Flask abort Function",
+      "type": "mcq",
+      "duration": "3m",
+      "content": {
+        "question": "What happens when abort(404) is called inside a Flask view function?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Flask raises a Python exception and immediately stops executing the rest of the view function."
+          },
+          {
+            "id": "b",
+            "text": "Flask redirects the user to the homepage."
+          },
+          {
+            "id": "c",
+            "text": "Flask ignores it unless a try-catch block is used."
+          },
+          {
+            "id": "d",
+            "text": "Flask shuts down the development server."
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "errorhandler-decorator",
+      "title": "Custom Error Pages with @app.errorhandler",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>You can create custom error pages using the <code>@app.errorhandler</code> decorator. This allows you to catch specific HTTP status codes or Python exceptions.</p>\n<pre><code>@app.errorhandler(404)\ndef page_not_found(error):\n    return render_template('404.html'), 404\n\n@app.errorhandler(500)\ndef internal_server_error(error):\n    return render_template('500.html'), 500</code></pre>\n<p>Always remember to return the appropriate status code integer as the second return value!</p>"
+    },
+    {
+      "id": "errorhandler-blank",
+      "title": "Fill in the ErrorHandler Decorator",
+      "type": "blank",
+      "duration": "4m",
+      "content": {
+        "template": "To register a custom error handler for a 404 Not Found error in Flask, you use the decorator @app.______ (404).",
+        "answer": "errorhandler"
+      }
+    },
+    {
+      "id": "handling-custom-exceptions",
+      "title": "Handling Custom Exceptions",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Flask also allows you to register error handlers for custom Python exception classes you define in your application.</p>\n<pre><code>class InvalidAPIUsage(Exception):\n    status_code = 400\n\n    def __init__(self, message, status_code=None, payload=None):\n        super().__init__()\n        self.message = message\n        if status_code is not None:\n            self.status_code = status_code\n        self.payload = payload\n\n@app.errorhandler(InvalidAPIUsage)\ndef handle_invalid_usage(error):\n    response = jsonify(error.to_dict())\n    response.status_code = error.status_code\n    return response</code></pre>"
+    },
+    {
+      "id": "order-error-flow",
+      "title": "Order the Error Handling Setup Steps",
+      "type": "order",
+      "duration": "5m",
+      "content": {
+        "items": [
+          {
+            "id": "step1",
+            "text": "Define a custom exception class or identify the HTTP error code."
+          },
+          {
+            "id": "step2",
+            "text": "Create a view function to handle the error and render a template or JSON."
+          },
+          {
+            "id": "step3",
+            "text": "Decorate the function using @app.errorhandler()."
+          },
+          {
+            "id": "step4",
+            "text": "Test the error response by triggering the exception in development."
+          }
+        ],
+        "correctOrder": [
+          "step1",
+          "step2",
+          "step3",
+          "step4"
+        ]
+      }
+    }
+  ]
+}

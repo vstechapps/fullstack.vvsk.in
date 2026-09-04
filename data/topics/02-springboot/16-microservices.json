@@ -1,0 +1,185 @@
+{
+  "title": "Microservices with Spring Boot",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-microservices",
+      "title": "Introduction to Microservices Architecture",
+      "type": "content",
+      "duration": "2m",
+      "content": "<h3>What are Microservices?</h3>\n<p>Microservices architecture structures an application as a collection of small, autonomous services modeled around a business domain.</p>\n<ul>\n  <li><strong>Independently Deployable:</strong> Services can be updated without redeploying the whole system.</li>\n  <li><strong>Loosely Coupled:</strong> Services communicate via well-defined APIs (REST, gRPC, or Messaging).</li>\n  <li><strong>Tech Diversity:</strong> Individual services can use different technology stacks if needed.</li>\n</ul>"
+    },
+    {
+      "id": "monolith-vs-microservices",
+      "title": "Monolith vs Microservices in Spring Boot",
+      "type": "content",
+      "duration": "3m",
+      "content": "<h3>Monolith vs. Microservices</h3>\n<p>In a monolithic Spring Boot app, all components (Auth, Orders, Products) reside in a single deployable JAR file.</p>\n<p>In a microservices approach, each service is a distinct Spring Boot application with its own database schema:</p>\n<pre><code>// Order Service Application\n@SpringBootApplication\npublic class OrderServiceApplication {\n    public static void main(String[] args) {\n        SpringApplication.run(OrderServiceApplication.class, args);\n    }\n}</code></pre>"
+    },
+    {
+      "id": "concept-mcq",
+      "title": "Microservices Core Principle Check",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "All microservices must share a single monolithic database."
+          },
+          {
+            "id": "b",
+            "text": "Microservices should be independently deployable and loosely coupled."
+          },
+          {
+            "id": "c",
+            "text": "Microservices require all services to be written in the exact same programming language."
+          },
+          {
+            "id": "d",
+            "text": "Microservices communicate only via shared local file systems."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "service-discovery",
+      "title": "Service Discovery with Spring Cloud Eureka",
+      "type": "content",
+      "duration": "4m",
+      "content": "<h3>Why Service Discovery?</h3>\n<p>In cloud environments, microservice instances change IP addresses dynamically. A Service Registry acts as a phonebook for services.</p>\n<p>Spring Cloud Eureka Server provides service registration and discovery:</p>\n<pre><code>@SpringBootApplication\n@EnableEurekaServer\npublic class DiscoveryServerApplication {\n    public static void main(String[] args) {\n        SpringApplication.run(DiscoveryServerApplication.class, args);\n    }\n}</code></pre>"
+    },
+    {
+      "id": "eureka-blank",
+      "title": "Eureka Server Annotation",
+      "type": "blank",
+      "duration": "1m 30s",
+      "content": {
+        "text": "To turn a Spring Boot application into a service discovery registry, annotate the main class with @Enable________Server.",
+        "correctAnswer": "Eureka"
+      }
+    },
+    {
+      "id": "api-gateway",
+      "title": "API Gateway with Spring Cloud Gateway",
+      "type": "content",
+      "duration": "4m",
+      "content": "<h3>Role of an API Gateway</h3>\n<p>An API Gateway serves as the single entry point for external client requests, providing routing, cross-cutting concerns (authentication, rate limiting), and security.</p>\n<p>Configuration snippet in <code>application.yml</code>:</p>\n<pre><code>spring:\n  cloud:\n    gateway:\n      routes:\n        - id: order-service\n          uri: lb://ORDER-SERVICE\n          predicates:\n            - Path=/api/orders/**</code></pre>"
+    },
+    {
+      "id": "gateway-order",
+      "title": "Order of API Gateway Request Processing",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "items": [
+          {
+            "id": "step1",
+            "text": "Client sends an HTTP request to the Gateway."
+          },
+          {
+            "id": "step2",
+            "text": "Gateway matches Predicates to determine the target route."
+          },
+          {
+            "id": "step3",
+            "text": "Gateway executes Pre-Filters (e.g., authentication check)."
+          },
+          {
+            "id": "step4",
+            "text": "Gateway forwards request to downstream Microservice."
+          },
+          {
+            "id": "step5",
+            "text": "Gateway executes Post-Filters and returns response to Client."
+          }
+        ],
+        "correctOrder": [
+          "step1",
+          "step2",
+          "step3",
+          "step4",
+          "step5"
+        ]
+      }
+    },
+    {
+      "id": "resilience",
+      "title": "Resiliency with Resilience4j",
+      "type": "content",
+      "duration": "4m",
+      "content": "<h3>Circuit Breakers</h3>\n<p>Distributed systems experience network delays or service failures. The Circuit Breaker pattern prevents cascading failures across microservices.</p>\n<pre><code>@Service\npublic class InventoryClient {\n\n    @CircuitBreaker(name = \"inventoryService\", fallbackMethod = \"getDefaultInventory\")\n    public InventoryStatus checkStock(String productId) {\n        // Call remote Inventory Microservice\n    }\n\n    public InventoryStatus getDefaultInventory(String productId, Exception e) {\n        return new InventoryStatus(productId, false); // Fallback response\n    }\n}</code></pre>"
+    },
+    {
+      "id": "component-match",
+      "title": "Match Spring Cloud Components",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Eureka",
+            "right": "Service Registration & Discovery"
+          },
+          {
+            "left": "Spring Cloud Gateway",
+            "right": "Routing & Request Filtering"
+          },
+          {
+            "left": "Resilience4j",
+            "right": "Circuit Breaker & Fault Tolerance"
+          },
+          {
+            "left": "Spring Cloud Config",
+            "right": "Centralized Configuration Management"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tracing",
+      "title": "Distributed Tracing with Micrometer and Zipkin",
+      "type": "content",
+      "duration": "3m",
+      "content": "<h3>Tracing Across Services</h3>\n<p>In a microservices architecture, a single user action may traverse multiple network calls across various services.</p>\n<ul>\n  <li><strong>Trace ID:</strong> Unique identifier assigned to an entire user request flow.</li>\n  <li><strong>Span ID:</strong> Identifier for a specific segment/operation within a request flow.</li>\n  <li><strong>Zipkin:</strong> Visualizes call graphs and timing details for requests.</li>\n</ul>"
+    },
+    {
+      "id": "circuit-breaker-mcq",
+      "title": "Circuit Breaker State Machine",
+      "type": "mcq",
+      "duration": "1m 30s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "CLOSED state stops all incoming requests immediately."
+          },
+          {
+            "id": "b",
+            "text": "OPEN state routes all requests directly to the fallback method without invoking the remote service."
+          },
+          {
+            "id": "c",
+            "text": "HALF_OPEN state disables fallback logic permanently."
+          },
+          {
+            "id": "d",
+            "text": "OPEN state forces the server to restart automatically."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "config-blank",
+      "title": "Centralized Configuration Annotation",
+      "type": "blank",
+      "duration": "1m",
+      "content": {
+        "text": "To create a centralized configuration server in Spring Cloud, use the @Enable________Server annotation.",
+        "correctAnswer": "Config"
+      }
+    }
+  ]
+}

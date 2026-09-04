@@ -1,0 +1,151 @@
+{
+  "title": "Packaging for Flask Developer",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-packaging",
+      "title": "Introduction to Python Packaging",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Packaging is the process of organizing your Flask application into a standard format that can be easily installed, shared, and deployed. It transforms your project from a mere collection of scripts into a distributable library or application.</p><p>Key benefits include dependency management, versioning, and seamless distribution via PyPI or private repositories.</p>"
+    },
+    {
+      "id": "packaging-tools-mcq",
+      "title": "Standard Packaging Tool",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "distutils"
+          },
+          {
+            "id": "b",
+            "text": "setuptools"
+          },
+          {
+            "id": "c",
+            "text": "make"
+          },
+          {
+            "id": "d",
+            "text": "npm"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "pyproject-toml-explained",
+      "title": "The pyproject.toml File",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Modern Python packaging relies on <code>pyproject.toml</code>, as defined by PEP 518 and PEP 621. This file specifies build system requirements and project metadata.</p><pre><code>[build-system]\nrequires = [\"setuptools>=61.0.0\"]\nbuild-backend = \"setuptools.build_meta\"\n\n[project]\nname = \"my_flask_app\"\nversion = \"0.1.0\"\ndependencies = [\n    \"Flask>=3.0.0\",\n    \"SQLAlchemy>=2.0.0\"\n]</code></pre>"
+    },
+    {
+      "id": "pyproject-fill-blank",
+      "title": "Build System Configuration",
+      "type": "blank",
+      "duration": "2m",
+      "content": "To define how your Flask project is built according to PEP 518, you configure the ________ file.",
+      "answer": "pyproject.toml"
+    },
+    {
+      "id": "flask-app-structure",
+      "title": "Flask Application Layout",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>A standard packagable Flask application uses the application factory pattern and a structured layout:</p><pre><code>my_flask_app/\n├── pyproject.toml\n├── README.md\n└── src/\n    └── myapp/\n        ├── __init__.py\n        ├── models.py\n        └── views.py</code></pre><p>Using the <code>src/</code> layout prevents accidental imports of local code without installing the package first.</p>"
+    },
+    {
+      "id": "packaging-steps-order",
+      "title": "Steps to Build and Distribute",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "instructions": "Order the steps required to package and upload a Flask application.",
+        "steps": [
+          {
+            "id": "s1",
+            "text": "Create pyproject.toml with project metadata and dependencies"
+          },
+          {
+            "id": "s2",
+            "text": "Install build tools: pip install build twine"
+          },
+          {
+            "id": "s3",
+            "text": "Generate distribution archives using python -m build"
+          },
+          {
+            "id": "s4",
+            "text": "Upload the package to PyPI using twine upload dist/*"
+          }
+        ],
+        "correctOrder": [
+          "s1",
+          "s2",
+          "s3",
+          "s4"
+        ]
+      }
+    },
+    {
+      "id": "dependency-management",
+      "title": "Managing Dependencies",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>In your <code>pyproject.toml</code>, dependencies are declared under the <code>[project]</code> table. For development dependencies (like testing or linting tools), use optional dependencies or dependency groups.</p><pre><code>[project.optional-dependencies]\ndev = [\n    \"pytest>=7.0.0\",\n    \"flake8>=6.0.0\"\n]</code></pre>"
+    },
+    {
+      "id": "match-concepts",
+      "title": "Match Packaging Terms",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "instructions": "Match the packaging term to its correct definition.",
+        "pairs": [
+          {
+            "left": "pyproject.toml",
+            "right": "Standard build system and project metadata configuration"
+          },
+          {
+            "left": "Twine",
+            "right": "Utility for publishing Python packages to PyPI"
+          },
+          {
+            "left": "App Factory",
+            "right": "Function returning a configured Flask instance"
+          },
+          {
+            "left": "src layout",
+            "right": "Directory structure isolating source code"
+          }
+        ]
+      }
+    },
+    {
+      "id": "virtual-environments-content",
+      "title": "Virtual Environments and Editable Installs",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>When developing your packaged Flask app, use an editable install so changes in your source code are immediately reflected in your environment without reinstalling.</p><pre><code>pip install -e .</code></pre><p>This links the package in the current directory to your active virtual environment.</p>"
+    },
+    {
+      "id": "editable-install-blank",
+      "title": "Editable Install Command",
+      "type": "blank",
+      "duration": "2m",
+      "content": "To install a local package in editable mode for development, you run the command: pip install ________ .",
+      "answer": "-e"
+    },
+    {
+      "id": "summary-content",
+      "title": "Conclusion and Best Practices",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>You have learned how to package a Flask application using standard tools like <code>pyproject.toml</code>, structuring your app with an <code>src/</code> layout, declaring dependencies, and using editable installs for efficient development.</p><p>Always test your package installation in a clean virtual environment before publishing!</p>"
+    }
+  ]
+}

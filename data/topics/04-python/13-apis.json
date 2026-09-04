@@ -1,0 +1,111 @@
+{
+  "title": "APIs in Python",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "what-is-an-api",
+      "title": "What is an API?",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>An <strong>API (Application Programming Interface)</strong> allows different software systems to communicate with each other. In Python development, we often use APIs to fetch data from web services, interact with databases, or integrate third-party services like payment gateways.</p>"
+    },
+    {
+      "id": "api-requests-mcq",
+      "title": "HTTP Methods",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "Which HTTP method is typically used to retrieve data from an API?",
+        "options": [
+          {
+            "id": "a",
+            "text": "POST"
+          },
+          {
+            "id": "b",
+            "text": "GET"
+          },
+          {
+            "id": "c",
+            "text": "DELETE"
+          },
+          {
+            "id": "d",
+            "text": "PUT"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "requests-library",
+      "title": "Using the Requests Library",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>The <code>requests</code> library is the standard way to make HTTP requests in Python.</p>\n<pre><code>import requests\n\nresponse = requests.get('https://api.example.com/data')\nprint(response.json())</code></pre>"
+    },
+    {
+      "id": "fill-status-code",
+      "title": "Checking Status Codes",
+      "type": "blank",
+      "duration": "2m",
+      "content": "To check if an HTTP request was successful in Python, we often verify that the response status code is equal to ___.",
+      "answer": "200"
+    },
+    {
+      "id": "match-http-verbs",
+      "title": "Match HTTP Methods to Actions",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "GET",
+            "right": "Retrieve data"
+          },
+          {
+            "left": "POST",
+            "right": "Create new data"
+          },
+          {
+            "left": "PUT",
+            "right": "Update existing data"
+          },
+          {
+            "left": "DELETE",
+            "right": "Remove data"
+          }
+        ]
+      }
+    },
+    {
+      "id": "json-parsing",
+      "title": "Working with JSON Data",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>APIs commonly return data in JSON format. Python automatically parses JSON responses into native dictionaries using the <code>.json()</code> method.</p>\n<pre><code>data = response.json()\nuser_name = data.get('name')</code></pre>"
+    },
+    {
+      "id": "order-api-steps",
+      "title": "API Request Lifecycle",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "steps": [
+          "Import the requests library",
+          "Send an HTTP GET request to the endpoint",
+          "Check the response status code",
+          "Parse the response body as JSON",
+          "Extract and use the required data"
+        ]
+      }
+    },
+    {
+      "id": "api-security",
+      "title": "API Authentication",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Many APIs require authentication to ensure secure access. This is typically done using API keys, Bearer tokens, or OAuth passed via request headers.</p>\n<pre><code>headers = {'Authorization': 'Bearer YOUR_TOKEN'}\nresponse = requests.get('https://api.example.com/secure', headers=headers)</code></pre>"
+    }
+  ]
+}

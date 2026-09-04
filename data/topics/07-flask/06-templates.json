@@ -1,0 +1,134 @@
+{
+  "title": "Templates in Flask",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-to-templates",
+      "title": "Introduction to Flask Templates",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Flask uses the <strong>Jinja2</strong> template engine to render dynamic HTML pages. Instead of returning raw HTML strings from your view functions, you can separate your design from your application logic by using template files stored in a <code>templates</code> folder.</p>"
+    },
+    {
+      "id": "render-template-func",
+      "title": "The render_template Function",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To render a template, you need to import <code>render_template</code> from the <code>flask</code> package and pass the filename along with any keyword arguments you want to inject into the template.</p>\n<pre><code>from flask import Flask, render_template\n\napp = Flask(__name__)\n\n@app.route('/')\ndef home():\n    return render_template('index.html', title='Welcome')</code></pre>"
+    },
+    {
+      "id": "mcq-template-folder",
+      "title": "Template Directory Structure",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Flask looks for templates in a folder named 'static' by default."
+          },
+          {
+            "id": "b",
+            "text": "Flask looks for templates in a folder named 'templates' at the same level as your application file."
+          },
+          {
+            "id": "c",
+            "text": "Flask requires you to manually configure the absolute path for every HTML file."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "jinja2-syntax",
+      "title": "Jinja2 Syntax: Expressions and Control Structures",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Jinja2 uses special delimiters to weave code into HTML:</p>\n<ul>\n<li><code>{{ variable }}</code> to print variables to the template.</li>\n<li><code>{% block %}</code>, <code>{% if %}</code>, or <code>{% for %}</code> for control structures and loops.</li>\n<li><code>{# comment #}</code> for comments that won't be rendered in the HTML.</li>\n</ul>\n<pre><code><ul>\n{% for user in users %}\n    <li>{{ user }}</li>\n{% endfor %}\n</ul></code></pre>"
+    },
+    {
+      "id": "blank-jinja-variable",
+      "title": "Fill in the Jinja2 Delimiter",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To output the value of a variable named 'username' in a Jinja2 template, you use the syntax: {{input:1}}",
+        "answers": {
+          "1": "username"
+        }
+      }
+    },
+    {
+      "id": "template-inheritance",
+      "title": "Template Inheritance",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Template inheritance allows you to build a base skeleton layout containing all your common site elements (like navbars and footers) and child templates can override or fill specific blocks.</p>\n<pre><code>{# base.html #}\n<html>\n  <body>\n    {% block content %}{% endblock %}\n  </body>\n</html>\n\n{# child.html #}\n{% extends 'base.html' %}\n{% block content %}\n  <p>Hello from child!</p>\n{% endblock %}</code></pre>"
+    },
+    {
+      "id": "match-jinja-tags",
+      "title": "Match Jinja2 Concept to Description",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "{{ expression }}",
+            "right": "Outputs the result of an expression to the template"
+          },
+          {
+            "left": "{% if condition %}",
+            "right": "Conditional statement for branching logic"
+          },
+          {
+            "left": "{% extends 'layout.html' %}",
+            "right": "Inherits structure from a parent template"
+          },
+          {
+            "left": "{# comment #}",
+            "right": "Invisible note not rendered in final HTML"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-template-steps",
+      "title": "Order the Template Rendering Process",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "items": [
+          {
+            "id": "step1",
+            "text": "Create a folder named 'templates' in your project root."
+          },
+          {
+            "id": "step2",
+            "text": "Create an HTML file inside the templates folder (e.g., 'index.html')."
+          },
+          {
+            "id": "step3",
+            "text": "Import render_template in your application python script."
+          },
+          {
+            "id": "step4",
+            "text": "Call render_template('index.html') inside your view function and return it."
+          }
+        ],
+        "correctOrder": [
+          "step1",
+          "step2",
+          "step3",
+          "step4"
+        ]
+      }
+    },
+    {
+      "id": "conclusion-templates",
+      "title": "Summary of Flask Templates",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>You have now learned how Flask uses Jinja2 to render dynamic pages, how to pass context variables via <code>render_template</code>, and how to organize your markup using template inheritance and blocks!</p>"
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "title": "C# Fundamentals for ASP.NET Core",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "csharp-intro",
+      "title": "Introduction to C# in ASP.NET Core",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>C# is a modern, object-oriented, and strongly typed programming language developed by Microsoft. It is the primary language used for building robust web applications and APIs with ASP.NET Core.</p>"
+    },
+    {
+      "id": "csharp-features",
+      "title": "Key Features of C#",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>ASP.NET Core leverages several advanced C# features:</p><ul><li>Automatic Garbage Collection</li><li>Language Integrated Query (LINQ)</li><li>Asynchronous Programming with <code>async</code> and <code>await</code></li><li>Nullable Reference Types</li></ul>"
+    },
+    {
+      "id": "csharp-oop-mcq",
+      "title": "Object-Oriented Principles",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "C# does not support inheritance."
+          },
+          {
+            "id": "b",
+            "text": "C# is purely a functional programming language."
+          },
+          {
+            "id": "c",
+            "text": "C# is a fully object-oriented language supporting encapsulation, inheritance, and polymorphism."
+          },
+          {
+            "id": "d",
+            "text": "C# only supports single-file procedural scripts."
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "linq-definition",
+      "title": "LINQ in C#",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Language Integrated Query (LINQ) provides a consistent query syntax for querying data from collections, databases, and XML. Example:</p><pre><code>var results = from user in users\n              where user.Age > 18\n              select user;</code></pre>"
+    },
+    {
+      "id": "async-blank",
+      "title": "Asynchronous Programming",
+      "type": "blank",
+      "duration": "3m",
+      "content": "To perform non-blocking operations in C# and ASP.NET Core controllers, methods are typically marked with the <span class='blank' data-id='1'>async</span> keyword and return a <span class='blank' data-id='2'>Task</span> object."
+    },
+    {
+      "id": "match-csharp-concepts",
+      "title": "Match C# Concepts to Descriptions",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "pairs": [
+          {
+            "left": "async/await",
+            "right": "Asynchronous programming model"
+          },
+          {
+            "left": "LINQ",
+            "right": "Querying collections and databases"
+          },
+          {
+            "left": "IActionResult",
+            "right": "Return type for ASP.NET Core API endpoints"
+          },
+          {
+            "left": "Dependency Injection",
+            "right": "Built-in inversion of control container"
+          }
+        ]
+      }
+    },
+    {
+      "id": "aspnet-pipeline-order",
+      "title": "ASP.NET Core Middleware Request Pipeline",
+      "type": "order",
+      "duration": "4m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "HTTP Request arrives at the server"
+          },
+          {
+            "id": "2",
+            "text": "Routing middleware determines the endpoint"
+          },
+          {
+            "id": "3",
+            "text": "Authentication and Authorization middleware run"
+          },
+          {
+            "id": "4",
+            "text": "Controller Action executes and returns a response"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    },
+    {
+      "id": "summary",
+      "title": "Conclusion and Next Steps",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Mastering C# syntax, object-oriented principles, and asynchronous patterns is essential for building scalable web apps with ASP.NET Core. You are now ready to build your first MVC or Web API project!</p>"
+    }
+  ]
+}

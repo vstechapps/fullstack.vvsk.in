@@ -1,0 +1,143 @@
+{
+  "title": "Python Developer Fundamentals",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-python",
+      "title": "Introduction to Python",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Python is a high-level, interpreted programming language known for its clear syntax and readability.</p>\n<pre><code>print(\"Hello, Python Developer!\")</code></pre>"
+    },
+    {
+      "id": "python-syntax-mcq",
+      "title": "Python Syntax and Output",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "echo(\"Hello\")"
+          },
+          {
+            "id": "b",
+            "text": "print(\"Hello\")"
+          },
+          {
+            "id": "c",
+            "text": "console.log(\"Hello\")"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "python-data-types",
+      "title": "Basic Data Types",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Python has various built-in data types. Numbers are represented by <code>int</code> and <code>float</code>, text by <code>str</code>, and truth values by <code>bool</code>.</p>"
+    },
+    {
+      "id": "match-types",
+      "title": "Match Python Types to Literals",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "int",
+            "right": "42"
+          },
+          {
+            "left": "float",
+            "right": "3.14"
+          },
+          {
+            "left": "str",
+            "right": "\"Python\""
+          },
+          {
+            "left": "bool",
+            "right": "True"
+          }
+        ]
+      }
+    },
+    {
+      "id": "variables-blank",
+      "title": "Variable Assignment",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To assign the value 10 to a variable named score, you write ___ = 10.",
+        "blankAnswer": "score"
+      }
+    },
+    {
+      "id": "control-flow",
+      "title": "Control Flow with If-Else",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Conditional statements allow your program to make decisions based on data.</p>\n<pre><code>if x > 0:\n    print(\"Positive\")\nelse:\n    print(\"Non-positive\")</code></pre>"
+    },
+    {
+      "id": "order-execution",
+      "title": "Order of Conditional Evaluation",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "steps": [
+          "Evaluate the `if` condition",
+          "If `if` is False, evaluate the first `elif` condition",
+          "If all conditions are False, execute the `else` block"
+        ]
+      }
+    },
+    {
+      "id": "functions-intro",
+      "title": "Defining Functions",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Functions are reusable blocks of code defined using the <code>def</code> keyword.</p>\n<pre><code>def greet(name):\n    return f\"Hello, {name}\"</code></pre>"
+    },
+    {
+      "id": "function-mcq",
+      "title": "Keyword for Functions",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "function"
+          },
+          {
+            "id": "b",
+            "text": "fun"
+          },
+          {
+            "id": "c",
+            "text": "def"
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "lists-tuples",
+      "title": "Lists and Tuples",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Lists are mutable sequences, denoted by square brackets <code>[]</code>. Tuples are immutable sequences, denoted by parentheses <code>()</code>.</p>"
+    },
+    {
+      "id": "summary-content",
+      "title": "Summary of Fundamentals",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>You have covered variables, basic data types, control flow, functions, and collections. You are now ready to build more complex Python applications!</p>"
+    }
+  ]
+}

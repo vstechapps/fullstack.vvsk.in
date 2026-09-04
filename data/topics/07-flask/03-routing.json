@@ -1,0 +1,149 @@
+{
+  "title": "Routing for Flask Developer",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-routing",
+      "title": "Introduction to Flask Routing",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Routing in Flask refers to binding a URL to a Python function. When a user visits a specific URL, Flask executes the corresponding view function and returns the result.</p>\n<pre><code>from flask import Flask\napp = Flask(__name__)\n\n@app.route('/')\ndef home():\n    return 'Hello, World!'</code></pre>"
+    },
+    {
+      "id": "routing-mcq",
+      "title": "Routing Decorator",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "Which Flask decorator is used to bind a function to a URL route?",
+        "options": [
+          {
+            "id": "a",
+            "text": "@app.link()"
+          },
+          {
+            "id": "b",
+            "text": "@app.route()"
+          },
+          {
+            "id": "c",
+            "text": "@app.url()"
+          },
+          {
+            "id": "d",
+            "text": "@flask.bind()"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "dynamic-routing",
+      "title": "Dynamic Routing and Variables",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>You can add variable sections to a URL by marking sections with <code>&lt;variable_name&gt;</code>. Your function receives the value as a keyword argument.</p>\n<pre><code>@app.route('/user/&lt;username&gt;')\ndef show_user_profile(username):\n    return f'User {username}'</code></pre>\n<p>Flask also supports converters like <code>&lt;int:user_id&gt;</code> and <code>&lt;float:price&gt;</code>.</p>"
+    },
+    {
+      "id": "dynamic-blank",
+      "title": "Converter Syntax",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To specify that a route parameter named id must strictly be an integer, you define it in the route decorator as @app.route('/item/<___:id>')",
+        "correctAnswers": {
+          "0": "int"
+        }
+      }
+    },
+    {
+      "id": "http-methods",
+      "title": "Handling HTTP Methods",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>By default, a route only answers to <code>GET</code> requests. You can use the <code>methods</code> argument on the <code>route()</code> decorator to handle different HTTP methods.</p>\n<pre><code>from flask import request\n\n@app.route('/login', methods=['GET', 'POST'])\ndef login():\n    if request.method == 'POST':\n        return 'Logging in...'\n    else:\n        return 'Login form'</code></pre>"
+    },
+    {
+      "id": "methods-match",
+      "title": "Match HTTP Methods to Use Cases",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "GET",
+            "right": "Retrieve resource data"
+          },
+          {
+            "left": "POST",
+            "right": "Submit new resource data"
+          },
+          {
+            "left": "PUT",
+            "right": "Update an existing resource entirely"
+          },
+          {
+            "left": "DELETE",
+            "right": "Remove a resource"
+          }
+        ]
+      }
+    },
+    {
+      "id": "url-building",
+      "title": "URL Building with url_for()",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Flask provides the <code>url_for()</code> function to build URLs for a specific function. This avoids hardcoding URLs in your templates and code.</p>\n<pre><code>from flask import url_for\n\n@app.route('/')\ndef index():\n    return 'Index Page'\n\nwith app.test_request_context():\n    print(url_for('index')) # Output: /\n    print(url_for('show_user_profile', username='John')) # Output: /user/John</code></pre>"
+    },
+    {
+      "id": "url-building-order",
+      "title": "Order of URL Generation Steps",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "steps": [
+          "Import url_for from the flask module",
+          "Ensure you are within an active request context",
+          "Call url_for passing the view function name as the first argument",
+          "Pass any necessary dynamic URL variables as keyword arguments"
+        ]
+      }
+    },
+    {
+      "id": "redirects-errors",
+      "title": "Redirects and Errors",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To redirect a user to another endpoint, use the <code>redirect()</code> function. To abort a request early with an error code, use <code>abort()</code>.</p>\n<pre><code>from flask import abort, redirect, url_for\n\n@app.route('/')\ndef index():\n    return redirect(url_for('login'))\n\n@app.route('/restricted')\ndef restricted():\n    abort(401)</code></pre>"
+    },
+    {
+      "id": "routing-summary-mcq",
+      "title": "Final Routing Check",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "What is the primary benefit of using url_for() instead of hardcoding URL strings?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It makes the server run faster."
+          },
+          {
+            "id": "b",
+            "text": "It automatically encrypts the parameters."
+          },
+          {
+            "id": "c",
+            "text": "It prevents broken links if URL patterns change later."
+          },
+          {
+            "id": "d",
+            "text": "It allows handling POST requests automatically."
+          }
+        ],
+        "correctId": "c"
+      }
+    }
+  ]
+}

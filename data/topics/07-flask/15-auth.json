@@ -1,0 +1,135 @@
+{
+  "title": "Authentication in Flask",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-auth",
+      "title": "Introduction to Authentication",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Authentication is the process of verifying who a user is, while authorization determines what they can do.</p><p>In Flask applications, we often use extensions like <code>Flask-Login</code> to manage user sessions securely.</p>"
+    },
+    {
+      "id": "password-hashing",
+      "title": "Securing Passwords",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Never store plain text passwords in your database! Always hash them using a secure library like Werkzeug's security module.</p>\n<pre><code>from werkzeug.security import generate_password_hash, check_password_hash\n\nhashed_password = generate_password_hash('secret123')</code></pre>"
+    },
+    {
+      "id": "auth-mcq-1",
+      "title": "Password Security Best Practice",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Store passwords as plain text for easy retrieval."
+          },
+          {
+            "id": "b",
+            "text": "Encrypt passwords with a reversible two-way cipher."
+          },
+          {
+            "id": "c",
+            "text": "Hash passwords using a secure one-way hashing function like Werkzeug."
+          },
+          {
+            "id": "d",
+            "text": "Store passwords encoded in Base64."
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "flask-login-setup",
+      "title": "Setting up Flask-Login",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p><code>Flask-Login</code> handles user session management for Flask. To use it, your User model must implement specific properties and methods such as <code>is_authenticated</code>, <code>is_active</code>, <code>is_anonymous</code>, and <code>get_id()</code>.</p>"
+    },
+    {
+      "id": "auth-blank-1",
+      "title": "Complete the Login Route",
+      "type": "blank",
+      "duration": "2m",
+      "content": "To log a user in within a Flask route after verifying their credentials, we use the ___ function from Flask-Login."
+    },
+    {
+      "id": "auth-flow-order",
+      "title": "User Authentication Flow",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "steps": [
+          "User submits username and password via a form.",
+          "Flask retrieves the user record from the database.",
+          "The submitted password is checked against the stored hash using check_password_hash.",
+          "Flask-Login creates a user session using login_user()."
+        ]
+      }
+    },
+    {
+      "id": "auth-match-1",
+      "title": "Match Authentication Terms",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Authentication",
+            "right": "Verifying identity"
+          },
+          {
+            "left": "Authorization",
+            "right": "Granting permissions"
+          },
+          {
+            "left": "Hashing",
+            "right": "One-way password transformation"
+          },
+          {
+            "left": "Flask-Login",
+            "right": "Session management extension"
+          }
+        ]
+      }
+    },
+    {
+      "id": "protecting-routes",
+      "title": "Protecting Routes",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>You can restrict access to certain views for logged-in users only by using the <code>@login_required</code> decorator provided by <code>Flask-Login</code>.</p>\n<pre><code>@app.route('/dashboard')\n@login_required\ndef dashboard():\n    return 'Welcome to your dashboard!'</code></pre>"
+    },
+    {
+      "id": "auth-mcq-2",
+      "title": "Route Protection Decorator",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "@app.secure"
+          },
+          {
+            "id": "b",
+            "text": "@login_required"
+          },
+          {
+            "id": "c",
+            "text": "@auth.protected"
+          },
+          {
+            "id": "d",
+            "text": "@user.logged_in"
+          }
+        ],
+        "correctId": "b"
+      }
+    }
+  ]
+}

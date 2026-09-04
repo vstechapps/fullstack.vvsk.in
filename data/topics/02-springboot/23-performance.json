@@ -1,0 +1,194 @@
+{
+  "title": "Spring Boot Performance Optimization",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "perf-overview",
+      "title": "Understanding Spring Boot Performance",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Optimizing a Spring Boot application requires addressing bottlenecks across multiple layers:</p><ul><li><strong>Database I/O:</strong> Excessive queries, unindexed lookups, and unoptimized connection pooling.</li><li><strong>Memory & JVM:</strong> Heap allocation, garbage collection pauses, and object churn.</li><li><strong>Execution Flow:</strong> Blocking calls in high-throughput endpoints.</li><li><strong>Application Startup:</strong> Heavy bean initialization and classpath scanning.</li></ul>"
+    },
+    {
+      "id": "hikaricp-tuning",
+      "title": "Database Connection Pool Tuning with HikariCP",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Spring Boot uses <strong>HikariCP</strong> as the default connection pool. Misconfigured pools can exhaust database resources or throttle application throughput.</p><pre><code># application.properties\nspring.datasource.hikari.maximum-pool-size=20\nspring.datasource.hikari.minimum-idle=10\nspring.datasource.hikari.idle-timeout=300000\nspring.datasource.hikari.connection-timeout=20000\nspring.datasource.hikari.max-lifetime=1200000</code></pre><p><strong>Rule of thumb:</strong> <code>pool_size = (core_count * 2) + effective_spindle_count</code>.</p>"
+    },
+    {
+      "id": "hikaricp-mcq",
+      "title": "HikariCP Configuration Check",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "maximum-pool-size should always be set to at least 200 regardless of database capacity"
+          },
+          {
+            "id": "b",
+            "text": "connection-timeout specifies the maximum milliseconds a caller will wait for a connection from the pool"
+          },
+          {
+            "id": "c",
+            "text": "minimum-idle must always be higher than maximum-pool-size"
+          },
+          {
+            "id": "d",
+            "text": "HikariCP requires manual registration of JDBC drivers inside @Configuration classes"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "jpa-n-plus-one",
+      "title": "Eliminating JPA N+1 Query Problems",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>The N+1 problem occurs when fetching an entity with lazy-loaded associations triggers 1 initial query followed by N subsequent queries for related entities.</p><p>Use <strong>JOIN FETCH</strong> or <strong>@EntityGraph</strong> to load associations in a single query:</p><pre><code>public interface OrderRepository extends JpaRepository&lt;Order, Long&gt; {\n\n    @EntityGraph(attributePaths = {\"customer\", \"items\"})\n    List&lt;Order&gt; findAllWithDetailsByStatus(OrderStatus status);\n}</code></pre><p>Also consider <strong>DTO Projections</strong> to avoid loading full entity graphs when only a few fields are needed.</p>"
+    },
+    {
+      "id": "jpa-blank",
+      "title": "Fill in the Optimization Annotation",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "prompt": "Complete the Spring Data repository method to prevent N+1 queries using an entity graph.",
+        "template": "@Repository\npublic interface BookRepository extends JpaRepository<Book, Long> {\n    @[[blank1]](attributePaths = {\"author\", \"reviews\"})\n    List<Book> findByGenre(String genre);\n}",
+        "correctAnswers": {
+          "blank1": "EntityGraph"
+        }
+      }
+    },
+    {
+      "id": "caching-strategies",
+      "title": "Effective Caching Strategies",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Spring's Cache Abstraction reduces database load by keeping frequently accessed, slow-changing data in fast-access memory.</p><pre><code>@Service\npublic class ProductService {\n\n    @Cacheable(value = \"products\", key = \"#id\", unless = \"#result == null\")\n    public ProductDTO getProduct(Long id) {\n        return productRepository.findDtoById(id);\n    }\n\n    @CacheEvict(value = \"products\", key = \"#product.id\")\n    public void updateProduct(Product product) {\n        productRepository.save(product);\n    }\n}</code></pre><p>For local in-memory caching, prefer <strong>Caffeine</strong>. For distributed topologies, integrate <strong>Redis</strong>.</p>"
+    },
+    {
+      "id": "cache-match",
+      "title": "Match Caching Annotations to Behaviors",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "left": "@Cacheable",
+            "right": "Populates cache with method result on first invocation"
+          },
+          {
+            "left": "@CachePut",
+            "right": "Always executes the method and updates the cache"
+          },
+          {
+            "left": "@CacheEvict",
+            "right": "Removes one or all entries from the target cache"
+          },
+          {
+            "left": "@EnableCaching",
+            "right": "Triggers post-processing of caching annotations across beans"
+          }
+        ]
+      }
+    },
+    {
+      "id": "async-processing",
+      "title": "Offloading Work with @Async and ThreadPools",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Blocking web request threads with slow operations (such as sending emails or calling external webhooks) severely impairs throughput.</p><pre><code>@Configuration\n@EnableAsync\npublic class AsyncConfig {\n\n    @Bean(name = \"taskExecutor\")\n    public Executor taskExecutor() {\n        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();\n        executor.setCorePoolSize(5);\n        executor.setMaxPoolSize(20);\n        executor.setQueueCapacity(100);\n        executor.setThreadNamePrefix(\"AsyncWorker-\");\n        executor.initialize();\n        return executor;\n    }\n}</code></pre>"
+    },
+    {
+      "id": "async-order",
+      "title": "Order the Async Implementation Steps",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "instructions": "Place the steps in the correct order to configure and execute asynchronous tasks in Spring Boot.",
+        "items": [
+          {
+            "id": "step1",
+            "text": "Add @EnableAsync to a configuration class"
+          },
+          {
+            "id": "step2",
+            "text": "Define a custom ThreadPoolTaskExecutor bean"
+          },
+          {
+            "id": "step3",
+            "text": "Annotate target service method with @Async(\"taskExecutor\")"
+          },
+          {
+            "id": "step4",
+            "text": "Call the async method from an external bean to allow proxy interception"
+          }
+        ],
+        "correctOrder": [
+          "step1",
+          "step2",
+          "step3",
+          "step4"
+        ]
+      }
+    },
+    {
+      "id": "startup-aot",
+      "title": "Startup Time Optimization & Spring AOT",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To reduce startup latency and memory footprint:</p><ul><li><strong>Lazy Initialization:</strong> Defers bean creation until required (<code>spring.main.lazy-initialization=true</code>).</li><li><strong>Class Data Sharing (CDS):</strong> Pre-computes class metadata into a shared archive to speed up JVM startup.</li><li><strong>Spring AOT & GraalVM Native Image:</strong> Ahead-of-Time compilation translates bytecode into a standalone native binary with near-instant boot and minimal base RAM.</li></ul>"
+    },
+    {
+      "id": "lazy-init-mcq",
+      "title": "Trade-offs of Lazy Initialization",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "It permanently disables dependency injection for scoped beans"
+          },
+          {
+            "id": "b",
+            "text": "It delays potential initialization errors and adds latency to the first user request accessing the bean"
+          },
+          {
+            "id": "c",
+            "text": "It makes HTTP request handling completely non-blocking by default"
+          },
+          {
+            "id": "d",
+            "text": "It compiles Java bytecode directly into C++ binaries at build time"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "actuator-metrics",
+      "title": "Observability with Spring Boot Actuator & Micrometer",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Performance optimization requires accurate telemetry. Actuator integrates with <strong>Micrometer</strong> to export key runtime metrics.</p><pre><code>management.endpoints.web.exposure.include=health,metrics,prometheus\nmanagement.metrics.enable.jvm=true\nmanagement.metrics.distribution.percentiles-histogram.http.server.requests=true</code></pre><p>Key metrics to track:</p><ul><li><code>http.server.requests</code>: Request rate, latency percentiles (P95, P99).</li><li><code>jvm.memory.used</code> / <code>jvm.gc.pause</code>: Heap saturation and GC overhead.</li><li><code>hikaricp.connections.pending</code>: Connection starvation indicator.</li></ul>"
+    },
+    {
+      "id": "actuator-blank",
+      "title": "Configure Metrics Exposure",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "prompt": "Fill in the missing property segment to expose the prometheus and metrics endpoints over HTTP.",
+        "template": "management.endpoints.web.[[blank1]].include=health,metrics,prometheus",
+        "correctAnswers": {
+          "blank1": "exposure"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "title": "Entity Framework Core in ASP.NET Core",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "ef-core-intro",
+      "title": "Introduction to Entity Framework Core",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Entity Framework Core (EF Core) is a lightweight, extensible, open-source, and cross-platform version of the popular Entity Framework data access technology.</p>\n<p>It serves as an Object-Relational Mapper (ORM), enabling .NET developers to work with a database using .NET objects, eliminating the need for most data-access code usually written.</p>"
+    },
+    {
+      "id": "ef-core-approach-mcq",
+      "title": "Choosing the Development Approach",
+      "type": "mcq",
+      "duration": "3m",
+      "content": {
+        "question": "Which EF Core approach involves writing C# classes first and then generating the database from them?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Database-First"
+          },
+          {
+            "id": "b",
+            "text": "Code-First"
+          },
+          {
+            "id": "c",
+            "text": "Model-First"
+          },
+          {
+            "id": "d",
+            "text": "View-First"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "dbcontext-config",
+      "title": "The DbContext Class",
+      "type": "content",
+      "duration": "6m",
+      "content": "<p>The <code>DbContext</code> is the most important class in EF Core. It represents a session with the database and is used to query and save instances of your entities.</p>\n<pre><code>public class AppDbContext : DbContext\n{\n    public DbSet&lt;Product&gt; Products { get; set; }\n    \n    public AppDbContext(DbContextOptions&lt;AppDbContext&gt; options) : base(options)\n    {\n    }\n}</code></pre>"
+    },
+    {
+      "id": "ef-lifecycle-blank",
+      "title": "Fill in the DbContext Lifetime",
+      "type": "blank",
+      "duration": "5m",
+      "content": "In ASP.NET Core dependency injection, DbContext is typically registered with a [[scoped]] lifetime so that it is created once per HTTP request."
+    },
+    {
+      "id": "migration-steps-order",
+      "title": "Order the Migration Steps",
+      "type": "order",
+      "duration": "5m",
+      "content": {
+        "instruction": "Put the standard Code-First EF Core workflow steps in the correct chronological order.",
+        "items": [
+          {
+            "id": "step1",
+            "text": "Create the domain model classes and the DbContext"
+          },
+          {
+            "id": "step2",
+            "text": "Register the DbContext in Program.cs with the connection string"
+          },
+          {
+            "id": "step3",
+            "text": "Run the Add-Migration command in the Package Manager Console"
+          },
+          {
+            "id": "step4",
+            "text": "Run the Update-Database command to apply changes to the database"
+          }
+        ],
+        "correctOrder": [
+          "step1",
+          "step2",
+          "step3",
+          "step4"
+        ]
+      }
+    },
+    {
+      "id": "linq-methods-match",
+      "title": "Match EF Core LINQ Methods to Actions",
+      "type": "match",
+      "duration": "6m",
+      "content": {
+        "instruction": "Match each LINQ/EF Core method with its primary database operation behavior.",
+        "pairs": [
+          {
+            "left": "ToListAsync()",
+            "right": "Executes the query immediately and returns results as a list"
+          },
+          {
+            "left": "Include()",
+            "right": "Eager loads related entity data in the query"
+          },
+          {
+            "left": "Where()",
+            "right": "Filters the query results based on a predicate condition"
+          },
+          {
+            "left": "AsNoTracking()",
+            "right": "Disables change tracking for better read-only query performance"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,240 @@
+{
+  "title": "Caching in Spring Boot",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-caching",
+      "title": "Introduction to Spring Boot Caching",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Caching improves performance by storing frequently accessed data in memory, reducing expensive database queries or heavy calculations.</p><p>Spring provides a <strong>Cache Abstraction</strong> layer that transparently applies caching to Java methods without forcing vendor lock-in.</p>"
+    },
+    {
+      "id": "enable-caching",
+      "title": "Enabling Caching",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>To activate Spring's caching mechanism, add the <code>@EnableCaching</code> annotation to any <code>@Configuration</code> class or the main application class.</p><pre><code>@SpringBootApplication\n@EnableCaching\npublic class Application {\n    public static void main(String[] args) {\n        SpringApplication.run(Application.class, args);\n    }\n}</code></pre>"
+    },
+    {
+      "id": "enable-caching-mcq",
+      "title": "Enabling Caching Abstraction",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "Which annotation is required to enable Spring Boot's caching abstraction?",
+        "options": [
+          {
+            "id": "a",
+            "text": "@EnableCacheManager"
+          },
+          {
+            "id": "b",
+            "text": "@EnableCaching"
+          },
+          {
+            "id": "c",
+            "text": "@Cacheable"
+          },
+          {
+            "id": "d",
+            "text": "@SpringBootCache"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "cacheable-annotation",
+      "title": "The @Cacheable Annotation",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p> The <code>@Cacheable</code> annotation triggers cache lookup before executing a method. If the key exists in the cache, the cached value is returned immediately without executing the method body.</p><pre><code>@Cacheable(value = \"users\", key = \"#id\")\npublic User getUserById(Long id) {\n    // DB call executed only if cache miss occurs\n    return userRepository.findById(id).orElse(null);\n}</code></pre>"
+    },
+    {
+      "id": "cacheable-blank",
+      "title": "Fill in Cacheable Parameter",
+      "type": "blank",
+      "duration": "1m 30s",
+      "content": {
+        "sentence": "To specify the cache name in a method annotation, use @Cacheable(____ = \"products\").",
+        "correctAnswer": "value"
+      }
+    },
+    {
+      "id": "cacheput-cacheevict",
+      "title": "@CachePut vs @CacheEvict",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Spring offers additional annotations to manage the cache lifecycle:</p><ul><li><code>@CachePut</code>: Always executes the method and updates the cache with the return result.</li><li><code>@CacheEvict</code>: Removes data from the cache (useful when records are updated or deleted).</li></ul><pre><code>@CacheEvict(value = \"users\", key = \"#id\")\npublic void deleteUser(Long id) {\n    userRepository.deleteById(id);\n}</code></pre>"
+    },
+    {
+      "id": "annotations-match",
+      "title": "Match Cache Annotations",
+      "type": "match",
+      "duration": "2m 30s",
+      "content": {
+        "pairs": [
+          {
+            "left": "@Cacheable",
+            "right": "Skips method execution on cache hit"
+          },
+          {
+            "left": "@CachePut",
+            "right": "Always executes method and updates cache"
+          },
+          {
+            "left": "@CacheEvict",
+            "right": "Removes entries from the cache"
+          },
+          {
+            "left": "@CacheConfig",
+            "right": "Class-level common cache settings"
+          }
+        ]
+      }
+    },
+    {
+      "id": "conditional-caching",
+      "title": "Conditional Caching",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>You can conditionally cache items using SpEL (Spring Expression Language) with <code>condition</code> and <code>unless</code> parameters.</p><ul><li><code>condition</code>: Evaluated <em>before</em> method execution. If true, cache is checked/used.</li><li><code>unless</code>: Evaluated <em>after</em> method execution. If true, the result is NOT cached.</li></ul><pre><code>@Cacheable(value = \"orders\", condition = \"#id > 10\", unless = \"#result == null\")\npublic Order getOrder(Long id) { ... }</code></pre>"
+    },
+    {
+      "id": "cache-flow-order",
+      "title": "@Cacheable Execution Order",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Method is invoked with arguments"
+          },
+          {
+            "id": "2",
+            "text": "Spring inspects cache for key match"
+          },
+          {
+            "id": "3",
+            "text": "On cache hit, return cached value without executing method body"
+          },
+          {
+            "id": "4",
+            "text": "On cache miss, execute method body and save result to cache"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    },
+    {
+      "id": "cache-providers",
+      "title": "Cache Providers & CacheManager",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Spring uses <code>CacheManager</code> interface to handle caching implementations. By default, an in-memory <code>ConcurrentMapCacheManager</code> is configured if no other provider is found.</p><p>Popular production cache providers include:</p><ul><li><strong>Caffeine</strong> (High-performance in-memory cache)</li><li><strong>Redis</strong> (Distributed key-value store)</li><li><strong>Ehcache</strong> (Java-based enterprise cache)</li></ul>"
+    },
+    {
+      "id": "cache-provider-mcq",
+      "title": "Selecting Cache Provider",
+      "type": "mcq",
+      "duration": "1m 30s",
+      "content": {
+        "question": "Which CacheManager implementation should be chosen for a distributed, multi-instance Spring Boot application?",
+        "options": [
+          {
+            "id": "a",
+            "text": "ConcurrentMapCacheManager"
+          },
+          {
+            "id": "b",
+            "text": "RedisCacheManager"
+          },
+          {
+            "id": "c",
+            "text": "SimpleCacheManager"
+          },
+          {
+            "id": "d",
+            "text": "NoOpCacheManager"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "cache-evict-blank",
+      "title": "Evicting All Entries",
+      "type": "blank",
+      "duration": "1m 30s",
+      "content": {
+        "sentence": "To clear all cached items in a named cache, set @CacheEvict(value = \"items\", ________ = true).",
+        "correctAnswer": "allEntries"
+      }
+    },
+    {
+      "id": "cache-lifecycle-order",
+      "title": "Cache Eviction Lifecycle",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Client sends update/delete request"
+          },
+          {
+            "id": "2",
+            "text": "Spring intercepts method call with @CacheEvict"
+          },
+          {
+            "id": "3",
+            "text": "Database is updated with new state"
+          },
+          {
+            "id": "4",
+            "text": "Corresponding entry is removed from the cache store"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    },
+    {
+      "id": "provider-match",
+      "title": "Match Cache Providers to Use Cases",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Caffeine",
+            "right": "Ultra-fast single JVM in-memory caching"
+          },
+          {
+            "left": "Redis",
+            "right": "Shared cache across multiple microservices"
+          },
+          {
+            "left": "ConcurrentMap",
+            "right": "Basic default cache for testing/prototyping"
+          },
+          {
+            "left": "NoOpCache",
+            "right": "Disables caching without code changes"
+          }
+        ]
+      }
+    }
+  ]
+}

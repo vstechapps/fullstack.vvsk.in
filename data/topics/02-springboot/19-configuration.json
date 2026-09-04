@@ -1,0 +1,177 @@
+{
+  "title": "Spring Boot Externalized Configuration",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-spring-config",
+      "title": "Introduction to Spring Boot Configuration",
+      "type": "content",
+      "duration": "2m",
+      "content": "<h3>Externalizing Configuration</h3><p>Spring Boot allows you to externalize your configuration so that you can work with the same application code in different environments.</p><p>You can use <code>application.properties</code> or <code>application.yml</code> files located in your <code>src/main/resources</code> directory to define key-value pairs.</p><pre><code>server.port=8080\nspring.datasource.url=jdbc:mysql://localhost:3306/mydb</code></pre>"
+    },
+    {
+      "id": "yaml-vs-properties-mcq",
+      "title": "YAML vs Properties Syntax",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "YAML uses indentations to express hierarchical configuration data, whereas properties files use dotted keys."
+          },
+          {
+            "id": "b",
+            "text": "Properties files support list structures natively, but YAML does not."
+          },
+          {
+            "id": "c",
+            "text": "YAML files are converted to XML at runtime by Spring Boot."
+          },
+          {
+            "id": "d",
+            "text": "Properties files allow duplicate keys without overriding previous values."
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "value-annotation-overview",
+      "title": "Injecting Values with @Value",
+      "type": "content",
+      "duration": "3m",
+      "content": "<h3>Using @Value Annotation</h3><p>The <code>@Value</code> annotation is used to inject field values directly from properties files into Spring-managed beans.</p><pre><code>@Component\npublic class GreetingService {\n\n    @Value(\"${app.greeting:Hello World}\")\n    private String greetingMessage;\n\n    public String getGreeting() {\n        return greetingMessage;\n    }\n}</code></pre><p>Syntax note: <code>${property.name:default_value}</code> allows providing a fallback default value if the property is missing.</p>"
+    },
+    {
+      "id": "value-syntax-blank",
+      "title": "Complete the @Value Expression",
+      "type": "blank",
+      "duration": "1m 30s",
+      "content": {
+        "text": "To inject the property 'server.timeout' with a default value of '5000', write the annotation as @Value(\"[[blank1]]\").",
+        "blanks": [
+          {
+            "id": "blank1",
+            "answer": "${server.timeout:5000}"
+          }
+        ]
+      }
+    },
+    {
+      "id": "config-properties-overview",
+      "title": "Type-Safe Configuration with @ConfigurationProperties",
+      "type": "content",
+      "duration": "4m",
+      "content": "<h3>Type-Safe Configuration</h3><p>For strongly typed, structured, and grouped properties, use <code>@ConfigurationProperties</code> instead of multiple <code>@Value</code> annotations.</p><pre><code>@Component\n@ConfigurationProperties(prefix = \"mail\")\npublic class MailProperties {\n    private String host;\n    private int port;\n    private String username;\n    // Getters and setters required\n}</code></pre><p>This automatically binds properties starting with <code>mail.*</code> (e.g., <code>mail.host</code>, <code>mail.port</code>) directly to fields.</p>"
+    },
+    {
+      "id": "value-vs-configprop-match",
+      "title": "Match Configuration Features",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "left": "@Value",
+            "right": "Best for injecting individual scalar values"
+          },
+          {
+            "left": "@ConfigurationProperties",
+            "right": "Best for binding complex hierarchical properties"
+          },
+          {
+            "left": "Relaxed Binding",
+            "right": "Maps acme-my-project to acmeMyProject"
+          },
+          {
+            "left": "JSR-303 Validation",
+            "right": "Supported natively on @ConfigurationProperties"
+          }
+        ]
+      }
+    },
+    {
+      "id": "spring-profiles-overview",
+      "title": "Environment Profiles in Spring Boot",
+      "type": "content",
+      "duration": "4m",
+      "content": "<h3>Working with Spring Profiles</h3><p>Spring Profiles provide a way to segregate parts of your application configuration and make it available only in certain environments.</p><p>File-based profile convention: <code>application-{profile}.properties</code> or <code>application-{profile}.yml</code>.</p><p>For example, <code>application-dev.properties</code> or <code>application-prod.properties</code>.</p><p>To activate a profile at startup:</p><pre><code>java -jar app.jar --spring.profiles.active=prod</code></pre>"
+    },
+    {
+      "id": "active-profiles-mcq",
+      "title": "Activating Profiles",
+      "type": "mcq",
+      "duration": "1m 30s",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "spring.profiles.active"
+          },
+          {
+            "id": "b",
+            "text": "spring.environment.active"
+          },
+          {
+            "id": "c",
+            "text": "spring.config.profile"
+          },
+          {
+            "id": "d",
+            "text": "spring.boot.profile"
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "config-precedence",
+      "title": "Externalized Configuration Precedence",
+      "type": "content",
+      "duration": "5m",
+      "content": "<h3>Property Source Precedence Order</h3><p>Spring Boot uses a specific order designed to allow sensible overriding of values. Higher priority sources override lower priority ones.</p><ul><li>1. Command-line arguments</li><li>2. Java System properties (<code>System.getProperties()</code>)</li><li>3. OS Environment variables</li><li>4. Profile-specific application properties outside packaged jar</li><li>5. Profile-specific application properties inside packaged jar</li><li>6. Application properties outside packaged jar</li><li>7. Application properties inside packaged jar</li></ul>"
+    },
+    {
+      "id": "precedence-order",
+      "title": "Order Configuration Sources by Priority",
+      "type": "order",
+      "duration": "4m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Command line arguments"
+          },
+          {
+            "id": "2",
+            "text": "Java System Properties (System.getProperties())"
+          },
+          {
+            "id": "3",
+            "text": "OS Environment Variables"
+          },
+          {
+            "id": "4",
+            "text": "Application properties packaged inside the JAR"
+          }
+        ]
+      }
+    },
+    {
+      "id": "profile-naming-blank",
+      "title": "Profile Naming Syntax",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "If you want to create a properties file specifically for the 'test' profile, the standard Spring Boot naming convention is [[blank1]].properties.",
+        "blanks": [
+          {
+            "id": "blank1",
+            "answer": "application-test"
+          }
+        ]
+      }
+    }
+  ]
+}

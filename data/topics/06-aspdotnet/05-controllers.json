@@ -1,0 +1,146 @@
+{
+  "title": "Controllers in ASP.NET Core",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-controllers",
+      "title": "Introduction to Controllers",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Controllers are the heart of the handling requests in ASP.NET Core MVC and Web API applications.</p>\n<p>They inherit from <code>Controller</code> (for views) or <code>ControllerBase</code> (for APIs) and contain public methods known as <strong>Action Methods</strong>.</p>"
+    },
+    {
+      "id": "controller-base-mcq",
+      "title": "Base Class for Web API",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Controller"
+          },
+          {
+            "id": "b",
+            "text": "ControllerBase"
+          },
+          {
+            "id": "c",
+            "text": "ApiController"
+          },
+          {
+            "id": "d",
+            "text": "MvcController"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "routing-attributes",
+      "title": "Routing and Attributes",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>ASP.NET Core uses attribute routing to map URLs to controller actions.</p>\n<pre><code>[Route(\"api/[controller]\")]\n[ApiController]\npublic class ProductsController : ControllerBase\n{\n    [HttpGet]\n    public IActionResult Get() => Ok(new string[] { \"A\", \"B\" });\n}</code></pre>"
+    },
+    {
+      "id": "blank-routing",
+      "title": "Fill in the Routing Token",
+      "type": "blank",
+      "duration": "1m",
+      "content": "To automatically substitute the controller name in the route attribute, use the [Route(\"api/_{blank}_\")] token.",
+      "blanks": [
+        {
+          "id": 0,
+          "answer": "controller"
+        }
+      ]
+    },
+    {
+      "id": "action-results",
+      "title": "Action Results",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Action methods can return primitive types, complex types, or implementation of <code>IActionResult</code>.</p>\n<p>Helper methods like <code>Ok()</code>, <code>NotFound()</code>, and <code>BadRequest()</code> make returning standard HTTP status codes easy.</p>"
+    },
+    {
+      "id": "match-status-codes",
+      "title": "Match HTTP Status to Helper",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "instructions": "Match the HTTP status code helper to its corresponding code.",
+        "pairs": [
+          {
+            "left": "Ok()",
+            "right": "200 OK"
+          },
+          {
+            "left": "NotFound()",
+            "right": "404 Not Found"
+          },
+          {
+            "left": "BadRequest()",
+            "right": "400 Bad Request"
+          },
+          {
+            "left": "CreatedAtAction()",
+            "right": "201 Created"
+          }
+        ]
+      }
+    },
+    {
+      "id": "request-lifecycle-order",
+      "title": "Request Lifecycle",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "instructions": "Order the steps of an incoming HTTP request handling in ASP.NET Core Web API.",
+        "items": [
+          {
+            "id": "1",
+            "text": "HTTP Request arrives at the server"
+          },
+          {
+            "id": "2",
+            "text": "Middleware pipeline processes the request"
+          },
+          {
+            "id": "3",
+            "text": "Routing middleware selects the appropriate Controller and Action"
+          },
+          {
+            "id": "4",
+            "text": "Action method executes and returns IActionResult"
+          },
+          {
+            "id": "5",
+            "text": "HTTP Response is sent back to the client"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      }
+    },
+    {
+      "id": "model-binding-validation",
+      "title": "Model Binding and Validation",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>ASP.NET Core automatically maps incoming HTTP request data to action method parameters using <strong>Model Binding</strong>.</p>\n<p>You can validate the model using <code>ModelState.IsValid</code> inside your controller action.</p>"
+    },
+    {
+      "id": "conclusion",
+      "title": "Summary",
+      "type": "content",
+      "duration": "1m",
+      "content": "<p>You have learned the fundamentals of ASP.NET Core Controllers, including routing, action results, model binding, and HTTP status codes.</p>"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "title": "File Handling in Python",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-file-handling",
+      "title": "Introduction to File Handling",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>File handling is an important part of any web or software application. Python has several functions for creating, reading, updating, and deleting files.</p>\n<p>To open a file, Python uses the built-in <code>open()</code> function, which returns a file object.</p>"
+    },
+    {
+      "id": "file-modes-mcq",
+      "title": "Understand File Opening Modes",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "r stands for read, w stands for write"
+          },
+          {
+            "id": "b",
+            "text": "r stands for remove, w stands for write"
+          },
+          {
+            "id": "c",
+            "text": "r stands for read, w stands for wait"
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "reading-files",
+      "title": "Reading from Files",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To read a file in Python, use the <code>read()</code> method.</p>\n<pre><code>f = open(\"demofile.txt\", \"r\")\nprint(f.read())</code></pre>\n<p>You can also return only one line by using the <code>readline()</code> method.</p>"
+    },
+    {
+      "id": "fill-in-read",
+      "title": "Complete the Read Statement",
+      "type": "blank",
+      "duration": "1m",
+      "content": {
+        "text": "To open a file for reading, we use open(\"file.txt\", \"___\")",
+        "answer": "r"
+      }
+    },
+    {
+      "id": "writing-files",
+      "title": "Writing and Appending to Files",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To write to an existing file, you must specify a mode to the <code>open()</code> function:</p>\n<ul>\n<li><code>\"a\"</code> - Append - will append to the end of the file</li>\n<li><code>\"w\"</code> - Write - will overwrite any existing content</li>\n</ul>\n<pre><code>f = open(\"demofile.txt\", \"a\")\nf.write(\"Now the file has more content!\")\nf.close()</code></pre>"
+    },
+    {
+      "id": "match-modes",
+      "title": "Match File Modes with Operations",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "left": "r",
+            "right": "Read"
+          },
+          {
+            "left": "w",
+            "right": "Write/Overwrite"
+          },
+          {
+            "left": "a",
+            "right": "Append"
+          },
+          {
+            "left": "x",
+            "right": "Create"
+          }
+        ]
+      }
+    },
+    {
+      "id": "with-statement",
+      "title": "Using the 'with' Statement",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>It is good practice to use the <code>with</code> statement when dealing with file objects. This creates a context manager that automatically closes the file when the nested block of code exits.</p>\n<pre><code>with open(\"demofile.txt\", \"r\") as f:\n    data = f.read()\n    print(data)</code></pre>"
+    },
+    {
+      "id": "order-steps",
+      "title": "Order the Safe File Writing Steps",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "steps": [
+          "Open the file using the with statement and write mode",
+          "Call the write() method with your string data",
+          "Let the context manager automatically close the file"
+        ]
+      }
+    },
+    {
+      "id": "deleting-files",
+      "title": "Deleting Files and Folders",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>To delete a file, you must import the OS module, and run its <code>os.remove()</code> function:</p>\n<pre><code>import os\nos.remove(\"demofile.txt\")</code></pre>\n<p>To delete an entire folder, use <code>os.rmdir()</code>.</p>"
+    }
+  ]
+}

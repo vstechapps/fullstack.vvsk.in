@@ -1,0 +1,133 @@
+{
+  "title": "Control Flow in Python",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "cf-intro",
+      "title": "Introduction to Control Flow",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Control flow is the order in which individual statements, instructions, or function calls are executed or evaluated in a Python program.</p>\n<p>By default, code runs sequentially from top to bottom. Control flow statements allow us to alter this path using conditional checks and loops.</p>"
+    },
+    {
+      "id": "if-statements-content",
+      "title": "Conditional Statements: if, elif, else",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Conditional statements allow your program to make decisions based on boolean expressions.</p>\n<pre><code>age = 18\nif age >= 18:\n    print(\"You are an adult.\")\nelif age > 13:\n    print(\"You are a teenager.\")\nelse:\n    print(\"You are a child.\")</code></pre>"
+    },
+    {
+      "id": "if-mcq",
+      "title": "Checking Condition Output",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "What will be the output of: x = 10; if x > 5: print('A') elif x > 8: print('B') else: print('C')",
+        "options": [
+          {
+            "id": "a",
+            "text": "A"
+          },
+          {
+            "id": "b",
+            "text": "B"
+          },
+          {
+            "id": "c",
+            "text": "C"
+          },
+          {
+            "id": "d",
+            "text": "A and B"
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "while-loops-content",
+      "title": "Iteration with While Loops",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>A <code>while</code> loop repeatedly executes a block of code as long as a given condition evaluates to <code>True</code>.</p>\n<pre><code>count = 0\nwhile count < 3:\n    print(count)\n    count += 1</code></pre>"
+    },
+    {
+      "id": "for-loops-content",
+      "title": "Iteration with For Loops",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>A <code>for</code> loop in Python is used for iterating over a sequence (such as a list, tuple, dictionary, set, or string).</p>\n<pre><code>fruits = [\"apple\", \"banana\", \"cherry\"]\nfor fruit in fruits:\n    print(fruit)</code></pre>"
+    },
+    {
+      "id": "loop-blank",
+      "title": "Fill in the Loop Keyword",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To iterate over a sequence of numbers in Python, such as from 0 to 4, we commonly use the ______ function inside a for loop.",
+        "answer": "range"
+      }
+    },
+    {
+      "id": "control-statements-content",
+      "title": "Break, Continue, and Pass",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>We can alter the behavior of loops using special statements:</p>\n<ul>\n<li><code>break</code>: Exits the loop immediately.</li>\n<li><code>continue</code>: Skips the current iteration and moves to the next.</li>\n<li><code>pass</code>: A null operation; it acts as a placeholder.</li>\n</ul>\n<pre><code>for i in range(5):\n    if i == 2:\n        continue\n    if i == 4:\n        break\n    print(i)</code></pre>"
+    },
+    {
+      "id": "match-flow-terms",
+      "title": "Match Control Flow Terms",
+      "type": "match",
+      "duration": "4m",
+      "content": {
+        "pairs": [
+          {
+            "left": "if",
+            "right": "Conditional branch"
+          },
+          {
+            "left": "while",
+            "right": "Condition-controlled loop"
+          },
+          {
+            "left": "for",
+            "right": "Collection-controlled loop"
+          },
+          {
+            "left": "break",
+            "right": "Exits loop entirely"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-execution",
+      "title": "Order the Conditional Execution Logic",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "instruction": "Arrange the standard conditional flow evaluation order from top to bottom.",
+        "items": [
+          "Evaluate the initial 'if' statement condition",
+          "If 'if' is False, evaluate the first 'elif' condition",
+          "If all previous conditions are False, execute the 'else' block",
+          "Exit the conditional block and continue program execution"
+        ],
+        "correctOrder": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "summary-content",
+      "title": "Summary & Best Practices",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>You have learned how to direct program execution using conditionals and loops in Python.</p>\n<ul>\n<li>Always ensure loop conditions will eventually become false to prevent infinite loops.</li>\n<li>Use <code>for</code> loops when iterating over known sequences and <code>while</code> loops for conditional repetitions.</li>\n<li>Keep your indentation consistent, as Python relies on whitespace for block scoping.</li>\n</ul>"
+    }
+  ]
+}

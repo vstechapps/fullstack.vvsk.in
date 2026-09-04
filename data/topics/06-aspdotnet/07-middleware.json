@@ -1,0 +1,115 @@
+{
+  "title": "Middleware in ASP.NET Core",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "middleware-intro",
+      "title": "What is Middleware?",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Middleware is software assembled into an app pipeline to handle requests and responses.</p>\n<p>Each component chooses whether to pass the request to the next component in the pipeline and can perform work before and after the next component is invoked.</p>"
+    },
+    {
+      "id": "middleware-pipeline-mcq",
+      "title": "Pipeline Execution",
+      "type": "mcq",
+      "duration": "3m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Middleware executes strictly in parallel."
+          },
+          {
+            "id": "b",
+            "text": "Middleware executes in a sequential pipeline order for requests and in reverse for responses."
+          },
+          {
+            "id": "c",
+            "text": "Middleware only executes after the controller finishes."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "request-delegate-blank",
+      "title": "Request Delegate",
+      "type": "blank",
+      "duration": "4m",
+      "content": {
+        "text": "ASP.NET Core middleware is typically configured using the _____ method on the WebApplication builder, and uses RequestDelegate to process HTTP requests.",
+        "blanks": [
+          {
+            "id": "1",
+            "answer": "Use"
+          }
+        ]
+      }
+    },
+    {
+      "id": "match-middleware-concepts",
+      "title": "Match Middleware Concepts",
+      "type": "match",
+      "duration": "8m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Run",
+            "right": "Short-circuits the middleware pipeline"
+          },
+          {
+            "left": "Use",
+            "right": "Chains multiple middleware components together"
+          },
+          {
+            "left": "Map",
+            "right": "Branches the pipeline based on request path"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-middleware-pipeline",
+      "title": "Ordering Middleware",
+      "type": "order",
+      "duration": "10m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Exception Handling / Developer Exception Page"
+          },
+          {
+            "id": "2",
+            "text": "HTTPS Redirection"
+          },
+          {
+            "id": "3",
+            "text": "Static Files"
+          },
+          {
+            "id": "4",
+            "text": "Routing"
+          },
+          {
+            "id": "5",
+            "text": "Authentication & Authorization"
+          },
+          {
+            "id": "6",
+            "text": "Endpoints (MapControllers)"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
+      }
+    }
+  ]
+}

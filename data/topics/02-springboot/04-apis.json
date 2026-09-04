@@ -1,0 +1,168 @@
+{
+  "title": "REST APIs with Spring Boot",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "rest-principles",
+      "title": "Understanding REST Principles",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>REpresentational State Transfer (REST) is an architectural style for designing networked applications. It relies on a stateless, client-server, cacheable communications protocol, almost always using <strong>HTTP</strong>.</p><h4>Key REST Constraints:</h4><ul><li><strong>Client-Server:</strong> Separation of concerns between user interface and data storage.</li><li><strong>Stateless:</strong> Each request from client to server must contain all the information necessary to understand and complete the request.</li><li><strong>Uniform Interface:</strong> Simplifies and decouples the architecture, allowing each part to evolve independently. This is achieved using logical URIs and standard HTTP methods.</li></ul>"
+    },
+    {
+      "id": "http-methods-spring",
+      "title": "HTTP Methods & Spring Mapping",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Spring Boot makes mapping HTTP actions to Java methods extremely intuitive using specialized annotations. Each core standard HTTP method corresponds to an annotation:</p><ul><li><code>@GetMapping</code>: Retrieve a resource.</li><li><code>@PostMapping</code>: Create a new resource.</li><li><code>@PutMapping</code>: Update an existing resource entirely.</li><li><code>@PatchMapping</code>: Partially update an existing resource.</li><li><code>@DeleteMapping</code>: Remove a resource.</li></ul><p>Example mapping:</p><pre><code>@GetMapping(\"/api/books\")\npublic List&lt;Book&gt; getAllBooks() {\n    return bookService.findAll();\n}</code></pre>"
+    },
+    {
+      "id": "mapping-mcq",
+      "title": "Choose the Correct Mapping Annotation",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "@PostMapping(\"/users\")"
+          },
+          {
+            "id": "b",
+            "text": "@GetMapping(\"/users\")"
+          },
+          {
+            "id": "c",
+            "text": "@PutMapping(\"/users\")"
+          },
+          {
+            "id": "d",
+            "text": "@DeleteMapping(\"/users\")"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "controller-vs-restcontroller",
+      "title": "Controller vs. RestController",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>In standard Spring MVC, <code>@Controller</code> is used to declare a class that returns web views (like HTML/JSP files). However, for building REST APIs, we want the methods to write serialized domain objects directly into the HTTP response body (usually as JSON).</p><p>Instead of annotating every single method with <code>@ResponseBody</code>, we use <strong><code>@RestController</code></strong> at the class level.</p><pre><code>@RestController\n@RequestMapping(\"/api\")\npublic class ApiController {\n    // No @ResponseBody needed here! Spring handles JSON serialization dynamically.\n}</code></pre>"
+    },
+    {
+      "id": "restcontroller-blank",
+      "title": "Complete the Annotation",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "In Spring Boot, the annotation that combines @Controller and @ResponseBody at the class level to create REST endpoints is [blank].",
+        "correct": "@RestController"
+      }
+    },
+    {
+      "id": "data-binding-parameters",
+      "title": "Extracting Input Data",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>REST controllers must extract variables sent by clients. Spring Boot provides dedicated annotations for distinct parts of an HTTP request:</p><ul><li><strong><code>@PathVariable</code></strong>: Extracts values from the URI path (e.g., <code>/api/books/{id}</code>).</li><li><strong><code>@RequestParam</code></strong>: Extracts query parameters (e.g., <code>/api/books?author=rowling</code>).</li><li><strong><code>@RequestBody</code></strong>: Automatically maps the JSON payload body into a Java Object (DTO) using the Jackson library.</li></ul><p>Example using RequestBody and PathVariable:</p><pre><code>@PutMapping(\"/books/{id}\")\npublic Book updateBook(@PathVariable Long id, @RequestBody Book updatedBook) {\n    return bookService.save(id, updatedBook);\n}</code></pre>"
+    },
+    {
+      "id": "crud-matching",
+      "title": "Match HTTP Methods to Intentions",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "GET",
+            "right": "Read/Retrieve existing resources"
+          },
+          {
+            "left": "POST",
+            "right": "Create new resources"
+          },
+          {
+            "left": "PUT",
+            "right": "Replace/Overwrite an existing resource"
+          },
+          {
+            "left": "DELETE",
+            "right": "Destroy/Remove a resource"
+          }
+        ]
+      }
+    },
+    {
+      "id": "request-flow-order",
+      "title": "Order of Incoming Request Lifecycle",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Client sends an HTTP POST request with a JSON body payload."
+          },
+          {
+            "id": "2",
+            "text": "Spring's DispatcherServlet intercepts and matches request URI to the controller method."
+          },
+          {
+            "id": "3",
+            "text": "HttpMessageConverter (Jackson) parses the JSON body into a Java Object."
+          },
+          {
+            "id": "4",
+            "text": "The controller logic processes request and delegates execution to service layer."
+          },
+          {
+            "id": "5",
+            "text": "Controller returns standard ResponseEntity containing response model and HTTP status."
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      }
+    },
+    {
+      "id": "response-entity-management",
+      "title": "Customizing Responses with ResponseEntity",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>When constructing REST responses, you must have full control over the <strong>HTTP Status Code</strong>, <strong>Headers</strong>, and the <strong>Body</strong>.</p><p>Spring Boot provides the <code>ResponseEntity&lt;T&gt;</code> wrapper class precisely for this requirement. Instead of returning raw objects, wrap them:</p><pre><code>@PostMapping(\"/books\")\npublic ResponseEntity&lt;Book&gt; createBook(@RequestBody Book book) {\n    Book savedBook = bookService.save(book);\n    return ResponseEntity\n        .status(HttpStatus.CREATED)\n        .header(\"Custom-Header\", \"BookCreated\")\n        .body(savedBook);\n}</code></pre>"
+    },
+    {
+      "id": "response-entity-mcq",
+      "title": "Appropriate Return Status for POST",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "ResponseEntity.ok(newProduct)"
+          },
+          {
+            "id": "b",
+            "text": "ResponseEntity.status(HttpStatus.CREATED).body(newProduct)"
+          },
+          {
+            "id": "c",
+            "text": "ResponseEntity.status(HttpStatus.ACCEPTED).body(newProduct)"
+          },
+          {
+            "id": "d",
+            "text": "ResponseEntity.notFound().build()"
+          }
+        ],
+        "correctId": "b"
+      }
+    }
+  ]
+}

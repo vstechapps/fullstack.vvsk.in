@@ -1,0 +1,166 @@
+{
+  "title": "Testing in Python",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-to-testing",
+      "title": "Introduction to Testing",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Testing is a crucial part of software development. It ensures your Python code works as expected, prevents regressions, and makes refactoring safer.</p>\n<p>Common types of tests include Unit Tests, Integration Tests, and End-to-End Tests.</p>"
+    },
+    {
+      "id": "testing-frameworks-mcq",
+      "title": "Python Testing Frameworks",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "Which of the following is a built-in Python module for writing and running unit tests?",
+        "options": [
+          {
+            "id": "a",
+            "text": "pytest"
+          },
+          {
+            "id": "b",
+            "text": "unittest"
+          },
+          {
+            "id": "c",
+            "text": "nose2"
+          },
+          {
+            "id": "d",
+            "text": "selenium"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "unittest-structure",
+      "title": "Structure of a Unit Test",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Using Python's built-in <code>unittest</code> framework, tests are typically written as classes that inherit from <code>unittest.TestCase</code>.</p>\n<pre><code>import unittest\n\nclass TestMathOperations(unittest.TestCase):\n    def test_addition(self):\n        self.assertEqual(1 + 1, 2)\n\nif __name__ == '__main__':\n    unittest.main()</code></pre>"
+    },
+    {
+      "id": "blank-assertion",
+      "title": "Fill in the Blank: Assertions",
+      "type": "blank",
+      "duration": "2m",
+      "content": "To check if two values are equal in a unittest test case, you use the method self.________(a, b)."
+    },
+    {
+      "id": "match-test-concepts",
+      "title": "Match Testing Concepts",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Unit Test",
+            "right": "Tests a single component or function in isolation"
+          },
+          {
+            "left": "Integration Test",
+            "right": "Tests how multiple modules work together"
+          },
+          {
+            "left": "Mock",
+            "right": "Simulates the behavior of external dependencies"
+          },
+          {
+            "left": "Fixture",
+            "right": "Provides a fixed baseline or state for tests"
+          }
+        ]
+      }
+    },
+    {
+      "id": "intro-to-pytest",
+      "title": "Getting Started with Pytest",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p><code>pytest</code> is a popular third-party testing framework that makes writing tests cleaner and easier with plain assert statements.</p>\n<pre><code>def test_subtract():\n    assert 5 - 3 == 2</code></pre>\n<p>To run tests, simply execute <code>pytest</code> in your terminal.</p>"
+    },
+    {
+      "id": "order-test-lifecycle",
+      "title": "Order the Pytest Fixture Lifecycle",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "items": [
+          "Define a fixture using @pytest.fixture",
+          "Pass the fixture name as an argument to the test function",
+          "Execute the test function using the fixture setup",
+          "Run teardown code after the test completes (if defined using yield)"
+        ]
+      }
+    },
+    {
+      "id": "tdd-content",
+      "title": "Test-Driven Development (TDD)",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>TDD is a software development process where you write tests <em>before</em> you write the actual implementation code.</p>\n<p>The cycle is often summarized as: <strong>Red</strong> (write a failing test) -> <strong>Green</strong> (write code to pass the test) -> <strong>Refactor</strong> (clean up the code).</p>"
+    },
+    {
+      "id": "tdd-order",
+      "title": "Order the TDD Workflow",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "items": [
+          "Write a unit test that fails",
+          "Run the test suite to verify the test fails (Red)",
+          "Write the minimum amount of production code to pass the test",
+          "Run the tests to verify they pass (Green)",
+          "Refactor the code while keeping tests green"
+        ]
+      }
+    },
+    {
+      "id": "mocking-content",
+      "title": "Mocking and Patching",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Often your code relies on external APIs, databases, or file systems. You use mocking to replace these parts with dummy objects.</p>\n<pre><code>from unittest.mock import patch\n\n@patch('module.requests.get')\ndef test_api_call(mock_get):\n    mock_get.return_value.status_code = 200\n    # Test your function that makes an API call</code></pre>"
+    },
+    {
+      "id": "mocking-mcq",
+      "title": "Understanding Mocks",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "Why do we use mocks during unit testing?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To make tests run slower and more accurately"
+          },
+          {
+            "id": "b",
+            "text": "To isolate the code under test from external systems like networks or databases"
+          },
+          {
+            "id": "c",
+            "text": "To replace the Python interpreter"
+          },
+          {
+            "id": "d",
+            "text": "To automatically generate documentation"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "conclusion-testing",
+      "title": "Conclusion and Best Practices",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>You have learned the essentials of testing in Python using <code>unittest</code> and <code>pytest</code>, alongside concepts like TDD and mocking.</p>\n<p><strong>Best Practices:</strong> Write tests early, keep them independent, and aim for high code coverage on critical business logic!</p>"
+    }
+  ]
+}

@@ -1,0 +1,213 @@
+{
+  "title": "Monitoring and Observability in Spring Boot",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-spring-boot-actuator",
+      "title": "Introduction to Spring Boot Actuator",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p><strong>Spring Boot Actuator</strong> brings production-ready features to your application without requiring you to write custom monitoring tools.</p><p>It provides built-in HTTP endpoints and JMX beans to monitor and interact with your running application.</p><pre><code>&lt;dependency&gt;\n    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;\n    &lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt;\n&lt;/dependency&gt;</code></pre><p>Key features include health checks, metric collection, environment properties inspection, and thread dumps.</p>"
+    },
+    {
+      "id": "actuator-endpoints-overview",
+      "title": "Essential Actuator Endpoints",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Actuator provides several built-in endpoints to inspect application state:</p><ul><li><code>/actuator/health</code>: Shows application health information.</li><li><code>/actuator/info</code>: Displays arbitrary application info.</li><li><code>/actuator/metrics</code>: Shows metric information (JVM memory, CPU, HTTP requests).</li><li><code>/actuator/env</code>: Exposes properties from Spring's <code>Environment</code>.</li><li><code>/actuator/httpexchanges</code>: Displays HTTP request/response exchange details.</li></ul>"
+    },
+    {
+      "id": "mcq-actuator-default-exposure",
+      "title": "Endpoint Web Exposure Security",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "By default in Spring Boot, which Actuator endpoints are exposed over HTTP?",
+        "options": [
+          {
+            "id": "a",
+            "text": "All endpoints including /env, /beans, and /health"
+          },
+          {
+            "id": "b",
+            "text": "Only /health and /info"
+          },
+          {
+            "id": "c",
+            "text": "Only /metrics"
+          },
+          {
+            "id": "d",
+            "text": "No endpoints are exposed by default"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "blank-actuator-exposure-config",
+      "title": "Exposing Endpoints in Configuration",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To expose all Actuator endpoints over HTTP in `application.properties`, configure: `management.endpoints.web.exposure.include= [[blank]]`",
+        "correctAnswers": [
+          "*"
+        ]
+      }
+    },
+    {
+      "id": "custom-health-indicators",
+      "title": "Creating Custom Health Indicators",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>You can create custom health checks by implementing the <code>HealthIndicator</code> interface.</p><pre><code>@Component\npublic class DatabaseHealthIndicator implements HealthIndicator {\n    @Override\n    public Health health() {\n        boolean dbIsUp = checkDbConnection();\n        if (dbIsUp) {\n            return Health.up().withDetail(\"Database\", \"Reachable\").build();\n        }\n        return Health.down().withDetail(\"Database\", \"Unreachable\").build();\n    }\n}</code></pre>"
+    },
+    {
+      "id": "match-endpoints-purpose",
+      "title": "Match Endpoints to Their Purpose",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "id": "1",
+            "left": "/actuator/health",
+            "right": "Checks app readiness and liveness status"
+          },
+          {
+            "id": "2",
+            "left": "/actuator/metrics",
+            "right": "Provides dimensional metrics like JVM memory usage"
+          },
+          {
+            "id": "3",
+            "left": "/actuator/loggers",
+            "right": "Allows viewing and modifying logging levels at runtime"
+          },
+          {
+            "id": "4",
+            "left": "/actuator/threaddump",
+            "right": "Performs a thread dump of the JVM"
+          }
+        ]
+      }
+    },
+    {
+      "id": "micrometer-and-prometheus",
+      "title": "Metrics Collection with Micrometer & Prometheus",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p><strong>Micrometer</strong> acts as a facade over popular monitoring systems (like SLF4J for logging). It allows you to instrument code once and export metrics to backends like Prometheus, Datadog, or InfluxDB.</p><pre><code>&lt;dependency&gt;\n    &lt;groupId&gt;io.micrometer&lt;/groupId&gt;\n    &lt;artifactId&gt;micrometer-registry-prometheus&lt;/artifactId&gt;\n&lt;/dependency&gt;</code></pre><p>Adding this dependency automatically configures a <code>/actuator/prometheus</code> endpoint formatted for Prometheus scraping.</p>"
+    },
+    {
+      "id": "order-prometheus-setup",
+      "title": "Prometheus Integration Workflow",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "items": [
+          {
+            "id": "step1",
+            "text": "Add micrometer-registry-prometheus dependency to pom.xml"
+          },
+          {
+            "id": "step2",
+            "text": "Expose the prometheus endpoint in application.properties via web exposure"
+          },
+          {
+            "id": "step3",
+            "text": "Configure prometheus.yml scrape_configs to target /actuator/prometheus"
+          },
+          {
+            "id": "step4",
+            "text": "Visualize collected metrics using a Grafana dashboard"
+          }
+        ],
+        "correctOrder": [
+          "step1",
+          "step2",
+          "step3",
+          "step4"
+        ]
+      }
+    },
+    {
+      "id": "micrometer-meters-mcq",
+      "title": "Micrometer Meter Types",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "question": "Which Micrometer meter type should be used to measure a value that can go up and down, such as current active database connections or thread count?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Counter"
+          },
+          {
+            "id": "b",
+            "text": "Gauge"
+          },
+          {
+            "id": "c",
+            "text": "Timer"
+          },
+          {
+            "id": "d",
+            "text": "DistributionSummary"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "blank-custom-metrics",
+      "title": "Creating Custom Counters",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To inject custom metrics recording capability into your Spring beans, you inject the Micrometer `[[blank]]` service.",
+        "correctAnswers": [
+          "MeterRegistry"
+        ]
+      }
+    },
+    {
+      "id": "distributed-tracing",
+      "title": "Distributed Tracing with Micrometer Tracing",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>In microservice architectures, request tracing across service boundaries is critical.</p><p><strong>Micrometer Tracing</strong> (successor to Spring Cloud Sleuth in Spring Boot 3) automatically propagates context across HTTP headers and adds trace IDs and span IDs to logs.</p><ul><li><strong>Trace ID:</strong> Uniquely identifies an entire request journey across services.</li><li><strong>Span ID:</strong> Uniquely identifies a single unit of work within a service.</li></ul><p>Traces can be exported to systems like Zipkin or Jaeger for visualization.</p>"
+    },
+    {
+      "id": "match-monitoring-concepts",
+      "title": "Match Monitoring Concepts",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "id": "1",
+            "left": "Trace ID",
+            "right": "Unique identifier for a request passing through multiple services"
+          },
+          {
+            "id": "2",
+            "left": "MeterRegistry",
+            "right": "Micrometer central interface for creating and managing meters"
+          },
+          {
+            "id": "3",
+            "left": "Prometheus",
+            "right": "Time-series database that pulls metrics over HTTP"
+          },
+          {
+            "id": "4",
+            "left": "Grafana",
+            "right": "Visualization and analytics dashboard software"
+          }
+        ]
+      }
+    }
+  ]
+}

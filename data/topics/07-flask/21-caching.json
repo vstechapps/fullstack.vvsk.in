@@ -1,0 +1,139 @@
+{
+  "title": "Caching in Flask",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-to-caching",
+      "title": "Introduction to Caching",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Caching stores copies of frequently accessed data in a fast-access storage layer (like memory) to reduce database load and speed up response times in your Flask application.</p>"
+    },
+    {
+      "id": "flask-caching-mcq",
+      "title": "Primary Purpose of Caching",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "To permanently store user passwords in plain text"
+          },
+          {
+            "id": "b",
+            "text": "To speed up data retrieval by storing temporary copies of data"
+          },
+          {
+            "id": "c",
+            "text": "To compile Python code into machine language"
+          },
+          {
+            "id": "d",
+            "text": "To route incoming HTTP requests to different controllers"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "flask-caching-setup",
+      "title": "Setting Up Flask-Caching",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To use caching in Flask, we typically use the <code>Flask-Caching</code> extension.</p>\n<pre><code>from flask import Flask\nfrom flask_caching import Cache\n\napp = Flask(__name__)\ncache = Cache(app, config={'CACHE_TYPE': 'SimpleCache'})</code></pre>"
+    },
+    {
+      "id": "cache-setup-blank",
+      "title": "Complete the Cache Initialization",
+      "type": "blank",
+      "duration": "2m",
+      "content": "To initialize the cache extension, we instantiate the {blank} class passing the app object.",
+      "answer": "Cache"
+    },
+    {
+      "id": "view-caching",
+      "title": "Caching View Functions",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>You can cache the output of route handlers using the <code>@cache.cached()</code> decorator.</p>\n<pre><code>@app.route('/')\n@cache.cached(timeout=50)\ndef index():\n    return expensive_database_query()</code></pre>"
+    },
+    {
+      "id": "cache-types-match",
+      "title": "Match Cache Types to Descriptions",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "SimpleCache",
+            "right": "In-memory cache using a standard Python dictionary"
+          },
+          {
+            "left": "RedisCache",
+            "right": "Uses Redis server for distributed caching"
+          },
+          {
+            "left": "FileSystemCache",
+            "right": "Stores cached items on the hard drive"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cache-invalidation-order",
+      "title": "Order the Caching Flow",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "steps": [
+          "Client sends an HTTP request to a Flask route",
+          "Flask checks if the response exists in the cache",
+          "If cached, return the stored response immediately",
+          "If not cached, execute the view function, store result in cache, and return response"
+        ]
+      }
+    },
+    {
+      "id": "memoization-content",
+      "title": "Memoization with cache.memoize",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Use <code>@cache.memoize()</code> when you want to cache the results of functions that take arguments, such as database queries filtered by an ID.</p>\n<pre><code>@cache.memoize(timeout=60)\ndef get_user_profile(user_id):\n    return User.query.get(user_id)</code></pre>"
+    },
+    {
+      "id": "cache-best-practices",
+      "title": "Caching Best Practices",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>1. Don't cache user-specific sensitive data globally.<br>2. Always set an appropriate timeout.<br>3. Implement cache invalidation strategies when underlying data updates.</p>"
+    },
+    {
+      "id": "final-cache-mcq",
+      "title": "Cache Decorator Check",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "@app.route()"
+          },
+          {
+            "id": "b",
+            "text": "@cache.cached()"
+          },
+          {
+            "id": "c",
+            "text": "@flask.cache()"
+          },
+          {
+            "id": "d",
+            "text": "@db.cached()"
+          }
+        ],
+        "correctId": "b"
+      }
+    }
+  ]
+}

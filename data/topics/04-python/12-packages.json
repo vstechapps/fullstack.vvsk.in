@@ -1,0 +1,135 @@
+{
+  "title": "Package Management in Python",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-package-management",
+      "title": "Introduction to Package Management",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Package management in Python allows you to install, upgrade, configure, and remove third-party libraries and modules that are not part of the standard library.</p><p>The standard tool for this in the Python ecosystem is <strong>pip</strong>.</p>"
+    },
+    {
+      "id": "pip-mcq",
+      "title": "What is pip?",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "A built-in Python web server"
+          },
+          {
+            "id": "b",
+            "text": "The standard package installer for Python"
+          },
+          {
+            "id": "c",
+            "text": "A testing framework for Python"
+          },
+          {
+            "id": "d",
+            "text": "A Python syntax checker"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "using-pip",
+      "title": "Common pip Commands",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Here are the most frequently used <code>pip</code> commands:</p><ul><li>Install a package: <code>pip install package_name</code></li><li>Uninstall a package: <code>pip uninstall package_name</code></li><li>List installed packages: <code>pip list</code></li><li>Save installed packages to a file: <code>pip freeze > requirements.txt</code></li></ul>"
+    },
+    {
+      "id": "pip-blank",
+      "title": "Fill in the blank for installing requirements",
+      "type": "blank",
+      "duration": "2m",
+      "content": "To install all packages listed in a requirements file, you run the command: pip ___ -r requirements.txt"
+    },
+    {
+      "id": "virtual-environments",
+      "title": "Why Virtual Environments?",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Virtual environments allow you to manage separate package installations for different projects.</p><p>They solve the \"it works on my machine\" problem by preventing version conflicts between global Python packages and project-specific dependencies.</p><pre><code>python -m venv myenv</code></pre>"
+    },
+    {
+      "id": "venv-order",
+      "title": "Order the Virtual Environment workflow",
+      "type": "order",
+      "duration": "4m",
+      "content": {
+        "steps": [
+          "Create the virtual environment using python -m venv venv",
+          "Activate the virtual environment",
+          "Install project dependencies using pip install",
+          "Save dependencies to requirements.txt using pip freeze"
+        ]
+      }
+    },
+    {
+      "id": "match-tools",
+      "title": "Match Python Package Tools to their Purpose",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "pairs": [
+          {
+            "left": "pip",
+            "right": "Standard package installer"
+          },
+          {
+            "left": "venv",
+            "right": "Tool for creating lightweight virtual environments"
+          },
+          {
+            "left": "PyPI",
+            "right": "Official third-party software repository for Python"
+          },
+          {
+            "left": "requirements.txt",
+            "right": "File listing project dependencies"
+          }
+        ]
+      }
+    },
+    {
+      "id": "modern-tools",
+      "title": "Modern Package Managers",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>While <code>pip</code> and <code>venv</code> are the traditional tools, modern Python development often utilizes higher-level dependency managers like <strong>Poetry</strong> or <strong>Pipenv</strong>.</p><p>These tools handle virtual environments, dependency resolution, and publishing packages in a single workflow using files like <code>pyproject.toml</code>.</p>"
+    },
+    {
+      "id": "summary-mcq",
+      "title": "Best Practice Check",
+      "type": "mcq",
+      "duration": "3m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Always install all packages globally in the root Python environment."
+          },
+          {
+            "id": "b",
+            "text": "Use a virtual environment for every new Python project."
+          },
+          {
+            "id": "c",
+            "text": "Never use requirements.txt or pyproject.toml."
+          },
+          {
+            "id": "d",
+            "text": "Manually copy site-packages folders between projects."
+          }
+        ],
+        "correctId": "b"
+      }
+    }
+  ]
+}

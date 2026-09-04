@@ -1,0 +1,113 @@
+{
+  "title": "Authentication in ASP.NET Core",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "auth-intro",
+      "title": "Introduction to Authentication",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Authentication is the process of verifying who a user is, while authorization determines what they can do. In ASP.NET Core, the authentication system is handled by the <code>Microsoft.AspNetCore.Authentication</code> package, which relies on registered handlers.</p>"
+    },
+    {
+      "id": "cookie-vs-token",
+      "title": "Choose the primary mechanism for SPA authentication",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Cookies only"
+          },
+          {
+            "id": "b",
+            "text": "JSON Web Tokens (JWT)"
+          },
+          {
+            "id": "c",
+            "text": "Basic Authentication"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "middleware-order",
+      "title": "Pipeline Middleware Order",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "instruction": "Arrange the ASP.NET Core middleware in the correct execution order.",
+        "items": [
+          {
+            "id": "1",
+            "text": "app.UseRouting();"
+          },
+          {
+            "id": "2",
+            "text": "app.UseAuthentication();"
+          },
+          {
+            "id": "3",
+            "text": "app.UseAuthorization();"
+          },
+          {
+            "id": "4",
+            "text": "app.MapControllers();"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    },
+    {
+      "id": "jwt-bearer-config",
+      "title": "Configuring JWT Bearer",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To enable JWT authentication in ASP.NET Core, configure the services in <code>Program.cs</code>:</p>\n<pre><code>builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)\n    .AddJwtBearer(options => {\n        options.TokenValidationParameters = new TokenValidationParameters {\n            ValidateIssuer = true,\n            ValidateAudience = true,\n            ValidateLifetime = true,\n            ValidateIssuerSigningKey = true\n        };\n    });</code></pre>"
+    },
+    {
+      "id": "auth-blank",
+      "title": "Complete the Extension Method",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To add authentication middleware to the HTTP request pipeline, we call app.____();",
+        "blankAnswer": "UseAuthentication"
+      }
+    },
+    {
+      "id": "match-components",
+      "title": "Match Authentication Terms",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "instruction": "Match the ASP.NET Core authentication concept with its correct definition.",
+        "pairs": [
+          {
+            "left": "Authentication",
+            "right": "Verifying the identity of a user"
+          },
+          {
+            "left": "Authorization",
+            "right": "Determining user permissions"
+          },
+          {
+            "left": "Claim",
+            "right": "A statement about the user"
+          },
+          {
+            "left": "Cookie",
+            "right": "Stateful session identifier"
+          }
+        ]
+      }
+    }
+  ]
+}

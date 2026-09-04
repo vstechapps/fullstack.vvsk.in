@@ -1,0 +1,140 @@
+{
+  "title": "Testing in ASP.NET Core",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-to-testing",
+      "title": "Introduction to Testing in ASP.NET Core",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Testing is a crucial part of building robust ASP.NET Core applications. We primarily focus on three types of tests:</p><ul><li><strong>Unit Tests:</strong> Test individual components (like services or business logic) in isolation.</li><li><strong>Integration Tests:</strong> Test multiple components working together, such as controllers interacting with databases.</li><li><strong>End-to-End (E2E) Tests:</strong> Test the entire application flow from the user interface down to the database.</li></ul>"
+    },
+    {
+      "id": "unit-vs-integration",
+      "title": "Identify the Test Type",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "Which type of test typically verifies business logic in a single class without involving the database or network?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Integration Test"
+          },
+          {
+            "id": "b",
+            "text": "Unit Test"
+          },
+          {
+            "id": "c",
+            "text": "End-to-End Test"
+          },
+          {
+            "id": "d",
+            "text": "UI Test"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "unit-testing-services",
+      "title": "Unit Testing with xUnit and Moq",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>ASP.NET Core projects typically use <strong>xUnit</strong> as the testing framework. To isolate the class under test, mocking frameworks like <strong>Moq</strong> are used to simulate dependencies.</p>\n<pre><code>[Fact]\npublic void GetProduct_ReturnsCorrectProduct()\n{\n    // Arrange\n    var mockRepo = new Mock&lt;IProductRepository&gt;();\n    mockRepo.Setup(repo =&gt; repo.GetById(1)).Returns(new Product { Id = 1, Name = \"Laptop\" });\n    var service = new ProductService(mockRepo.Object);\n\n    // Act\n    var result = service.GetProduct(1);\n\n    // Assert\n    Assert.Equal(\"Laptop\", result.Name);\n}</code></pre>"
+    },
+    {
+      "id": "fill-in-assertion",
+      "title": "Complete the Unit Test Assertion",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "In xUnit, to verify that two values are equal, we use the Assert._____(expected, actual) method.",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "Equal"
+          }
+        ]
+      }
+    },
+    {
+      "id": "integration-testing-web",
+      "title": "Integration Testing using WebApplicationFactory",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>ASP.NET Core provides the <code>Microsoft.AspNetCore.Mvc.Testing</code> package, which includes <code>WebApplicationFactory&lt;TEntryPoint&gt;</code>. This allows you to spin up an in-memory test server to send real HTTP requests to your API.</p>\n<pre><code>public class ProductsApiTests : IClassFixture&lt;WebApplicationFactory&lt;Program&gt;&gt;\n{\n    private readonly HttpClient _client;\n\n    public ProductsApiTests(WebApplicationFactory&lt;Program&gt; factory)\n    {\n        _client = factory.CreateClient();\n    }\n\n    [Fact]\n    public async Task GetEndpoints_ReturnsSuccessAndCorrectContentType()\n    {\n        var response = await _client.GetAsync(\"/api/products\");\n        response.EnsureSuccessStatusCode();\n        Assert.Equal(\"application/json; charset=utf-8\", response.Content.Headers.ContentType.ToString());\n    }\n}</code></pre>"
+    },
+    {
+      "id": "match-testing-concepts",
+      "title": "Match Testing Terms to Definitions",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "xUnit",
+            "right": "Popular unit testing framework for .NET"
+          },
+          {
+            "left": "Moq",
+            "right": "Library used for mocking dependencies"
+          },
+          {
+            "left": "WebApplicationFactory",
+            "right": "Helper for hosting ASP.NET Core in integration tests"
+          },
+          {
+            "left": "Assert",
+            "right": "Class used to verify test conditions"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-test-lifecycle",
+      "title": "Order the Integration Test Execution Flow",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "WebApplicationFactory bootstraps the in-memory TestServer."
+          },
+          {
+            "id": "2",
+            "text": "An HttpClient is created from the factory."
+          },
+          {
+            "id": "3",
+            "text": "An HTTP request is sent to the target API endpoint."
+          },
+          {
+            "id": "4",
+            "text": "Middleware, routing, and controllers process the request."
+          },
+          {
+            "id": "5",
+            "text": "The test asserts the HTTP response status code and body."
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      }
+    },
+    {
+      "id": "summary-testing",
+      "title": "Testing Best Practices Summary",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Key takeaways for testing in ASP.NET Core:</p><ul><li>Write fast unit tests for business logic using xUnit and Moq.</li><li>Use <code>WebApplicationFactory</code> for reliable integration tests against HTTP endpoints.</li><li>Always design your services with Dependency Injection (DI) to make them easily testable.</li><li>Keep tests isolated, repeatable, and independent of external state where possible.</li></ul>"
+    }
+  ]
+}

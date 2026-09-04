@@ -1,0 +1,103 @@
+{
+  "title": "Security for Python Developers",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "sec-intro",
+      "title": "Introduction to Python Security",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Security is paramount in software development. Python developers must be aware of common vulnerabilities such as SQL Injection, Insecure Deserialization, and XSS. Writing secure code ensures user data protection and application integrity.</p>"
+    },
+    {
+      "id": "sql-injection-mcq",
+      "title": "Identifying SQL Injection Risks",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "cursor.execute(\"SELECT * FROM users WHERE name = '%s' % username\")"
+          },
+          {
+            "id": "b",
+            "text": "cursor.execute(\"SELECT * FROM users WHERE name = ?\", (username,))"
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "password-hashing-blank",
+      "title": "Secure Password Hashing",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "When storing passwords in Python, never use plain text or MD5. Instead, use strong libraries like ___ which automatically handles salting and adaptive hashing.",
+        "correctAnswer": "bcrypt"
+      }
+    },
+    {
+      "id": "owasp-match",
+      "title": "Match Vulnerabilities to Descriptions",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "SQL Injection",
+            "right": "Manipulating database queries via untrusted input"
+          },
+          {
+            "left": "XSS",
+            "right": "Injecting malicious scripts into web pages viewed by users"
+          },
+          {
+            "left": "CSRF",
+            "right": "Tricking a user into executing unwanted actions on a web app"
+          }
+        ]
+      }
+    },
+    {
+      "id": "secure-headers-content",
+      "title": "Using Environment Variables",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Never hardcode sensitive information like API keys or database passwords in your Python source code.</p>\n<pre><code>import os\napi_key = os.getenv(\"API_KEY\")</code></pre>"
+    },
+    {
+      "id": "secure-sdlc-order",
+      "title": "Order the Secure Development Life Cycle Steps",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Threat Modeling and Requirements"
+          },
+          {
+            "id": "2",
+            "text": "Secure Coding and Code Review"
+          },
+          {
+            "id": "3",
+            "text": "Dynamic Application Security Testing (DAST)"
+          },
+          {
+            "id": "4",
+            "text": "Deployment and Monitoring"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    }
+  ]
+}

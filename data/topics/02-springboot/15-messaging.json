@@ -1,0 +1,153 @@
+{
+  "title": "Messaging in Spring Boot",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-messaging",
+      "title": "Introduction to Messaging Architecture",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Asynchronous messaging allows microservices to communicate decoupled from one another. Spring Boot provides unified abstractions for various messaging backends including JMS, AMQP (RabbitMQ), and Apache Kafka.</p>\n<ul>\n  <li><strong>Decoupling:</strong> Producers and consumers operate independently.</li>\n  <li><strong>Scalability:</strong> Queue workloads can be distributed across multiple instances.</li>\n  <li><strong>Resilience:</strong> Messages persist until processed, ensuring data safety.</li>\n</ul>"
+    },
+    {
+      "id": "messaging-types-mcq",
+      "title": "Messaging Models",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "question": "Which messaging model guarantees that a message is delivered to exactly one consumer from a pool of consumers listening on a destination?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Publish/Subscribe (Topics)"
+          },
+          {
+            "id": "b",
+            "text": "Point-to-Point (Queues)"
+          },
+          {
+            "id": "c",
+            "text": "Request-Response pattern only"
+          },
+          {
+            "id": "d",
+            "text": "Broadcast model"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "spring-jms",
+      "title": "Spring JMS Integration",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Spring Boot simplifies Java Message Service (JMS) with starter dependencies and auto-configuration using <code>JmsTemplate</code> and <code>@JmsListener</code>.</p>\n<pre><code>@Service\npublic class MessageProducer {\n    @Autowired\n    private JmsTemplate jmsTemplate;\n\n    public void send(String queue, String message) {\n        jmsTemplate.convertAndSend(queue, message);\n    }\n}</code></pre>"
+    },
+    {
+      "id": "jms-annotation-blank",
+      "title": "Listening to JMS Messages",
+      "type": "blank",
+      "duration": "3m",
+      "content": {
+        "sentence": "In Spring Boot, to mark a method as a target for a JMS message listener container, you annotate it with ____.",
+        "correctAnswer": "@JmsListener"
+      }
+    },
+    {
+      "id": "spring-amqp-rabbitmq",
+      "title": "AMQP & RabbitMQ Concepts",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>RabbitMQ uses the Advanced Message Queuing Protocol (AMQP). Messages are sent to <strong>Exchanges</strong>, which route them to <strong>Queues</strong> based on <strong>Bindings</strong> and <strong>Routing Keys</strong>.</p>\n<p>Spring AMQP provides <code>RabbitTemplate</code> for publishing and <code>@RabbitListener</code> for receiving messages asynchronously.</p>"
+    },
+    {
+      "id": "rabbitmq-match",
+      "title": "Match RabbitMQ Components",
+      "type": "match",
+      "duration": "4m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Exchange",
+            "right": "Receives messages from producers and routes them"
+          },
+          {
+            "left": "Queue",
+            "right": "Buffer that stores messages until consumed"
+          },
+          {
+            "left": "Binding",
+            "right": "Link between an exchange and a queue"
+          },
+          {
+            "left": "Routing Key",
+            "right": "Attributes evaluated to route message to specific queue"
+          }
+        ]
+      }
+    },
+    {
+      "id": "spring-kafka",
+      "title": "Apache Kafka Integration",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Apache Kafka is a distributed event-streaming platform. Unlike traditional brokers, Kafka relies on an immutable partitioned commit log.</p>\n<pre><code>@Component\npublic class KafkaConsumer {\n    @KafkaListener(topics = \"orders\", groupId = \"order-group\")\n    public void listen(String message) {\n        System.out.println(\"Received: \" + message);\n    }\n}</code></pre>"
+    },
+    {
+      "id": "kafka-flow-order",
+      "title": "Kafka Consumer Setup Steps",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "instructions": "Arrange the steps required to process Kafka messages in Spring Boot in sequential order:",
+        "items": [
+          {
+            "id": "step1",
+            "text": "Add spring-kafka dependency to build configuration"
+          },
+          {
+            "id": "step2",
+            "text": "Configure bootstrap-servers connection in application.yml"
+          },
+          {
+            "id": "step3",
+            "text": "Define topic name and group-id attributes"
+          },
+          {
+            "id": "step4",
+            "text": "Annotate method with @KafkaListener to consume payload"
+          }
+        ]
+      }
+    },
+    {
+      "id": "kafka-template-mcq",
+      "title": "KafkaTemplate Publishing",
+      "type": "mcq",
+      "duration": "3m",
+      "content": {
+        "question": "Which abstraction is primarily used in Spring Boot to produce and send messages to a Kafka topic?",
+        "options": [
+          {
+            "id": "a",
+            "text": "JmsTemplate"
+          },
+          {
+            "id": "b",
+            "text": "RabbitTemplate"
+          },
+          {
+            "id": "c",
+            "text": "KafkaTemplate"
+          },
+          {
+            "id": "d",
+            "text": "EventPublisher"
+          }
+        ],
+        "correctId": "c"
+      }
+    }
+  ]
+}

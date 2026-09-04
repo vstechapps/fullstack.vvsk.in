@@ -1,0 +1,108 @@
+{
+  "title": "Forms in Flask",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-flask-forms",
+      "title": "Introduction to Flask Forms",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Handling user input is a fundamental part of web development. In Flask, we can process raw HTML forms using the <code>request.form</code> object, but for security, validation, and better maintainability, we typically use <strong>Flask-WTF</strong>, which integrates Flask with the powerful <strong>WTForms</strong> library.</p>"
+    },
+    {
+      "id": "flask-wtf-install-mcq",
+      "title": "Flask-WTF Installation",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "pip install flask-forms"
+          },
+          {
+            "id": "b",
+            "text": "pip install flask-wtf"
+          },
+          {
+            "id": "c",
+            "text": "npm install flask-wtf"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "defining-forms",
+      "title": "Defining a Form Class",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>With Flask-WTF, forms are defined as Python classes inheriting from <code>FlaskForm</code>. Fields are imported from <code>wtforms.fields</code> and validators from <code>wtforms.validators</code>.</p>\n<pre><code>from flask_wtf import FlaskForm\nfrom wtforms import StringField, PasswordField, SubmitField\nfrom wtforms.validators import DataRequired, Email\n\nclass LoginForm(FlaskForm):\n    email = StringField('Email', validators=[DataRequired(), Email()])\n    password = PasswordField('Password', validators=[DataRequired()])\n    submit = SubmitField('Sign In')</code></pre>"
+    },
+    {
+      "id": "form-blank-exercise",
+      "title": "Complete the Form Field",
+      "type": "blank",
+      "duration": "3m",
+      "content": {
+        "text": "To create a text input field for a username in WTForms, we use the ____Field class.",
+        "answer": "String"
+      }
+    },
+    {
+      "id": "rendering-forms",
+      "title": "Rendering Forms in Templates",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Once the form is passed to the Jinja2 template from your route, you can render it easily using WTForms built-in HTML rendering methods:</p>\n<pre><code>&lt;form method=\"POST\"&gt;\n    {{ form.hidden_tag() }}\n    &lt;p&gt;\n        {{ form.email.label }}&lt;br&gt;\n        {{ form.email(size=32) }}\n    &lt;/p&gt;\n    &lt;p&gt;\n        {{ form.password.label }}&lt;br&gt;\n        {{ form.password(size=32) }}\n    &lt;/p&gt;\n    &lt;p&gt;{{ form.submit() }}&lt;/p&gt;\n&lt;/form&gt;</code></pre>\n<p>Note: <code>form.hidden_tag()</code> generates a CSRF token to protect your application against Cross-Site Request Forgery attacks.</p>"
+    },
+    {
+      "id": "match-validators-components",
+      "title": "Match WTForms Validators to their Purpose",
+      "type": "match",
+      "duration": "4m",
+      "content": {
+        "pairs": [
+          {
+            "left": "DataRequired",
+            "right": "Ensures the field is not empty"
+          },
+          {
+            "left": "Email",
+            "right": "Validates basic email format"
+          },
+          {
+            "left": "Length",
+            "right": "Checks string character limits"
+          },
+          {
+            "left": "EqualTo",
+            "right": "Compares two fields (e.g., password confirmation)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "handling-form-submissions",
+      "title": "Handling Form Submission in Routes",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>In your Flask route, you need to handle both GET requests (showing the form) and POST requests (submitting and validating the form data).</p>\n<pre><code>@app.route('/login', methods=['GET', 'POST'])\ndef login():\n    form = LoginForm()\n    if form.validate_on_submit():\n        # Process valid data\n        flash('Login requested for user {}'.format(form.email.data))\n        return redirect(url_for('index'))\n    return render_template('login.html', title='Sign In', form=form)</code></pre>"
+    },
+    {
+      "id": "order-form-lifecycle",
+      "title": "Order the Form Request Lifecycle",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "steps": [
+          "User requests the form page (GET)",
+          "Flask renders the template containing WTForms and CSRF token",
+          "User fills out inputs and submits the form (POST)",
+          "Flask-WTF validates the CSRF token and field validators via validate_on_submit()",
+          "Application processes data or redisplays form with validation errors"
+        ]
+      }
+    }
+  ]
+}

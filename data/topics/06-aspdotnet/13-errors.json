@@ -1,0 +1,156 @@
+{
+  "title": "Error Handling in ASP.NET Core",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-error-handling",
+      "title": "Introduction to Error Handling",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Error handling in ASP.NET Core is essential for robust applications. It ensures that unhandled exceptions are caught, logged, and translated into meaningful responses for the client without exposing sensitive server details.</p>"
+    },
+    {
+      "id": "developer-exception-page",
+      "title": "Developer Exception Page",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "Which middleware should typically be used only in the Development environment to show detailed exception information?",
+        "options": [
+          {
+            "id": "a",
+            "text": "app.UseExceptionHandler(\"/Error\");"
+          },
+          {
+            "id": "b",
+            "text": "app.UseDeveloperExceptionPage();"
+          },
+          {
+            "id": "c",
+            "text": "app.UseStatusCodePages();"
+          },
+          {
+            "id": "d",
+            "text": "app.UseRouting();"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "exception-handler-middleware",
+      "title": "Configuring Exception Handler",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>In production, you should use the exception handler middleware to catch exceptions and redirect the request to a friendly error pipeline or controller.</p>\n<pre><code>if (!app.Environment.IsDevelopment())\n{\n    app.UseExceptionHandler(\"/Home/Error\");\n    app.UseHsts();\n}</code></pre>"
+    },
+    {
+      "id": "blank-middleware",
+      "title": "Fill in the Middleware",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To enable status code pages that return content for status codes like 404 without bodies, you call app.Use_______Pages(); in Program.cs.",
+        "answer": "StatusCode"
+      }
+    },
+    {
+      "id": "match-components",
+      "title": "Match Error Handling Components",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Developer Exception Page",
+            "right": "Detailed stack traces for local debugging"
+          },
+          {
+            "left": "UseExceptionHandler",
+            "right": "Catches exceptions and redirects to error endpoint"
+          },
+          {
+            "left": "UseStatusCodePages",
+            "right": "Handles empty response status codes like 404"
+          },
+          {
+            "left": "ProblemDetails",
+            "right": "Standardized machine-readable error format"
+          }
+        ]
+      }
+    },
+    {
+      "id": "problem-details-content",
+      "title": "Problem Details (RFC 7807)",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>ASP.NET Core has built-in support for generating standardized error responses using the <code>ProblemDetails</code> class, which is especially useful for REST APIs.</p>\n<pre><code>return Results.Problem(\"Server error occurred.\", statusCode: 500);</code></pre>"
+    },
+    {
+      "id": "order-pipeline",
+      "title": "Order the Middleware Pipeline",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "instruction": "Arrange the error handling and routing middleware in the correct order for a production ASP.NET Core application.",
+        "steps": [
+          "app.UseExceptionHandler(\"/Error\");",
+          "app.UseHsts();",
+          "app.UseHttpsRedirection();",
+          "app.UseRouting();",
+          "app.MapControllers();"
+        ],
+        "correctOrder": [
+          "app.UseExceptionHandler(\"/Error\");",
+          "app.UseHsts();",
+          "app.UseHttpsRedirection();",
+          "app.UseRouting();",
+          "app.MapControllers();"
+        ]
+      }
+    },
+    {
+      "id": "try-catch-controllers",
+      "title": "Try-Catch vs Global Handlers",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "question": "What is the primary drawback of relying solely on try-catch blocks inside individual controller actions?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It completely stops application compilation."
+          },
+          {
+            "id": "b",
+            "text": "It leads to repetitive boilerplate code and inconsistent error responses."
+          },
+          {
+            "id": "c",
+            "text": "It prevents dependency injection from working."
+          },
+          {
+            "id": "d",
+            "text": "It only works in development mode."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "global-exception-filters",
+      "title": "Exception Filters and IExceptionHandler",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Starting with .NET 8, ASP.NET Core introduced the <code>IExceptionHandler</code> interface for a centralized, elegant way to handle exceptions globally.</p>\n<pre><code>public class GlobalExceptionHandler : IExceptionHandler\n{\n    public async ValueTask&lt;bool&gt; TryHandleAsync(HttpContext context, \n        Exception exception, CancellationToken cancellationToken)\n    {\n        // Log and handle exception\n        return true;\n    }\n}</code></pre>"
+    },
+    {
+      "id": "wrap-up",
+      "title": "Error Handling Summary",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>You have covered the core concepts of error handling in ASP.NET Core: Developer Exception Pages, Production Exception Handlers, Status Code Pages, Problem Details for APIs, and modern global exception handlers.</p>"
+    }
+  ]
+}

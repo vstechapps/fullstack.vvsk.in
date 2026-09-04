@@ -1,0 +1,185 @@
+{
+  "title": "Dependency Injection in Spring Boot",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "what-is-di",
+      "title": "Understanding Dependency Injection (DI)",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p><strong>Dependency Injection (DI)</strong> is a design pattern used to achieve <strong>Inversion of Control (IoC)</strong>. Instead of an object creating its own dependencies, the Spring IoC Container instantiates, configures, and injects them at runtime.</p>\n<p>This promotes <em>loose coupling</em>, making applications modular and significantly easier to unit-test.</p>"
+    },
+    {
+      "id": "di-benefit-mcq",
+      "title": "Core Benefits of DI",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "It speeds up compile-time performance of Java code."
+          },
+          {
+            "id": "b",
+            "text": "It decouples classes, allowing easier testing and maintainability."
+          },
+          {
+            "id": "c",
+            "text": "It replaces the need for database connections entirely."
+          },
+          {
+            "id": "d",
+            "text": "It automatically deploys applications to cloud servers."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "stereotype-annotations",
+      "title": "Spring Stereotype Annotations",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>To tell Spring which classes it should manage as Beans, we use stereotype annotations:</p>\n<ul>\n  <li><code>@Component</code>: Generic stereotype for any Spring-managed component.</li>\n  <li><code>@Service</code>: Specializes <code>@Component</code> for business logic layers.</li>\n  <li><code>@Repository</code>: Specializes <code>@Component</code> for data access layers (handles DB exceptions).</li>\n  <li><code>@Controller</code>: Specializes <code>@Component</code> for presentation layers (Spring MVC).</li>\n</ul>"
+    },
+    {
+      "id": "stereotype-match",
+      "title": "Match Annotations with Roles",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "@Service",
+            "right": "Business logic and service orchestration layer"
+          },
+          {
+            "left": "@Repository",
+            "right": "Data Access Object (DAO) and database operations"
+          },
+          {
+            "left": "@Controller",
+            "right": "Web presentation tier handling HTTP requests"
+          },
+          {
+            "left": "@Component",
+            "right": "Generic Spring-managed utility bean or component"
+          }
+        ]
+      }
+    },
+    {
+      "id": "injection-types",
+      "title": "Constructor vs Field Injection",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>There are three primary ways to inject dependencies:</p>\n<ol>\n  <li><strong>Constructor Injection:</strong> Best practice. Guarantees required dependencies are immutable and not null.</li>\n  <li><strong>Setter Injection:</strong> Useful for optional or mutable dependencies.</li>\n  <li><strong>Field Injection:</strong> Simplest syntax using <code>@Autowired</code> directly on fields, but highly discouraged due to testing limitations and tight coupling with Spring framework APIs.</li>\n</ol>"
+    },
+    {
+      "id": "constructor-blank",
+      "title": "Fill in Best Practice Injection Code",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "Complete the constructor injection below. Fill in the blank to make the dependency immutable.\n\n```java\n@Service\npublic class PaymentService {\n    private ____ PaymentRepository paymentRepository;\n\n    public PaymentService(PaymentRepository paymentRepository) {\n        this.paymentRepository = paymentRepository;\n    }\n}\n```",
+        "answer": "final"
+      }
+    },
+    {
+      "id": "bean-scopes",
+      "title": "Understanding Spring Bean Scopes",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Spring Beans can have different lifecycles depending on their defined scope:</p>\n<ul>\n  <li><strong>singleton:</strong> (Default) Only one instance per Spring IoC container.</li>\n  <li><strong>prototype:</strong> A brand new instance is created every time the bean is requested.</li>\n  <li><strong>request:</strong> One instance per single HTTP request.</li>\n  <li><strong>session:</strong> One instance per HTTP session lifetime.</li>\n</ul>"
+    },
+    {
+      "id": "bean-scope-mcq",
+      "title": "Selecting Default Bean Scope",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "prototype"
+          },
+          {
+            "id": "b",
+            "text": "request"
+          },
+          {
+            "id": "c",
+            "text": "singleton"
+          },
+          {
+            "id": "d",
+            "text": "global-session"
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "resolving-ambiguity",
+      "title": "Handling Ambiguity with Multiple Beans",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>When Spring finds multiple beans of the same type, it throws a <code>NoUniqueBeanDefinitionException</code>.</p>\n<p>We resolve this using two key annotations:</p>\n<ul>\n  <li><code>@Primary</code>: Tells Spring to prioritize this bean over others of the same type.</li>\n  <li><code>@Qualifier(\"beanName\")</code>: Explicitly selects a specific bean by name at the injection point.</li>\n</ul>"
+    },
+    {
+      "id": "qualifier-blank",
+      "title": "Fill in the Qualifier Annotation",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "Specify the qualifier name 'paypal' for the PaymentGateway dependency injection block:\n\n```java\n@Autowired\npublic PaymentService(____(\"paypal\") PaymentGateway gateway) {\n    this.gateway = gateway;\n}\n```",
+        "answer": "@Qualifier"
+      }
+    },
+    {
+      "id": "bean-lifecycle-order",
+      "title": "Spring Bean Lifecycle Sequence",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "items": [
+          {
+            "id": "step1",
+            "text": "Instantiation (Constructor called)"
+          },
+          {
+            "id": "step2",
+            "text": "Populate properties (Dependency Injection)"
+          },
+          {
+            "id": "step3",
+            "text": "Post-construct initialization (@PostConstruct)"
+          },
+          {
+            "id": "step4",
+            "text": "Bean is ready for use"
+          },
+          {
+            "id": "step5",
+            "text": "Pre-destroy cleanup (@PreDestroy)"
+          }
+        ],
+        "correctOrder": [
+          "step1",
+          "step2",
+          "step3",
+          "step4",
+          "step5"
+        ]
+      }
+    },
+    {
+      "id": "di-conclusion",
+      "title": "Module Summary",
+      "type": "content",
+      "duration": "1m",
+      "content": "<p>You have successfully mastered Spring Boot Dependency Injection!</p>\n<ul>\n  <li>Always favor <strong>Constructor Injection</strong> over Field Injection.</li>\n  <li>Use <strong>Stereotypes</strong> like <code>@Service</code> and <code>@Repository</code> to define beans.</li>\n  <li>Leverage <code>@Qualifier</code> to manage multiple bean variations.</li>\n</ul>"
+    }
+  ]
+}

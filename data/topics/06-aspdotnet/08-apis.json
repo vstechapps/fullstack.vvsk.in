@@ -1,0 +1,146 @@
+{
+  "title": "Building Web APIs in ASP.NET Core",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "web-api-intro",
+      "title": "Introduction to Web API",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>ASP.NET Core Web API is a framework for building HTTP services that can reach a broad range of clients, including browsers and mobile devices.</p>\n<p>It is built on top of ASP.NET Core and relies on controllers that inherit from <code>ControllerBase</code>.</p>"
+    },
+    {
+      "id": "controller-base-mcq",
+      "title": "Controller Base Class",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Controller"
+          },
+          {
+            "id": "b",
+            "text": "ControllerBase"
+          },
+          {
+            "id": "c",
+            "text": "ApiClient"
+          },
+          {
+            "id": "d",
+            "text": "HttpController"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "rest-verbs-match",
+      "title": "Match HTTP Verbs to Operations",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "GET",
+            "right": "Retrieve resources"
+          },
+          {
+            "left": "POST",
+            "right": "Create a new resource"
+          },
+          {
+            "left": "PUT",
+            "right": "Update an existing resource"
+          },
+          {
+            "left": "DELETE",
+            "right": "Remove a resource"
+          }
+        ]
+      }
+    },
+    {
+      "id": "routing-attributes",
+      "title": "Routing and Attributes",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Web APIs use attribute routing to define endpoints. The <code>[ApiController]</code> attribute enables-opinionated, API-specific behaviors.</p>\n<pre><code>[Route(\"api/[controller]\")]\n[ApiController]\npublic class ProductsController : ControllerBase\n{\n    // Actions go here\n}</code></pre>"
+    },
+    {
+      "id": "api-controller-blank",
+      "title": "Fill in the Attribute",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "The [___] attribute enables automatic model validation and attribute routing requirements in ASP.NET Core Web API controllers.",
+        "answer": "ApiController"
+      }
+    },
+    {
+      "id": "execution-pipeline-order",
+      "title": "Order the API Request Pipeline",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "items": [
+          "HTTP Request received by Kestrel server",
+          "Middleware pipeline processes the request",
+          "Routing selects the appropriate Controller and Action",
+          "Model Binding and Validation execute",
+          "Action method executes and returns IActionResult"
+        ]
+      }
+    },
+    {
+      "id": "action-results",
+      "title": "Return Types and IActionResult",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Web API action methods can return specific types, <code>IActionResult</code>, or <code>ActionResult<T></code>.</p>\n<p>Using <code>ActionResult<T></code> allows you to return either a type <code>T</code> or an HTTP status code response (like <code>BadRequest()</code> or <code>NotFound()</code>).</p>\n<pre><code>[HttpGet(\"{id}\")]\npublic ActionResult<Product> GetProduct(int id)\n{\n    var product = _repository.GetById(id);\n    if (product == null) return NotFound();\n    return product;\n}</code></pre>"
+    },
+    {
+      "id": "status-codes-mcq",
+      "title": "Choosing Status Codes",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Ok(object) returns status 200"
+          },
+          {
+            "id": "b",
+            "text": "NotFound() returns status 500"
+          },
+          {
+            "id": "c",
+            "text": "BadRequest() returns status 201"
+          },
+          {
+            "id": "d",
+            "text": "Created() returns status 400"
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "dependency-injection",
+      "title": "Dependency Injection in Web API",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>ASP.NET Core has built-in support for Dependency Injection (DI). Services are registered in <code>Program.cs</code> and injected into controller constructors.</p>\n<pre><code>private readonly IProductRepository _repository;\n\npublic ProductsController(IProductRepository repository)\n{\n    _repository = repository;\n}</code></pre>"
+    },
+    {
+      "id": "conclusion",
+      "title": "Summary of Web API Fundamentals",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>You have learned the core concepts of ASP.NET Core Web API:</p>\n<ul>\n<li>Using <code>ControllerBase</code> and <code>[ApiController]</code></li>\n<li>Mapping HTTP verbs (GET, POST, PUT, DELETE)</li>\n<li>Handling routes and status codes via <code>ActionResult<T></code></li>\n<li>Applying Dependency Injection for services</li>\n</ul>"
+    }
+  ]
+}
