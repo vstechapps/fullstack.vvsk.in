@@ -1,0 +1,135 @@
+{
+  "title": "Components in Vue.js",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-components",
+      "title": "Introduction to Vue Components",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Components are one of the most powerful features of Vue.js. They help you extend basic HTML elements to encapsulate reusable code.</p>\n<p>At a high level, components are custom elements that Vue's compiler attaches behavior to. In Vue, a component is essentially a reusable Vue instance with a name.</p>"
+    },
+    {
+      "id": "anatomy-component",
+      "title": "Anatomy of a Single File Component",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Vue SFCs (Single File Components) group the HTML, JavaScript, and CSS in a single file using the <code>.vue</code> extension.</p>\n<pre><code>&lt;template&gt;\n  &lt;div class=\"greeting\"&gt;{{ msg }}&lt;/div&gt;\n&lt;/template&gt;\n\n&lt;script&gt;\nexport default {\n  data() {\n    return { msg: 'Hello Vue!' }\n  }\n}\n&lt;/script&gt;\n\n&lt;style scoped&gt;\n.greeting { color: red; }\n&lt;/style&gt;</code></pre>"
+    },
+    {
+      "id": "component-file-extension",
+      "title": "Vue Component File Extension",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": ".js"
+          },
+          {
+            "id": "b",
+            "text": ".vue"
+          },
+          {
+            "id": "c",
+            "text": ".html"
+          },
+          {
+            "id": "d",
+            "text": ".component"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "props-concept",
+      "title": "Passing Data with Props",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Props are custom attributes you can register on a component. When a value is passed to a prop attribute, it becomes a property on that component instance.</p>\n<p>To pass data from a parent to a child component, we use props down.</p>\n<pre><code>&lt;BlogPost title=\"My journey with Vue\" /&gt;</code></pre>"
+    },
+    {
+      "id": "fill-in-props",
+      "title": "Complete the Prop Definition",
+      "type": "blank",
+      "duration": "2m",
+      "content": "To define props in the Options API, you use the ________ property in the component object options.",
+      "answer": "props"
+    },
+    {
+      "id": "events-concept",
+      "title": "Listening to Child Events",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>While parents can pass data down via props, children must communicate back up to parents using events.</p>\n<p>Inside the child component, you can emit an event using <code>this.$emit('custom-event')</code> and listen to it on the parent using <code>@custom-event</code>.</p>"
+    },
+    {
+      "id": "match-vue-concepts",
+      "title": "Match Vue Component Concepts",
+      "type": "match",
+      "duration": "4m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Parent to Child",
+            "right": "Props"
+          },
+          {
+            "left": "Child to Parent",
+            "right": "Emitted Events"
+          },
+          {
+            "left": "Template HTML structure",
+            "right": "<template>"
+          },
+          {
+            "left": "Component Logic",
+            "right": "<script>"
+          }
+        ]
+      }
+    },
+    {
+      "id": "slots-concept",
+      "title": "Content Distribution with Slots",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Vue implements a content distribution API inspired by the Web Components spec draft, using the <code>&lt;slot&gt;</code> element to serve as distribution outlets for content.</p>\n<p>This allows you to pass template fragments down to the child component to render dynamically.</p>"
+    },
+    {
+      "id": "order-component-lifecycle",
+      "title": "Order of Component Creation",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Component is instantiated"
+          },
+          {
+            "id": "2",
+            "text": "Props and Data are resolved (beforeCreate / created)"
+          },
+          {
+            "id": "3",
+            "text": "Template is compiled (beforeMount)"
+          },
+          {
+            "id": "4",
+            "text": "DOM element is mounted (mounted)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "conclusion-components",
+      "title": "Summary of Vue Components",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Vue components give us modular, maintainable, and reusable blocks of UI.</p>\n<p>Remember: <strong>Props down, events up!</strong> Use slots for flexible content composition, and SFCs to keep your markup, logic, and styles cleanly separated yet co-located.</p>"
+    }
+  ]
+}

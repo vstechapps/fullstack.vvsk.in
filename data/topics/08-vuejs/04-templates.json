@@ -1,0 +1,123 @@
+{
+  "title": "Templates in Vue.js",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-templates",
+      "title": "Introduction to Vue Templates",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Vue.js uses an HTML-based template syntax that allows you to declaratively bind the rendered DOM to the underlying component instance's data.</p>\n<p>All Vue templates are syntactically valid HTML that can be parsed by spec-compliant browsers and HTML parsers.</p>"
+    },
+    {
+      "id": "interpolation-basics",
+      "title": "Text Interpolation",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>The most basic form of data binding is text interpolation using the \"Mustache\" syntax (double curly braces).</p>\n<pre><code>&lt;span&gt;Message: {{ msg }}&lt;/span&gt;</code></pre>\n<p>The mustache tag will be replaced with the value of the <code>msg</code> property from the corresponding component instance.</p>"
+    },
+    {
+      "id": "mcq-interpolation",
+      "title": "Check Your Understanding: Interpolation",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "[[ message ]]"
+          },
+          {
+            "id": "b",
+            "text": "{{ message }}"
+          },
+          {
+            "id": "c",
+            "text": "#{ message }#"
+          },
+          {
+            "id": "d",
+            "text": "${ message }"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "v-bind-directive",
+      "title": "Attribute Bindings with v-bind",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Mustaches cannot be used inside HTML attributes. Instead, use a <code>v-bind</code> directive:</p>\n<pre><code>&lt;div v-bind:id=\"dynamicId\"&gt;&lt;/div&gt;</code></pre>\n<p>Because <code>v-bind</code> is so commonly used, there is a dedicated shorthand syntax:</p>\n<pre><code>&lt;div :id=\"dynamicId\"&gt;&lt;/div&gt;</code></pre>"
+    },
+    {
+      "id": "blank-vbind",
+      "title": "Complete the Directive Shorthand",
+      "type": "blank",
+      "duration": "2m",
+      "content": "To dynamically bind an attribute to a data property in Vue without typing 'v-bind:', you can use the shorthand symbol ______ before the attribute name.",
+      "answer": ":"
+    },
+    {
+      "id": "directives-overview",
+      "title": "Directives Overview",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Directives are special attributes with the <code>v-</code> prefix. Vue provides many built-in directives, such as <code>v-if</code>, <code>v-for</code>, and <code>v-on</code>.</p>\n<p>They expect a single JavaScript expression as their value (with the exception of <code>v-for</code>, <code>v-on</code>, and <code>v-bind</code>).</p>"
+    },
+    {
+      "id": "match-directives",
+      "title": "Match Directives to Their Purpose",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "v-if",
+            "right": "Conditionally render an element"
+          },
+          {
+            "left": "v-for",
+            "right": "Render a list of items based on an array"
+          },
+          {
+            "left": "v-on",
+            "right": "Attach event listeners to elements"
+          },
+          {
+            "left": "v-model",
+            "right": "Create two-way data bindings on form inputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": "event-handling",
+      "title": "Event Handling with v-on",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>You can use the <code>v-on</code> directive (shorthand <code>@</code>) to listen to DOM events and run JavaScript when they're triggered.</p>\n<pre><code>&lt;button @click=\"count++\"&gt;Add 1&lt;/button&gt;\n&lt;p&gt;Count is: {{ count }}&lt;/p&gt;</code></pre>"
+    },
+    {
+      "id": "order-rendering",
+      "title": "Order the Component Lifecycle Steps",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "steps": [
+          "Define data properties and methods in the component options",
+          "Compile template strings into render functions",
+          "Mount the rendered DOM into the target element",
+          "Update the DOM reactively when state changes"
+        ]
+      }
+    },
+    {
+      "id": "summary-templates",
+      "title": "Summary of Vue Templates",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Vue templates bridge the gap between plain HTML and dynamic JavaScript data. Key takeaways:</p>\n<ul>\n<li>Use <code>{{ }}</code> for text interpolation.</li>\n<li>Use <code>v-bind</code> (or <code>:</code>) for attributes.</li>\n<li>Use <code>v-on</code> (or <code>@</code>) for events.</li>\n<li>Leverage directives like <code>v-if</code> and <code>v-for</code> for control flow.</li>\n</ul>"
+    }
+  ]
+}

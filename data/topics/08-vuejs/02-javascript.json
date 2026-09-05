@@ -1,0 +1,134 @@
+{
+  "title": "Essential JavaScript for Vue.js Developers",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "js-intro",
+      "title": "JavaScript Foundations for Vue",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Vue.js relies heavily on modern JavaScript (ES6+). Understanding concepts like arrow functions, destructuring, and the reactivity model is crucial for building robust Vue components.</p>"
+    },
+    {
+      "id": "es6-destructuring",
+      "title": "ES6 Destructuring",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "Which syntax correctly extracts the 'name' property from a user object using ES6 destructuring?",
+        "options": [
+          {
+            "id": "a",
+            "text": "const name = user.name;"
+          },
+          {
+            "id": "b",
+            "text": "const { name } = user;"
+          },
+          {
+            "id": "c",
+            "text": "const [ name ] = user;"
+          },
+          {
+            "id": "d",
+            "text": "destruct(user, name);"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "vue-reactivity-blank",
+      "title": "Array Methods and Reactivity",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "In Vue 3, to update an array immutably or trigger UI updates efficiently, methods like [blank] create a new array with all elements that pass a test implemented by the provided function.",
+        "blanks": [
+          {
+            "id": "blank-1",
+            "answer": "filter"
+          }
+        ]
+      }
+    },
+    {
+      "id": "js-array-methods",
+      "title": "Array Transformation in Vue",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>In Vue templates, you often need to transform lists of data. <code>map()</code> and <code>filter()</code> are your best friends.</p>\n<pre><code>const activeUsers = users.filter(u => u.isActive);\nconst userNames = users.map(u => u.name);</code></pre>"
+    },
+    {
+      "id": "match-js-concepts",
+      "title": "Match JavaScript Features to Vue Usage",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Arrow Functions",
+            "right": "Lexical 'this' binding"
+          },
+          {
+            "left": "Spread Operator (...)",
+            "right": "Merging props or reactive objects"
+          },
+          {
+            "left": "Promises / Async-Await",
+            "right": "Fetching data in onMounted()"
+          },
+          {
+            "left": "Modules (import/export)",
+            "right": "Organizing Single File Components"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-lifecycle",
+      "title": "Order the Asynchronous Flow",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "instruction": "Order the steps of executing an asynchronous data fetch inside a Vue component lifecycle:",
+        "items": [
+          {
+            "id": "step-1",
+            "text": "Component instance is initialized"
+          },
+          {
+            "id": "step-2",
+            "text": "onMounted lifecycle hook is triggered"
+          },
+          {
+            "id": "step-3",
+            "text": "Async function calls API using fetch/axios"
+          },
+          {
+            "id": "step-4",
+            "text": "Promise resolves and reactive state is updated"
+          },
+          {
+            "id": "step-5",
+            "text": "Vue re-renders template with new data"
+          }
+        ],
+        "correctOrder": [
+          "step-1",
+          "step-2",
+          "step-3",
+          "step-4",
+          "step-5"
+        ]
+      }
+    },
+    {
+      "id": "conclusion",
+      "title": "Ready for Vue.js",
+      "type": "content",
+      "duration": "1m",
+      "content": "<p>You now have the core JavaScript prerequisites needed to master Vue.js reactivity, directives, and component composition!</p>"
+    }
+  ]
+}

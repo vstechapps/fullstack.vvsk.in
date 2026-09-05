@@ -1,0 +1,15 @@
+{
+  "category": "Linked Lists",
+  "difficulty": "Easy",
+  "icon": "",
+  "locked": false,
+  "description": "Detect whether a linked list contains a cycle.",
+  "requirements": [
+    "Implement a correct solution for Linked List Cycle using a clear algorithmic approach.",
+    "Write clean logic that handles edge cases and invalid inputs gracefully.",
+    "Validate the solution with sample inputs and explain the time and space complexity."
+  ],
+  "xp": 100,
+  "title": "Linked List Cycle",
+  "gems": 10
+}

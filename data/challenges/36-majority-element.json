@@ -1,0 +1,15 @@
+{
+  "category": "Arrays",
+  "difficulty": "Easy",
+  "icon": "",
+  "locked": false,
+  "description": "Find the element that appears more than half the time.",
+  "requirements": [
+    "Implement a correct solution for Majority Element using a clear algorithmic approach.",
+    "Write clean logic that handles edge cases and invalid inputs gracefully.",
+    "Validate the solution with sample inputs and explain the time and space complexity."
+  ],
+  "xp": 90,
+  "title": "Majority Element",
+  "gems": 9
+}

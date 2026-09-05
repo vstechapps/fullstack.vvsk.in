@@ -1,0 +1,127 @@
+{
+  "title": "Authentication in Vue.js",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "auth-intro",
+      "title": "Introduction to Authentication",
+      "type": "content",
+      "duration": "1m",
+      "content": "<p>Authentication is the process of verifying who a user is, while authorization is verifying what they have access to.</p><p>In a Vue.js single-page application (SPA), we typically use token-based authentication, such as JSON Web Tokens (JWT), interacting with a backend API.</p>"
+    },
+    {
+      "id": "jwt-flow-order",
+      "title": "Order the JWT Authentication Flow",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "items": [
+          {
+            "id": "step1",
+            "text": "User submits login credentials (username/password) via a Vue form."
+          },
+          {
+            "id": "step2",
+            "text": "Backend validates credentials and generates a JWT."
+          },
+          {
+            "id": "step3",
+            "text": "Vue app receives and stores the token in localStorage or cookies."
+          },
+          {
+            "id": "step4",
+            "text": "Vue app includes the token in the Authorization header for subsequent API requests."
+          }
+        ],
+        "correctOrder": [
+          "step1",
+          "step2",
+          "step3",
+          "step4"
+        ]
+      }
+    },
+    {
+      "id": "pinia-auth-store",
+      "title": "Managing Auth State with Pinia",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Pinia is the official state management library for Vue.js. Here is how you can structure an auth store:</p>\n<pre><code>import { defineStore } from 'pinia';\nimport { ref } from 'vue';\n\nexport const useAuthStore = defineStore('auth', () => {\n  const token = ref(localStorage.getItem('token') || null);\n  const isAuthenticated = computed(() => !!token.value);\n\n  function setToken(newToken) {\n    token.value = newToken;\n    localStorage.setItem('token', newToken);\n  }\n\n  return { token, isAuthenticated, setToken };\n});</code></pre>"
+    },
+    {
+      "id": "auth-mcq-storage",
+      "title": "Where to Store Tokens",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "In Vue component data locally without persistence"
+          },
+          {
+            "id": "b",
+            "text": "In localStorage, sessionStorage, or secure HttpOnly cookies"
+          },
+          {
+            "id": "c",
+            "text": "Directly inside the Vue Router configuration file"
+          },
+          {
+            "id": "d",
+            "text": "In CSS custom properties"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "vue-router-guards",
+      "title": "Securing Routes with Navigation Guards",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Vue Router allows us to protect routes using navigation guards. We can check if a user is authenticated before allowing access to a view.</p>\n<pre><code>router.beforeEach((to, from, next) => {\n  const authStore = useAuthStore();\n  if (to.meta.requiresAuth && !authStore.isAuthenticated) {\n    next('/login');\n  } else {\n    next();\n  }\n});</code></pre>"
+    },
+    {
+      "id": "router-guard-blank",
+      "title": "Complete the Route Guard Code",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "template": "router.beforeEach((to, from, next) => { if (to.meta.requiresAuth && !authStore.isAuthenticated) { next('___'); } else { next(); } });",
+        "blanks": [
+          {
+            "id": "1",
+            "answer": "/login"
+          }
+        ]
+      }
+    },
+    {
+      "id": "match-auth-concepts",
+      "title": "Match Authentication Terms",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "left": "JWT",
+            "right": "JSON Web Token used for stateless auth"
+          },
+          {
+            "left": "Pinia",
+            "right": "Vue state management library"
+          },
+          {
+            "left": "Router Guard",
+            "right": "Intercepts navigation to secure pages"
+          },
+          {
+            "left": "Axios Interceptor",
+            "right": "Attaches token to outgoing HTTP requests"
+          }
+        ]
+      }
+    }
+  ]
+}

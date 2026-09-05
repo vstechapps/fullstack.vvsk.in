@@ -1,0 +1,164 @@
+{
+  "title": "Styling in Vue.js",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-vue-styling",
+      "title": "Introduction to Vue Styling",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Vue.js provides a robust, flexible approach to component-scoped styling out of the box using Single File Components (SFCs).</p><p>You can write standard CSS, use the <code>scoped</code> attribute for encapsulation, or leverage CSS preprocessors like Sass and Less.</p>"
+    },
+    {
+      "id": "scoped-css-concept",
+      "title": "How Scoped CSS Works",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>When the <code>scoped</code> attribute is present on a <code>&lt;style&gt;</code> tag, its CSS will apply only to elements of the current component.</p>\n<pre><code>&lt;style scoped&gt;\n.example {\n  color: red;\n}\n&lt;/style&gt;</code></pre>\n<p>Vue achieves this by using PostCSS to inject a unique data attribute (e.g., <code>data-v-f3f3eg9</code>) to DOM nodes and selectors.</p>"
+    },
+    {
+      "id": "mcq-scoped",
+      "title": "Scoped CSS Behavior",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "It applies global styles to the entire application."
+          },
+          {
+            "id": "b",
+            "text": "It restricts CSS rules to the current component only using unique attributes."
+          },
+          {
+            "id": "c",
+            "text": "It compiles CSS into inline styles directly on the HTML elements."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "css-modules-content",
+      "title": "CSS Modules in Vue",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>A <code>&lt;style module&gt;</code> tag is compiled as CSS Modules and exposes the resulting CSS classes to the component as an object called <code>$style</code>.</p>\n<pre><code>&lt;template&gt;\n  &lt;p :class=\"$style.red\"&gt;This is red&lt;/p&gt;\n&lt;/template&gt;\n\n&lt;style module&gt;\n.red { color: red; }\n&lt;/style&gt;</code></pre>"
+    },
+    {
+      "id": "blank-css-modules",
+      "title": "Fill in the CSS Module template property",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To bind a CSS Module class named 'header' to an element, we use the special property named ______ inside the class binding.",
+        "correctAnswers": [
+          "$style"
+        ]
+      }
+    },
+    {
+      "id": "v-bind-css-content",
+      "title": "V-Bind in CSS",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Vue 3 SFC style tags support linking CSS values to reactive component state using the <code>v-bind()</code> CSS function.</p>\n<pre><code>&lt;script setup&gt;\nimport { ref } from 'vue'\nconst themeColor = ref('red')\n&lt;/script&gt;\n\n&lt;style scoped&gt;\ndiv {\n  color: v-bind(themeColor);\n}\n&lt;/style&gt;</code></pre>"
+    },
+    {
+      "id": "match-styling-concepts",
+      "title": "Match Styling Feature to Description",
+      "type": "match",
+      "duration": "4m",
+      "content": {
+        "pairs": [
+          {
+            "left": "scoped",
+            "right": "Appends data attributes to limit CSS to the current component"
+          },
+          {
+            "left": "module",
+            "right": "Exposes CSS classes as an object named $style"
+          },
+          {
+            "left": "v-bind()",
+            "right": "Connects reactive script state directly to CSS property values"
+          },
+          {
+            "left": "global style",
+            "right": "Applied across the whole app without encapsulation"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-preprocessor-setup",
+      "title": "Order the steps to use Sass in a Vue SFC",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Install sass dependency via npm (npm install -D sass)"
+          },
+          {
+            "id": "2",
+            "text": "Add lang=\"scss\" or lang=\"sass\" to the style tag"
+          },
+          {
+            "id": "3",
+            "text": "Write SCSS/Sass syntax inside the style block"
+          },
+          {
+            "id": "4",
+            "text": "Build and run the project to compile styles"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    },
+    {
+      "id": "deep-selectors-content",
+      "title": "Deep Selectors",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Sometimes you want a scoped style to 'bleed' into child components. You can use the <code>:deep()</code> pseudo-class:</p>\n<pre><code>&lt;style scoped&gt;\n.a :deep(.b) {\n  /* styles child elements */\n}\n&lt;/style&gt;</code></pre>"
+    },
+    {
+      "id": "mcg-deep-selector",
+      "title": "Choose Deep Selector syntax",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": ">>> .child-class"
+          },
+          {
+            "id": "b",
+            "text": ":deep(.child-class)"
+          },
+          {
+            "id": "c",
+            "text": "/deep/ .child-class"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "summary-styling",
+      "title": "Styling Summary",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>You've learned the primary styling mechanisms in Vue.js:</p><ul><li>Scoped CSS for local encapsulation</li><li>CSS Modules for programmatic class naming</li><li>v-bind() in CSS for dynamic reactive styles</li><li>:deep() for targeting child components</li></ul>"
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "title": "Events in Vue.js",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-events",
+      "title": "Introduction to Vue Events",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>In Vue.js, handling events is done using the <code>v-on</code> directive or its shorthand symbol, <code>@</code>.</p>\n<p>You can listen to DOM events and run JavaScript upon triggering.</p>\n<pre><code>&lt;button @click=\"count++\"&gt;Add 1&lt;/button&gt;</code></pre>"
+    },
+    {
+      "id": "mcq-shorthand",
+      "title": "v-on Shorthand",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "v-bind:"
+          },
+          {
+            "id": "b",
+            "text": "@"
+          },
+          {
+            "id": "c",
+            "text": "#"
+          },
+          {
+            "id": "d",
+            "text": "::"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "method-event-handlers",
+      "title": "Method Event Handlers",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>For more complex logic, you can bind an event to a method defined in your component's <code>methods</code> option or Composition API.</p>\n<pre><code>&lt;button @click=\"greet\"&gt;Greet&lt;/button&gt;</code></pre>\n<p>The method will automatically receive the native DOM event as an argument if called directly.</p>"
+    },
+    {
+      "id": "blank-directive",
+      "title": "Fill in the Event Directive",
+      "type": "blank",
+      "duration": "3m",
+      "content": "To listen to a submit event on a form while preventing its default reload, you use _____ prevent."
+    },
+    {
+      "id": "event-modifiers",
+      "title": "Event Modifiers",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Vue provides event modifiers for <code>v-on</code> so you don't have to call <code>event.preventDefault()</code> or <code>event.stopPropagation()</code> inside your methods.</p>\n<ul>\n<li><code>.stop</code> - call event.stopPropagation()</li>\n<li><code>.prevent</code> - call event.preventDefault()</li>\n<li><code>.once</code> - the event handler will be triggered at most once</li>\n</ul>\n<pre><code>&lt;form @submit.prevent=\"onSubmit\"&gt;...&lt;/form&gt;</code></pre>"
+    },
+    {
+      "id": "match-modifiers",
+      "title": "Match Event Modifiers to Description",
+      "type": "match",
+      "duration": "4m",
+      "content": {
+        "pairs": [
+          {
+            "id": "p1",
+            "left": ".prevent",
+            "right": "Calls event.preventDefault()"
+          },
+          {
+            "id": "p2",
+            "left": ".stop",
+            "right": "Calls event.stopPropagation()"
+          },
+          {
+            "id": "p3",
+            "left": ".once",
+            "right": "Triggers the handler only once"
+          },
+          {
+            "id": "p4",
+            "left": ".self",
+            "right": "Triggers only if event.target is the element itself"
+          }
+        ]
+      }
+    },
+    {
+      "id": "key-modifiers",
+      "title": "Key Modifiers and System Modifiers",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>When listening for keyboard events, you can add key modifiers when using <code>v-on</code> for specific keys like <code>enter</code>, <code>tab</code>, <code>delete</code>, <code>esc</code>, etc.</p>\n<pre><code>&lt;input @keyup.enter=\"submit\" /&gt;</code></pre>\n<p>You can also use system modifier keys like <code>ctrl</code>, <code>alt</code>, <code>shift</code>, and <code>meta</code> to trigger mouse or keyboard event listeners only when the corresponding key is pressed.</p>"
+    },
+    {
+      "id": "order-event-handling",
+      "title": "Order the Event Flow Steps",
+      "type": "order",
+      "duration": "4m",
+      "content": {
+        "steps": [
+          {
+            "id": "s1",
+            "text": "User interacts with the DOM element (e.g., clicks a button)."
+          },
+          {
+            "id": "s2",
+            "text": "Vue captures the native DOM event via the listener."
+          },
+          {
+            "id": "s3",
+            "text": "Any applied event modifiers (like .prevent) are processed."
+          },
+          {
+            "id": "s4",
+            "text": "The bound Vue method or inline expression is executed."
+          }
+        ],
+        "correctOrder": [
+          "s1",
+          "s2",
+          "s3",
+          "s4"
+        ]
+      }
+    }
+  ]
+}

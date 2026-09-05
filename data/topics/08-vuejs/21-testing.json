@@ -1,0 +1,110 @@
+{
+  "title": "Testing in Vue.js",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-vue-testing",
+      "title": "Introduction to Vue Testing",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Testing is a crucial part of Vue.js development. It ensures your components render correctly, react to user input, and maintain state as expected.</p><p>We primarily use <strong>Vitest</strong> as the test runner and <strong>Vue Test Utils</strong> to mount and interact with Vue components.</p>"
+    },
+    {
+      "id": "testing-libraries-mcq",
+      "title": "Default Test Runner",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Jasmine"
+          },
+          {
+            "id": "b",
+            "text": "Vitest"
+          },
+          {
+            "id": "c",
+            "text": "Mocha"
+          },
+          {
+            "id": "d",
+            "text": "QUnit"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "vue-test-utils-mount",
+      "title": "Mounting Components",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To test a Vue component, you need to mount it using Vue Test Utils.</p>\n<pre><code>import { mount } from '@vue/test-utils'\nimport MyComponent from './MyComponent.vue'\n\nconst wrapper = mount(MyComponent, {\n  props: {\n    title: 'Hello Vue'\n  }\n})</code></pre>\n<p>The <code>mount</code> method renders the component and all its child components.</p>"
+    },
+    {
+      "id": "blank-mounting-method",
+      "title": "Fill in the Mounting Method",
+      "type": "blank",
+      "duration": "1m",
+      "content": "To render a component along with all its child components in Vue Test Utils, we use the _______ function.",
+      "answer": "mount"
+    },
+    {
+      "id": "matching-testing-concepts",
+      "title": "Match Testing Concepts",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "mount",
+            "right": "Renders component and children"
+          },
+          {
+            "left": "shallowMount",
+            "right": "Renders component without child stubs"
+          },
+          {
+            "left": "Vitest",
+            "right": "Modern blazing fast unit test runner"
+          },
+          {
+            "left": "wrapper.find",
+            "right": "Queries DOM elements"
+          }
+        ]
+      }
+    },
+    {
+      "id": "interacting-with-components",
+      "title": "Interacting and Triggering Events",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>You can simulate user interactions using the <code>trigger</code> method on the wrapper element.</p>\n<pre><code>test('increments counter on click', async () => {\n  const wrapper = mount(CounterComponent)\n  \n  await wrapper.find('button').trigger('click')\n  \n  expect(wrapper.text()).toContain('1')\n})</code></pre>"
+    },
+    {
+      "id": "order-testing-steps",
+      "title": "Order of Writing a Component Test",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "items": [
+          "Import the component and test utilities",
+          "Mount the component using mount()",
+          "Find the target element using wrapper.find()",
+          "Trigger a user event like click()",
+          "Assert the expected output using expect()"
+        ]
+      }
+    },
+    {
+      "id": "conclusion-testing",
+      "title": "Summary of Vue Testing",
+      "type": "content",
+      "duration": "1m",
+      "content": "<p>You have covered the basics of Vue.js testing! Remember to always await asynchronous updates, use proper assertion libraries, and test user behavior rather than implementation details.</p>"
+    }
+  ]
+}

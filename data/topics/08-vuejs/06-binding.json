@@ -1,0 +1,124 @@
+{
+  "title": "Data Binding in Vue.js",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-data-binding",
+      "title": "Introduction to Data Binding",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Data binding in Vue.js allows you to connect your component's state (JavaScript data) to the rendered DOM (HTML).</p>\n<p>Vue uses a reactive data binding system, meaning when the data changes, the UI updates automatically.</p>"
+    },
+    {
+      "id": "interpolation-content",
+      "title": "Text Interpolation with Mustaches",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>The most basic form of data binding is text interpolation using the \"Mustache\" syntax (double curly braces).</p>\n<pre><code>&lt;template&gt;\n  &lt;p&gt;Message: {{ message }}&lt;/p&gt;\n&lt;/template&gt;\n\n&lt;script&gt;\nexport default {\n  data() {\n    return {\n      message: 'Hello Vue!'\n    }\n  }\n}\n&lt;/script&gt;</code></pre>"
+    },
+    {
+      "id": "mcq-interpolation",
+      "title": "Checking Mustache Syntax",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "<p>{ message }</p>"
+          },
+          {
+            "id": "b",
+            "text": "<p>{{ message }}</p>"
+          },
+          {
+            "id": "c",
+            "text": "<p>[[ message ]]</p>"
+          },
+          {
+            "id": "d",
+            "text": "<p>#message#</p>"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "v-bind-content",
+      "title": "Attribute Binding with v-bind",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Mustaches cannot be used inside HTML attributes. To bind an attribute to dynamic data, use the <code>v-bind</code> directive.</p>\n<pre><code>&lt;img v-bind:src=\"imageSrc\" alt=\"Dynamic Image\"&gt;</code></pre>\n<p>Vue provides a shorthand for <code>v-bind</code>: simply use a colon (:).</p>\n<pre><code>&lt;img :src=\"imageSrc\" alt=\"Dynamic Image\"&gt;</code></pre>"
+    },
+    {
+      "id": "blank-vbind-shorthand",
+      "title": "Fill in the v-bind Shorthand",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To use the shorthand syntax for v-bind:src, you write it as ___src=\"imageSrc\".",
+        "answer": ":"
+      }
+    },
+    {
+      "id": "v-model-content",
+      "title": "Two-Way Data Binding with v-model",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>While <code>v-bind</code> is one-way (from state to view), the <code>v-model</code> directive creates two-way data binding on form input, textarea, and select elements.</p>\n<pre><code>&lt;input v-model=\"searchText\" placeholder=\"Search...\" /&gt;\n&lt;p&gt;Searching for: {{ searchText }}&lt;/p&gt;</code></pre>\n<p>It automatically syncs the input value with the JavaScript state.</p>"
+    },
+    {
+      "id": "match-directives",
+      "title": "Match Vue Directives to their Purpose",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "pairs": [
+          {
+            "left": "{{ msg }}",
+            "right": "Text Interpolation"
+          },
+          {
+            "left": "v-bind:href",
+            "right": "Attribute Binding"
+          },
+          {
+            "left": "v-model",
+            "right": "Two-way Form Binding"
+          },
+          {
+            "left": ":src",
+            "right": "Shorthand for attribute binding"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-binding-steps",
+      "title": "Order the Steps of Setting Up a Reactive Component",
+      "type": "order",
+      "duration": "5m",
+      "content": {
+        "items": [
+          "Define the data property in the component's data option",
+          "Include the reactive variable in the template using interpolation or directives",
+          "Update the data property via methods or user input",
+          "Observe the UI automatically re-render with the new value"
+        ],
+        "correctOrder": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "summary-content",
+      "title": "Data Binding Summary",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Great job! You've learned the core concepts of Vue.js data binding:</p>\n<ul>\n  <li><strong>Text Interpolation ({{ }})</strong> for rendering text.</li>\n  <li><strong>v-bind (:)</strong> for dynamic HTML attributes.</li>\n  <li><strong>v-model</strong> for two-way input binding.</li>\n</ul>"
+    }
+  ]
+}

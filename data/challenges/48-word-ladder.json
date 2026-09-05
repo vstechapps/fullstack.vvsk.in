@@ -1,0 +1,15 @@
+{
+  "category": "Graphs",
+  "difficulty": "Hard",
+  "icon": "",
+  "locked": false,
+  "description": "Find the shortest transformation sequence from one word to another.",
+  "requirements": [
+    "Implement a correct solution for Word Ladder using a clear algorithmic approach.",
+    "Write clean logic that handles edge cases and invalid inputs gracefully.",
+    "Validate the solution with sample inputs and explain the time and space complexity."
+  ],
+  "xp": 220,
+  "title": "Word Ladder",
+  "gems": 22
+}

@@ -1,0 +1,153 @@
+{
+  "title": "Performance for Vue.js Developer",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-perf",
+      "title": "Introduction to Vue Performance",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Performance is crucial for user retention and SEO. In Vue.js, optimization covers bundle size reduction, efficient reactivity usage, and runtime rendering speedups.</p>\n<p>We will explore techniques like code splitting, lazy loading, and avoiding unnecessary re-renders.</p>"
+    },
+    {
+      "id": "lazy-loading-mcq",
+      "title": "Route Lazy Loading",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Import all components statically at the top of the router file."
+          },
+          {
+            "id": "b",
+            "text": "Use dynamic imports () => import('./Views/Home.vue') in the router configuration."
+          },
+          {
+            "id": "c",
+            "text": "Compress all images using WebP format."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "v-once-blank",
+      "title": "Directive for Static Content",
+      "type": "blank",
+      "duration": "1m",
+      "content": {
+        "text": "To render a piece of static content once and skip future update-phase checks, you can use the v-{{blank}} directive.",
+        "blanks": [
+          {
+            "id": "blank-1",
+            "answer": "once"
+          }
+        ]
+      }
+    },
+    {
+      "id": "memoization-content",
+      "title": "Using v-memo",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Vue 3.2 introduced <code>v-memo</code>, which allows you to memoize a sub-tree of the template. It caches the DOM nodes based on a dependency array.</p>\n<pre><code>&lt;div v-for=\"item in list\" :key=\"item.id\" v-memo=\"[item.id === selectedId]\"&gt;\n  &lt;p&gt;ID: {{ item.id }}&lt;/p&gt;\n&lt;/div&gt;</code></pre>"
+    },
+    {
+      "id": "optimization-match",
+      "title": "Match Performance Terms",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "left": "Code Splitting",
+            "right": "Breaking bundles into smaller chunks loaded on demand"
+          },
+          {
+            "left": "Tree Shaking",
+            "right": "Removing unused code during the build step"
+          },
+          {
+            "left": "Virtual Scroller",
+            "right": "Rendering only visible items in a massive list"
+          },
+          {
+            "left": "Debounce",
+            "right": "Delaying function execution until after a pause in events"
+          }
+        ]
+      }
+    },
+    {
+      "id": "rendering-order",
+      "title": "Order the Rendering Lifecycle Steps",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Component Creation and setup() execution"
+          },
+          {
+            "id": "2",
+            "text": "Template compilation and render function execution"
+          },
+          {
+            "id": "3",
+            "text": "DOM mounting (onMounted lifecycle hook)"
+          },
+          {
+            "id": "4",
+            "text": "Reactivity updates and patch process"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    },
+    {
+      "id": "keep-alive-content",
+      "title": "Caching Components with KeepAlive",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>When switching between dynamic components, you can keep inactive components alive in memory rather than destroying them by wrapping them in a <code>&lt;KeepAlive&gt;</code> tag.</p>\n<pre><code>&lt;KeepAlive include=\"UserProfile,Settings\"&gt;\n  &lt;component :is=\"currentView\" /&gt;\n&lt;/KeepAlive&gt;</code></pre>"
+    },
+    {
+      "id": "computed-vs-methods-mcq",
+      "title": "Computed Properties vs Methods",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Computed properties are cached based on their reactive dependencies, whereas methods run every time they are called."
+          },
+          {
+            "id": "b",
+            "text": "Methods are cached, but computed properties are not."
+          },
+          {
+            "id": "c",
+            "text": "There is no performance difference between computed properties and methods."
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "conclusion-perf",
+      "title": "Summary of Best Practices",
+      "type": "content",
+      "duration": "1m",
+      "content": "<p>To keep your Vue applications lightning fast:</p>\n<ul>\n  <li>Leverage route-based code splitting.</li>\n  <li>Use <code>shallowRef</code> or <code>shallowReactive</code> for large immutable data structures.</li>\n  <li>Virtualize long lists.</li>\n  <li>Profile regularly using Vue Devtools and browser performance tabs.</li>\n</ul>"
+    }
+  ]
+}

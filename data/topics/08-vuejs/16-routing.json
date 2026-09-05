@@ -1,0 +1,123 @@
+{
+  "title": "Routing for Vue.js Developer",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-vue-router",
+      "title": "Introduction to Vue Router",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Vue Router is the official router for Vue.js. It deeply integrates with Vue.js core to make building Single Page Applications (SPAs) with Vue a breeze.</p>\n<p>Key features include:</p>\n<ul>\n<li>Nested route/view mapping</li>\n<li>Modular, component-based router configuration</li>\n<li>Route params, query, wildcards</li>\n<li>View transitions powered by Vue's transition system</li>\n<li>Fine-grained navigation control</li>\n</ul>"
+    },
+    {
+      "id": "vue-router-mcq",
+      "title": "Official Router",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Vue Router"
+          },
+          {
+            "id": "b",
+            "text": "Vue Navigation"
+          },
+          {
+            "id": "c",
+            "text": "Vue Path"
+          },
+          {
+            "id": "d",
+            "text": "Vue Switch"
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "setting-up-router",
+      "title": "Setting Up Vue Router",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>To install Vue Router in a Vue 3 project, use npm:</p>\n<pre><code>npm install vue-router@4</code></pre>\n<p>Then define your routes and create the router instance:</p>\n<pre><code>import { createRouter, createWebHistory } from 'vue-router'\nimport Home from './views/Home.vue'\nimport About from './views/About.vue'\n\nconst routes = [\n  { path: '/', component: Home },\n  { path: '/about', component: About }\n]\n\nconst router = createRouter({\n  history: createWebHistory(),\n  routes\n})\n\nexport default router</code></pre>"
+    },
+    {
+      "id": "blank-router-history",
+      "title": "Router History Mode",
+      "type": "blank",
+      "duration": "2m",
+      "content": "To use HTML5 History mode in Vue Router, we use the function called ____createWebHistory____."
+    },
+    {
+      "id": "rendering-routes",
+      "title": "Rendering Routes with RouterView",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Once the router is installed and registered in your main app, you need to use the <code>&lt;RouterView&gt;</code> component to display the matched component for the current route.</p>\n<pre><code>&lt;template&gt;\n  &lt;div id=\"app\"&gt;\n    &lt;nav&gt;\n      &lt;router-link to=\"/\"&gt;Home&lt;/router-link&gt; |\n      &lt;router-link to=\"/about\"&gt;About&lt;/router-link&gt;\n    &lt;/nav&gt;\n    &lt;router-view&gt;&lt;/router-view&gt;\n  &lt;/div&gt;\n&lt;/template&gt;</code></pre>"
+    },
+    {
+      "id": "match-router-components",
+      "title": "Match Vue Router Concepts",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "<router-link>",
+            "right": "Used for navigation"
+          },
+          {
+            "left": "<router-view>",
+            "right": "Displays the matched component"
+          },
+          {
+            "left": "useRoute()",
+            "right": "Access current route information"
+          },
+          {
+            "left": "useRouter()",
+            "right": "Access router instance for navigation"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dynamic-routing",
+      "title": "Dynamic Route Matching with Params",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Often you need to map routes with the given pattern to the same component. For example, a <code>User</code> component should be rendered for all users, but with different user IDs.</p>\n<pre><code>const routes = [\n  // dynamic segments start with a colon\n  { path: '/user/:id', component: User }\n]\n</code></pre>\n<p>Inside the component, you can access the route parameter using <code>useRoute().params.id</code>.</p>"
+    },
+    {
+      "id": "order-router-setup",
+      "title": "Order the Router Setup Steps",
+      "type": "order",
+      "duration": "4m",
+      "content": {
+        "steps": [
+          "Install vue-router package via npm",
+          "Define route objects with path and component properties",
+          "Create the router instance using createRouter and createWebHistory",
+          "Register the router with the Vue application instance using .use(router)",
+          "Add <router-view> and <router-link> in your root component"
+        ]
+      }
+    },
+    {
+      "id": "nested-routes",
+      "title": "Nested Routes",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Real application UIs are usually composed of multiple levels of nested components. Vue Router allows you to express this relationship using the <code>children</code> option.</p>\n<pre><code>const routes = [\n  {\n    path: '/user/:id',\n    component: User,\n    children: [\n      {\n        // UserProfile will be rendered inside User's <router-view>\n        // when /user/:id/profile is matched\n        path: 'profile',\n        component: UserProfile,\n      },\n      {\n        // UserPosts will be rendered inside User's <router-view>\n        // when /user/:id/posts is matched\n        path: 'posts',\n        component: UserPosts,\n      },\n    ],\n  },\n]\n</code></pre>"
+    },
+    {
+      "id": "navigation-guards",
+      "title": "Navigation Guards",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Navigation guards provided by Vue Router are primarily used to guard navigations either by redirecting it or canceling it. There are global guards, per-route guards, and in-component guards.</p>\n<pre><code>router.beforeEach((to, from) => {\n  // instead of needless checking we use a helper function to check auth\n  if (!isAuthenticated && to.name !== 'Login') {\n    // redirect the user to the login page\n    return { name: 'Login' }\n  }\n})\n</code></pre>"
+    }
+  ]
+}

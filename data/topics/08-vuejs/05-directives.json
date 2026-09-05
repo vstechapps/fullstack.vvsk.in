@@ -1,0 +1,131 @@
+{
+  "title": "Directives in Vue.js",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-directives",
+      "title": "Introduction to Directives",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Directives are special attributes with the <code>v-</code> prefix provided by Vue.js. They apply reactive behavior to the rendered DOM when the value of their expression changes.</p>"
+    },
+    {
+      "id": "v-if-vs-v-show",
+      "title": "v-if vs v-show",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p><code>v-if</code> is 'real' conditional rendering because it ensures that event listeners and child components inside the conditional block are properly destroyed and re-created.</p><p><code>v-show</code> is much simpler — the element is always rendered regardless of initial condition, with CSS-based toggle.</p>"
+    },
+    {
+      "id": "directive-mcq-1",
+      "title": "Conditional Rendering Choice",
+      "type": "mcq",
+      "duration": "4m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "v-show completely removes the element from the DOM."
+          },
+          {
+            "id": "b",
+            "text": "v-if toggles the display CSS property."
+          },
+          {
+            "id": "c",
+            "text": "v-if conditionally renders or destroys an element based on a boolean expression."
+          },
+          {
+            "id": "d",
+            "text": "v-show destroys child components on toggle."
+          }
+        ],
+        "correctId": "c"
+      }
+    },
+    {
+      "id": "list-rendering",
+      "title": "List Rendering with v-for",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>We can use the <code>v-for</code> directive to render a list of items based on an array. The syntax is <code>item in items</code>, where <code>items</code> is the source data array and <code>item</code> is an alias for the array element being iterated.</p><pre><code>&lt;li v-for=\"item in items\" :key=\"item.id\"&gt;{{ item.text }}&lt;/li&gt;</code></pre>"
+    },
+    {
+      "id": "blank-directive-syntax",
+      "title": "Complete the Directive Syntax",
+      "type": "blank",
+      "duration": "4m",
+      "content": {
+        "template": "To bind an attribute dynamically in Vue, we use the {blank} directive or its shorthand colon (:).",
+        "blanks": [
+          {
+            "id": "0",
+            "answer": "v-bind"
+          }
+        ]
+      }
+    },
+    {
+      "id": "match-directives",
+      "title": "Match Directives to Their Purpose",
+      "type": "match",
+      "duration": "4m",
+      "content": {
+        "pairs": [
+          {
+            "id": "1",
+            "left": "v-model",
+            "right": "Two-way data binding"
+          },
+          {
+            "id": "2",
+            "left": "v-on",
+            "right": "Event listening"
+          },
+          {
+            "id": "3",
+            "left": "v-bind",
+            "right": "Attribute binding"
+          },
+          {
+            "id": "4",
+            "left": "v-once",
+            "right": "Render once and skip updates"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-lifecycle",
+      "title": "Order of Directive Execution",
+      "type": "order",
+      "duration": "5m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "created (Hook called before the directive's bound element is mounted)"
+          },
+          {
+            "id": "2",
+            "text": "beforeMount (Called before the element is inserted to the DOM)"
+          },
+          {
+            "id": "3",
+            "text": "mounted (Called when the bound element's parent component is mounted)"
+          },
+          {
+            "id": "4",
+            "text": "unmounted (Called when the directive is removed from the element)"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    }
+  ]
+}

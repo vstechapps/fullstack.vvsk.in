@@ -1,0 +1,15 @@
+{
+  "category": "Intervals",
+  "difficulty": "Easy",
+  "icon": "",
+  "locked": false,
+  "description": "Check whether a set of meetings can all be scheduled without overlap.",
+  "requirements": [
+    "Implement a correct solution for Meeting Rooms using a clear algorithmic approach.",
+    "Write clean logic that handles edge cases and invalid inputs gracefully.",
+    "Validate the solution with sample inputs and explain the time and space complexity."
+  ],
+  "xp": 80,
+  "title": "Meeting Rooms",
+  "gems": 8
+}

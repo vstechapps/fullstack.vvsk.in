@@ -1,0 +1,15 @@
+{
+  "category": "Arrays",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": false,
+  "description": "Find indices of two numbers in a sorted array that sum to a target.",
+  "requirements": [
+    "Implement a correct solution for Two Sum II - Input Array Is Sorted using a clear algorithmic approach.",
+    "Write clean logic that handles edge cases and invalid inputs gracefully.",
+    "Validate the solution with sample inputs and explain the time and space complexity."
+  ],
+  "xp": 110,
+  "title": "Two Sum II - Input Array Is Sorted",
+  "gems": 10
+}

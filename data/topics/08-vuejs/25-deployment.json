@@ -1,0 +1,131 @@
+{
+  "title": "Vue.js Deployment Strategies",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-deployment",
+      "title": "Introduction to Vue.js Deployment",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Deploying a Vue.js application involves building your source code into optimized static assets that can be served by any web server.</p>\n<p>Before deployment, you run the production build command:</p>\n<pre><code>npm run build</code></pre>\n<p>This generates a <code>dist</code> folder containing your minified HTML, CSS, and JavaScript files.</p>"
+    },
+    {
+      "id": "build-command-mcq",
+      "title": "Production Build Command",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "npm run start"
+          },
+          {
+            "id": "b",
+            "text": "npm run build"
+          },
+          {
+            "id": "c",
+            "text": "vue serve"
+          },
+          {
+            "id": "d",
+            "text": "npm run deploy"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "spa-routing-content",
+      "title": "Handling SPA Routing",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Vue.js applications are typically Single Page Applications (SPAs) using Vue Router in HTML5 History mode.</p>\n<p>When deploying to static hosts (like Netlify, Vercel, or GitHub Pages), direct URL navigation or page refreshes can result in <strong>404 Not Found</strong> errors.</p>\n<p>To fix this, you must configure your server or hosting provider to redirect all unknown paths to your <code>index.html</code> file.</p>"
+    },
+    {
+      "id": "spa-routing-blank",
+      "title": "Fill in the SPA Routing Config",
+      "type": "blank",
+      "duration": "3m",
+      "content": {
+        "text": "When using HTML5 History mode, server configuration is required to redirect all incoming requests to {{blank_1}} so that Vue Router can handle the client-side routing.",
+        "blanks": [
+          {
+            "id": "blank_1",
+            "answer": "index.html"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deployment-platforms",
+      "title": "Popular Deployment Platforms",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "pairs": [
+          {
+            "id": "1",
+            "left": "Vercel",
+            "right": "Zero-config deployments with excellent Vite integration"
+          },
+          {
+            "id": "2",
+            "left": "Netlify",
+            "right": "Continuous deployment with custom _redirects support"
+          },
+          {
+            "id": "3",
+            "left": "GitHub Pages",
+            "right": "Free hosting requiring base URL configuration for project repos"
+          },
+          {
+            "id": "4",
+            "left": "Nginx",
+            "right": "Self-hosted web server requiring custom server block configs"
+          }
+        ]
+      }
+    },
+    {
+      "id": "env-variables-content",
+      "title": "Environment Variables in Vue",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Vite exposes env variables through <code>import.meta.env</code>.</p>\n<p>To prevent accidentally leaking sensitive keys to the client, only variables prefixed with <code>VITE_</code> are exposed to your Vue code.</p>\n<pre><code># .env.production\nVITE_API_URL=https://api.example.com/v1</code></pre>"
+    },
+    {
+      "id": "deployment-steps-order",
+      "title": "Order the Deployment Workflow",
+      "type": "order",
+      "duration": "7m",
+      "content": {
+        "steps": [
+          {
+            "id": "step-1",
+            "text": "Set up environment variables for production (.env.production)"
+          },
+          {
+            "id": "step-2",
+            "text": "Run the build command (npm run build) to generate the dist folder"
+          },
+          {
+            "id": "step-3",
+            "text": "Configure server rewrite rules for HTML5 History mode (SPA routing)"
+          },
+          {
+            "id": "step-4",
+            "text": "Upload or deploy the dist folder contents to your hosting provider"
+          }
+        ],
+        "correctOrder": [
+          "step-1",
+          "step-2",
+          "step-3",
+          "step-4"
+        ]
+      }
+    }
+  ]
+}

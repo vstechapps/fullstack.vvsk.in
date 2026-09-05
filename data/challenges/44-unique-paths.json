@@ -1,0 +1,15 @@
+{
+  "category": "Dynamic Programming",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": false,
+  "description": "Count the number of ways to reach the bottom-right corner.",
+  "requirements": [
+    "Implement a correct solution for Unique Paths using a clear algorithmic approach.",
+    "Write clean logic that handles edge cases and invalid inputs gracefully.",
+    "Validate the solution with sample inputs and explain the time and space complexity."
+  ],
+  "xp": 150,
+  "title": "Unique Paths",
+  "gems": 15
+}

@@ -1,0 +1,96 @@
+{
+  "title": "Forms in Vue.js",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-forms",
+      "title": "Introduction to Vue Forms",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Handling forms in Vue.js is made easy using the <code>v-model</code> directive, which provides two-way data binding between form input elements and state.</p>"
+    },
+    {
+      "id": "v-model-mcq",
+      "title": "Understanding v-model",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "It creates a one-way data flow from script to template."
+          },
+          {
+            "id": "b",
+            "text": "It provides two-way data binding for form inputs."
+          },
+          {
+            "id": "c",
+            "text": "It replaces native HTML form validation completely."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "form-modifiers",
+      "title": "Vue Form Modifiers",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Vue provides modifiers to fine-tune <code>v-model</code> behavior:</p><ul><li><code>.lazy</code>: syncs after <code>change</code> instead of <code>input</code></li><li><code>.number</code>: casts user input to a valid number</li><li><code>.trim</code>: strips whitespace from user input</li></ul>"
+    },
+    {
+      "id": "match-modifiers",
+      "title": "Match Modifier with Purpose",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": ".lazy",
+            "right": "Syncs after change event"
+          },
+          {
+            "left": ".number",
+            "right": "Casts input to a number"
+          },
+          {
+            "left": ".trim",
+            "right": "Removes whitespace"
+          }
+        ]
+      }
+    },
+    {
+      "id": "blank-vmodel",
+      "title": "Complete the Directive",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "sentence": "To bind an input value to the username state, we use v-_____ = \"username\".",
+        "answer": "model"
+      }
+    },
+    {
+      "id": "order-lifecycle",
+      "title": "Form Submission Process",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "steps": [
+          "Attach @submit.prevent to the form element",
+          "Validate input data in the component method",
+          "Send data to the backend API",
+          "Reset the form state upon success"
+        ]
+      }
+    },
+    {
+      "id": "conclusion-forms",
+      "title": "Best Practices Summary",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Always remember to use <code>.prevent</code> on form submissions to stop page reloads, and leverage Vue's ecosystem or libraries like VeeValidate for robust form validation.</p>"
+    }
+  ]
+}

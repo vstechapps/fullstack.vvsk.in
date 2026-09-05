@@ -1,0 +1,15 @@
+{
+  "category": "Dynamic Programming",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": false,
+  "description": "Count the number of decode interpretations of a message.",
+  "requirements": [
+    "Implement a correct solution for Decode Ways using a clear algorithmic approach.",
+    "Write clean logic that handles edge cases and invalid inputs gracefully.",
+    "Validate the solution with sample inputs and explain the time and space complexity."
+  ],
+  "xp": 170,
+  "title": "Decode Ways",
+  "gems": 17
+}

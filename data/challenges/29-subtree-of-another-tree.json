@@ -1,0 +1,15 @@
+{
+  "category": "Trees",
+  "difficulty": "Easy",
+  "icon": "",
+  "locked": false,
+  "description": "Check whether one tree is a subtree of another.",
+  "requirements": [
+    "Implement a correct solution for Subtree of Another Tree using a clear algorithmic approach.",
+    "Write clean logic that handles edge cases and invalid inputs gracefully.",
+    "Validate the solution with sample inputs and explain the time and space complexity."
+  ],
+  "xp": 100,
+  "title": "Subtree of Another Tree",
+  "gems": 10
+}

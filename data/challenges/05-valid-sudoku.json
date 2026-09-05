@@ -1,0 +1,15 @@
+{
+  "category": "Matrix",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": false,
+  "description": "Validate whether a 9x9 grid follows Sudoku rules.",
+  "requirements": [
+    "Implement a correct solution for Valid Sudoku using a clear algorithmic approach.",
+    "Write clean logic that handles edge cases and invalid inputs gracefully.",
+    "Validate the solution with sample inputs and explain the time and space complexity."
+  ],
+  "xp": 120,
+  "title": "Valid Sudoku",
+  "gems": 12
+}

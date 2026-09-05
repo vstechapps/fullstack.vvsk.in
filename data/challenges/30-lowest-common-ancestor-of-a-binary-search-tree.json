@@ -1,0 +1,15 @@
+{
+  "category": "Trees",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": false,
+  "description": "Find the lowest common ancestor in a BST.",
+  "requirements": [
+    "Implement a correct solution for Lowest Common Ancestor of a Binary Search Tree using a clear algorithmic approach.",
+    "Write clean logic that handles edge cases and invalid inputs gracefully.",
+    "Validate the solution with sample inputs and explain the time and space complexity."
+  ],
+  "xp": 130,
+  "title": "Lowest Common Ancestor of a Binary Search Tree",
+  "gems": 13
+}

@@ -1,0 +1,15 @@
+{
+  "category": "Dynamic Programming",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": false,
+  "description": "Determine whether a string can be segmented into dictionary words.",
+  "requirements": [
+    "Implement a correct solution for Word Break using a clear algorithmic approach.",
+    "Write clean logic that handles edge cases and invalid inputs gracefully.",
+    "Validate the solution with sample inputs and explain the time and space complexity."
+  ],
+  "xp": 150,
+  "title": "Word Break",
+  "gems": 15
+}

@@ -1,0 +1,15 @@
+{
+  "category": "Trees",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": false,
+  "description": "Traverse a binary tree level by level and return each level as a list.",
+  "requirements": [
+    "Implement a correct solution for Binary Tree Level Order Traversal using a clear algorithmic approach.",
+    "Write clean logic that handles edge cases and invalid inputs gracefully.",
+    "Validate the solution with sample inputs and explain the time and space complexity."
+  ],
+  "xp": 130,
+  "title": "Binary Tree Level Order Traversal",
+  "gems": 13
+}

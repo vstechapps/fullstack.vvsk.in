@@ -1,0 +1,15 @@
+{
+  "category": "Dynamic Programming",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": false,
+  "description": "Count valid paths in a grid with obstacles.",
+  "requirements": [
+    "Implement a correct solution for Unique Paths II using a clear algorithmic approach.",
+    "Write clean logic that handles edge cases and invalid inputs gracefully.",
+    "Validate the solution with sample inputs and explain the time and space complexity."
+  ],
+  "xp": 160,
+  "title": "Unique Paths II",
+  "gems": 16
+}

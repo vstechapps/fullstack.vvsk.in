@@ -1,0 +1,15 @@
+{
+  "category": "Trees",
+  "difficulty": "Easy",
+  "icon": "",
+  "locked": false,
+  "description": "Check whether a binary tree is mirror-symmetric.",
+  "requirements": [
+    "Implement a correct solution for Symmetric Tree using a clear algorithmic approach.",
+    "Write clean logic that handles edge cases and invalid inputs gracefully.",
+    "Validate the solution with sample inputs and explain the time and space complexity."
+  ],
+  "xp": 90,
+  "title": "Symmetric Tree",
+  "gems": 9
+}

@@ -1,0 +1,15 @@
+{
+  "category": "Hashing",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": false,
+  "description": "Return the k most frequent elements from an array.",
+  "requirements": [
+    "Implement a correct solution for Top K Frequent Elements using a clear algorithmic approach.",
+    "Write clean logic that handles edge cases and invalid inputs gracefully.",
+    "Validate the solution with sample inputs and explain the time and space complexity."
+  ],
+  "xp": 130,
+  "title": "Top K Frequent Elements",
+  "gems": 13
+}

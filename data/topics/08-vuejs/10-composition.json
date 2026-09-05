@@ -1,0 +1,160 @@
+{
+  "title": "Composition API in Vue.js",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "comp-api-intro",
+      "title": "Introduction to Composition API",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>The Composition API is a set of APIs that allows us to author Vue components using imported functions instead of declaring options. It provides better logic reuse and more flexible code organization compared to the Options API.</p>"
+    },
+    {
+      "id": "ref-vs-reactive",
+      "title": "Reactivity: ref vs reactive",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>In the Composition API, we manage reactivity using <code>ref</code> and <code>reactive</code>.</p>\n<pre><code>import { ref, reactive } from 'vue';\n\nconst count = ref(0); // For primitives\nconst state = reactive({ name: 'Vue' }); // For objects</code></pre>"
+    },
+    {
+      "id": "mcq-ref-access",
+      "title": "Accessing Ref Values",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "count.value"
+          },
+          {
+            "id": "b",
+            "text": "count()"
+          },
+          {
+            "id": "c",
+            "text": "*count"
+          },
+          {
+            "id": "d",
+            "text": "count.current"
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "blank-setup",
+      "title": "Script Setup Syntax",
+      "type": "blank",
+      "duration": "2m",
+      "content": "To enable the streamlined Composition API syntax without export default statements, we use the <input type=\"text\" data-answer=\"setup\" /> attribute in the script tag."
+    },
+    {
+      "id": "lifecycle-hooks",
+      "title": "Lifecycle Hooks mapping",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "mounted",
+            "right": "onMounted"
+          },
+          {
+            "left": "unmounted",
+            "right": "onUnmounted"
+          },
+          {
+            "left": "updated",
+            "right": "onUpdated"
+          },
+          {
+            "left": "created",
+            "right": "setup() / immediate"
+          }
+        ]
+      }
+    },
+    {
+      "id": "computed-watchers",
+      "title": "Computed and Watchers",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p>Computed properties and watchers are also imported functions.</p>\n<pre><code>import { ref, computed, watch } from 'vue';\n\nconst count = ref(0);\nconst double = computed(() => count.value * 2);\n\nwatch(count, (newValue, oldValue) => {\n  console.log(`Count changed to ${newValue}`);\n});</code></pre>"
+    },
+    {
+      "id": "order-component-lifecycle",
+      "title": "Order of Execution in Setup",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Define reactive state with ref() or reactive()"
+          },
+          {
+            "id": "2",
+            "text": "Define computed properties and helper functions"
+          },
+          {
+            "id": "3",
+            "text": "Register lifecycle hooks like onMounted()"
+          },
+          {
+            "id": "4",
+            "text": "Return variables to the template (if not using script setup)"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    },
+    {
+      "id": "composable-pattern",
+      "title": "Building Custom Composables",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>A composable is a function that leverages Vue's Composition API to encapsulate and reuse stateful logic. By convention, their names always start with <code>use</code>.</p>\n<pre><code>// useMouse.js\nimport { ref, onMounted, onUnmounted } from 'vue'\n\nexport function useMouse() {\n  const x = ref(0)\n  const y = ref(0)\n  // ... listener logic\n  return { x, y }\n}</code></pre>"
+    },
+    {
+      "id": "mcq-composable-naming",
+      "title": "Composable Naming Convention",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "getCustomLogic"
+          },
+          {
+            "id": "b",
+            "text": "useCustomLogic"
+          },
+          {
+            "id": "c",
+            "text": "createCustomLogic"
+          },
+          {
+            "id": "d",
+            "text": "makeCustomLogic"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "summary-composition",
+      "title": "Conclusion and Best Practices",
+      "type": "content",
+      "duration": "6m",
+      "content": "<p>The Composition API scales exceptionally well for large applications. Key takeaways include:</p>\n<ul>\n  <li>Always use <code>&lt;script setup&gt;</code> for cleaner code.</li>\n  <li>Extract reusable logic into custom composables.</li>\n  <li>Keep reactivity modifiers in mind (<code>toRefs</code>, <code>toRef</code>).</li>\n</ul>"
+    }
+  ]
+}

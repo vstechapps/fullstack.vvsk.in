@@ -1,0 +1,111 @@
+{
+  "title": "APIs in Vue.js Development",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-apis",
+      "title": "Introduction to APIs",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>An Application Programming Interface (API) allows your Vue.js frontend to communicate with a backend server.</p><p>We typically use HTTP methods like <code>GET</code>, <code>POST</code>, <code>PUT</code>, and <code>DELETE</code> to interact with RESTful endpoints.</p>"
+    },
+    {
+      "id": "api-methods-mcq",
+      "title": "HTTP Methods",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "GET is used to send new data to the server."
+          },
+          {
+            "id": "b",
+            "text": "POST is typically used to create a new resource on the server."
+          },
+          {
+            "id": "c",
+            "text": "DELETE is used to update an existing resource."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "fetch-axios",
+      "title": "Fetching Data in Vue",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>In Vue.js, you can fetch data using the native browser <code>fetch</code> API or libraries like <code>Axios</code>.</p>\n<pre><code>import axios from 'axios';\n\nasync function fetchData() {\n  const response = await axios.get('https://api.example.com/data');\n  console.log(response.data);\n}</code></pre>"
+    },
+    {
+      "id": "match-http-status",
+      "title": "Match HTTP Status Codes",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "left": "200",
+            "right": "OK / Success"
+          },
+          {
+            "left": "201",
+            "right": "Created"
+          },
+          {
+            "left": "404",
+            "right": "Not Found"
+          },
+          {
+            "left": "500",
+            "right": "Internal Server Error"
+          }
+        ]
+      }
+    },
+    {
+      "id": "lifecycle-blank",
+      "title": "API Calls in Vue Lifecycle",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "When making initial API requests in the Composition API, we often perform them inside the _____ hook or directly in the script setup block.",
+        "answer": "onMounted"
+      }
+    },
+    {
+      "id": "order-request-flow",
+      "title": "Order the API Request Flow",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Component mounts in the DOM"
+          },
+          {
+            "id": "2",
+            "text": "Trigger an async function to fetch data"
+          },
+          {
+            "id": "3",
+            "text": "Await response from the server API"
+          },
+          {
+            "id": "4",
+            "text": "Update reactive state with response data"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    }
+  ]
+}

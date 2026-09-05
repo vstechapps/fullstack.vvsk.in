@@ -1,0 +1,15 @@
+{
+  "category": "Strings",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": false,
+  "description": "Return the longest palindromic substring in a string.",
+  "requirements": [
+    "Implement a correct solution for Longest Palindromic Substring using a clear algorithmic approach.",
+    "Write clean logic that handles edge cases and invalid inputs gracefully.",
+    "Validate the solution with sample inputs and explain the time and space complexity."
+  ],
+  "xp": 140,
+  "title": "Longest Palindromic Substring",
+  "gems": 14
+}

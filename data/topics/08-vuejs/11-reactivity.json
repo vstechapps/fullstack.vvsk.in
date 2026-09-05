@@ -1,0 +1,136 @@
+{
+  "title": "Reactivity in Vue.js",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-reactivity",
+      "title": "Introduction to Vue Reactivity",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Reactivity is one of the core features of Vue.js. It allows your UI to automatically update when the underlying data changes, without manual DOM manipulation.</p><p>Vue 3 achieves this using JavaScript Proxies, wrapping your state objects to track dependencies and trigger updates.</p>"
+    },
+    {
+      "id": "ref-vs-reactive",
+      "title": "Ref vs Reactive",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Vue provides two primary ways to create reactive state:</p><ul><li><strong>ref()</strong>: Takes an inner value and returns a reactive and mutable ref object. It can hold any value type, including primitives. Access the value via <code>.value</code> in script.</li><li><strong>reactive()</strong>: Makes an entire object reactive. Works only with objects and arrays, not primitives. No <code>.value</code> needed.</li></ul><pre><code>import { ref, reactive } from 'vue';\n\nconst count = ref(0);\nconst state = reactive({ name: 'Vue', version: 3 });\n\ncount.value++;\nstate.version = 4;</code></pre>"
+    },
+    {
+      "id": "reactivity-mcq-1",
+      "title": "Choosing the right primitive wrapper",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "reactive() is used for primitive values like strings and numbers."
+          },
+          {
+            "id": "b",
+            "text": "ref() is used for primitive values and wraps them in an object with a .value property."
+          },
+          {
+            "id": "c",
+            "text": "reactive() does not require importing from 'vue'."
+          },
+          {
+            "id": "d",
+            "text": "ref() can only be used inside templates."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "computed-properties",
+      "title": "Computed Properties",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>In-template expressions are convenient, but they should be kept simple. For complex logic that depends on reactive state, use <strong>computed properties</strong>.</p><p>Computed properties are cached based on their reactive dependencies and only re-evaluate when those dependencies change.</p><pre><code>import { ref, computed } from 'vue';\n\nconst firstName = ref('John');\nconst lastName = ref('Doe');\n\nconst fullName = computed(() => `${firstName.value} ${lastName.value}`);</code></pre>"
+    },
+    {
+      "id": "reactivity-blank-1",
+      "title": "Fill in the computed syntax",
+      "type": "blank",
+      "duration": "3m",
+      "content": {
+        "text": "To create a calculated value that caches its result based on reactive dependencies, we use the [blank] function imported from 'vue'.",
+        "correctAnswers": [
+          "computed"
+        ]
+      }
+    },
+    {
+      "id": "watchers",
+      "title": "Watchers and WatchEffects",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Sometimes we need to perform side effects in reaction to state changes—such as mutating the DOM, fetching data, or logging analytics.</p><ul><li><strong>watch()</strong>: Lazily tracks specific reactive sources and runs a callback when they change.</li><li><strong>watchEffect()</strong>: Runs the callback immediately while automatically tracking any reactive dependencies accessed synchronously.</li></ul><pre><code>import { ref, watch } from 'vue';\n\nconst question = ref('');\n\nwatch(question, async (newVal, oldVal) => {\n  console.log(`Question changed from ${oldVal} to ${newVal}`);\n});</code></pre>"
+    },
+    {
+      "id": "match-apis",
+      "title": "Match Vue Reactivity APIs with their descriptions",
+      "type": "match",
+      "duration": "4m",
+      "content": {
+        "pairs": [
+          {
+            "left": "ref()",
+            "right": "Wraps a primitive or object with a .value property"
+          },
+          {
+            "left": "reactive()",
+            "right": "Returns a proxy of an object without .value property"
+          },
+          {
+            "left": "computed()",
+            "right": "Returns a cached read-only ref based on other reactive state"
+          },
+          {
+            "left": "watch()",
+            "right": "Performs side effects when specific state changes"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-execution",
+      "title": "Order the Reactivity Lifecycle Steps",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "State is initialized using ref() or reactive()"
+          },
+          {
+            "id": "2",
+            "text": "Template or computed property reads the reactive property"
+          },
+          {
+            "id": "3",
+            "text": "Proxy trap intercepts the read and tracks the dependency"
+          },
+          {
+            "id": "4",
+            "text": "State value is mutated in code"
+          },
+          {
+            "id": "5",
+            "text": "Proxy trap triggers update and queued components/watchers re-run"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      }
+    }
+  ]
+}

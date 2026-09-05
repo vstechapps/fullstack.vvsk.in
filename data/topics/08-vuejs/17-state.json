@@ -1,0 +1,158 @@
+{
+  "title": "State Management in Vue.js",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-state-management",
+      "title": "Introduction to State Management",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>State management is the practice of sharing and managing data across multiple components in an application. In smaller Vue applications, passing props and emitting events is sufficient, but larger apps require a centralized store.</p>"
+    },
+    {
+      "id": "vue-props-emit-mcq",
+      "title": "Prop Drilling Challenge",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "What is 'Prop Drilling' in Vue.js?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Passing data efficiently through a global store."
+          },
+          {
+            "id": "b",
+            "text": "Passing props through multiple nested components just to reach a deeply nested child."
+          },
+          {
+            "id": "c",
+            "text": "A method to optimize database queries."
+          },
+          {
+            "id": "d",
+            "text": "Binding form inputs dynamically."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "pinia-intro",
+      "title": "Meet Pinia",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Pinia is the official, recommended state management library for Vue 3. It provides a modular, type-safe, and intuitive API inspired by Vuex but with a much lighter footprint and zero boilerplate.</p>\n<pre><code>import { defineStore } from 'pinia';\n\nexport const useCounterStore = defineStore('counter', {\n  state: () => ({ count: 0 }),\n  actions: {\n    increment() { this.count++; }\n  }\n});</code></pre>"
+    },
+    {
+      "id": "pinia-components-match",
+      "title": "Pinia Core Concepts",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "left": "State",
+            "right": "The data source of the store"
+          },
+          {
+            "left": "Getters",
+            "right": "Computed properties for the store"
+          },
+          {
+            "left": "Actions",
+            "right": "Methods that can mutate state asynchronously"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pinia-setup-blank",
+      "title": "Define a Pinia Store",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "template": "To create a store in Pinia, we import and use the {0} function, and pass it a unique {1} ID.",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "defineStore"
+          },
+          {
+            "id": 1,
+            "answer": "string"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pinia-usage-content",
+      "title": "Using Stores in Components",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Using a Pinia store inside a Vue component is straightforward. You simply import your store hook, call it inside your setup function or script setup, and access its properties directly.</p>\n<pre><code>&lt;script setup&gt;\nimport { useCounterStore } from '@/stores/counter';\nconst counter = useCounterStore();\n&lt;/script&gt;\n\n&lt;template&gt;\n  &lt;button @click=\"counter.increment()\"&gt;{{ counter.count }}&lt;/button&gt;\n&lt;/template&gt;</code></pre>"
+    },
+    {
+      "id": "store-to-refs-mcq",
+      "title": "Reactivity Destructuring",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "question": "Why should you use storeToRefs() when destructuring state from a Pinia store?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To improve network performance."
+          },
+          {
+            "id": "b",
+            "text": "To maintain reactivity on the extracted properties."
+          },
+          {
+            "id": "c",
+            "text": "To convert the state into TypeScript interfaces."
+          },
+          {
+            "id": "d",
+            "text": "It is required for mutations."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "pinia-lifecycle-order",
+      "title": "Pinia Data Flow Order",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "instruction": "Order the steps of modifying and reading Pinia state inside a component from start to finish.",
+        "items": [
+          {
+            "id": "1",
+            "text": "Import and invoke the store hook inside the component."
+          },
+          {
+            "id": "2",
+            "text": "Call an action method on the store instance."
+          },
+          {
+            "id": "3",
+            "text": "Action updates the store's state property."
+          },
+          {
+            "id": "4",
+            "text": "Component template reactively displays the updated state."
+          }
+        ]
+      }
+    },
+    {
+      "id": "summary-state",
+      "title": "Conclusion",
+      "type": "content",
+      "duration": "1m",
+      "content": "<p>You have mastered the basics of state management with Pinia in Vue.js! Remember to use Pinia for shared global state, leverage getters for computed derived data, and keep actions responsible for business logic.</p>"
+    }
+  ]
+}

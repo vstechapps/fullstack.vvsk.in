@@ -1,0 +1,15 @@
+{
+  "category": "Arrays",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": false,
+  "description": "Find all unique triplets whose sum is zero.",
+  "requirements": [
+    "Implement a correct solution for 3Sum using a clear algorithmic approach.",
+    "Write clean logic that handles edge cases and invalid inputs gracefully.",
+    "Validate the solution with sample inputs and explain the time and space complexity."
+  ],
+  "xp": 140,
+  "title": "3Sum",
+  "gems": 14
+}

@@ -1,0 +1,15 @@
+{
+  "category": "Dynamic Programming",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": false,
+  "description": "Find the smallest cost path from start to finish.",
+  "requirements": [
+    "Implement a correct solution for Minimum Path Sum using a clear algorithmic approach.",
+    "Write clean logic that handles edge cases and invalid inputs gracefully.",
+    "Validate the solution with sample inputs and explain the time and space complexity."
+  ],
+  "xp": 160,
+  "title": "Minimum Path Sum",
+  "gems": 16
+}

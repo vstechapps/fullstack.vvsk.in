@@ -1,0 +1,15 @@
+{
+  "category": "Sorting",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": false,
+  "description": "Find the k-th largest element in an unsorted array.",
+  "requirements": [
+    "Implement a correct solution for Kth Largest Element in an Array using a clear algorithmic approach.",
+    "Write clean logic that handles edge cases and invalid inputs gracefully.",
+    "Validate the solution with sample inputs and explain the time and space complexity."
+  ],
+  "xp": 150,
+  "title": "Kth Largest Element in an Array",
+  "gems": 15
+}

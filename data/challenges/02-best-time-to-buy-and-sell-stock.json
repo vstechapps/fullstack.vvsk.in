@@ -1,0 +1,15 @@
+{
+  "category": "Arrays",
+  "difficulty": "Easy",
+  "icon": "",
+  "locked": false,
+  "description": "Choose a single buy and sell day to maximize profit with one transaction.",
+  "requirements": [
+    "Implement a correct solution for Best Time to Buy and Sell Stock using a clear algorithmic approach.",
+    "Write clean logic that handles edge cases and invalid inputs gracefully.",
+    "Validate the solution with sample inputs and explain the time and space complexity."
+  ],
+  "xp": 70,
+  "title": "Best Time to Buy and Sell Stock",
+  "gems": 7
+}

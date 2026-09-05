@@ -1,0 +1,89 @@
+{
+  "title": "Computed Properties in Vue.js",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-computed",
+      "title": "Introduction to Computed Properties",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>Computed properties in Vue.js allow you to define a property that depends on other data sources. They are cached based on their reactive dependencies and only re-evaluate when some of their dependencies have changed.</p>\n<pre><code>import { ref, computed } from 'vue';\nconst count = ref(1);\nconst double = computed(() => count.value * 2);</code></pre>"
+    },
+    {
+      "id": "computed-vs-methods",
+      "title": "Computed vs Methods",
+      "type": "mcq",
+      "duration": "5m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Methods are cached, computed properties are not."
+          },
+          {
+            "id": "b",
+            "text": "Computed properties are cached based on reactive dependencies, methods execute every time they are called."
+          },
+          {
+            "id": "c",
+            "text": "There is no performance difference between computed properties and methods."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "fill-computed-syntax",
+      "title": "Complete the Computed Syntax",
+      "type": "blank",
+      "duration": "5m",
+      "content": {
+        "template": "To create a computed property in Vue 3 Composition API, we import { ref, ___ } from 'vue'.",
+        "answer": "computed"
+      }
+    },
+    {
+      "id": "writable-computed",
+      "title": "Writable Computed Properties",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>By default, computed properties are getter-only. If you need a writable computed property, you can provide both a getter and a setter.</p>\n<pre><code>const fullName = computed({\n  get() { return firstName.value + ' ' + lastName.value },\n  set(newValue) { [firstName.value, lastName.value] = newValue.split(' ') }\n});</code></pre>"
+    },
+    {
+      "id": "match-concepts",
+      "title": "Match Vue Reactivity Concepts",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "pairs": [
+          {
+            "left": "ref()",
+            "right": "Declares reactive primitive state"
+          },
+          {
+            "left": "computed()",
+            "right": "Creates cached derived state"
+          },
+          {
+            "left": "watch()",
+            "right": "Performs side effects on state change"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-execution",
+      "title": "Order the Computed Evaluation Steps",
+      "type": "order",
+      "duration": "5m",
+      "content": {
+        "steps": [
+          "Component renders and reads the computed property.",
+          "Vue evaluates the getter function and caches the result.",
+          "A dependent reactive property changes.",
+          "Vue marks the computed property as dirty and re-evaluates on next access."
+        ]
+      }
+    }
+  ]
+}

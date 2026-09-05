@@ -1,0 +1,104 @@
+{
+  "title": "Props in Vue.js",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-to-props",
+      "title": "Introduction to Props",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Props are custom attributes you can register on a component. When a value is passed to a prop attribute, it becomes a property on that component instance.</p>\n<p>Data flows strictly <strong>downward</strong>: from parent to child.</p>"
+    },
+    {
+      "id": "defining-props",
+      "title": "Defining Props in Composition API",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>In Vue 3 with <code>&lt;script setup&gt;</code>, props are defined using the <code>defineProps()</code> macro.</p>\n<pre><code>&lt;script setup&gt;\ndefineProps({\n  title: String,\n  likes: Number\n})\n&lt;/script&gt;</code></pre>"
+    },
+    {
+      "id": "mcq-prop-direction",
+      "title": "Data Flow Direction",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "From child to parent"
+          },
+          {
+            "id": "b",
+            "text": "From parent to child"
+          },
+          {
+            "id": "c",
+            "text": "Bidirectional between parent and child"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "prop-validation",
+      "title": "Prop Validation",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Vue components can define requirements for their props. If a requirement is met, Vue will warn you in the browser console. This is especially useful when authoring a component that is intended to be used by others.</p>\n<pre><code>defineProps({\n  age: {\n    type: Number,\n    required: true,\n    validator(value) {\n      return value >= 0\n    }\n  }\n})</code></pre>"
+    },
+    {
+      "id": "blank-define-props",
+      "title": "Complete the Prop Definition",
+      "type": "blank",
+      "duration": "2m",
+      "content": "To define props in a <script setup> component, we use the ______ macro.",
+      "answer": "defineProps"
+    },
+    {
+      "id": "match-prop-types",
+      "title": "Match Prop Concepts",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "required",
+            "right": "Specifies if the prop must be passed"
+          },
+          {
+            "left": "type",
+            "right": "Validates the JavaScript constructor type"
+          },
+          {
+            "left": "default",
+            "right": "Provides a fallback value if omitted"
+          },
+          {
+            "left": "validator",
+            "right": "Custom validation function"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-prop-steps",
+      "title": "Order the Prop Usage Steps",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "steps": [
+          "Define the prop in the child component using defineProps",
+          "Pass the data from the parent template to the child attribute",
+          "Access and render the prop value inside the child template"
+        ]
+      }
+    },
+    {
+      "id": "conclusion-props",
+      "title": "Best Practices for Props",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Remember the golden rule: <strong>Props are read-only (unidirectional)</strong>.</p>\n<p>Never mutate a prop directly inside a child component. If you need to modify prop data locally, define a local ref or computed property instead.</p>"
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "title": "Project Setup for Vue.js Developer",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-vue-cli-vite",
+      "title": "Introduction to Vue Project Setup",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Modern Vue.js development relies heavily on build tools like Vite or Vue CLI. Vite is the recommended tool for its lightning-fast Hot Module Replacement (HMR) and optimized build process.</p>\n<pre><code>npm create vue@latest</code></pre>"
+    },
+    {
+      "id": "vite-mcq",
+      "title": "Choosing the Right Build Tool",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Create React App"
+          },
+          {
+            "id": "b",
+            "text": "Vite"
+          },
+          {
+            "id": "c",
+            "text": "Maven"
+          },
+          {
+            "id": "d",
+            "text": "Gradle"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "project-creation-order",
+      "title": "Steps to Initialize a Vue 3 Project",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Run the scaffolding command (npm create vue@latest)"
+          },
+          {
+            "id": "2",
+            "text": "Select project name and optional features (TypeScript, Router, Pinia)"
+          },
+          {
+            "id": "3",
+            "text": "Navigate into the newly created project directory"
+          },
+          {
+            "id": "4",
+            "text": "Install dependencies using npm install"
+          },
+          {
+            "id": "5",
+            "text": "Start the development server using npm run dev"
+          }
+        ],
+        "correctOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      }
+    },
+    {
+      "id": "vite-config-blank",
+      "title": "Configuring Vite",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "template": "To define plugins and path aliases in a Vite project, we modify the {blank} file located at the root of the project.",
+        "blanks": [
+          {
+            "id": "blank1",
+            "answer": "vite.config.js"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vue-files-match",
+      "title": "Match Vue Project Files and Folders",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "id": "p1",
+            "left": "src/main.js",
+            "right": "Application entry point"
+          },
+          {
+            "id": "p2",
+            "left": "src/App.vue",
+            "right": "Root component"
+          },
+          {
+            "id": "p3",
+            "left": "index.html",
+            "right": "HTML template host"
+          },
+          {
+            "id": "p4",
+            "left": "package.json",
+            "right": "Project dependencies and scripts"
+          }
+        ]
+      }
+    },
+    {
+      "id": "env-variables-content",
+      "title": "Environment Variables in Vite",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Vite exposes env variables through the <code>import.meta.env</code> object. To prevent accidental leaks, only variables prefixed with <code>VITE_</code> are exposed to your client-side code.</p>\n<pre><code>console.log(import.meta.env.VITE_API_URL);</code></pre>"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "title": "Packaging for Vue.js Developers",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-packaging",
+      "title": "Introduction to Vue Packaging",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>When developing reusable components or libraries in Vue.js, you need to package them properly so they can be consumed by other projects or published to npm.</p>\n<p>Vue CLI and Vite both provide built-in library modes to bundle your code into standard formats like ESM, UMD, and IIFE.</p>"
+    },
+    {
+      "id": "vite-library-mode",
+      "title": "Vite Library Mode",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Vite makes building libraries extremely easy. You configure your <code>vite.config.js</code> using the <code>build.lib</code> option:</p>\n<pre><code>export default defineConfig({\n  build: {\n    lib: {\n      entry: resolve(__dirname, 'src/index.js'),\n      name: 'MyVueLib',\n      fileName: 'my-vue-lib',\n    },\n    rollupOptions: {\n      external: ['vue'],\n      output: {\n        globals: {\n          vue: 'Vue',\n        },\n      },\n    },\n  },\n});</code></pre>"
+    },
+    {
+      "id": "mcq-external-vue",
+      "title": "Why Externalize Vue?",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "To reduce the file size of your library by not bundling Vue inside it."
+          },
+          {
+            "id": "b",
+            "text": "Because Vue cannot be bundled with Vite."
+          },
+          {
+            "id": "c",
+            "text": "To make the library run faster in development mode."
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "blank-package-json",
+      "title": "Configuring package.json Entry Points",
+      "type": "blank",
+      "duration": "2m",
+      "content": "To properly expose your built library to consumers, you must define the entry points in your package.json. Fill in the missing property for the ES module output:\n\n<pre><code>{\n  \"name\": \"my-vue-lib\",\n  \"main\": \"./dist/my-vue-lib.umd.cjs\",\n  \"___1___va___2___\": \"./dist/my-vue-lib.js\"\n}</code></pre>",
+      "blanks": [
+        {
+          "id": "1",
+          "answer": "module"
+        },
+        {
+          "id": "2",
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "id": "match-formats",
+      "title": "Match Build Formats",
+      "type": "match",
+      "duration": "2m",
+      "content": "Match the module format with its primary use case:",
+      "pairs": [
+        {
+          "left": "ESM (ES Modules)",
+          "right": "Modern bundlers like Vite and Webpack"
+        },
+        {
+          "left": "UMD (Universal Module Definition)",
+          "right": "Browser script tags and older require systems"
+        },
+        {
+          "left": "IIFE",
+          "right": "Direct execution in a browser via script tag"
+        }
+      ]
+    },
+    {
+      "id": "order-publishing-steps",
+      "title": "Steps to Publish a Vue Library",
+      "type": "order",
+      "duration": "3m",
+      "content": "Put the steps of creating and publishing a Vue library in the correct order:",
+      "items": [
+        {
+          "id": "step1",
+          "text": "Develop your Vue components and create an entry file exporting them."
+        },
+        {
+          "id": "step2",
+          "text": "Configure Vite or Vue CLI library mode in the build configuration."
+        },
+        {
+          "id": "step3",
+          "text": "Run the build script to generate output files in the dist folder."
+        },
+        {
+          "id": "step4",
+          "text": "Test the package locally using 'npm link' or 'yalc'."
+        },
+        {
+          "id": "step5",
+          "text": "Publish the package to the npm registry using 'npm publish'."
+        }
+      ],
+      "correctOrder": [
+        "step1",
+        "step2",
+        "step3",
+        "step4",
+        "step5"
+      ]
+    }
+  ]
+}

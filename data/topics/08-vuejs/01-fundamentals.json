@@ -1,0 +1,169 @@
+{
+  "title": "Vue.js Fundamentals",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-to-vue",
+      "title": "Introduction to Vue.js",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Vue.js is a progressive JavaScript framework used for building user interfaces and single-page applications.</p>\n<p>It focuses on the view layer and is easily integrable with other libraries or existing projects.</p>"
+    },
+    {
+      "id": "vue-definition-mcq",
+      "title": "What is Vue.js?",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "A backend database management system"
+          },
+          {
+            "id": "b",
+            "text": "A progressive JavaScript framework for building UIs"
+          },
+          {
+            "id": "c",
+            "text": "A CSS preprocessor"
+          },
+          {
+            "id": "d",
+            "text": "A Python-based web server"
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "vue-instance-blank",
+      "title": "Creating a Vue App",
+      "type": "blank",
+      "duration": "2m",
+      "content": {
+        "text": "To create a new Vue application instance, we use the function createApp imported from the 'vue' package.",
+        "blanks": [
+          {
+            "id": 1,
+            "answer": "createApp"
+          }
+        ]
+      }
+    },
+    {
+      "id": "reactivity-fundamentals",
+      "title": "Reactivity in Vue 3",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Vue 3 introduces the Composition API, where we use the <code>ref()</code> or <code>reactive()</code> functions to declare reactive state.</p>\n<pre><code>import { ref } from 'vue';\n\nconst count = ref(0);</code></pre>"
+    },
+    {
+      "id": "directives-match",
+      "title": "Match Vue Directives",
+      "type": "match",
+      "duration": "3m",
+      "content": {
+        "pairs": [
+          {
+            "left": "v-bind",
+            "right": "Dynamically binds an attribute to an expression"
+          },
+          {
+            "left": "v-model",
+            "right": "Creates two-way data binding on form inputs"
+          },
+          {
+            "left": "v-if",
+            "right": "Conditionally renders an element based on truthiness"
+          },
+          {
+            "left": "v-for",
+            "right": "Renders a list of items based on an array"
+          }
+        ]
+      }
+    },
+    {
+      "id": "lifecycle-order",
+      "title": "Vue Lifecycle Hooks Order",
+      "type": "order",
+      "duration": "3m",
+      "content": {
+        "instructions": "Order the following Vue lifecycle hooks chronologically from creation to unmounting:",
+        "items": [
+          {
+            "id": "l1",
+            "text": "onBeforeMount"
+          },
+          {
+            "id": "l2",
+            "text": "onMounted"
+          },
+          {
+            "id": "l3",
+            "text": "onBeforeUnmount"
+          },
+          {
+            "id": "l4",
+            "text": "onUnmounted"
+          }
+        ],
+        "correctOrder": [
+          "l1",
+          "l2",
+          "l3",
+          "l4"
+        ]
+      }
+    },
+    {
+      "id": "computed-properties",
+      "title": "Computed Properties vs Methods",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Computed properties are cached based on their reactive dependencies. They only re-evaluate when some of their reactive dependencies have changed.</p>\n<pre><code>const doubleCount = computed(() => count.value * 2);</code></pre>"
+    },
+    {
+      "id": "computed-mcq",
+      "title": "Computed Property Behavior",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "They always re-run on every re-render regardless of changes."
+          },
+          {
+            "id": "b",
+            "text": "They are cached based on their reactive dependencies."
+          },
+          {
+            "id": "c",
+            "text": "They cannot accept parameters."
+          },
+          {
+            "id": "d",
+            "text": "They are asynchronous by default."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "components-props-content",
+      "title": "Components and Props",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Components are reusable Vue instances with a name. Props are custom attributes you can register on a component to pass data down from parent to child.</p>"
+    },
+    {
+      "id": "conclusion-summary",
+      "title": "Summary of Vue Fundamentals",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>You have covered the core concepts of Vue.js: the instance, reactivity with Composition API, directives, lifecycle hooks, computed properties, and components.</p>"
+    }
+  ]
+}

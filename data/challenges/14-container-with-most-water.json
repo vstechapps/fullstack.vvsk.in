@@ -1,0 +1,15 @@
+{
+  "category": "Greedy",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": false,
+  "description": "Find the maximum area formed by two lines and the x-axis.",
+  "requirements": [
+    "Implement a correct solution for Container With Most Water using a clear algorithmic approach.",
+    "Write clean logic that handles edge cases and invalid inputs gracefully.",
+    "Validate the solution with sample inputs and explain the time and space complexity."
+  ],
+  "xp": 120,
+  "title": "Container With Most Water",
+  "gems": 12
+}

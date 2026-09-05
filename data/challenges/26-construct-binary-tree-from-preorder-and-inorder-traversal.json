@@ -1,0 +1,15 @@
+{
+  "category": "Trees",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": false,
+  "description": "Rebuild a binary tree from traversal arrays.",
+  "requirements": [
+    "Implement a correct solution for Construct Binary Tree from Preorder and Inorder Traversal using a clear algorithmic approach.",
+    "Write clean logic that handles edge cases and invalid inputs gracefully.",
+    "Validate the solution with sample inputs and explain the time and space complexity."
+  ],
+  "xp": 160,
+  "title": "Construct Binary Tree from Preorder and Inorder Traversal",
+  "gems": 16
+}

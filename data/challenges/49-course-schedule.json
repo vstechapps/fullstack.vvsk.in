@@ -1,0 +1,15 @@
+{
+  "category": "Graphs",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": false,
+  "description": "Determine whether it is possible to finish all courses given prerequisites.",
+  "requirements": [
+    "Implement a correct solution for Course Schedule using a clear algorithmic approach.",
+    "Write clean logic that handles edge cases and invalid inputs gracefully.",
+    "Validate the solution with sample inputs and explain the time and space complexity."
+  ],
+  "xp": 170,
+  "title": "Course Schedule",
+  "gems": 17
+}

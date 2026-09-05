@@ -1,0 +1,15 @@
+{
+  "category": "Trees",
+  "difficulty": "Easy",
+  "icon": "",
+  "locked": false,
+  "description": "Build a height-balanced BST from a sorted array.",
+  "requirements": [
+    "Implement a correct solution for Convert Sorted Array to Binary Search Tree using a clear algorithmic approach.",
+    "Write clean logic that handles edge cases and invalid inputs gracefully.",
+    "Validate the solution with sample inputs and explain the time and space complexity."
+  ],
+  "xp": 110,
+  "title": "Convert Sorted Array to Binary Search Tree",
+  "gems": 11
+}

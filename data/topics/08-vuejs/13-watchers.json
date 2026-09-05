@@ -1,0 +1,149 @@
+{
+  "title": "Watchers in Vue.js",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-to-watchers",
+      "title": "Introduction to Watchers",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>In Vue.js, <strong>watchers</strong> allow you to perform side effects in reaction to data changes. Unlike computed properties, which are used for synchronous derivations, watchers are ideal for asynchronous operations, costly tasks, or reacting to API calls.</p>\n<pre><code>import { ref, watch } from 'vue';\n\nconst count = ref(0);\n\nwatch(count, (newValue, oldValue) => {\n  console.log(`Count changed from ${oldValue} to ${newValue}`);\n});</code></pre>"
+    },
+    {
+      "id": "watchers-vs-computed",
+      "title": "Watchers vs Computed Properties",
+      "type": "mcq",
+      "duration": "2m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Watchers are designed for side effects and asynchronous operations, while computed properties are for synchronous value derivation."
+          },
+          {
+            "id": "b",
+            "text": "Computed properties can handle asynchronous API requests automatically."
+          },
+          {
+            "id": "c",
+            "text": "Watchers cache their results, whereas computed properties run on every render."
+          },
+          {
+            "id": "d",
+            "text": "There is no difference between them; they are aliases for the same feature."
+          }
+        ],
+        "correctId": "a"
+      }
+    },
+    {
+      "id": "deep-watchers",
+      "title": "Deep Watchers and Immediate Execution",
+      "type": "content",
+      "duration": "5m",
+      "content": "<p>By default, watchers are shallow: they only trigger when the watched ref or getter changes. To watch nested properties inside objects or arrays, you need the <code>deep: true</code> option.</p>\n<p>You can also use <code>immediate: true</code> to trigger the callback right away upon component creation.</p>\n<pre><code>const state = ref({ count: 0 });\n\nwatch(state, (newValue) => {\n  console.log('State changed!', newValue);\n}, { deep: true, immediate: true });</code></pre>"
+    },
+    {
+      "id": "watcher-options-blank",
+      "title": "Configuring Watcher Options",
+      "type": "blank",
+      "duration": "4m",
+      "content": "To watch nested mutations in an object with <code>watch()</code>, you must pass the <code>{ ____: true }</code> option as the third argument.",
+      "correctAnswers": [
+        "deep"
+      ]
+    },
+    {
+      "id": "match-watcher-concepts",
+      "title": "Match Watcher Terminology",
+      "type": "match",
+      "duration": "5m",
+      "content": {
+        "pairs": [
+          {
+            "left": "watch",
+            "right": "Function to observe reactive sources and run side effects"
+          },
+          {
+            "left": "deep",
+            "right": "Option to traverse nested objects for changes"
+          },
+          {
+            "left": "immediate",
+            "right": "Option to run the watcher callback instantly on load"
+          },
+          {
+            "left": "getter",
+            "right": "A function returning the property to watch from a reactive object"
+          }
+        ]
+      }
+    },
+    {
+      "id": "watch-effect-intro",
+      "title": "Introduction to watchEffect",
+      "type": "content",
+      "duration": "4m",
+      "content": "<p><code>watchEffect()</code> allows you to reactively track a function's dependencies automatically. It runs immediately on creation and automatically tracks any reactive properties accessed synchronously inside its callback.</p>\n<pre><code>import { ref, watchEffect } from 'vue';\n\nconst userId = ref(1);\n\nwatchEffect(() => {\n  // Automatically tracks userId.value\n  fetchUserData(userId.value);\n});</code></pre>"
+    },
+    {
+      "id": "order-watcher-setup",
+      "title": "Order the Watcher Execution Flow",
+      "type": "order",
+      "duration": "4m",
+      "content": {
+        "steps": [
+          {
+            "id": "step-1",
+            "text": "Import the `watch` function from 'vue'."
+          },
+          {
+            "id": "step-2",
+            "text": "Define a reactive reference variable (e.g., `const searchQuery = ref('')`)."
+          },
+          {
+            "id": "step-3",
+            "text": "Write the `watch` function passing the reference and a callback function."
+          },
+          {
+            "id": "step-4",
+            "text": "Update the reactive variable's `.value` to trigger the watcher callback."
+          }
+        ],
+        "correctOrder": [
+          "step-1",
+          "step-2",
+          "step-3",
+          "step-4"
+        ]
+      }
+    },
+    {
+      "id": "watcher-cleanup",
+      "title": "Handling Side Effect Cleanup",
+      "type": "mcq",
+      "duration": "3m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Using the onCleanup function passed into the watcher callback to cancel pending async tasks."
+          },
+          {
+            "id": "b",
+            "text": "Calling the .destroy() method manually on the watcher instance."
+          },
+          {
+            "id": "c",
+            "text": "Returning a Promise that resolves when the component unmounts."
+          },
+          {
+            "id": "d",
+            "text": "Vue automatically garbage collects all pending network requests without extra code."
+          }
+        ],
+        "correctId": "a"
+      }
+    }
+  ]
+}

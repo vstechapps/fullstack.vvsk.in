@@ -1,0 +1,15 @@
+{
+  "category": "Arrays",
+  "difficulty": "Medium",
+  "icon": "",
+  "locked": false,
+  "description": "Return a new array where each element is the product of all other elements.",
+  "requirements": [
+    "Implement a correct solution for Product of Array Except Self using a clear algorithmic approach.",
+    "Write clean logic that handles edge cases and invalid inputs gracefully.",
+    "Validate the solution with sample inputs and explain the time and space complexity."
+  ],
+  "xp": 110,
+  "title": "Product of Array Except Self",
+  "gems": 10
+}

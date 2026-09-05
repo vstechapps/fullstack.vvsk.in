@@ -1,0 +1,135 @@
+{
+  "title": "Nuxt.js Fundamentals",
+  "duration": "30m",
+  "cards": [
+    {
+      "id": "intro-to-nuxt",
+      "title": "Introduction to Nuxt",
+      "type": "content",
+      "duration": "2m",
+      "content": "<p>Nuxt is an intuitive, open-source framework based on Vue.js that makes creating modern, fast, and SEO-friendly web applications effortless.</p>\n<p>It handles server-side rendering (SSR), file-system routing, and automatic code-splitting out of the box.</p>"
+    },
+    {
+      "id": "nuxt-rendering-mcq",
+      "title": "Understanding Nuxt Rendering",
+      "type": "mcq",
+      "duration": "1m",
+      "content": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Nuxt only supports client-side rendering."
+          },
+          {
+            "id": "b",
+            "text": "Nuxt provides built-in server-side rendering and static site generation alongside client-side rendering."
+          },
+          {
+            "id": "c",
+            "text": "Nuxt replaces Vue.js with a completely new template engine."
+          }
+        ],
+        "correctId": "b"
+      }
+    },
+    {
+      "id": "file-system-routing",
+      "title": "File-System Routing",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>In Nuxt, routing is automatically generated based on the file structure inside the <code>app/pages</code> or <code>pages</code> directory.</p>\n<pre><code>pages/\n--| about.vue\n--| index.vue</code></pre>\n<p>The file <code>about.vue</code> automatically maps to the <code>/about</code> route.</p>"
+    },
+    {
+      "id": "nuxt-routing-blank",
+      "title": "Complete the Route Path",
+      "type": "blank",
+      "duration": "1m",
+      "content": {
+        "text": "To create a dynamic route for a blog post using an ID in Nuxt, the file should be named [id].vue inside the _____ directory.",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "pages"
+          }
+        ]
+      }
+    },
+    {
+      "id": "auto-imports",
+      "title": "Auto-imports and Directories",
+      "type": "content",
+      "duration": "3m",
+      "content": "<p>Nuxt automatically imports components, composables, and Vue APIs so you don't have to manually import them in every file.</p>\n<ul>\n<li><code>components/</code>: Vue components</li>\n<li><code>composables/</code>: Vue composition functions</li>\n<li><code>utils/</code>: Helper functions</li>\n</ul>"
+    },
+    {
+      "id": "match-nuxt-dirs",
+      "title": "Match Nuxt Directories to their Purpose",
+      "type": "match",
+      "duration": "2m",
+      "content": {
+        "pairs": [
+          {
+            "id": "1",
+            "left": "pages/",
+            "right": "File-based routing components"
+          },
+          {
+            "id": "2",
+            "left": "components/",
+            "right": "Reusable UI Vue components"
+          },
+          {
+            "id": "3",
+            "left": "composables/",
+            "right": "Reusable state and logic"
+          },
+          {
+            "id": "4",
+            "left": "server/",
+            "right": "API endpoints and server handlers"
+          }
+        ]
+      }
+    },
+    {
+      "id": "nuxt-lifecycle-order",
+      "title": "Order the Request Lifecycle",
+      "type": "order",
+      "duration": "2m",
+      "content": {
+        "instructions": "Order the typical steps of a Nuxt SSR page request from start to finish:",
+        "items": [
+          {
+            "id": "step1",
+            "text": "Client makes an HTTP request to the Nuxt server"
+          },
+          {
+            "id": "step2",
+            "text": "Nuxt server executes server-side code and fetches data"
+          },
+          {
+            "id": "step3",
+            "text": "HTML is rendered on the server and sent to the client"
+          },
+          {
+            "id": "step4",
+            "text": "Client hydrates the HTML with JavaScript to make it interactive"
+          }
+        ],
+        "correctOrder": [
+          "step1",
+          "step2",
+          "step3",
+          "step4"
+        ]
+      }
+    },
+    {
+      "id": "conclusion-nuxt",
+      "title": "Summary of Nuxt Benefits",
+      "type": "content",
+      "duration": "1m",
+      "content": "<p>Nuxt supercharges your Vue development by reducing boilerplate, improving SEO performance via SSR/SSG, and enforcing a clean, scalable project structure.</p>"
+    }
+  ]
+}
