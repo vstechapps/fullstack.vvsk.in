@@ -289,27 +289,10 @@
 
 .start-label {
   margin-top: .5rem;
-
-  padding: .25rem .65rem;
-
   border-radius: 999px;
-
   font-size: .65rem;
   font-weight: 700;
-
   letter-spacing: .1em;
-
-  background:
-    var(
-      --elevate-card-background,
-      #fff
-    );
-
-  border: 1px solid
-    var(
-      --elevate-border-color,
-      rgba(0, 0, 0, .08)
-    );
 }
 
 .finish-node {
@@ -327,45 +310,13 @@
 
 .finish-label {
   margin-top: .65rem;
-
-  min-width: 160px;
-
-  padding: .6rem .8rem;
-
   text-align: center;
-
-  border-radius: var(
-    --elevate-radius-md,
-    10px
-  );
-
-  background:
-    var(
-      --elevate-card-background,
-      #fff
-    );
-
-  border: 1px solid
-    var(
-      --elevate-border-color,
-      rgba(0, 0, 0, .08)
-    );
 }
 
 .finish-label strong {
   display: block;
 
   font-size: .7rem;
-}
-
-.finish-label span {
-  display: block;
-
-  margin-top: .2rem;
-
-  font-size: .6rem;
-
-  opacity: .6;
 }
 
 @keyframes finishPulse {
@@ -649,22 +600,7 @@
 
 .course-card {
   position: absolute;
-
-  width: 290px;
-
-  padding: 1rem;
-
-  border-radius:
-    var(
-      --elevate-radius-lg,
-      12px
-    );
-
-  background:
-    var(
-      --elevate-card-background,
-      #fff
-    );
+  cursor: pointer;
 
   border: 1px solid
     var(
@@ -682,17 +618,6 @@
     border-color .2s ease;
 }
 
-.course-card:hover {
-  border-color:
-    var(
-      --elevate-primary,
-      #3b82f6
-    );
-
-  box-shadow:
-    0 15px 40px
-    rgba(0, 0, 0, .14);
-}
 
 
 /* =========================================================
@@ -731,19 +656,6 @@
   transform: translateX(-50%);
 }
 
-.card-right:hover,
-.card-left:hover {
-  transform:
-    translateY(-50%)
-    translateY(-3px);
-}
-
-.card-top:hover,
-.card-bottom:hover {
-  transform:
-    translateX(-50%)
-    translateY(-3px);
-}
 
 
 /* =========================================================
@@ -753,10 +665,12 @@
 .card-connector {
   position: absolute;
 
-  width: 20px;
-  height: 1px;
+  width: 67px;
+  height: 3px;
 
   top: 50%;
+
+  z-index: 3;
 
   background:
     var(
@@ -767,360 +681,26 @@
   opacity: .45;
 }
 
-.card-right .card-connector {
-  left: -20px;
-}
-
-.card-left .card-connector {
-  right: -20px;
-}
-
 .card-top .card-connector,
 .card-bottom .card-connector {
-  width: 1px;
-  height: 20px;
+  width: 3px;
+  height: 64px;
 
   left: 50%;
 }
 
-.card-top .card-connector {
-  bottom: -20px;
-}
+.card-right .card-connector {
+    left: -30px;
+    width: 30px;
+  }
 
-.card-bottom .card-connector {
-  top: -20px;
-}
-
-
-/* =========================================================
-   CARD HEADER
-   ========================================================= */
-
-.card-header {
-  display: flex;
-
-  align-items: center;
-  justify-content: space-between;
-
-  gap: .5rem;
-
-  margin-bottom: .45rem;
-}
-
-.course-category {
-  font-size: .6rem;
-
-  font-weight: 700;
-
-  letter-spacing: .08em;
-
-  color:
-    var(
-      --elevate-primary,
-      #3b82f6
-    );
-}
-
-.course-status {
-  padding: .2rem .45rem;
-
-  border-radius: 999px;
-
-  font-size: .58rem;
-
-  background:
-    rgba(100, 116, 139, .08);
-}
-
-.status-completed {
-  color:
-    var(
-      --elevate-success,
-      #22c55e
-    );
-}
-
-.status-active {
-  color:
-    var(
-      --elevate-primary,
-      #3b82f6
-    );
-}
-
-.status-available {
-  color:
-    var(
-      --elevate-primary,
-      #3b82f6
-    );
-}
-
-.status-locked {
-  color:
-    var(
-      --elevate-muted,
-      #64748b
-    );
+.card-left .card-connector {
+  right: -30px;
+  width: 30px;
 }
 
 
-/* =========================================================
-   CARD CONTENT
-   ========================================================= */
 
-.course-card h3 {
-  margin: 0;
-
-  font-size: 1rem;
-  font-weight: 700;
-}
-
-.course-description {
-  margin: .4rem 0 .8rem;
-
-  font-size: .7rem;
-
-  line-height: 1.5;
-
-  opacity: .65;
-}
-
-
-/* =========================================================
-   COURSE PROGRESS
-   ========================================================= */
-
-.course-progress {
-  margin-bottom: .75rem;
-}
-
-.progress-info {
-  display: flex;
-  justify-content: space-between;
-
-  margin-bottom: .3rem;
-
-  font-size: .6rem;
-
-  opacity: .6;
-}
-
-.progress-bar {
-  height: 5px;
-
-  overflow: hidden;
-
-  border-radius: 999px;
-
-  background:
-    rgba(100, 116, 139, .12);
-}
-
-.progress-bar span {
-  display: block;
-
-  height: 100%;
-
-  border-radius: inherit;
-
-  background:
-    var(
-      --elevate-primary,
-      #3b82f6
-    );
-
-  transition: width .5s ease;
-}
-
-
-/* =========================================================
-   META
-   ========================================================= */
-
-.course-meta {
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: .65rem;
-
-  margin-bottom: .75rem;
-
-  font-size: .58rem;
-
-  opacity: .6;
-}
-
-
-/* =========================================================
-   ACTION
-   ========================================================= */
-
-.course-action {
-  width: 100%;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: space-between;
-
-  padding: .5rem .7rem;
-
-  border-radius:
-    var(
-      --elevate-radius-sm,
-      7px
-    );
-
-  border: 1px solid
-    var(
-      --elevate-primary,
-      #3b82f6
-    );
-
-  background:
-    transparent;
-
-  color:
-    var(
-      --elevate-primary,
-      #3b82f6
-    );
-
-  font-size: .65rem;
-
-  font-weight: 700;
-
-  cursor: pointer;
-
-  transition:
-    background .2s ease,
-    color .2s ease;
-}
-
-.course-action:hover {
-  background:
-    var(
-      --elevate-primary,
-      #3b82f6
-    );
-
-  color: #fff;
-}
-
-.locked-message {
-  padding-top: .3rem;
-
-  font-size: .6rem;
-
-  opacity: .55;
-}
-
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
-.roadmap-footer {
-  max-width: 1200px;
-
-  margin: 0 auto;
-
-  padding: 1rem 1.25rem;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 1rem;
-
-  border-radius:
-    var(
-      --elevate-radius-lg,
-      12px
-    );
-
-  background:
-    var(
-      --elevate-card-background,
-      #fff
-    );
-
-  border: 1px solid
-    var(
-      --elevate-border-color,
-      rgba(0, 0, 0, .08)
-    );
-}
-
-.legend {
-  display: flex;
-
-  align-items: center;
-
-  flex-wrap: wrap;
-
-  gap: 1rem;
-}
-
-.legend-item {
-  display: flex;
-
-  align-items: center;
-
-  gap: .35rem;
-
-  font-size: .65rem;
-
-  opacity: .65;
-}
-
-.legend-dot {
-  width: 8px;
-  height: 8px;
-
-  border-radius: 50%;
-}
-
-.legend-dot.completed {
-  background:
-    var(
-      --elevate-success,
-      #22c55e
-    );
-}
-
-.legend-dot.active {
-  background:
-    var(
-      --elevate-primary,
-      #3b82f6
-    );
-}
-
-.legend-dot.available {
-  background:
-    var(
-      --elevate-info,
-      #0ea5e9
-    );
-}
-
-.legend-dot.locked {
-  background:
-    var(
-      --elevate-muted,
-      #94a3b8
-    );
-}
-
-.journey-message {
-  font-size: .7rem;
-
-  opacity: .6;
-}
 
 
 /* =========================================================
@@ -1137,10 +717,6 @@
   .roadmap-container {
     padding-left: 1rem;
     padding-right: 1rem;
-  }
-
-  .course-card {
-    width: 250px;
   }
 
 }
@@ -1181,6 +757,29 @@
     right: 92px;
   }
 
+  .card-right .card-connector {
+    left: -56px;
+    width: 56px;
+  }
+
+  .card-left .card-connector {
+    right: -56px;
+    width: 56px;
+  }
+
+  .card-top .card-connector,
+  .card-bottom .card-connector {
+    height: 56px;
+  }
+
+  .card-top .card-connector {
+    bottom: -56px;
+  }
+
+  .card-bottom .card-connector {
+    top: -56px;
+  }
+
   .roadmap-footer {
     flex-direction: column;
 
@@ -1213,10 +812,6 @@
     min-height: 1650px;
   }
 
-  .roadmap-title h1 {
-    font-size: 1.4rem;
-  }
-
   .roadmap-title p {
     font-size: .75rem;
   }
@@ -1231,6 +826,29 @@
 
   .card-left {
     right: 82px;
+  }
+
+  .card-right .card-connector {
+    left: -46px;
+    width: 46px;
+  }
+
+  .card-left .card-connector {
+    right: -46px;
+    width: 46px;
+  }
+
+  .card-top .card-connector,
+  .card-bottom .card-connector {
+    height: 46px;
+  }
+
+  .card-top .card-connector {
+    bottom: -46px;
+  }
+
+  .card-bottom .card-connector {
+    top: -46px;
   }
 
 }

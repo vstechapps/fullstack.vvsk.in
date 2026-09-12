@@ -1,89 +1,43 @@
 <div class="main-content" *ngIf="roadmap">
-    <nav class="breadcrumb text-subtitle">
-        <a href="/">Home</a>
-        <span>/</span>
-        <a href="/roadmaps">Roadmaps</a>
-        <span>/</span>
-        <span>{{ roadmap.title }}</span>
-    </nav>
-    
-<div class="roadmap">
-  <!-- HEADER -->
-  <header class="roadmap-header">
 
-    <div class="roadmap-title">
-      <div>
-        <h1>
-          {{ roadmap.title }}
-        </h1>
-        <p>
-          {{ roadmap.description }}
-        </p>
-      </div>
+  <!-- Breadcrumb  -->
+  <nav class="breadcrumb text-subtitle">
+    <a href="/">Home</a>
+    <span>/</span>
+    <a href="/roadmaps">Roadmaps</a>
+    <span>/</span>
+    <span>{{ roadmap.title }}</span>
+  </nav>
+
+  <!-- Roadmap Title -->
+  <div class="roadmap-title">
+    <div class="text-title text-gradient">
+      {{ roadmap.title }}
     </div>
-
-
-    <!-- Roadmap summary -->
-    <!--
-    <div class="journey-progress">
-
-      <div class="progress-circle"
-           style="--progress: 100%">
-
-        <div class="progress-circle-inner">
-          <strong>{{ courses.length }}</strong>
-          <span>Courses</span>
-        </div>
-
-      </div>
-
-      <div class="progress-text">
-        <strong>
-          {{ totalXp }} XP
-        </strong>
-
-        <span>{{ totalQuests }} Quests</span>
-      </div>
-
-    </div>
-
-    -->
-
-  </header>
+  </div>
 
 
   <!-- ROADMAP -->
   <section class="roadmap-container">
 
-    <div class="roadmap-canvas"
-         #roadmapCanvas>
+    <div class="roadmap-canvas" #roadmapCanvas>
 
       <!-- SVG JOURNEY PATH -->
-      <svg
-        class="journey-svg"
-        [attr.viewBox]="'0 0 ' + canvasWidth + ' ' + canvasHeight"
-        preserveAspectRatio="none">
+      <svg class="journey-svg" [attr.viewBox]="'0 0 ' + canvasWidth + ' ' + canvasHeight" preserveAspectRatio="none">
 
         <!-- Path shadow -->
-        <path
-          class="journey-path-shadow"
-          [attr.d]="roadmapPath">
+        <path class="journey-path-shadow" [attr.d]="roadmapPath">
         </path>
 
         <!-- Main path -->
-        <path
-          class="journey-path"
-          [attr.d]="roadmapPath">
+        <path class="journey-path" [attr.d]="roadmapPath">
         </path>
 
       </svg>
 
 
       <!-- START -->
-      <div
-        class="journey-point start-point"
-        [style.left.%]="startPosition.x"
-        [style.top.%]="startPosition.y">
+      <div class="journey-point start-point" [style.left.%]="startPosition.x" [style.top.%]="startPosition.y">
 
         <div class="start-line"></div>
 
@@ -99,45 +53,29 @@
 
 
       <!-- COURSE NODES -->
-      <div
-        *ngFor="let course of courses; let i = index; trackBy: trackCourse"
-        class="course-wrapper"
-        [style.left.%]="course._position.x"
-        [style.top.%]="course._position.y"
-        [class.available]="true">
+      <div *ngFor="let course of courses; let i = index; trackBy: trackCourse" class="course-wrapper"
+        [style.left.%]="course._position.x" [style.top.%]="course._position.y" [class.available]="true">
 
 
         <!-- NODE -->
-        <button
-          class="course-node"
-          type="button"
-          [attr.aria-label]="course.name"
-          [routerLink]="['/course', course.id]">
-
+        <button class="course-node" type="button" [attr.aria-label]="course.name" [routerLink]="['/course', course.id]">
 
           <!-- Level -->
           <span class="level-number">
             {{ i + 1 }}
           </span>
 
-
           <!-- Glow -->
           <span class="node-glow"></span>
-
 
           <!-- Icon -->
           <span class="node-icon">
 
-            <img
-              *ngIf="course.iconUrl"
-              [src]="course.iconUrl"
-              [alt]="course.name">
+            <cicon *ngIf="course.icon" [tech]="course.icon" height="55px"></cicon>
 
-            <span
-              *ngIf="!course.iconUrl"
-              class="text-icon">
+            <span *ngIf="!course.icon" class="text-icon">
 
-              {{ course.icon || getDefaultIcon(course.category) }}
+              {{ getDefaultIcon(course.category) }}
 
             </span>
 
@@ -148,90 +86,33 @@
 
 
         <!-- COURSE CARD -->
-        <article
-          class="course-card"
-          [class.card-left]="course._cardPosition === 'left'"
-          [class.card-right]="course._cardPosition === 'right'"
-          [class.card-top]="course._cardPosition === 'top'"
+        <article class="course-card" [class.card-left]="course._cardPosition === 'left'"
+          [class.card-right]="course._cardPosition === 'right'" [class.card-top]="course._cardPosition === 'top'"
           [class.card-bottom]="course._cardPosition === 'bottom'">
-
 
           <!-- Connector -->
           <span class="card-connector"></span>
-
-
-          <div class="card-header">
-
-            <span class="course-category">
-              {{ course.categoryLabel || course.category }}
-            </span>
-
-            <span class="course-status status-available">Available</span>
-
-          </div>
-
-
-          <h3>
+        
+          <div class="text-lead" style="width:max-content;">
             {{ course.name }}
-          </h3>
-
-
-          <p class="course-description" *ngIf="course.description">
-            {{ course.description }}
-          </p>
-
-
-          <!-- Meta -->
-          <div class="course-meta">
-
-            <span *ngIf="course.questCount">
-              ⚔ {{ course.questCount }} Quests
-            </span>
-
-            <span *ngIf="course.xp">
-              ⭐ {{ course.xp }} XP
-            </span>
-
-            <span *ngIf="course.duration">
-              ⏱ {{ course.duration }}
-            </span>
-
           </div>
-
-
-          <!-- Action -->
-          <a
-            class="course-action"
-            [routerLink]="['/course', course.id]">
-            <span>Explore Course</span>
-            <span>→</span>
-          </a>
-
+        
         </article>
 
       </div>
 
 
       <!-- FINISH -->
-      <div
-        class="journey-point finish-point"
-        [style.left.%]="finishPosition.x"
-        [style.top.%]="finishPosition.y">
+      <div class="journey-point finish-point" [style.left.%]="finishPosition.x" [style.top.%]="finishPosition.y">
 
         <div class="finish-node">
           🏆
         </div>
 
         <div class="finish-label">
-
           <strong>
-            FULLSTACK MASTER
+            Java Fullstack Pro
           </strong>
-
-          <span>
-            Build • Deploy • Scale
-          </span>
-
         </div>
 
       </div>

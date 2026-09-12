@@ -4,57 +4,29 @@
   "description": "From Java fundamentals to production-ready fullstack engineering.",
   "courses": [
     {
-      "id": "03-java",
+      "id": "05-java",
       "name": "Java Developer",
-      "category": "java",
-      "categoryLabel": "JAVA",
-      "icon": "☕"
+      "icon": "java"
     },
     {
-      "id": "java-advanced",
-      "name": "Java Advanced",
-      "category": "java",
-      "categoryLabel": "JAVA",
-      "icon": "☕",
-      "totalLessons": 20,
-      "questCount": 10,
-      "xp": 600
-    },
-    {
-      "id": "html-css",
-      "name": "HTML5 & CSS3",
-      "category": "frontend",
-      "categoryLabel": "FRONTEND",
-      "icon": "🌐",
-      "questCount": 8,
-      "xp": 400
-    },
-    {
-      "id": "javascript",
-      "name": "JavaScript",
-      "category": "javascript",
-      "categoryLabel": "JAVASCRIPT",
-      "icon": "JS",
-      "questCount": 12,
-      "xp": 700
-    },
-    {
-      "id": "spring-boot",
+      "id": "02-springboot",
       "name": "Spring Boot",
-      "category": "spring",
-      "categoryLabel": "BACKEND",
-      "icon": "🌱",
-      "questCount": 12,
-      "xp": 700
+      "icon": "springboot"
     },
     {
-      "id": "angular",
+      "id": "09-html-css",
+      "name": "HTML5 & CSS3",
+      "icon": "html"
+    },
+    {
+      "id": "10-javascript",
+      "name": "JavaScript",
+      "icon": "javascript"
+    },
+    {
+      "id": "01-angular",
       "name": "Angular",
-      "category": "angular",
-      "categoryLabel": "FRONTEND",
-      "icon": "A",
-      "questCount": 12,
-      "xp": 700
+      "icon": "angular"
     }
   ]
 }]

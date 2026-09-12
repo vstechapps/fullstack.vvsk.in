@@ -8,10 +8,11 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { Course, Position, Roadmap } from '../app.models';
+import { CiconComponent } from '../cicon/cicon.component';
 
 @Component({
   selector: 'app-advanced-roadmap',
-  imports: [NgFor, NgIf, RouterLink],
+  imports: [NgFor, NgIf, RouterLink, CiconComponent],
   templateUrl: './advanced-roadmap.component.html',
   styleUrls: ['./advanced-roadmap.component.css'],
   standalone: true
