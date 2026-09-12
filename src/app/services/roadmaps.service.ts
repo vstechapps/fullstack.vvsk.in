@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Course, Topic, UserRoadMapProgress } from "../app.models";
+import { Roadmap } from "../app.models";
 import { UserService } from "./user.service";
 
 @Injectable({
@@ -7,69 +7,26 @@ import { UserService } from "./user.service";
 })
 export class RoadmapsService {
 
-    courses : Course[] = [];
-    topics : Map<string, Topic> = new Map<string, Topic>();
-    userprogress : Map<string, UserRoadMapProgress> = new Map<string, UserRoadMapProgress>();
+    roadmaps: Roadmap[] = [];
 
-    constructor(private userService: UserService) {}
+    constructor() {}
 
-    async getAllRoadmaps(): Promise<Course[]> {
-        if (this.courses.length === 0) {
+    async getAllRoadmaps(): Promise<Roadmap[]> {
+        if (this.roadmaps.length === 0) {
             let docs = await Firebase.read("roadmaps");
             docs.data.forEach(d=>{
-              this.courses.push(JSON.parse(JSON.stringify(d)));
+              this.roadmaps.push(JSON.parse(JSON.stringify(d)));
             });
         }
-        return this.courses;
+        return this.roadmaps;
     }
 
-    async getRoadmapById(id: string): Promise<Course | null> {
-        if (this.courses.length === 0) {
+    async getRoadmapById(id: string): Promise<Roadmap | null> {
+        if (this.roadmaps.length === 0) {
             await this.getAllRoadmaps();
         }
-        let roadmap = this.courses.find(c => c.id === id);
+        let roadmap = this.roadmaps.find(r => r.id === id);
         return roadmap ? roadmap : null;   
-    }
-
-    async getTopicById(roadmapId: string, topicId: string): Promise<Topic | null> {
-        let t = roadmapId + "_" + topicId;
-        if(!this.topics.has(t)){
-             let d = (await Firebase.read("topics", t)).data?.[0] || null;
-             let topic = d ? JSON.parse(JSON.stringify(d)) : null;
-             if(topic){
-                this.topics.set(t, topic);
-             }
-        }
-        return this.topics.get(roadmapId + "_" + topicId) || null;
-    }
-
-    async getUserProgress(roadmapId: string): Promise<UserRoadMapProgress | null> {
-        if(!this.userService.user){
-            console.error("User not logged in. Cannot fetch progress.");
-            return null;
-        }
-        let t = this.userService.user?.id + "_" + roadmapId;
-        if(!this.userprogress.has(roadmapId)){
-             let d = (await Firebase.read("userprogress", t)).data?.[0] || null;
-             let progress = d ? JSON.parse(JSON.stringify(d)) : null;
-             if(progress){
-                this.userprogress.set(roadmapId, progress);
-             }
-        }
-        return this.userprogress.get(roadmapId) || null;
-    }
-
-    async updateUserProgress(roadmapId: string, progress: UserRoadMapProgress): Promise<boolean> {
-        if(!this.userService.user){
-            console.error("User not logged in. Cannot update progress.");
-            return false;
-        }
-        let t = this.userService.user?.id + "_" + roadmapId;
-        progress.user = this.userService.user?.id || '';
-        progress.roadmap = roadmapId;
-        await Firebase.write("userprogress", t, progress);
-        this.userprogress.set(roadmapId, progress);
-        return true;
     }
 
 }

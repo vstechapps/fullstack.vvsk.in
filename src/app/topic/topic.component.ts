@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Course, Topic, UserRoadMapProgress } from '../app.models';
+import { Course, Topic, UserCourseProgress } from '../app.models';
 import { CardSliderComponent } from '../card-slider/card-slider.component';
 import { NgFor, NgIf } from '@angular/common';
 import { Utility } from '../services/app.util';
 import { RoadmapsService } from '../services/roadmaps.service';
+import { CoursesService } from '../services/courses.service';
 
 @Component({
   selector: 'app-topic',
@@ -26,11 +27,11 @@ export class TopicComponent {
   showConfetti = true;
   confettiArray = Utility.mobileAndTabletCheck()? new Array(18): new Array(18);
 
-  userprogress: UserRoadMapProgress | null = null;
+  userprogress: UserCourseProgress | null = null;
 
   ableToSaveProgress: boolean = false;
 
-  constructor(private route: ActivatedRoute, private router: Router,private roadmapsService:RoadmapsService) {
+  constructor(private route: ActivatedRoute, private router: Router,private coursesService:CoursesService) {
 
     const id = this.route.snapshot.paramMap.get('id') || '';
     this.loadRoadmap(id);
@@ -41,8 +42,8 @@ export class TopicComponent {
 
   async loadRoadmap(id:string): Promise<void> {
     Loader.show();
-    this.roadmap = await this.roadmapsService.getRoadmapById(id);
-    this.userprogress = await this.roadmapsService.getUserProgress(id);
+    this.roadmap = await this.coursesService.getCourseById(id);
+    this.userprogress = await this.coursesService.getUserProgress(id);
     if(this.userprogress && this.userprogress.next && this.roadmap && this.roadmap.topics){
       this.currentIndex = this.roadmap?.topics.findIndex(t => t.id === this.userprogress?.next) || 0;
     }
@@ -53,7 +54,7 @@ export class TopicComponent {
   async loadTopic(index: number): Promise<void> {
     if (this.roadmap && this.roadmap.topics) {
       let topicId = this.roadmap.topics[index].id;
-      this.topic = await this.roadmapsService.getTopicById(this.roadmap.id, topicId);
+      this.topic = await this.coursesService.getTopicById(this.roadmap.id, topicId);
     }
   }
 
@@ -133,7 +134,7 @@ export class TopicComponent {
     if(this.roadmap && this.roadmap.topics && nextIndex < this.roadmap.topics.length) {
       this.userprogress.next = this.roadmap.topics[nextIndex].id;
     }
-    this.ableToSaveProgress= await this.roadmapsService.updateUserProgress(this.roadmap.id, this.userprogress);
+    this.ableToSaveProgress= await this.coursesService.updateUserProgress(this.roadmap.id, this.userprogress);
     Loader.hide();
   }
 

@@ -1,10 +1,11 @@
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Course, UserRoadMapProgress } from '../app.models';
+import { Course, UserCourseProgress } from '../app.models';
 import { RoadmapsService } from '../services/roadmaps.service';
 import { UserService } from '../services/user.service';
 import { CiconComponent } from '../cicon/cicon.component';
+import { CoursesService } from '../services/courses.service';
 
 @Component({
   selector: 'app-progress',
@@ -15,13 +16,13 @@ import { CiconComponent } from '../cicon/cicon.component';
 })
 export class ProgressComponent implements OnInit {
 
-  roadmaps: Course[] = [];
-  progressMap: Record<string, { roadmap: Course; progress: UserRoadMapProgress | null }> = {};
+  courses: Course[] = [];
+  progressMap: Record<string, { course: Course; progress: UserCourseProgress | null }> = {};
   showResetModal = false;
-  roadmapToReset: Course | null = null;
+  courseToReset: Course | null = null;
 
   constructor(
-    private roadmapsService: RoadmapsService,
+    private coursesService: CoursesService,
     private userService: UserService
   ) {}
 
@@ -32,15 +33,15 @@ export class ProgressComponent implements OnInit {
   async loadProgress(): Promise<void> {
     Loader.show();
     try {
-      this.roadmaps = [];
+      this.courses = [];
       this.progressMap = {};
 
-      const allRoadmaps = await this.roadmapsService.getAllRoadmaps();
-      for (const roadmap of allRoadmaps) {
-        const progress = await this.roadmapsService.getUserProgress(roadmap.id);
+      const allCourses = await this.coursesService.getAllCourses();
+      for (const course of allCourses) {
+        const progress = await this.coursesService.getUserProgress(course.id);
         if (progress) {
-          this.progressMap[roadmap.id] = { roadmap, progress };
-          this.roadmaps.push(roadmap);
+          this.progressMap[course.id] = { course, progress };
+          this.courses.push(course);
         }
       }
     } finally {
@@ -48,23 +49,23 @@ export class ProgressComponent implements OnInit {
     }
   }
 
-  getProgressValue(roadmapId: string): number {
-    const value = Number(this.progressMap[roadmapId]?.progress?.percent ?? 0);
+  getProgressValue(courseId: string): number {
+    const value = Number(this.progressMap[courseId]?.progress?.percent ?? 0);
     return Number.isFinite(value) ? value : 0;
   }
 
-  openResetPrompt(roadmap: Course): void {
-    this.roadmapToReset = roadmap;
+  openResetPrompt(course: Course): void {
+    this.courseToReset = course;
     this.showResetModal = true;
   }
 
   closeResetPrompt(): void {
     this.showResetModal = false;
-    this.roadmapToReset = null;
+    this.courseToReset = null;
   }
 
   async resetRoadmapProgress(): Promise<void> {
-    if (!this.roadmapToReset) {
+    if (!this.courseToReset) {
       return;
     }
 
@@ -74,12 +75,12 @@ export class ProgressComponent implements OnInit {
       return;
     }
 
-    const roadmap = this.roadmapToReset;
-    const resetProgress: UserRoadMapProgress = {
+    const course = this.courseToReset;
+    const resetProgress: UserCourseProgress = {
       user: user.id,
-      roadmap: roadmap.id,
+      roadmap: course.id,
       started: false,
-      next: roadmap.topics?.[0]?.id || '',
+      next: course.topics?.[0]?.id || '',
       status: 'not_started',
       percent: '0',
       tasks: [],
@@ -87,8 +88,8 @@ export class ProgressComponent implements OnInit {
       updatedAt: new Date().toISOString()
     };
 
-    await this.roadmapsService.updateUserProgress(roadmap.id, resetProgress);
-    this.progressMap[roadmap.id] = { roadmap, progress: resetProgress };
+    await this.coursesService.updateUserProgress(course.id, resetProgress);
+    this.progressMap[course.id] = { course, progress: resetProgress };
     this.closeResetPrompt();
   }
 }

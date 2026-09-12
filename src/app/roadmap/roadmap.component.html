@@ -1,89 +1,124 @@
 <div class="main-content" *ngIf="roadmap">
-    <nav class="breadcrumb text-subtitle">
-        <a href="/">Home</a>
-        <span>/</span>
-        <a href="/roadmaps">Roadmaps</a>
-        <span>/</span>
-        <span>{{ roadmap.title }}</span>
-    </nav>
 
-    <section class="card" style="padding: 24px; margin-top: 24px;">
-        <div class="d-flex" style="gap: 16px; align-items: center; flex-wrap: wrap; margin-bottom: 16px;">
-            <cicon [tech]="roadmap.icon" height="50px"></cicon>
-            <span class="text-title text-gradient" style="margin-left:15px;vertical-align:middle;margin-right:15px;font-size:30px">{{
-                roadmap.title }}</span>
-            <div style="display: inline-block;vertical-align: middle;">
-                <span class="badge badge-primary" *ngFor="let label of roadmap.labels || []">{{ label }}</span>
-                 <span class="badge badge-xp" style="margin-left:10px" *ngIf="roadmap.xp"> 💎 {{ roadmap.xp }} XP </span>
-            </div>
-            <div style="display: inline-block;width: 40%;margin-left: 50px;vertical-align: middle;">
-                <div class="xp-meter">
-                    <div class="progress-meta">
-                        <span>Progress</span>
-                        <span>{{
-                            userprogress?.percent || 0
-                        }}%</span>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar" [style.width]="(userprogress?.percent || '0') + '%'"></div>
-                    </div>
-                </div>
-            </div>
+  <!-- Breadcrumb  -->
+  <nav class="breadcrumb text-subtitle">
+    <a href="/">Home</a>
+    <span>/</span>
+    <a href="/roadmaps">Roadmaps</a>
+    <span>/</span>
+    <span>{{ roadmap.title }}</span>
+  </nav>
+
+  <!-- Roadmap Title -->
+  <div class="roadmap-title">
+    <div class="text-title text-gradient">
+      {{ roadmap.title }}
+    </div>
+  </div>
+
+
+  <!-- ROADMAP -->
+  <section class="roadmap-container">
+
+    <div class="roadmap-canvas" #roadmapCanvas>
+
+      <!-- SVG JOURNEY PATH -->
+      <svg class="journey-svg" [attr.viewBox]="'0 0 ' + canvasWidth + ' ' + canvasHeight" preserveAspectRatio="none">
+
+        <!-- Path shadow -->
+        <path class="journey-path-shadow" [attr.d]="roadmapPath">
+        </path>
+
+        <!-- Main path -->
+        <path class="journey-path" [attr.d]="roadmapPath">
+        </path>
+
+      </svg>
+
+
+      <!-- START -->
+      <div class="journey-point start-point" [style.left.%]="startPosition.x" [style.top.%]="startPosition.y">
+
+        <div class="start-line"></div>
+
+        <div class="start-node">
+          <span>🚩</span>
         </div>
 
-        <p class="text-subtitle" style="margin-left:15px">{{ roadmap.summary }}</p>
-
-        <div style="display:flex;flex-direction:row;gap:1rem;margin-top:20px;">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <td>
-                            <span style="font-size: 35px;">Topics</span>
-                        </td>
-                        <td [style.text-align]="app.isMobile?'left':'center'">
-                            <span>
-                                <button class="btn btn-primary" style="font-size:20px" [routerLink]="['/roadmaps', roadmap.id,'explore']">{{userprogress?.started ? "Resume" : "Start"}} <i class="bi bi-play" style="font-size:30px;"></i></button>
-                            </span>
-                        </td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let topic of roadmap.topics || [], index as i">
-                        <td><span class="text-index">{{i+1}}</span><span class="text-subtitle">{{topic.title}}</span></td>
-                        <td style="text-align:center">
-                            <button *ngIf="completed.includes(roadmap.id + '_' + topic.id)" class="btn btn-success"><i class="bi bi-check-circle"></i></button>
-                            <button *ngIf="!completed.includes(roadmap.id + '_' + topic.id) && userprogress?.next === topic.id" class="btn btn-primary" [routerLink]="['/roadmaps', roadmap.id, 'explore']"><i class="bi bi-play-circle"></i></button>
-                            <button *ngIf="!completed.includes(roadmap.id + '_' + topic.id) && userprogress?.next !== topic.id" class="btn btn-gradient"><i class="bi bi-lock"></i></button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div style="width: 50%;display: flex;flex-direction: column;gap: 1.5rem;">
-                <div class="card">
-                    <div class="card-header">
-                        <span class="text-lead">Roadmap Content</span>
-                    </div>
-                    <div class="card-body">
-                        <span *ngIf="roadmap.topics">Topics: {{roadmap.topics.length}}</span>
-                        <span *ngIf="roadmap.quests">Quests: {{roadmap.quests.length}}</span>
-                        <span *ngIf="roadmap.projects">Projects: {{roadmap.projects.length}}</span>
-                        <span *ngIf="roadmap.assessments">Assessments: {{roadmap.assessments.length}}</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <span class="text-lead">Skills You'll Gain</span>
-                    </div>
-                    <div class="card-body" style="display:block">
-                        <span style="margin:3px;" *ngFor="let skill of roadmap.skills" class="badge badge-default">
-                            {{skill}}
-                        </span>
-                    </div>
-                    
-                </div>
-            </div>
-
+        <div class="start-label">
+          START
         </div>
 
-    </section>
+      </div>
+
+
+      <!-- COURSE NODES -->
+      <div *ngFor="let course of courses; let i = index; trackBy: trackCourse" class="course-wrapper"
+        [style.left.%]="course._position.x" [style.top.%]="course._position.y" [class.available]="true">
+
+
+        <!-- NODE -->
+        <button class="course-node" type="button" [attr.aria-label]="course.name" [routerLink]="['/course', course.id]">
+
+          <!-- Level -->
+          <span class="level-number">
+            {{ i + 1 }}
+          </span>
+
+          <!-- Glow -->
+          <span class="node-glow"></span>
+
+          <!-- Icon -->
+          <span class="node-icon">
+
+            <cicon *ngIf="course.icon" [tech]="course.icon" height="55px"></cicon>
+
+            <span *ngIf="!course.icon" class="text-icon">
+
+              {{ getDefaultIcon(course.category) }}
+
+            </span>
+
+          </span>
+
+
+        </button>
+
+
+        <!-- COURSE CARD -->
+        <article class="course-card" [class.card-left]="course._cardPosition === 'left'"
+          [class.card-right]="course._cardPosition === 'right'" [class.card-top]="course._cardPosition === 'top'"
+          [class.card-bottom]="course._cardPosition === 'bottom'">
+
+          <!-- Connector -->
+          <span class="card-connector"></span>
+        
+          <div class="text-lead" style="width:max-content;">
+            {{ course.name }}
+          </div>
+        
+        </article>
+
+      </div>
+
+
+      <!-- FINISH -->
+      <div class="journey-point finish-point" [style.left.%]="finishPosition.x" [style.top.%]="finishPosition.y">
+
+        <div class="finish-node">
+          🏆
+        </div>
+
+        <div class="finish-label">
+          <strong>
+            Java Fullstack Pro
+          </strong>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
 </div>

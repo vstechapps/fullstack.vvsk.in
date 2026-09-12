@@ -66,7 +66,7 @@ export interface User{
   contact?:string;
 }
 
-export interface UserRoadMapProgress{
+export interface UserCourseProgress{
   user:string;
   roadmap:string;
   started:boolean;

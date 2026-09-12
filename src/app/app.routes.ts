@@ -9,7 +9,8 @@ import { RoadmapComponent } from './roadmap/roadmap.component';
 import { TopicComponent } from './topic/topic.component';
 import { ProgressComponent } from './progress/progress.component';
 import { SubscribeComponent } from './subscribe/subscribe.component';
-import { AdvancedRoadMapComponent } from './advanced-roadmap/advanced-roadmap.component';
+import { CourseComponent } from './course/course.component';
+import { CoursesComponent } from './courses/courses.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,9 +20,10 @@ export const routes: Routes = [
   { path: 'progress', component: ProgressComponent },
   { path: 'roadmaps', component: RoadmapsComponent },
   { path: 'roadmaps/:id', component: RoadmapComponent },
+  { path: 'courses', component: CoursesComponent },
+  { path: 'courses/:id', component: CourseComponent },
   { path: 'roadmaps/:id/explore', component: TopicComponent},
   { path: 'course/:id', component: RoadmapComponent },
   { path: 'subscribe', component: SubscribeComponent},
-    { path: 'advanced', component: AdvancedRoadMapComponent},
   { path: '**', redirectTo: '' }
 ];

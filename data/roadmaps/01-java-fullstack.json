@@ -1,5 +1,5 @@
-[{
-  "id": "java-fullstack",
+{
+  "id": "01-java-fullstack",
   "title": "Java Fullstack Roadmap",
   "description": "From Java fundamentals to production-ready fullstack engineering.",
   "courses": [
@@ -29,4 +29,4 @@
       "icon": "angular"
     }
   ]
-}]
+}
