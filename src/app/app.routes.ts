@@ -9,6 +9,7 @@ import { RoadmapComponent } from './roadmap/roadmap.component';
 import { TopicComponent } from './topic/topic.component';
 import { ProgressComponent } from './progress/progress.component';
 import { SubscribeComponent } from './subscribe/subscribe.component';
+import { AdvancedRoadMapComponent } from './advanced-roadmap/advanced-roadmap.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,6 +20,8 @@ export const routes: Routes = [
   { path: 'roadmaps', component: RoadmapsComponent },
   { path: 'roadmaps/:id', component: RoadmapComponent },
   { path: 'roadmaps/:id/explore', component: TopicComponent},
+  { path: 'course/:id', component: RoadmapComponent },
   { path: 'subscribe', component: SubscribeComponent},
+    { path: 'advanced', component: AdvancedRoadMapComponent},
   { path: '**', redirectTo: '' }
 ];

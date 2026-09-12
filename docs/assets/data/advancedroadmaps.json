@@ -1,0 +1,60 @@
+[{
+  "id": "java-fullstack",
+  "title": "Java Fullstack Roadmap",
+  "description": "From Java fundamentals to production-ready fullstack engineering.",
+  "courses": [
+    {
+      "id": "03-java",
+      "name": "Java Developer",
+      "category": "java",
+      "categoryLabel": "JAVA",
+      "icon": "☕"
+    },
+    {
+      "id": "java-advanced",
+      "name": "Java Advanced",
+      "category": "java",
+      "categoryLabel": "JAVA",
+      "icon": "☕",
+      "totalLessons": 20,
+      "questCount": 10,
+      "xp": 600
+    },
+    {
+      "id": "html-css",
+      "name": "HTML5 & CSS3",
+      "category": "frontend",
+      "categoryLabel": "FRONTEND",
+      "icon": "🌐",
+      "questCount": 8,
+      "xp": 400
+    },
+    {
+      "id": "javascript",
+      "name": "JavaScript",
+      "category": "javascript",
+      "categoryLabel": "JAVASCRIPT",
+      "icon": "JS",
+      "questCount": 12,
+      "xp": 700
+    },
+    {
+      "id": "spring-boot",
+      "name": "Spring Boot",
+      "category": "spring",
+      "categoryLabel": "BACKEND",
+      "icon": "🌱",
+      "questCount": 12,
+      "xp": 700
+    },
+    {
+      "id": "angular",
+      "name": "Angular",
+      "category": "angular",
+      "categoryLabel": "FRONTEND",
+      "icon": "A",
+      "questCount": 12,
+      "xp": 700
+    }
+  ]
+}]

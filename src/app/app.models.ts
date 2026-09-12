@@ -13,6 +13,10 @@ export class Task {
 
 }
 
+export class Roadmap extends Task {
+  courses?: Course[];
+}
+
 export class Quest extends Task{
     difficulty: string = "Easy";
 }
@@ -77,4 +81,9 @@ export interface UserRoadMapProgress{
 export interface TaskStatus{
   task:string;
   status:string;
+}
+
+export interface Position {
+  x: number;
+  y: number;
 }
