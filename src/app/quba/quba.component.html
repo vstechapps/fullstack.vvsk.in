@@ -1,0 +1,43 @@
+<button
+	class="quba-launcher"
+	type="button"
+	aria-label="Open QUBA AI career advisor"
+	[attr.aria-expanded]="isOpen"
+	(click)="toggle()">
+	<img class="quba-launcher-mark" src="assets/img/quba2.png" alt="QUBA" />
+	<span class="quba-launcher-label">QUBA</span>
+</button>
+
+<section *ngIf="isOpen" class="quba-panel" aria-label="QUBA AI career advisor">
+	<header class="quba-header">
+		<img class="quba-header-mark" src="assets/img/quba2.png" alt="QUBA" />
+		<div>
+			<div class="quba-header-title">
+				<span class="quba-status"></span>
+				<strong>QUBA</strong>
+			</div>
+			<small>AI Tech Career Advisor</small>
+		</div>
+		<button class="quba-close" type="button" aria-label="Close QUBA" (click)="toggle()">&times;</button>
+	</header>
+
+	<div class="quba-messages" aria-live="polite">
+		<div *ngFor="let message of messages" class="quba-message" [class.quba-user-message]="message.role === 'user'">
+			{{ message.text }}
+		</div>
+		<div *ngIf="isLoading" class="quba-message quba-thinking">QUBA is thinking...</div>
+		<div *ngIf="errorMessage" class="quba-error">{{ errorMessage }}</div>
+	</div>
+
+	<form class="quba-input" (ngSubmit)="sendMessage()">
+		<textarea
+			name="question"
+			rows="1"
+			[(ngModel)]="question"
+			(keydown)="handleKeydown($event)"
+			[disabled]="isLoading"
+			placeholder="Ask your doubts..."
+			aria-label="Message QUBA"></textarea>
+		<button type="submit" aria-label="Send message" [disabled]="isLoading || !question.trim()">&#10148;</button>
+	</form>
+</section>

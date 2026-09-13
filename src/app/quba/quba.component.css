@@ -1,0 +1,235 @@
+.quba-launcher {
+	position: fixed;
+	right: 24px;
+	bottom: 24px;
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	border: 0;
+	border-radius: 999px;
+	padding: 8px 16px 8px 8px;
+	border: 1px solid var(--border-strong, #39485f);
+	color: var(--text-primary, #f5f7fb);
+	background: var(--bg-elevated, #182232);
+	box-shadow: var(--shadow-lg, 0 24px 70px rgb(0 0 0 / 36%));
+	cursor: pointer;
+	font: inherit;
+	font-weight: 700;
+}
+
+.quba-launcher-mark {
+	display: grid;
+	width: 38px;
+	height: 38px;
+	place-items: center;
+	border-radius: 50%;
+	border: 2px solid var(--accent-300, #73dec0);
+	background: var(--bg-inset, #080c13);
+	box-shadow: 0 0 0 2px var(--bg-elevated, #182232);
+	object-fit: cover;
+}
+
+.quba-panel {
+	position: fixed;
+	right: 24px;
+	bottom: 82px;
+	z-index: 999;
+	display: grid;
+	grid-template-rows: auto minmax(220px, 1fr) auto;
+	width: min(380px, calc(100vw - 32px));
+	height: min(560px, calc(100vh - 120px));
+	overflow: hidden;
+	border: 1px solid var(--border-color, #263348);
+	border-radius: var(--radius-lg, 12px);
+	background: var(--bg-card, #121a27);
+	box-shadow: var(--shadow-lg, 0 24px 70px rgb(0 0 0 / 36%));
+}
+
+.quba-header {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 12px 14px;
+	color: var(--text-primary, #f5f7fb);
+	background: var(--bg-secondary, #1e293b);
+	border-bottom: 1px solid var(--border-color, #263348);
+}
+
+.quba-header-mark {
+	width: 34px;
+	height: 34px;
+	flex: 0 0 34px;
+	border: 2px solid var(--accent-300, #73dec0);
+	border-radius: 50%;
+	background: var(--bg-inset, #080c13);
+	box-shadow: 0 0 0 2px var(--bg-secondary, #1e293b);
+	object-fit: cover;
+}
+
+.quba-header > div {
+	display: grid;
+	align-items: center;
+}
+
+.quba-header > div {
+	min-width: 0;
+	flex: 1;
+}
+
+.quba-header-title {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+}
+
+.quba-header-title strong {
+	font-size: 17px;
+	line-height: 1.1;
+}
+
+.quba-header small {
+	display: block;
+	margin-top: 3px;
+	color: var(--text-muted, #7f8ca3);
+	font-size: 12px;
+	line-height: 1.2;
+}
+
+.quba-status {
+	width: 9px;
+	height: 9px;
+	border-radius: 50%;
+	background: var(--success, #2cc36b);
+}
+
+.quba-close,
+.quba-input button {
+	border: 0;
+	color: var(--text-secondary, #b8c3d6);
+	background: transparent;
+	cursor: pointer;
+}
+
+.quba-close {
+	width: 32px;
+	height: 32px;
+	flex: 0 0 32px;
+	border-radius: var(--radius-sm, 6px);
+	font-size: 28px;
+	font-weight: 700;
+	line-height: 1;
+}
+
+.quba-close:hover {
+	color: var(--text-primary, #f5f7fb);
+	background: var(--bg-soft, rgb(255 255 255 / 5%));
+}
+
+.quba-messages {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	overflow-y: auto;
+	padding: 18px;
+	background: var(--bg-inset, #080c13);
+}
+
+.quba-message {
+	align-self: flex-start;
+	max-width: 88%;
+	padding: 11px 13px;
+	border: 1px solid var(--border-color, #263348);
+	border-radius: var(--radius-md, 8px) var(--radius-md, 8px) var(--radius-md, 8px) 3px;
+	color: var(--text-secondary, #b8c3d6);
+	background: var(--bg-elevated, #182232);
+	white-space: pre-wrap;
+}
+
+.quba-user-message {
+	align-self: flex-end;
+	border-radius: var(--radius-md, 8px) var(--radius-md, 8px) 3px var(--radius-md, 8px);
+	border-color: var(--primary-600, #0d5eb2);
+	color: var(--text-primary, #f5f7fb);
+	background: linear-gradient(180deg, var(--primary-500, #1677d2), var(--primary-700, #104c8a));
+}
+
+.quba-thinking,
+.quba-error {
+	color: var(--text-muted, #7f8ca3);
+	font-size: 13px;
+	font-style: italic;
+}
+
+.quba-error {
+	color: var(--danger, #ff5c6c);
+}
+
+.quba-input {
+	display: flex;
+	gap: 8px;
+	align-items: flex-end;
+	padding: 10px 12px 12px;
+	border-top: 1px solid var(--border-color, #263348);
+	background: var(--bg-card, #121a27);
+}
+
+.quba-input textarea {
+	min-height: 40px;
+	max-height: 96px;
+	flex: 1;
+	resize: none;
+	border: 1px solid var(--border-color, #263348);
+	border-radius: var(--radius-sm, 6px);
+	padding: 10px;
+	color: var(--text-primary, #f5f7fb);
+	background: var(--bg-inset, #080c13);
+	font: inherit;
+}
+
+.quba-input textarea::placeholder {
+	color: var(--text-muted, #7f8ca3);
+}
+
+.quba-input textarea:focus {
+	border-color: var(--primary-400, #3997f4);
+	outline: none;
+	box-shadow: var(--shadow-focus, 0 0 0 3px rgb(22 119 210 / 28%));
+}
+
+.quba-input button {
+	display: grid;
+	width: 40px;
+	height: 40px;
+	flex: 0 0 40px;
+	place-items: center;
+	border-radius: 50%;
+	border: 1px solid var(--primary-300, #7bbcff);
+	color: var(--text-primary, #f5f7fb);
+	background: linear-gradient(180deg, var(--primary-400, #3997f4), var(--primary-600, #0d5eb2));
+	box-shadow: 0 8px 18px rgb(22 119 210 / 24%);
+	font-size: 20px;
+	line-height: 1;
+	transition: transform var(--duration-fast, 140ms) var(--ease-standard, ease), opacity var(--duration-fast, 140ms) var(--ease-standard, ease);
+}
+
+.quba-input button:not(:disabled):hover {
+	transform: translateY(-1px);
+}
+
+.quba-input button:disabled {
+	cursor: not-allowed;
+	opacity: .45;
+}
+
+@media (max-width: 480px) {
+	.quba-launcher {
+		right: 16px;
+		bottom: 16px;
+	}
+
+	.quba-panel {
+		right: 16px;
+		bottom: 76px;
+	}
+}
