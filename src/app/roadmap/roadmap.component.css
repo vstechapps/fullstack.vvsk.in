@@ -160,13 +160,14 @@
   margin: 0 auto;
 
   padding: 0 2rem;
+  text-align: center;
 }
 
 .roadmap-canvas {
   position: relative;
-
-  width: 100%;
-  min-height: 1250px;
+  display: inline-block;
+  width: 80%;
+  min-height: 700px;
 }
 
 
@@ -685,17 +686,9 @@
     box-sizing: border-box;
   }
 
-  .roadmap-canvas {
-    min-height: 1500px;
-  }
-
   .course-node {
     width: 72px;
     height: 72px;
-  }
-
-  .course-card {
-    width: 235px;
   }
 
   .card-right {
@@ -704,29 +697,6 @@
 
   .card-left {
     right: 92px;
-  }
-
-  .card-right .card-connector {
-    left: -56px;
-    width: 56px;
-  }
-
-  .card-left .card-connector {
-    right: -56px;
-    width: 56px;
-  }
-
-  .card-top .card-connector,
-  .card-bottom .card-connector {
-    height: 56px;
-  }
-
-  .card-top .card-connector {
-    bottom: -56px;
-  }
-
-  .card-bottom .card-connector {
-    top: -56px;
   }
 
   .roadmap-footer {
@@ -752,21 +722,8 @@
     padding: 0 .5rem;
   }
 
-  /*
-   * Keep the journey wide enough for
-   * the cards instead of squeezing it.
-   */
-  .roadmap-canvas {
-    min-width: 850px;
-    min-height: 1650px;
-  }
-
   .roadmap-title p {
     font-size: .75rem;
-  }
-
-  .course-card {
-    width: 205px;
   }
 
   .card-right {
@@ -775,29 +732,6 @@
 
   .card-left {
     right: 82px;
-  }
-
-  .card-right .card-connector {
-    left: -46px;
-    width: 46px;
-  }
-
-  .card-left .card-connector {
-    right: -46px;
-    width: 46px;
-  }
-
-  .card-top .card-connector,
-  .card-bottom .card-connector {
-    height: 46px;
-  }
-
-  .card-top .card-connector {
-    bottom: -46px;
-  }
-
-  .card-bottom .card-connector {
-    top: -46px;
   }
 
 }

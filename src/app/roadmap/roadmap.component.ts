@@ -1,11 +1,7 @@
 import { NgFor, NgIf } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import {
-  AfterViewInit,
   Component,
-  Input,
-  OnChanges,
-  SimpleChanges
 } from '@angular/core';
 import { Course, Position, Roadmap } from '../app.models';
 import { CiconComponent } from '../cicon/cicon.component';
@@ -27,9 +23,9 @@ export class RoadmapComponent {
   /**
    * SVG canvas dimensions.
    */
-  canvasWidth = 1200;
+  canvasWidth = 300;
 
-  canvasHeight = 1400;
+  canvasHeight = 400;
 
 
   /**
