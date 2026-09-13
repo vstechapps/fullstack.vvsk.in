@@ -12,6 +12,11 @@
     margin-bottom: 10px;
 }
 
+.action-buttons .btn{
+    margin: 5px;
+    padding: 8px 12px;
+}
+
 @media (max-width: 970px) {
     .m-hide{
     display: none;

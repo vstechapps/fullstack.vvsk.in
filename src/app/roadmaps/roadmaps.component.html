@@ -13,32 +13,32 @@
             </div>     
     </article>
     <div class="grid grid-3">
-        <div class="card card-interactive" *ngFor="let course of courses">
+        <div class="card card-interactive" *ngFor="let roadmap of roadmaps;">
             <div class="card-header">
-                <cicon [tech]="course.icon" height="60px"></cicon>
+                <cicon [tech]="roadmap.icon" height="60px"></cicon>
                 <div>
-                    <h3 class="text-subtitle">{{ course.title }}</h3>
-                    <span class="text-small">{{course.category}}</span>
+                    <h3 class="text-subtitle">{{ roadmap.title }}</h3>
+                    <span class="text-small">{{roadmap.category}}</span>
                 </div>
-                <div *ngIf="course.labels && course.labels.length > 0">
-                    <span *ngFor="let label of course.labels" class="badge badge-default">{{label}}</span>
+                <div *ngIf="roadmap.labels && roadmap.labels.length > 0">
+                    <span *ngFor="let label of roadmap.labels" class="badge badge-default">{{label}}</span>
                 </div>
             </div>
             <div class="card-body">
                 <div>
-                    <p>{{ course.description }}</p>
-                    <p class="text-small">{{ course.summary }}</p>
+                    <p>{{ roadmap.description }}</p>
+                    <p class="text-small">{{ roadmap.summary }}</p>
                 </div>
             </div>
             <div class="card-footer">
-                <div *ngIf="course.topics && course.topics.length!=0" style="font-weight:bold; display:inline-block">
+                <div *ngIf="roadmap.courses && roadmap.courses.length!=0" style="font-weight:bold; display:inline-block">
                     <i class="bi bi-play-btn-fill" style="color: teal;font-size: 20px;vertical-align: middle;margin-right: 8px;"></i>
-                    <span style="vertical-align:middle">{{course.topics.length}} Topics</span>
-                    <span style="margin:0px 20px;">🏆 +{{ course.xp }} XP</span>
+                    <span style="vertical-align:middle">{{roadmap.courses.length}} Courses</span>
+                    <span style="margin:0px 20px;">🏆 +{{ roadmap.xp }} XP</span>
                 </div>
                 <div style="display:inline-block">
-                    <button *ngIf="!course.locked" class="btn btn-gradient btn-sm" [routerLink]="['/roadmaps', course.id]"> Start Roadmap &#10132;</button>
-                    <span *ngIf="course.locked" class="badge"><i class="bi" [ngClass]="{'bi-lock': course.locked, 'bi-unlock': !course.locked}"></i>{{course.locked ? 'Locked' : 'Unlocked'}}</span>
+                    <button *ngIf="!roadmap.locked" class="btn btn-gradient btn-sm" [routerLink]="['/roadmaps', roadmap.id]"> Start Roadmap &#10132;</button>
+                    <span *ngIf="roadmap.locked" class="badge"><i class="bi" [ngClass]="{'bi-lock': roadmap.locked, 'bi-unlock': !roadmap.locked}"></i>{{roadmap.locked ? 'Locked' : 'Unlocked'}}</span>
                 </div>
             </div>
         </div>

@@ -1,0 +1,30 @@
+{
+  "id": "mern-stack",
+  "order": 3,
+  "title": "MERN Stack Roadmap",
+  "icon": "react",
+  "description": "Build modern fullstack applications with React and the JavaScript ecosystem.",
+  "summary": "Learn Node.js, Express, React, and MongoDB to become a proficient MERN stack developer.",
+  "courses": [
+    {
+      "id": "nodejs",
+      "name": "Node.js Development",
+      "icon": "nodejs"
+    },
+    {
+      "id": "Express",
+      "name": "Express.js Development",
+      "icon": "express"
+    },
+    {
+      "id": "react",
+      "name": "React Development",
+      "icon": "react"
+    },
+    {
+      "id": "mongo",
+      "name": "MongoDB Development",
+      "icon": "mongo"
+    }
+  ]
+}

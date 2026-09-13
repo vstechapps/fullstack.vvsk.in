@@ -1,0 +1,56 @@
+.card {
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  background: rgba(255,255,255,0.04);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.badge-primary {
+  background: linear-gradient(135deg, #4f46e5, #06b6d4);
+  color: white;
+}
+
+.badge-default {
+  background: rgba(255,255,255,0.12);
+  color: #e5e7eb;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #a78bfa, #38bdf8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-index{
+   display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    place-items: center;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-pill);
+    background: var(--bg-elevated);
+    color: var(--text-secondary);
+    font-weight: 800;
+    align-items: center;
+    text-align: center;
+    padding-top: 3px;
+    margin-right: 20px;
+}
+
+.table tbody td{
+  min-width: 220px;
+  padding:0.9rem 0rem;
+}
+
+.bi{
+  font-size: 20px;;
+}

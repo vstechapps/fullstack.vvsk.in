@@ -1,0 +1,25 @@
+{
+	"id": "python-fullstack",
+	"order": 2,
+	"title": "Python Fullstack Roadmap",
+    "icon": "python",
+	"description": "From Python fundamentals to production-ready fullstack engineering.",
+	"summary": "Learn Python, Flask, and React to become a proficient fullstack developer.",
+	"courses": [
+		{
+			"id": "python",
+			"name": "Python Development",
+			"icon": "python"
+		},
+		{
+			"id": "flask",
+			"name": "Flask Development",
+			"icon": "flask"
+		},
+		{
+			"id": "react",
+			"name": "React Development",
+			"icon": "react"
+		}
+	]
+}

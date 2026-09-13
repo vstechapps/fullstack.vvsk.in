@@ -1,0 +1,30 @@
+{
+  "id": "mean-stack",
+  "order": 4,
+  "title": "MEAN Stack Roadmap",
+  "icon": "nodejs",
+  "description": "Build scalable fullstack applications with Angular and TypeScript.",
+  "summary": "Learn Node.js, Express, Angular, and MongoDB to become a proficient MEAN stack developer.",
+  "courses": [
+    {
+      "id": "nodejs",
+      "name": "Node.js Development",
+      "icon": "nodejs"
+    },
+    {
+      "id": "Express",
+      "name": "Express.js Development",
+      "icon": "express"
+    },
+    {
+      "id": "angular",
+      "name": "Angular Development",
+      "icon": "angular"
+    },
+    {
+      "id": "mongo",
+      "name": "MongoDB Development",
+      "icon": "mongo"
+    }
+  ]
+}
