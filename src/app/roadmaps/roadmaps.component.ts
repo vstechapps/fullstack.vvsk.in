@@ -22,6 +22,7 @@ export class RoadmapsComponent {
   async load(){
     Loader.show();
     this.roadmaps = await this.roadmapsService.getAllRoadmaps();
+    console.log("Loaded Roadmaps:", this.roadmaps);
     Loader.hide();
   }
 

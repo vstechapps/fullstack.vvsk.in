@@ -15,10 +15,10 @@
     <div class="grid grid-3">
         <div class="card card-interactive" *ngFor="let roadmap of roadmaps;">
             <div class="card-header">
-                <cicon [tech]="roadmap.icon" height="60px"></cicon>
+                <cicon *ngIf="roadmap.icon" [tech]="roadmap.icon" height="60px"></cicon>
                 <div>
                     <h3 class="text-subtitle">{{ roadmap.title }}</h3>
-                    <span class="text-small">{{roadmap.category}}</span>
+                    <span class="text-small" *ngIf="roadmap.category">{{roadmap.category}}</span>
                 </div>
                 <div *ngIf="roadmap.labels && roadmap.labels.length > 0">
                     <span *ngFor="let label of roadmap.labels" class="badge badge-default">{{label}}</span>
@@ -34,7 +34,7 @@
                 <div *ngIf="roadmap.courses && roadmap.courses.length!=0" style="font-weight:bold; display:inline-block">
                     <i class="bi bi-play-btn-fill" style="color: teal;font-size: 20px;vertical-align: middle;margin-right: 8px;"></i>
                     <span style="vertical-align:middle">{{roadmap.courses.length}} Courses</span>
-                    <span style="margin:0px 20px;">🏆 +{{ roadmap.xp }} XP</span>
+                    <span style="margin:0px 20px;" *ngIf="roadmap.xp">🏆 +{{ roadmap.xp }} XP</span>
                 </div>
                 <div style="display:inline-block">
                     <button *ngIf="!roadmap.locked" class="btn btn-gradient btn-sm" [routerLink]="['/roadmaps', roadmap.id]"> Start Roadmap &#10132;</button>

@@ -10,15 +10,13 @@ export class Task {
   gems?: number = 0;
   icon:string = "";
   labels?: string[] = [];
+  order?: number = 0;
 
 }
 
-export class Roadmap extends Task {
-  courses?: Course[];
-}
 
 export class Quest extends Task{
-    difficulty: string = "Easy";
+  difficulty: string = "Easy";
 }
 
 export class Topic extends Task{
@@ -39,6 +37,10 @@ export class Course extends Task{
   assessments?: Assessment[];
   projects?: Project[];
   skills?: string[];
+}
+
+export class Roadmap extends Task {
+  courses?: Course[];
 }
 
 export enum Difficulty{
