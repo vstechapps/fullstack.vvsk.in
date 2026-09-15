@@ -41,6 +41,8 @@ export class Course extends Task{
 
 export class Roadmap extends Task {
   courses?: Course[];
+  startLabel: string = "START";
+  finishLabel: string = "FINISH";
 }
 
 export enum Difficulty{
@@ -70,7 +72,7 @@ export interface User{
 
 export interface UserCourseProgress{
   user:string;
-  roadmap:string;
+  course:string;
   started:boolean;
   next?:string;
   status:string;

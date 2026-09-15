@@ -32,6 +32,10 @@
         <path class="journey-path" [attr.d]="roadmapPath">
         </path>
 
+        <!-- Completed progress overlay -->
+        <path class="journey-path-completed" [attr.d]="completedPath">
+        </path>
+
       </svg>
 
 
@@ -45,7 +49,9 @@
         </div>
 
         <div class="start-label">
-          START
+          <strong>
+            {{roadmap.startLabel}}
+          </strong>
         </div>
 
       </div>
@@ -92,7 +98,7 @@
           <!-- Connector -->
           <span class="card-connector"></span>
         
-          <div class="text-lead" style="width:max-content;">
+          <div class="text-lead nav-link" style="width:max-content;text-decoration:underline;" [routerLink]="['/courses', course.id]">
             {{ course.name }}
           </div>
         
@@ -110,7 +116,7 @@
 
         <div class="finish-label">
           <strong>
-            Java Fullstack Pro
+            {{roadmap.finishLabel}}
           </strong>
         </div>
 

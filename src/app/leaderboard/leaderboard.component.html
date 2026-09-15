@@ -1,0 +1,59 @@
+<main class="container section leaderboard-page">
+	<div class="leaderboard-heading">
+		<div>
+			<p class="text-caption">Community Progress</p>
+			<h1 class="text-title">Weekly Leaderboard</h1>
+			<p class="text-lead">See how learners are building momentum across their fullstack roadmaps.</p>
+		</div>
+		<span class="badge badge-primary">XP Rankings</span>
+	</div>
+
+	<div *ngIf="isLoading" class="component-note leaderboard-state">
+		<strong>Loading leaderboard...</strong>
+		<span class="text-small">Fetching the latest learner rankings.</span>
+	</div>
+
+	<div *ngIf="errorMessage" class="alert alert-danger leaderboard-state">
+		<strong class="alert-title">Leaderboard unavailable</strong>
+		<p>{{ errorMessage }}</p>
+	</div>
+
+	<div *ngIf="!isLoading && !errorMessage && entries.length" class="table-wrap">
+		<table class="table leaderboard-table">
+			<thead>
+				<tr>
+					<th scope="col">Rank</th>
+					<th scope="col">Learner</th>
+					<th scope="col">Roadmap</th>
+					<th scope="col">Current XP</th>
+					<th scope="col">Streak</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let entry of entries; let index = index">
+					<td>
+						<span class="rank">{{ index + 1 }}</span>
+						<span *ngIf="getRankLabel(index)" class="badge badge-gold leaderboard-medal">{{ getRankLabel(index) }}</span>
+					</td>
+					<td>
+						<div class="leaderboard-user">
+							<img *ngIf="entry.user?.image" [src]="entry.user?.image" [alt]="getUserName(entry)" />
+							<span>{{ getUserName(entry) }}</span>
+						</div>
+					</td>
+					<td>{{ getRoadmapName(entry) }}</td>
+					<td><strong>{{ entry.currentXp | number }}</strong></td>
+					<td>
+						<span class="badge badge-warning" *ngIf="entry.streak">{{ entry.streak }} Days</span>
+						<span class="text-small" *ngIf="!entry.streak">-</span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div *ngIf="!isLoading && !errorMessage && !entries.length" class="component-note leaderboard-state">
+		<h2>No rankings yet</h2>
+		<p class="text-small">Complete roadmap activities to appear on the leaderboard.</p>
+	</div>
+</main>

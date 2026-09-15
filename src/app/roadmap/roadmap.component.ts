@@ -3,7 +3,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import {
   Component,
 } from '@angular/core';
-import { Course, Position, Roadmap } from '../app.models';
+import { Position, Roadmap, UserCourseProgress } from '../app.models';
 import { CiconComponent } from '../cicon/cicon.component';
 import { RoadmapsService } from '../services/roadmaps.service';
 
@@ -18,6 +18,8 @@ import { RoadmapsService } from '../services/roadmaps.service';
 export class RoadmapComponent {
 
   roadmap: Roadmap | null = null;
+
+  courseProgress: UserCourseProgress[] = [];
 
 
   /**
@@ -65,11 +67,15 @@ export class RoadmapComponent {
   private async loadRoadMap(id:string): Promise<void> {
 
     this.roadmap = await this.roadmapsService.getRoadmapById(id);
+    this.courseProgress = await this.roadmapsService.getRoadmapProgress(id) || [];
+    
     if (!this.roadmap?.courses?.length) {
 
       this.courses = [];
 
       this.roadmapPath = '';
+
+      this.completedPath = '';
 
       return;
 
@@ -94,6 +100,8 @@ export class RoadmapComponent {
     console.log('Courses:', this.courses);
 
     this.generatePath();
+
+    this.generateCompletedPath();
 
   }
 
@@ -243,6 +251,73 @@ export class RoadmapComponent {
 
 
     this.roadmapPath = this.createSmoothPath(points);
+
+  }
+
+
+  /**
+   * Generate the completed overlay for the contiguous completed route.
+   */
+  private generateCompletedPath(): void {
+
+    if (!this.courses.length) {
+
+      this.completedPath = '';
+
+      return;
+
+    }
+
+    const points: Array<{ x: number; y: number }> = [
+      {
+        x: this.percentToX(this.startPosition.x),
+        y: this.percentToY(this.startPosition.y)
+      }
+    ];
+
+    for (let index = 0; index < this.courses.length; index++) {
+
+      if (!this.isCourseCompleted(this.courses[index].id)) {
+
+        break;
+
+      }
+
+      points.push({
+        x: this.percentToX(this.courses[index]._position.x),
+        y: this.percentToY(this.courses[index]._position.y)
+      });
+
+    }
+
+    if (points.length === 1) {
+
+      this.completedPath = '';
+
+      return;
+
+    }
+
+    if (points.length === this.courses.length + 1) {
+
+      points.push({
+        x: this.percentToX(this.finishPosition.x),
+        y: this.percentToY(this.finishPosition.y)
+      });
+
+    }
+
+    this.completedPath = this.createSmoothPath(points);
+
+  }
+
+
+  private isCourseCompleted(courseId: string): boolean {
+
+    return this.courseProgress.some(progress =>
+      progress.course === courseId &&
+      progress.status?.toLowerCase() === 'completed'
+    );
 
   }
 

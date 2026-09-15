@@ -31,8 +31,8 @@ export class CoursesService {
         return course ? course : null;   
     }
 
-    async getTopicById(roadmapId: string, topicId: string): Promise<Topic | null> {
-        let t = roadmapId + "_" + topicId;
+    async getTopicById(courseId: string, topicId: string): Promise<Topic | null> {
+        let t = courseId + "_" + topicId;
         if(!this.topics.has(t)){
              let d = (await Firebase.read("topics", t)).data?.[0] || null;
              let topic = d ? JSON.parse(JSON.stringify(d)) : null;
@@ -40,35 +40,35 @@ export class CoursesService {
                 this.topics.set(t, topic);
              }
         }
-        return this.topics.get(roadmapId + "_" + topicId) || null;
+        return this.topics.get(courseId + "_" + topicId) || null;
     }
 
-    async getUserProgress(roadmapId: string): Promise<UserCourseProgress | null> {
+    async getCourseProgress(courseId: string): Promise<UserCourseProgress | null> {
         if(!this.userService.user){
             console.error("User not logged in. Cannot fetch progress.");
             return null;
         }
-        let t = this.userService.user?.id + "_" + roadmapId;
-        if(!this.userprogress.has(roadmapId)){
-             let d = (await Firebase.read("userprogress", t)).data?.[0] || null;
+        let t = this.userService.user?.id + "_" + courseId;
+        if(!this.userprogress.has(courseId)){
+             let d = (await Firebase.read("usercourseprogress", t)).data?.[0] || null;
              let progress = d ? JSON.parse(JSON.stringify(d)) : null;
              if(progress){
-                this.userprogress.set(roadmapId, progress);
+                this.userprogress.set(courseId, progress);
              }
         }
-        return this.userprogress.get(roadmapId) || null;
+        return this.userprogress.get(courseId) || null;
     }
 
-    async updateUserProgress(roadmapId: string, progress: UserCourseProgress): Promise<boolean> {
+    async updateUserProgress(courseId: string, progress: UserCourseProgress): Promise<boolean> {
         if(!this.userService.user){
             console.error("User not logged in. Cannot update progress.");
             return false;
         }
-        let t = this.userService.user?.id + "_" + roadmapId;
+        let t = this.userService.user?.id + "_" + courseId;
         progress.user = this.userService.user?.id || '';
-        progress.roadmap = roadmapId;
-        await Firebase.write("userprogress", t, progress);
-        this.userprogress.set(roadmapId, progress);
+        progress.course = courseId;
+        await Firebase.write("usercourseprogress", t, progress);
+        this.userprogress.set(courseId, progress);
         return true;
     }
 

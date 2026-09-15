@@ -43,7 +43,7 @@ export class TopicComponent {
   async loadRoadmap(id:string): Promise<void> {
     Loader.show();
     this.roadmap = await this.coursesService.getCourseById(id);
-    this.userprogress = await this.coursesService.getUserProgress(id);
+    this.userprogress = await this.coursesService.getCourseProgress(id);
     if(this.userprogress && this.userprogress.next && this.roadmap && this.roadmap.topics){
       this.currentIndex = this.roadmap?.topics.findIndex(t => t.id === this.userprogress?.next) || 0;
     }
@@ -114,7 +114,7 @@ export class TopicComponent {
     if (this.userprogress == null) {
       this.userprogress = {
         user: "",
-        roadmap: this.roadmap.id,
+        course: this.roadmap.id,
         started: true,
         status: "inprogress",
         percent: "0",

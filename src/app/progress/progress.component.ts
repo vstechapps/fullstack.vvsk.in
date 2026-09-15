@@ -38,7 +38,7 @@ export class ProgressComponent implements OnInit {
 
       const allCourses = await this.coursesService.getAllCourses();
       for (const course of allCourses) {
-        const progress = await this.coursesService.getUserProgress(course.id);
+        const progress = await this.coursesService.getCourseProgress(course.id);
         if (progress) {
           this.progressMap[course.id] = { course, progress };
           this.courses.push(course);
@@ -78,7 +78,7 @@ export class ProgressComponent implements OnInit {
     const course = this.courseToReset;
     const resetProgress: UserCourseProgress = {
       user: user.id,
-      roadmap: course.id,
+      course: course.id,
       started: false,
       next: course.topics?.[0]?.id || '',
       status: 'not_started',

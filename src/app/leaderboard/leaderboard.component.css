@@ -1,0 +1,59 @@
+.leaderboard-page {
+	padding-top: calc(var(--header-height, 71px) + var(--space-2xl, 3rem));
+}
+
+.leaderboard-heading {
+	display: flex;
+	align-items: end;
+	justify-content: space-between;
+	gap: var(--space-lg, 1.5rem);
+	margin-bottom: var(--space-xl, 2rem);
+}
+
+.leaderboard-heading .text-lead {
+	max-width: 650px;
+	margin-top: var(--space-md, 1rem);
+}
+
+.leaderboard-state {
+	margin-top: var(--space-lg, 1.5rem);
+}
+
+.leaderboard-table td,
+.leaderboard-table th {
+	vertical-align: middle;
+}
+
+.leaderboard-table td:first-child {
+	white-space: nowrap;
+}
+
+.leaderboard-medal {
+	margin-left: var(--space-sm, .5rem);
+}
+
+.leaderboard-user {
+	display: flex;
+	align-items: center;
+	gap: var(--space-sm, .5rem);
+	font-weight: 700;
+}
+
+.leaderboard-user img {
+	width: 32px;
+	height: 32px;
+	border: 1px solid var(--border-strong, #39485f);
+	border-radius: var(--radius-pill, 999px);
+	object-fit: cover;
+}
+
+@media (max-width: 760px) {
+	.leaderboard-heading {
+		align-items: flex-start;
+		flex-direction: column;
+	}
+
+	.leaderboard-table {
+		min-width: 680px;
+	}
+}

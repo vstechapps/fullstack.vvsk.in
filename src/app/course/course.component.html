@@ -1,20 +1,20 @@
-<div class="main-content" *ngIf="roadmap">
+<div class="main-content" *ngIf="course">
     <nav class="breadcrumb text-subtitle">
         <a href="/">Home</a>
         <span>/</span>
         <a href="/courses">Courses</a>
         <span>/</span>
-        <span>{{ roadmap.title }}</span>
+        <span>{{ course.title }}</span>
     </nav>
 
     <section class="card" style="padding: 24px; margin-top: 24px;">
         <div class="d-flex" style="gap: 16px; align-items: center; flex-wrap: wrap; margin-bottom: 16px;">
-            <cicon [tech]="roadmap.icon" height="50px"></cicon>
+            <cicon [tech]="course.icon" height="50px"></cicon>
             <span class="text-title text-gradient" style="margin-left:15px;vertical-align:middle;margin-right:15px;font-size:30px">{{
-                roadmap.title }}</span>
+                course.title }}</span>
             <div style="display: inline-block;vertical-align: middle;">
-                <span class="badge badge-primary" *ngFor="let label of roadmap.labels || []">{{ label }}</span>
-                 <span class="badge badge-xp" style="margin-left:10px" *ngIf="roadmap.xp"> 💎 {{ roadmap.xp }} XP </span>
+                <span class="badge badge-primary" *ngFor="let label of course.labels || []">{{ label }}</span>
+                 <span class="badge badge-xp" style="margin-left:10px" *ngIf="course.xp"> 💎 {{ course.xp }} XP </span>
             </div>
             <div style="display: inline-block;width: 40%;margin-left: 50px;vertical-align: middle;">
                 <div class="xp-meter">
@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <p class="text-subtitle" style="margin-left:15px">{{ roadmap.summary }}</p>
+        <p class="text-subtitle" style="margin-left:15px">{{ course.summary }}</p>
 
         <div style="display:flex;flex-direction:row;gap:1rem;margin-top:20px;">
             <table class="table">
@@ -42,18 +42,18 @@
                         </td>
                         <td [style.text-align]="app.isMobile?'left':'center'">
                             <span>
-                                <button class="btn btn-primary" style="font-size:20px" [routerLink]="['/roadmaps', roadmap.id,'explore']">{{userprogress?.started ? "Resume" : "Start"}} <i class="bi bi-play" style="font-size:30px;"></i></button>
+                                <button class="btn btn-primary" style="font-size:20px" [routerLink]="['/courses', course.id,'explore']">{{userprogress?.started ? "Resume" : "Start"}} <i class="bi bi-play" style="font-size:30px;"></i></button>
                             </span>
                         </td>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let topic of roadmap.topics || [], index as i">
+                    <tr *ngFor="let topic of course.topics || [], index as i">
                         <td><span class="text-index">{{i+1}}</span><span class="text-subtitle">{{topic.title}}</span></td>
                         <td style="text-align:center">
-                            <button *ngIf="completed.includes(roadmap.id + '_' + topic.id)" class="btn btn-success"><i class="bi bi-check-circle"></i></button>
-                            <button *ngIf="!completed.includes(roadmap.id + '_' + topic.id) && userprogress?.next === topic.id" class="btn btn-primary" [routerLink]="['/roadmaps', roadmap.id, 'explore']"><i class="bi bi-play-circle"></i></button>
-                            <button *ngIf="!completed.includes(roadmap.id + '_' + topic.id) && userprogress?.next !== topic.id" class="btn btn-gradient"><i class="bi bi-lock"></i></button>
+                            <button *ngIf="completed.includes(course.id + '_' + topic.id)" class="btn btn-success"><i class="bi bi-check-circle"></i></button>
+                            <button *ngIf="!completed.includes(course.id + '_' + topic.id) && userprogress?.next === topic.id" class="btn btn-primary" [routerLink]="['/roadmaps', course.id, 'explore']"><i class="bi bi-play-circle"></i></button>
+                            <button *ngIf="!completed.includes(course.id + '_' + topic.id) && userprogress?.next !== topic.id" class="btn btn-gradient"><i class="bi bi-lock"></i></button>
                         </td>
                     </tr>
                 </tbody>
@@ -64,10 +64,10 @@
                         <span class="text-lead">Roadmap Content</span>
                     </div>
                     <div class="card-body">
-                        <span *ngIf="roadmap.topics">Topics: {{roadmap.topics.length}}</span>
-                        <span *ngIf="roadmap.quests">Quests: {{roadmap.quests.length}}</span>
-                        <span *ngIf="roadmap.projects">Projects: {{roadmap.projects.length}}</span>
-                        <span *ngIf="roadmap.assessments">Assessments: {{roadmap.assessments.length}}</span>
+                        <span *ngIf="course.topics">Topics: {{course.topics.length}}</span>
+                        <span *ngIf="course.quests">Quests: {{course.quests.length}}</span>
+                        <span *ngIf="course.projects">Projects: {{course.projects.length}}</span>
+                        <span *ngIf="course.assessments">Assessments: {{course.assessments.length}}</span>
                     </div>
                 </div>
                 <div class="card">
@@ -75,7 +75,7 @@
                         <span class="text-lead">Skills You'll Gain</span>
                     </div>
                     <div class="card-body" style="display:block">
-                        <span style="margin:3px;" *ngFor="let skill of roadmap.skills" class="badge badge-default">
+                        <span style="margin:3px;" *ngFor="let skill of course.skills" class="badge badge-default">
                             {{skill}}
                         </span>
                     </div>

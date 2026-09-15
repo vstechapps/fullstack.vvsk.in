@@ -14,7 +14,7 @@ import { CoursesService } from '../services/courses.service';
   styleUrl: './course.component.css'
 })
 export class CourseComponent implements OnInit {
-  roadmap: Course | null = null;
+  course: Course | null = null;
   userprogress: UserCourseProgress | null = null;
   completed:string[] = [];
 
@@ -29,8 +29,8 @@ export class CourseComponent implements OnInit {
 
   async loadCourse(id:string): Promise<void> {
     Loader.show();
-    this.roadmap = await this.coursesService.getCourseById(id);
-    this.userprogress = await this.coursesService.getUserProgress(id);
+    this.course = await this.coursesService.getCourseById(id);
+    this.userprogress = await this.coursesService.getCourseProgress(id);
     if(this.userprogress && this.userprogress.tasks){
       this.completed = this.userprogress.tasks.filter(t => t.status === 'completed').map(t => t.task);
     }
