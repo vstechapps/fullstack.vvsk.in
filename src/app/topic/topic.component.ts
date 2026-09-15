@@ -6,6 +6,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { Utility } from '../services/app.util';
 import { RoadmapsService } from '../services/roadmaps.service';
 import { CoursesService } from '../services/courses.service';
+import { AppService } from '../services/app.service';
 
 @Component({
   selector: 'app-topic',
@@ -31,13 +32,24 @@ export class TopicComponent {
 
   ableToSaveProgress: boolean = false;
 
-  constructor(private route: ActivatedRoute, private router: Router,private coursesService:CoursesService) {
+  constructor(private route: ActivatedRoute, private router: Router,private coursesService:CoursesService, private appService:AppService) {
 
     const id = this.route.snapshot.paramMap.get('id') || '';
     this.loadRoadmap(id);
     Firebase.publish("FOOTER", { enabled: false });
-    
-
+    if(this.appService.isMobile){
+      Firebase.publish("QUBA", { enabled: false, isOpen: false });
+    }else{
+      Firebase.publish("QUBA", {
+        enabled: true,
+        isOpen: false,
+    		message: `#### Need help with this topic? 
+  Ask **QUBA**, your AI Mentor
+  - Need more explanation on this topic
+  - Feeling stuck or confused
+  - Want real-world examples`
+    });
+    }
   }
 
   async loadRoadmap(id:string): Promise<void> {
@@ -61,8 +73,9 @@ export class TopicComponent {
   public exit() {
     this.showTopicComplete = false;
     Firebase.publish("FOOTER", { enabled: true });
+    Firebase.publish("QUBA", { enabled: true, isOpen: false });
     if (this.roadmap) {
-      this.router.navigate(['/roadmaps', this.roadmap.id]);
+      this.router.navigate(['/courses', this.roadmap.id]);
     }
   }
 

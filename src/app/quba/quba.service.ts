@@ -9,12 +9,18 @@ export interface QubaApiResponse {
   text?: string;
 }
 
+export interface QubaChatMessage {
+  role: 'user' | 'quba';
+  text: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class QubaService {
   /** Set this to the backend endpoint that accepts a user's question. */
   readonly apiUrl = 'https://api.openlib.in/quba';
+  private readonly chatHistoryKey = 'quba.chatHistory';
 
   user?: User = undefined;
 
@@ -24,8 +30,40 @@ export class QubaService {
     });
   }
 
-  async ask(question: string): Promise<string> {
+  getChatHistory(): QubaChatMessage[] {
+    try {
+      const savedHistory = sessionStorage.getItem(this.chatHistoryKey);
+      if (!savedHistory) {
+        return [];
+      }
+
+      const parsedHistory: unknown = JSON.parse(savedHistory);
+      if (!Array.isArray(parsedHistory)) {
+        return [];
+      }
+
+      return parsedHistory.filter((message): message is QubaChatMessage =>
+        typeof message === 'object' &&
+        message !== null &&
+        ((message as QubaChatMessage).role === 'user' || (message as QubaChatMessage).role === 'quba') &&
+        typeof (message as QubaChatMessage).text === 'string'
+      );
+    } catch {
+      return [];
+    }
+  }
+
+  saveChatHistory(history: QubaChatMessage[]): void {
+    try {
+      sessionStorage.setItem(this.chatHistoryKey, JSON.stringify(history));
+    } catch {
+      // Storage can be unavailable in private browsing or restricted environments.
+    }
+  }
+
+  async ask(question: string, chatHistory: QubaChatMessage[]): Promise<string> {
     let context:any = { url:window.location.href, userAgent:navigator.userAgent, language:navigator.language, currentPageContent:document.body.innerText };
+    context.chatHistory = chatHistory;
     if(this.user){
         context.user = this.user ;
     }

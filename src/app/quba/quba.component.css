@@ -5,10 +5,10 @@
 	z-index: 1000;
 	display: flex;
 	align-items: center;
-	gap: 8px;
+	gap: 0;
 	border: 0;
 	border-radius: 999px;
-	padding: 8px 16px 8px 8px;
+	padding: 8px;
 	border: 1px solid var(--border-strong, #39485f);
 	color: var(--text-primary, #f5f7fb);
 	background: var(--bg-elevated, #182232);
@@ -16,6 +16,8 @@
 	cursor: pointer;
 	font: inherit;
 	font-weight: 700;
+	transition: gap var(--duration-base, 210ms) var(--ease-standard, ease),
+		padding-right var(--duration-base, 210ms) var(--ease-standard, ease);
 }
 
 .quba-launcher-mark {
@@ -28,6 +30,31 @@
 	background: var(--bg-inset, #080c13);
 	box-shadow: 0 0 0 2px var(--bg-elevated, #182232);
 	object-fit: cover;
+}
+
+.quba-launcher-label {
+	display: inline-block;
+	max-width: 0;
+	overflow: hidden;
+	opacity: 0;
+	margin-left: 0;
+	white-space: nowrap;
+	transition: max-width var(--duration-base, 210ms) var(--ease-standard, ease),
+		margin-left var(--duration-base, 210ms) var(--ease-standard, ease),
+		opacity var(--duration-fast, 140ms) var(--ease-standard, ease);
+}
+
+.quba-launcher:hover,
+.quba-launcher:focus-visible {
+	gap: 8px;
+	padding-right: 16px;
+}
+
+.quba-launcher:hover .quba-launcher-label,
+.quba-launcher:focus-visible .quba-launcher-label {
+	max-width: 64px;
+	margin-left: 0;
+	opacity: 1;
 }
 
 .quba-panel {
@@ -146,78 +173,6 @@
 	white-space: pre-wrap;
 }
 
-.quba-markdown {
-	white-space: normal;
-}
-
-.quba-markdown :first-child {
-	margin-top: 0;
-}
-
-.quba-markdown :last-child {
-	margin-bottom: 0;
-}
-
-.quba-markdown p,
-.quba-markdown ul,
-.quba-markdown ol,
-.quba-markdown pre,
-.quba-markdown blockquote {
-	margin: 0 0 10px;
-}
-
-.quba-markdown ul,
-.quba-markdown ol {
-	padding-left: 20px;
-}
-
-.quba-markdown li + li {
-	margin-top: 4px;
-}
-
-.quba-markdown h1,
-.quba-markdown h2,
-.quba-markdown h3,
-.quba-markdown h4 {
-	margin: 0 0 8px;
-	color: var(--text-primary, #f5f7fb);
-	font-size: 1rem;
-}
-
-.quba-markdown a {
-	color: var(--text-accent, #38bdf8);
-	text-decoration: underline;
-}
-
-.quba-markdown code {
-	border-radius: var(--radius-xs, 4px);
-	padding: 2px 5px;
-	color: var(--accent-100, #d6f7eb);
-	background: var(--bg-inset, #080c13);
-	font-family: var(--font-mono, monospace);
-	font-size: .88em;
-}
-
-.quba-markdown pre {
-	max-width: 100%;
-	overflow-x: auto;
-	border: 1px solid var(--border-color, #263348);
-	border-radius: var(--radius-sm, 6px);
-	padding: 10px;
-	background: var(--bg-inset, #080c13);
-}
-
-.quba-markdown pre code {
-	padding: 0;
-	background: transparent;
-}
-
-.quba-markdown blockquote {
-	border-left: 3px solid var(--accent-500, #19b98f);
-	padding-left: 10px;
-	color: var(--text-muted, #7f8ca3);
-}
-
 .quba-user-message {
 	align-self: flex-end;
 	border-radius: var(--radius-md, 8px) var(--radius-md, 8px) 3px var(--radius-md, 8px);
@@ -302,6 +257,6 @@
 
 	.quba-panel {
 		right: 16px;
-		bottom: 76px;
+		bottom: 25px;
 	}
 }
