@@ -25,7 +25,7 @@ export class QubaService {
   }
 
   async ask(question: string): Promise<string> {
-    let context:any = { url:window.location.href, userAgent:navigator.userAgent, language:navigator.language };
+    let context:any = { url:window.location.href, userAgent:navigator.userAgent, language:navigator.language, currentPageContent:document.body.innerText };
     if(this.user){
         context.user = this.user ;
     }
