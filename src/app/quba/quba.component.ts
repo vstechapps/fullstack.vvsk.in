@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
 import { QubaService } from './quba.service';
+import { marked } from 'marked';
 
 interface ChatMessage {
   role: 'user' | 'quba';
   text: string;
+  renderedText?: string;
 }
 
 @Component({
@@ -23,7 +25,8 @@ export class QubaComponent {
   messages: ChatMessage[] = [
     {
       role: 'quba',
-      text: 'Hi, I am QUBA, your AI Tech Career Advisor. Ask me about roadmaps, skills, projects, or your next career step.'
+      text: 'Hi, I am QUBA, your AI Tech Career Advisor. Ask me about roadmaps, skills, projects, or your next career step.',
+      renderedText: marked.parse('Hi, I am QUBA, your AI Tech Career Advisor. Ask me about roadmaps, skills, projects, or your next career step.') as string
     }
   ];
 
@@ -47,7 +50,11 @@ export class QubaComponent {
 
     try {
       const response = await this.qubaService.ask(question);
-      this.messages.push({ role: 'quba', text: response });
+      this.messages.push({
+        role: 'quba',
+        text: response,
+        renderedText: marked.parse(response) as string
+      });
     } catch {
       this.errorMessage = 'I could not reach the advisor right now. Please try again.';
     } finally {

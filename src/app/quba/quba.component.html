@@ -24,7 +24,10 @@
 
 	<div class="quba-messages" aria-live="polite">
 		<div *ngFor="let message of messages" class="quba-message" [class.quba-user-message]="message.role === 'user'">
-			{{ message.text }}
+			<ng-container *ngIf="message.role === 'quba'; else userMessage">
+				<div class="quba-markdown" [innerHTML]="message.renderedText"></div>
+			</ng-container>
+			<ng-template #userMessage>{{ message.text }}</ng-template>
 		</div>
 		<div *ngIf="isLoading" class="quba-message quba-thinking">QUBA is thinking...</div>
 		<div *ngIf="errorMessage" class="quba-error">{{ errorMessage }}</div>
