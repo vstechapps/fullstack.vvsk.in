@@ -1,6 +1,7 @@
 {
   "title": "Directives",
   "duration": "30m",
+  "course": "angular",
   "cards": [
     {
       "id": "what-are-directives",

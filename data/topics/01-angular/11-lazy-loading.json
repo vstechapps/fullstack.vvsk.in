@@ -1,6 +1,7 @@
 {
   "title": "Lazy Loading",
   "duration": "35m",
+  "course": "angular",
   "cards": [
     {
       "id": "intro-lazy-loading",

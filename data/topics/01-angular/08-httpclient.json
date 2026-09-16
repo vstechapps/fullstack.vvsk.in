@@ -1,6 +1,7 @@
 {
   "title": "HttpClient",
   "duration": "40m",
+  "course": "angular",
   "cards": [
     {
       "id": "intro-httpclient",

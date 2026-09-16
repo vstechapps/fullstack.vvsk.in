@@ -1,6 +1,7 @@
 {
   "title": "NgRx",
   "duration": "35m",
+  "course": "angular",
   "cards": [
     {
       "id": "ngrx-intro",

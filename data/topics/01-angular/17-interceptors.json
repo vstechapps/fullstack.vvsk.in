@@ -1,6 +1,7 @@
 {
   "title": "Interceptors",
   "duration": "30m",
+  "course": "angular",
   "cards": [
     {
       "id": "what-are-interceptors",

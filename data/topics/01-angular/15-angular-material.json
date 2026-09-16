@@ -1,6 +1,7 @@
 {
   "title": "Angular Material",
   "duration": "25m",
+  "course": "angular",
   "cards": [
     {
       "id": "material-intro",

@@ -7,11 +7,12 @@ import { MatchViewComponent } from './match-view.component';
 import { OrderViewComponent } from './order-view.component';
 import { CodeViewComponent } from './code-view.component';
 import { TimerComponent } from '../timer/timer.component';
+import { TimerPlusComponent } from '../timerplus/timerplus.component';
 
 @Component({
   selector: 'app-card-slider',
   standalone: true,
-  imports: [CommonModule, NgFor, McqViewComponent, BlankViewComponent, MatchViewComponent, OrderViewComponent, CodeViewComponent, TimerComponent],
+  imports: [CommonModule, NgFor, McqViewComponent, BlankViewComponent, MatchViewComponent, OrderViewComponent, CodeViewComponent, TimerComponent, TimerPlusComponent],
   templateUrl: './card-slider.component.html',
   styleUrls: ['./card-slider.component.css']
 })
@@ -20,6 +21,9 @@ export class CardSliderComponent implements OnInit {
   _cards : SliderCard[] = [];
   currentIndex = 0;
   currentCard?:SliderCard;
+  transitionClass = 'slide-idle';
+  isTransitioning = false;
+  private pointerStartY: number | null = null;
 
   cards = input.required<SliderCard[]>();
   @Output() activityComplete = new EventEmitter<void>();
@@ -53,21 +57,61 @@ export class CardSliderComponent implements OnInit {
   }
 
   next(): void {
-    if (!this.currentCard?.completed) return;
+    if (!this.currentCard?.completed || this.isTransitioning) return;
 
     if (!this.isLast()) {
-      this.currentIndex= this.currentIndex + 1;
-      this.currentCard=this._cards[this.currentIndex];
+      this.changeCard(this.currentIndex + 1, 'slide-out-up');
     } else {
       this.finishActivity();
     }
   }
 
   prev(): void {
-    if (!this.isFirst()) {
-      this.currentIndex= this.currentIndex - 1;
-      this.currentCard=this._cards[this.currentIndex];
+    if (!this.isFirst() && !this.isTransitioning) {
+      this.changeCard(this.currentIndex - 1, 'slide-out-down');
     }
+  }
+
+  onPointerDown(event: PointerEvent): void {
+    this.pointerStartY = event.clientY;
+  }
+
+  onPointerUp(event: PointerEvent): void {
+    if (this.pointerStartY === null || this.isTransitioning) {
+      this.pointerStartY = null;
+      return;
+    }
+
+    const distance = event.clientY - this.pointerStartY;
+    this.pointerStartY = null;
+
+    if (Math.abs(distance) < 55) {
+      return;
+    }
+
+    if (distance < 0) {
+      this.next();
+    } else {
+      this.prev();
+    }
+  }
+
+  private changeCard(index: number, exitClass: string): void {
+    this.isTransitioning = true;
+    this.transitionClass = exitClass;
+
+    window.setTimeout(() => {
+      this.currentIndex = index;
+      this.currentCard = this._cards[index];
+      this.transitionClass = exitClass === 'slide-out-up'
+        ? 'slide-in-from-bottom'
+        : 'slide-in-from-top';
+
+      window.setTimeout(() => {
+        this.transitionClass = 'slide-idle';
+        this.isTransitioning = false;
+      }, 280);
+    }, 180);
   }
 
   public finishActivity(): void {

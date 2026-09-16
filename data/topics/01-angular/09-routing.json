@@ -1,6 +1,7 @@
 {
   "title": "Routing",
   "duration": "35m",
+  "course": "angular",
   "cards": [
     {
       "id": "intro-routing",

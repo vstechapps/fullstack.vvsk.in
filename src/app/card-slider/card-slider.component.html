@@ -6,13 +6,17 @@
   </div>
 
   <!-- Cards Track Viewport -->
-  <div class="slider-viewport" *ngIf="currentCard">
+  <div
+    class="slider-viewport"
+    *ngIf="currentCard"
+    (pointerdown)="onPointerDown($event)"
+    (pointerup)="onPointerUp($event)"
+    (pointercancel)="onPointerUp($event)">
     <div class="slider-track">
-      <div class="slider-slide">
+      <div class="slider-slide" [ngClass]="transitionClass">
         <div class="active-frame">
           <div class="card-header">
             <h2>{{ currentCard.title }}</h2>
-            <timer *ngIf="currentCard.duration != null" [duration]="currentCard.duration" [resetKey]="currentIndex" (completed)="onTimeUp()"></timer>
           </div>
           <div class="card-body">
             @switch (currentCard.type) {
@@ -55,7 +59,10 @@
         </div>
       </div>
     </div>
+     <timer-plus *ngIf="currentCard.duration != null" [duration]="currentCard.duration" [resetKey]="currentIndex" (completed)="onTimeUp()"></timer-plus>
   </div>
+
+ 
 
   <!-- Persistent User Navigation Context Footer -->
   <div class="slider-actions">

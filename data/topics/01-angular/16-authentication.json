@@ -1,6 +1,7 @@
 {
   "title": "Authentication",
   "duration": "30m",
+  "course": "angular",
   "cards": [
     {
       "id": "auth-jwt",

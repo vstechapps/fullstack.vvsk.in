@@ -1,6 +1,7 @@
 {
   "title": "Server-Side Rendering",
   "duration": "30m",
+  "course": "angular",
   "cards": [
     {
       "id": "ssr-intro",

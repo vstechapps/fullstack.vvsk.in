@@ -1,6 +1,7 @@
 {
   "title": "Route Guards",
   "duration": "30m",
+  "course": "angular",
   "cards": [
     {
       "id": "intro-route-guards",

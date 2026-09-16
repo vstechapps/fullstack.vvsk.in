@@ -1,0 +1,11 @@
+<div
+  class="timer-plus"
+  role="progressbar"
+  [attr.aria-valuenow]="progressPercent"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  [attr.aria-label]="isComplete ? 'Attention period completed' : 'Attention period in progress'">
+  <div class="timer-plus-track">
+    <div class="timer-plus-fill" [style.width.%]="progressPercent"></div>
+  </div>
+</div>

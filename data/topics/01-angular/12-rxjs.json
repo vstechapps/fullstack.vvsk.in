@@ -1,6 +1,7 @@
 {
   "title": "RxJS",
   "duration": "30m",
+  "course": "angular",
   "cards": [
     {
       "id": "rxjs-intro",
