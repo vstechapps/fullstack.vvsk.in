@@ -12,11 +12,11 @@
             <cicon [tech]="course.icon" height="50px"></cicon>
             <span class="text-title text-gradient" style="margin-left:15px;vertical-align:middle;margin-right:15px;font-size:30px">{{
                 course.title }}</span>
-            <div style="display: inline-block;vertical-align: middle;">
+            <div class="badge-container">
                 <span class="badge badge-primary" *ngFor="let label of course.labels || []">{{ label }}</span>
                  <span class="badge badge-xp" style="margin-left:10px" *ngIf="course.xp"> 💎 {{ course.xp }} XP </span>
             </div>
-            <div style="display: inline-block;width: 40%;margin-left: 50px;vertical-align: middle;">
+            <div class="xp-meter-container">
                 <div class="xp-meter">
                     <div class="progress-meta">
                         <span>Progress</span>

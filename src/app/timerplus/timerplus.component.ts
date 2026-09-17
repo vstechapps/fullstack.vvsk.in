@@ -35,9 +35,9 @@ export class TimerPlusComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges): void {
     const durationChanged = changes['duration'] && !changes['duration'].firstChange;
-    const restKeyChanged = changes['restKey'] && !changes['restKey'].firstChange;
+    const resetKeyChanged = changes['resetKey'] && !changes['resetKey'].firstChange;
 
-    if (durationChanged || restKeyChanged) {
+    if (durationChanged || resetKeyChanged) {
       this.start();
     }
   }

@@ -43,13 +43,13 @@ export class RoadmapComponent {
    */
   startPosition: Position = {
     x: 7,
-    y: 7
+    y: 5
   };
 
 
   finishPosition: Position = {
     x: 93,
-    y: 92
+    y: 95
   };
 
 
@@ -134,7 +134,7 @@ export class RoadmapComponent {
     /*
      * Keep courses away from edges.
      */
-    const y = 12 + current * 78;
+    const y = 20 + current * 60;
 
 
     /*

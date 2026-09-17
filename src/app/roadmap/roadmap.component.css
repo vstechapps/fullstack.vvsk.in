@@ -156,9 +156,7 @@
 .roadmap-container {
   width: 100%;
   max-width: 1400px;
-
-  margin: 0 auto;
-
+  margin: 20px 0px;
   padding: 0 2rem;
   text-align: center;
 }
@@ -732,6 +730,10 @@
 
   .card-left {
     right: 82px;
+  }
+
+  .roadmap-text{
+    display: none;
   }
 
 }

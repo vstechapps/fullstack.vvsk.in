@@ -22,10 +22,18 @@
     margin: 5px;
 }
 
+cicon{
+    min-width: 60px;
+}
+
 /* For mobile devices , .card-footer should have flex-direction:column */
 @media (max-width: 720px) {
     .grid .card .card-footer{
         flex-direction: column;
         align-items: flex-start;
     }
+}
+
+@media (max-width: 480px) {
+   
 }

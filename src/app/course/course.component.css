@@ -54,3 +54,29 @@
 .bi{
   font-size: 20px;;
 }
+
+.badge-container{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.xp-meter-container{
+  display: inline-block;
+  width: 40%;
+  margin-left: 50px;
+  vertical-align: middle;
+}
+
+@media (max-width: 480px) {
+  .badge-container{
+    vertical-align: bottom;
+  }
+  .xp-meter-container{
+    display: inline-block;
+    margin-left: 15px;
+    margin-top: 10px;
+  }
+  table.thead.td{
+    text-align: left;
+  }
+}
