@@ -1,11 +1,12 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FirebaseEvent, FirebaseListener } from '../services/firebase.listener';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [NgIf],
+  imports: [NgIf,RouterLink],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css'
 })

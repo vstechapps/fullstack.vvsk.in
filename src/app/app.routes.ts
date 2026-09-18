@@ -12,6 +12,7 @@ import { SubscribeComponent } from './subscribe/subscribe.component';
 import { CourseComponent } from './course/course.component';
 import { CoursesComponent } from './courses/courses.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { SupportComponent } from './support/support.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -27,5 +28,6 @@ export const routes: Routes = [
   { path: 'course/:id', component: RoadmapComponent },
   { path: 'subscribe', component: SubscribeComponent},
   { path: 'leaderboard', component: LeaderboardComponent},
+  { path: 'support', component: SupportComponent },
   { path: '**', redirectTo: '' }
 ];
