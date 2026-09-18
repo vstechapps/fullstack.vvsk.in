@@ -9,8 +9,9 @@
     <div class="card card-interactive support-form-panel">
       <div class="card-header support-card-header">
         <div>
-          <span class="badge badge-secondary">Signed in as {{ user.name }}</span>
-          <h2>Raise a ticket</h2>
+          <div style="display:inline-grid" class="support-aside-icon" aria-hidden="true">?</div>
+          <h2 style="display:inline-block; margin:20px;">Raise a ticket </h2>
+          <span style="vertical-align: text-bottom;" class="text-small badge badge-secondary">Signed in as {{ user.name }}</span>
           <p class="muted">Share enough detail for us to understand and resolve the issue quickly.</p>
         </div>
       </div>
@@ -57,13 +58,12 @@
               maxlength="4000"
               required
             ></textarea>
-            <span class="field-hint">Please do not include passwords or private API keys.</span>
+            <span class="field-hint">** Please do not include passwords or API keys.**</span>
           </div>
 
           <div *ngIf="errorMessage" class="form-error" role="alert">{{ errorMessage }}</div>
 
           <div class="form-actions">
-            <span class="form-note">We will reply to {{ user.email }}</span>
             <button class="btn btn-primary" type="submit" [disabled]="supportForm.invalid || isSubmitting">
               {{ isSubmitting ? 'Sending...' : 'Submit ticket' }}
             </button>
@@ -79,20 +79,6 @@
         <button class="btn btn-secondary" type="button" (click)="createAnotherTicket()">Raise another ticket</button>
       </div>
     </div>
-
-    <aside class="support-aside">
-      <div class="support-aside-icon" aria-hidden="true">?</div>
-      <h2>Before you submit</h2>
-      <ul>
-        <li>Include the course, roadmap, or page where you need help.</li>
-        <li>Describe the steps that led to the issue.</li>
-        <li>Never share passwords, tokens, or API keys.</li>
-      </ul>
-      <div class="signed-in-note">
-        <span class="status-dot"></span>
-        Your request will be linked to your account.
-      </div>
-    </aside>
   </section>
 
   <ng-template #loginPrompt>
