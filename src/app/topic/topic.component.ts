@@ -26,6 +26,7 @@ export class TopicComponent {
 
   showTopicComplete = false;
   showRoadmapComplete = false;
+  showSwipeGuide = false;
   showConfetti = true;
   confettiArray = Utility.mobileAndTabletCheck()? new Array(18): new Array(18);
 
@@ -70,9 +71,14 @@ export class TopicComponent {
       this.currentIndex = this.course?.topics.findIndex(t => t.id === this.userprogress?.next) || 0;
     }
     await this.loadTopic(this.currentIndex);
+    this.showSwipeGuide = this.appService.isMobile && this.topic !== null;
     console.log(this.course,this.topic);
     Firebase.publish("HEADER",{custom:{title:this.course?.title,subtitle:this.topic?.title,icon:this.course?.icon}});
     Loader.hide();
+  }
+
+  closeSwipeGuide(): void {
+    this.showSwipeGuide = false;
   }
 
   async loadTopic(index: number): Promise<void> {

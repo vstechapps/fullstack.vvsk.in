@@ -65,7 +65,7 @@
  
 
   <!-- Persistent User Navigation Context Footer -->
-  <div class="slider-actions">
+  <div class="slider-actions" *ngIf="!appService.isMobile">
     <button class="action-btn secondary" (click)="prev()" [disabled]="isFirst()">
       Back
     </button>

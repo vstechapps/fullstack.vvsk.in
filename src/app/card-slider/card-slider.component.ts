@@ -9,6 +9,7 @@ import { CodeViewComponent } from './code-view.component';
 import { TimerComponent } from '../timer/timer.component';
 import { TimerPlusComponent } from '../timerplus/timerplus.component';
 import { UserService } from '../services/user.service';
+import { AppService } from '../services/app.service';
 
 @Component({
   selector: 'app-card-slider',
@@ -35,7 +36,7 @@ export class CardSliderComponent implements OnInit {
 
   span:boolean = true;
 
- constructor(private userService:UserService) {
+ constructor(private userService:UserService, public appService:AppService) {
     effect(() => {
       this._cards = this.cards();
       for(var i in this._cards){
@@ -81,7 +82,7 @@ export class CardSliderComponent implements OnInit {
     if (!this.currentCard?.completed || this.isTransitioning) return;
 
     if (!this.isLast()) {
-      this.changeCard(this.currentIndex + 1, 'slide-out-right');
+      this.changeCard(this.currentIndex + 1, 'slide-out-left');
     } else {
       this.finishActivity();
     }
@@ -89,7 +90,7 @@ export class CardSliderComponent implements OnInit {
 
   prev(): void {
     if (!this.isFirst() && !this.isTransitioning) {
-      this.changeCard(this.currentIndex - 1, 'slide-out-left');
+      this.changeCard(this.currentIndex - 1, 'slide-out-right');
     }
   }
 
@@ -114,7 +115,7 @@ export class CardSliderComponent implements OnInit {
       return;
     }
 
-    if (horizontalDistance > 0) {
+    if (horizontalDistance < 0) {
       this.next();
     } else {
       this.prev();

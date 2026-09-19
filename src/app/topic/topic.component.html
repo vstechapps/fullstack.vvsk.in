@@ -6,6 +6,25 @@
     <app-card-slider [cards]="topic.cards" (activityComplete)="onActivityComplete()"></app-card-slider>
 </div>
 
+<div *ngIf="showSwipeGuide && appService.isMobile" class="swipe-guide-backdrop">
+    <section class="swipe-guide" role="dialog" aria-modal="true" aria-labelledby="swipe-guide-title">
+        <button class="swipe-guide-close" type="button" aria-label="Close swipe instructions" (click)="closeSwipeGuide()">×</button>
+        <h2 id="swipe-guide-title">Content Navigation</h2>
+        <p>Swipe horizontally to move through the activity.</p>
+        <div class="swipe-directions" aria-label="Swipe left for next and right for previous">
+            <div class="swipe-direction swipe-direction-back">
+                <span class="swipe-arrow" aria-hidden="true">←</span>
+                <span>Swipe<br><small>for previous</small></span>
+            </div>
+            <div class="swipe-direction swipe-direction-next">
+                <span>Swipe<br><small>for next</small></span>
+                <span class="swipe-arrow" aria-hidden="true">→</span>
+            </div>
+        </div>
+        <button class="swipe-guide-action" type="button" (click)="closeSwipeGuide()">Got it</button>
+    </section>
+</div>
+
 <div *ngIf="showTopicComplete && course && topic && nextTopicInfo" class="modal-backdrop">
     <div class="card">
         <div class="card-header">
