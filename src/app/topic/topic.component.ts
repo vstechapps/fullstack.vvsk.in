@@ -27,8 +27,6 @@ export class TopicComponent {
   showTopicComplete = false;
   showRoadmapComplete = false;
   showSwipeGuide = false;
-  showConfetti = true;
-  confettiArray = Utility.mobileAndTabletCheck()? new Array(18): new Array(18);
 
   userprogress: UserCourseProgress | null = null;
 
