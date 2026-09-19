@@ -209,6 +209,7 @@
 
 @media (max-width:480px){
 	.fixed{
+		position: fixed;
 		width:98%;
 		margin:5px;
 	}

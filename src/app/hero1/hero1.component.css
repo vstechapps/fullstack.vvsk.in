@@ -6,6 +6,12 @@
     border-radius: 5px;
 }
 
+.text-gradient2 {
+    background: linear-gradient(90deg, var(--gold) , var(--accent-300), var(--primary-300));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
 
 
 .xp-meter{
@@ -21,4 +27,11 @@
     .m-hide{
     display: none;
 }
+}
+
+@media (max-width: 400px) {
+    h1{
+    font-size: 25px;
+}
+
 }
