@@ -38,14 +38,32 @@
     </div>
 </nav>
 
+<div *ngIf="custom" class="d-nav" style="flex-direction:row;margin-top:var(--header-height);padding:var(--space-lg)">
+    <cicon [tech]="custom.icon" height="50px"></cicon>
+    <div style="display:flex;flex-direction:column">
+        <span class="highlight" style="font-size:20px">{{custom.title}}</span>
+        <span>{{custom.subtitle}}</span>
+    </div>
+    <span class="exit-btn" style="cursor:pointer;font-weight:bold;font-size:30px;margin-left:auto;" (click)="exitCustom()">&times;</span>
+</div>
+
 <nav class="header nav m-nav" aria-label="Navigation">
-    <div class="nav-brand" style="margin-left:5px;font-weight:600">
-        <div class="text-subtitle">
+    <div class="nav-brand" style="margin-left:5px;font-weight:600;width:100%">
+        <div *ngIf="!custom" class="text-subtitle">
             <button class="btn-menu" (click)="toggleMenu()"><i class="bi bi-list"></i></button>
             <span class="logo-icon text-gradient">&lt;/&gt;</span>
             <span class="logo-text" style="margin-left:5px">
                 <span>The <span class="highlight">FullStack</span></span>
             </span>
+        </div>
+        <div *ngIf="custom" style="display:flex;flex-direction:row">
+            <button class="btn-menu" (click)="toggleMenu()"><i class="bi bi-list"></i></button>
+            <cicon [tech]="custom.icon" height="50px"></cicon>
+            <div style="display:flex;flex-direction:column">
+                <span class="highlight" style="font-size:20px">{{custom.title}}</span>
+                <span>{{custom.subtitle}}</span>
+            </div>
+            <span class="exit-btn" style="font-weight:bold;font-size:30px;margin-left:auto;cursor:pointer" (click)="exitCustom()">&times;</span>
         </div>
     </div>
 </nav>

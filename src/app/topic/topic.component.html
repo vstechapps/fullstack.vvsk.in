@@ -1,24 +1,19 @@
-<div *ngIf="roadmap && topic" class="main-content" style="display:flex;justify-content:space-between;margin-bottom:20px">
-    <nav class="breadcrumb text-subtitle" *ngIf="roadmap">
-        <a (click)="exit()">{{ roadmap.title }}</a>
-        <span>/</span>
-        <span>{{topic.title}}</span>
-    </nav>
-    <button class="btn btn-subtle" style="float:right;" (click)="exit()">Exit</button>
+<div *ngIf="appService.isMobile" class="main-content">
+
 </div>
 
-<div *ngIf="topic && topic.cards" >
+<div *ngIf="topic && topic.cards" class="fixed">
     <app-card-slider [cards]="topic.cards" (activityComplete)="onActivityComplete()"></app-card-slider>
 </div>
 
-<div *ngIf="showTopicComplete && roadmap && topic && nextTopicInfo" class="modal-backdrop">
+<div *ngIf="showTopicComplete && course && topic && nextTopicInfo" class="modal-backdrop">
     <div class="card">
         <div class="card-header">
             <h2>Great Job! 👏 🎉</h2>
         </div>
         <div class="card-body">
             <h3 class="modal-title">
-                You have successfully completed <b>{{topic.title}}</b> in roadmap <b>{{roadmap.title}}</b>.
+                You have successfully completed <b>{{topic.title}}</b> in roadmap <b>{{course.title}}</b>.
             </h3>
             <h4 *ngIf="!ableToSaveProgress">Failed to save your progress. Please log in to save your progress.</h4>
             <p class="modal-sub">Next Topic : {{ nextTopicInfo.title || '—' }}</p>
@@ -35,16 +30,16 @@
 </div>
     
 <!-- Roadmap completion modal -->
-<div *ngIf="showRoadmapComplete && roadmap" class="modal-backdrop">
+<div *ngIf="showRoadmapComplete && course" class="modal-backdrop">
     <div class="card">
         <div class="card-header">
             <h2>Great Job! 👏 🎉</h2>
         </div>
         <div class="card-body">
             <h3 class="modal-title">
-                You have successfully completed the roadmap <b>{{roadmap.title}}</b>.
+                You have successfully completed the roadmap <b>{{course.title}}</b>.
             </h3>
-            <p class="modal-sub">Great job — you've finished all topics in this roadmap.</p>
+            <p class="modal-sub">Great job — you've finished all topics in this course.</p>
             <h4 *ngIf="!ableToSaveProgress">Failed to save your progress. Please log in to save your progress.</h4>
             <div *ngIf="showConfetti" class="celebration">
             <div class="rocket"><span style="display: inline-block;rotate:45deg;">🚀</span></div>

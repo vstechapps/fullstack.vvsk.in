@@ -7,6 +7,7 @@ import { Utility } from '../services/app.util';
 import { RoadmapsService } from '../services/roadmaps.service';
 import { CoursesService } from '../services/courses.service';
 import { AppService } from '../services/app.service';
+import { FirebaseEvent, FirebaseListener } from '../services/firebase.listener';
 
 @Component({
   selector: 'app-topic',
@@ -17,7 +18,7 @@ import { AppService } from '../services/app.service';
 })
 export class TopicComponent {
 
-  roadmap: Course | null = null;
+  course: Course | null = null;
   topic: Topic | null = null;
 
   currentIndex = 0;
@@ -32,10 +33,10 @@ export class TopicComponent {
 
   ableToSaveProgress: boolean = false;
 
-  constructor(private route: ActivatedRoute, private router: Router,private coursesService:CoursesService, private appService:AppService) {
+  constructor(private route: ActivatedRoute, private router: Router,private coursesService:CoursesService, public appService:AppService, private firebaseListener: FirebaseListener) {
 
     const id = this.route.snapshot.paramMap.get('id') || '';
-    this.loadRoadmap(id);
+    this.loadCourse(id);
     Firebase.publish("FOOTER", { enabled: false });
     if(this.appService.isMobile){
       Firebase.publish("QUBA", { enabled: false, isOpen: false });
@@ -50,23 +51,34 @@ export class TopicComponent {
   - Want real-world examples`
     });
     }
+     this.firebaseListener.events$.subscribe((event) => this.handleFirebaseEvent(event));
   }
 
-  async loadRoadmap(id:string): Promise<void> {
+  private handleFirebaseEvent(event: FirebaseEvent): void {
+      if (event.type === 'TOPIC' && event.data!=null) {
+        if(event.data.exit){
+          this.exit();
+        };
+      }
+    }
+
+  async loadCourse(id:string): Promise<void> {
     Loader.show();
-    this.roadmap = await this.coursesService.getCourseById(id);
+    this.course = await this.coursesService.getCourseById(id);
     this.userprogress = await this.coursesService.getCourseProgress(id);
-    if(this.userprogress && this.userprogress.next && this.roadmap && this.roadmap.topics){
-      this.currentIndex = this.roadmap?.topics.findIndex(t => t.id === this.userprogress?.next) || 0;
+    if(this.userprogress && this.userprogress.next && this.course && this.course.topics){
+      this.currentIndex = this.course?.topics.findIndex(t => t.id === this.userprogress?.next) || 0;
     }
     await this.loadTopic(this.currentIndex);
+    console.log(this.course,this.topic);
+    Firebase.publish("HEADER",{custom:{title:this.course?.title,subtitle:this.topic?.title,icon:this.course?.icon}});
     Loader.hide();
   }
 
   async loadTopic(index: number): Promise<void> {
-    if (this.roadmap && this.roadmap.topics) {
-      let topicId = this.roadmap.topics[index].id;
-      this.topic = await this.coursesService.getTopicById(this.roadmap.id, topicId);
+    if (this.course && this.course.topics) {
+      let topicId = this.course.topics[index].id;
+      this.topic = await this.coursesService.getTopicById(this.course.id, topicId);
     }
   }
 
@@ -74,13 +86,13 @@ export class TopicComponent {
     this.showTopicComplete = false;
     Firebase.publish("FOOTER", { enabled: true });
     Firebase.publish("QUBA", { enabled: true, isOpen: false });
-    if (this.roadmap) {
-      this.router.navigate(['/courses', this.roadmap.id]);
+    if (this.course) {
+      this.router.navigate(['/courses', this.course.id]);
     }
   }
 
   async nextTopic() {
-    if (this.roadmap && this.roadmap.topics && this.currentIndex < this.roadmap.topics.length - 1) {
+    if (this.course && this.course.topics && this.currentIndex < this.course.topics.length - 1) {
       Loader.show();
       this.currentIndex++;
       await this.loadTopic(this.currentIndex);
@@ -92,14 +104,14 @@ export class TopicComponent {
 
   /** Triggered by child when activity completes; shows completion modal */
   async onActivityComplete(): Promise<void> {
-    if (!this.roadmap) return;
+    if (!this.course) return;
     if (this.topic) {
       this.topic.cards = [];
     }
     let nextIndex = this.currentIndex + 1;
     await this.saveUserProgress();
-    if (this.roadmap.topics && nextIndex < this.roadmap.topics.length) {
-      this.nextTopicInfo = this.roadmap.topics[nextIndex];
+    if (this.course.topics && nextIndex < this.course.topics.length) {
+      this.nextTopicInfo = this.course.topics[nextIndex];
       this.showTopicComplete = true;
       this.showRoadmapComplete = false;
     } else {
@@ -120,14 +132,14 @@ export class TopicComponent {
   }
 
   private async saveUserProgress() {
-    if(!this.roadmap) {
+    if(!this.course) {
       return;
     }
     Loader.show();
     if (this.userprogress == null) {
       this.userprogress = {
         user: "",
-        course: this.roadmap.id,
+        course: this.course.id,
         started: true,
         status: "inprogress",
         percent: "0",
@@ -138,16 +150,16 @@ export class TopicComponent {
     } else {
       this.userprogress.tasks.push({ task: this.topic?.id || "", status: "completed" });
     }
-    let percent = Math.floor((this.userprogress.tasks.length / (this.roadmap.topics?.length || 1)) * 100);
+    let percent = Math.floor((this.userprogress.tasks.length / (this.course.topics?.length || 1)) * 100);
     this.userprogress.percent = percent.toString();
     if(percent >= 100) {
       this.userprogress.status = "completed";
     }
     let nextIndex = this.currentIndex + 1;
-    if(this.roadmap && this.roadmap.topics && nextIndex < this.roadmap.topics.length) {
-      this.userprogress.next = this.roadmap.topics[nextIndex].id;
+    if(this.course && this.course.topics && nextIndex < this.course.topics.length) {
+      this.userprogress.next = this.course.topics[nextIndex].id;
     }
-    this.ableToSaveProgress= await this.coursesService.updateUserProgress(this.roadmap.id, this.userprogress);
+    this.ableToSaveProgress= await this.coursesService.updateUserProgress(this.course.id, this.userprogress);
     Loader.hide();
   }
 

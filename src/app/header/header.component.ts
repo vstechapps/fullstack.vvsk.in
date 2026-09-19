@@ -4,11 +4,13 @@ import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserService } from '../services/user.service';
 import { User } from '../app.models';
+import { FirebaseEvent, FirebaseListener } from '../services/firebase.listener';
+import { CiconComponent } from '../cicon/cicon.component';
 
 @Component({
   selector: 'header',
   standalone: true,
-  imports: [NgIf,NgClass,RouterLink],
+  imports: [NgIf,NgClass,RouterLink,CiconComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
@@ -18,12 +20,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   showProfileMenu = false;
   route = "";
   user?: User = undefined;
+  custom?:{title:string,subtitle:string,icon:string} = undefined;
 
   private subscription?: Subscription;
 
   constructor(
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private firebaseListener: FirebaseListener
   ) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -31,6 +35,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.route = event.url;
       }
     });
+    this.firebaseListener.events$.subscribe((event) => this.handleFirebaseEvent(event));
+  }
+
+  private handleFirebaseEvent(event: FirebaseEvent): void {
+    if (event.type === 'HEADER' && event.data!=null) {
+      this.custom = event.data.custom;
+    }
+  }
+
+  public exitCustom(){
+    this.custom = undefined;
+    Firebase.publish("TOPIC",{exit:true});
   }
 
   ngOnInit(): void {

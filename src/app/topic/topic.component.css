@@ -86,3 +86,9 @@
     }
 }
 
+@media (max-width:480px){
+	.fixed{
+		position: fixed;
+	}
+}
+
