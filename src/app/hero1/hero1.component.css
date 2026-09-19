@@ -13,6 +13,10 @@
     color: transparent;
 }
 
+.d-ib img{
+    margin-left: 20px
+}
+
 
 .xp-meter{
     margin-bottom: 10px;
@@ -26,6 +30,16 @@
 @media (max-width: 970px) {
     .m-hide{
     display: none;
+    }
+}
+
+@media (max-width:500px){
+    .d-ib img{
+        margin-top: 10px;
+        margin-left: 0px;
+}
+.action-buttons{
+    margin-left: 10px;
 }
 }
 
