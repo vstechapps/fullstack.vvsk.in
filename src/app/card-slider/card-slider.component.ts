@@ -8,6 +8,7 @@ import { OrderViewComponent } from './order-view.component';
 import { CodeViewComponent } from './code-view.component';
 import { TimerComponent } from '../timer/timer.component';
 import { TimerPlusComponent } from '../timerplus/timerplus.component';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-card-slider',
@@ -31,12 +32,31 @@ export class CardSliderComponent implements OnInit {
   isFirst = () => this.currentIndex === 0;
   isLast = () => this.currentIndex === this._cards.length - 1;
 
- constructor() {
+  span:boolean = true;
+
+ constructor(private userService:UserService) {
     effect(() => {
       this._cards = this.cards();
+      for(var i in this._cards){
+          if(!this.span && this._cards[i].type=="content"){
+            this._cards[i].completed=true;
+          }
+        }
       this.currentIndex=0;
       this.currentCard = this._cards[this.currentIndex];
     });
+
+    this.userService.user$.subscribe(u=>{
+      console.log("456456456",u);
+      if(u!=null && u.preferences!=null && u.preferences.span!==null){
+        this.span = u.preferences.span;
+        for(var i in this._cards){
+          if(!this.span && this._cards[i].type=="content"){
+            this._cards[i].completed=true;
+          }
+        }
+      }
+    })
   }
 
   onTimeUp(): void {

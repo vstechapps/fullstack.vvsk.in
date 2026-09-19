@@ -68,6 +68,7 @@ export interface User{
   role:string;
   image?:string;
   contact?:string;
+  preferences?:any;
 }
 
 export interface UserCourseProgress{

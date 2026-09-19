@@ -59,7 +59,7 @@
         </div>
       </div>
     </div>
-     <timer-plus *ngIf="currentCard.duration != null" [duration]="currentCard.duration" [resetKey]="currentIndex" (completed)="onTimeUp()"></timer-plus>
+     <timer-plus *ngIf="span && currentCard.duration != null " [duration]="currentCard.duration" [resetKey]="currentIndex" (completed)="onTimeUp()"></timer-plus>
   </div>
 
  

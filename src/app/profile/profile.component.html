@@ -29,12 +29,25 @@
             <label for="googleAi">Google AI Studio API Key</label>
             <input type="password"  class="input" id="googleAi" placeholder="Configure your Google AI API Key">
         </div>
-        
+        <div class="profile-preference">
+          <div>
+            <label for="attentionSpan">Attention Span</label>
+          </div>
+          <label class="switch" aria-label="Attention Span">
+            <input
+              id="attentionSpan"
+              type="checkbox"
+              [checked]="user.preferences?.span"
+              (change)="toggleAttentionSpan()"
+            />
+            <span class="slider"></span>
+          </label>
+        </div>
       </div>
 
       <div class="card-footer profile-actions">
         <button class="btn btn-secondary" type="button">Clear All</button>
-        <button class="btn btn-primary" type="button">Save</button>
+        <button class="btn btn-primary" (click)="save()" type="button">Save</button>
       </div>
     </div>
   </div>

@@ -22,7 +22,7 @@ import { QubaComponent } from './quba/quba.component';
         display: block;
       }
       .app-shell {
-        min-height: 100vh;
+        min-height: calc(100vh - var(--header-height));
       }
     `
   ]
