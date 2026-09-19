@@ -6,6 +6,6 @@ import { Utility } from "./app.util";
 })
 export class AppService {
     
-    public isMobile = Utility.mobileAndTabletCheck();
+    public isMobile:boolean = Utility.mobileAndTabletCheck();
 
 }
