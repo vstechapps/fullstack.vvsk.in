@@ -48,47 +48,47 @@
   padding: 28px 28px 20px;
 }
 
-.slider-slide.slide-out-up {
-  animation: reelExitUp 180ms cubic-bezier(0.4, 0, 1, 1) both;
+.slider-slide.slide-out-right {
+  animation: reelExitRight 180ms cubic-bezier(0.4, 0, 1, 1) both;
 }
 
-.slider-slide.slide-out-down {
-  animation: reelExitDown 180ms cubic-bezier(0.4, 0, 1, 1) both;
+.slider-slide.slide-out-left {
+  animation: reelExitLeft 180ms cubic-bezier(0.4, 0, 1, 1) both;
 }
 
-.slider-slide.slide-in-from-bottom {
-  animation: reelEnterFromBottom 280ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+.slider-slide.slide-in-from-left {
+  animation: reelEnterFromLeft 280ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
-.slider-slide.slide-in-from-top {
-  animation: reelEnterFromTop 280ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+.slider-slide.slide-in-from-right {
+  animation: reelEnterFromRight 280ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
-@keyframes reelExitUp {
-  from { opacity: 1; transform: translateY(0) scale(1); }
-  to { opacity: 0; transform: translateY(-18%) scale(.96); }
+@keyframes reelExitRight {
+  from { opacity: 1; transform: translateX(0) scale(1); }
+  to { opacity: 0; transform: translateX(18%) scale(.96); }
 }
 
-@keyframes reelExitDown {
-  from { opacity: 1; transform: translateY(0) scale(1); }
-  to { opacity: 0; transform: translateY(18%) scale(.96); }
+@keyframes reelExitLeft {
+  from { opacity: 1; transform: translateX(0) scale(1); }
+  to { opacity: 0; transform: translateX(-18%) scale(.96); }
 }
 
-@keyframes reelEnterFromBottom {
-  from { opacity: 0; transform: translateY(18%) scale(.96); }
+@keyframes reelEnterFromLeft {
+  from { opacity: 0; transform: translateX(-18%) scale(.96); }
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-@keyframes reelEnterFromTop {
-  from { opacity: 0; transform: translateY(-18%) scale(.96); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+@keyframes reelEnterFromRight {
+  from { opacity: 0; transform: translateX(18%) scale(.96); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .slider-slide.slide-out-up,
-  .slider-slide.slide-out-down,
-  .slider-slide.slide-in-from-bottom,
-  .slider-slide.slide-in-from-top {
+  .slider-slide.slide-out-right,
+  .slider-slide.slide-out-left,
+  .slider-slide.slide-in-from-left,
+  .slider-slide.slide-in-from-right {
     animation-duration: 1ms;
   }
 }

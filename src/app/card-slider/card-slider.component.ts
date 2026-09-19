@@ -24,6 +24,7 @@ export class CardSliderComponent implements OnInit {
   currentCard?:SliderCard;
   transitionClass = 'slide-idle';
   isTransitioning = false;
+  private pointerStartX: number | null = null;
   private pointerStartY: number | null = null;
 
   cards = input.required<SliderCard[]>();
@@ -80,7 +81,7 @@ export class CardSliderComponent implements OnInit {
     if (!this.currentCard?.completed || this.isTransitioning) return;
 
     if (!this.isLast()) {
-      this.changeCard(this.currentIndex + 1, 'slide-out-up');
+      this.changeCard(this.currentIndex + 1, 'slide-out-right');
     } else {
       this.finishActivity();
     }
@@ -88,28 +89,32 @@ export class CardSliderComponent implements OnInit {
 
   prev(): void {
     if (!this.isFirst() && !this.isTransitioning) {
-      this.changeCard(this.currentIndex - 1, 'slide-out-down');
+      this.changeCard(this.currentIndex - 1, 'slide-out-left');
     }
   }
 
   onPointerDown(event: PointerEvent): void {
+    this.pointerStartX = event.clientX;
     this.pointerStartY = event.clientY;
   }
 
   onPointerUp(event: PointerEvent): void {
-    if (this.pointerStartY === null || this.isTransitioning) {
+    if (this.pointerStartX === null || this.pointerStartY === null || this.isTransitioning) {
+      this.pointerStartX = null;
       this.pointerStartY = null;
       return;
     }
 
-    const distance = event.clientY - this.pointerStartY;
+    const horizontalDistance = event.clientX - this.pointerStartX;
+    const verticalDistance = event.clientY - this.pointerStartY;
+    this.pointerStartX = null;
     this.pointerStartY = null;
 
-    if (Math.abs(distance) < 55) {
+    if (Math.abs(horizontalDistance) < 55 || Math.abs(horizontalDistance) <= Math.abs(verticalDistance)) {
       return;
     }
 
-    if (distance < 0) {
+    if (horizontalDistance > 0) {
       this.next();
     } else {
       this.prev();
@@ -123,9 +128,9 @@ export class CardSliderComponent implements OnInit {
     window.setTimeout(() => {
       this.currentIndex = index;
       this.currentCard = this._cards[index];
-      this.transitionClass = exitClass === 'slide-out-up'
-        ? 'slide-in-from-bottom'
-        : 'slide-in-from-top';
+      this.transitionClass = exitClass === 'slide-out-right'
+        ? 'slide-in-from-left'
+        : 'slide-in-from-right';
 
       window.setTimeout(() => {
         this.transitionClass = 'slide-idle';
