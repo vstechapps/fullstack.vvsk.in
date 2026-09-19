@@ -67,6 +67,11 @@
   vertical-align: middle;
 }
 
+.course-card{
+  padding: 24px;
+  margin-top: 24px;
+}
+
 @media (max-width: 480px) {
   .badge-container{
     vertical-align: bottom;
@@ -78,5 +83,8 @@
   }
   table.thead.td{
     text-align: left;
+  }
+  .course-card{
+    padding: 24px 12px;
   }
 }

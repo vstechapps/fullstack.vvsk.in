@@ -2,9 +2,9 @@
 
   <!-- Breadcrumb  -->
   <nav class="breadcrumb text-subtitle">
-    <span routerLink="">🏠 Home</span>
+    <a routerLink="">🏠Home</a>
     <span>/</span>
-    <span>🎯 Roadmaps</span>
+    <a routerLink="/roadmaps">🎯Roadmaps</a>
     <span>/</span>
   </nav>
 
@@ -19,7 +19,7 @@
   <!-- ROADMAP -->
   <section class="roadmap-container">
 
-    <div class="roadmap-canvas" #roadmapCanvas>
+    <div class="roadmap-canvas" [class.tall-roadmap]="courses.length > 5" #roadmapCanvas>
 
       <!-- SVG JOURNEY PATH -->
       <svg class="journey-svg" [attr.viewBox]="'0 0 ' + canvasWidth + ' ' + canvasHeight" preserveAspectRatio="none">

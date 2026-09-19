@@ -27,7 +27,9 @@ export class RoadmapComponent {
    */
   canvasWidth = 300;
 
-  canvasHeight = 400;
+  get canvasHeight(): number {
+    return this.courses.length > 5 ? 800 : 400;
+  }
 
 
   /**
@@ -134,7 +136,9 @@ export class RoadmapComponent {
     /*
      * Keep courses away from edges.
      */
-    const y = 20 + current * 60;
+    const courseStartY = total > 5 ? 11 : 20;
+    const courseTravelY = total > 5 ? 69 : 60;
+    const y = courseStartY + current * courseTravelY;
 
 
     /*
