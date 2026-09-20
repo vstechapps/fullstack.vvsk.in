@@ -130,7 +130,7 @@ import { OrderContent } from './card-slider-models';
     .order-actions {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 15px;
       flex-shrink: 0;
     }
     .move-btn {

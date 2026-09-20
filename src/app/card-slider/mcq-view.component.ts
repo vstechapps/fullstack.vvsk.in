@@ -25,7 +25,7 @@ import { CommonModule } from '@angular/common';
     </div>
   `,
   styles: [`
-    .options-stack { display: flex; flex-direction: column; gap: 12px; margin-bottom: 15px; }
+    .options-stack { display: flex; flex-direction: column; gap: 12px; margin-bottom: 15px; max-width: 100dvw;}
     .btn-ghost { justify-content: left; cursor: pointer;}
     .btn-ghost.selected { border-color: var(--primary-400);background: var(--bg-soft); }
     .btn-ghost.success { border-color: #28a745; color: #155724; }
