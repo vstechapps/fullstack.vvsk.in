@@ -129,6 +129,8 @@
 
 .card-body {
   color: #dfe7f3;
+  overflow-x: hidden;
+  touch-action: pan-y;
 }
 
 .card-body p,
