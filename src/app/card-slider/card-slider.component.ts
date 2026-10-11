@@ -6,6 +6,8 @@ import { BlankViewComponent } from './blank-view.component';
 import { MatchViewComponent } from './match-view.component';
 import { OrderViewComponent } from './order-view.component';
 import { CodeViewComponent } from './code-view.component';
+import { ContentViewComponent } from './content-view.component';
+import { MdViewComponent } from './md-view.component';
 import { TimerComponent } from '../timer/timer.component';
 import { TimerPlusComponent } from '../timerplus/timerplus.component';
 import { UserService } from '../services/user.service';
@@ -14,7 +16,7 @@ import { AppService } from '../services/app.service';
 @Component({
   selector: 'app-card-slider',
   standalone: true,
-  imports: [CommonModule, NgFor, McqViewComponent, BlankViewComponent, MatchViewComponent, OrderViewComponent, CodeViewComponent, TimerComponent, TimerPlusComponent],
+  imports: [CommonModule, NgFor, McqViewComponent, BlankViewComponent, MatchViewComponent, OrderViewComponent, CodeViewComponent, ContentViewComponent, MdViewComponent, TimerComponent, TimerPlusComponent],
   templateUrl: './card-slider.component.html',
   styleUrls: ['./card-slider.component.css']
 })

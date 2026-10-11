@@ -1,4 +1,4 @@
-<div class="activity-container" *ngIf="_cards.length>0">
+<div class="activity-container" [class.md-card]="currentCard?.type === 'md'" *ngIf="_cards.length>0">
   
   <!-- Linear Progress Bar -->
   <div class="progress-bar">
@@ -21,7 +21,10 @@
           <div class="card-body">
             @switch (currentCard.type) {
               @case ('content') {
-                <div class="content" [innerHTML]="currentCard.content"></div>
+                <app-content-view [data]="$any(currentCard.content)"></app-content-view>
+              }
+              @case ('md') {
+                <app-md-view [data]="$any(currentCard.content)"></app-md-view>
               }
               @case ('mcq') {
                 <app-mcq-view 

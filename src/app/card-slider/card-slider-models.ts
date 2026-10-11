@@ -1,4 +1,4 @@
-export type CardType = 'content' | 'mcq' | 'blank' | 'match' | 'order' | 'code';
+export type CardType = 'content' | 'md' | 'mcq' | 'blank' | 'match' | 'order' | 'code';
 
 export interface McqOption {
   id: string | number;

@@ -14,6 +14,42 @@
   backdrop-filter: blur(8px);
 }
 
+.activity-container.md-card {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  max-height: calc(100dvh - var(--header-height, 71px) - 24px);
+}
+
+.md-card .slider-viewport {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.md-card .slider-track,
+.md-card .slider-slide {
+  height: 100%;
+}
+
+.md-card .active-frame,
+.md-card .card-body {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.md-card .card-body {
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.md-card app-md-view {
+  display: block;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
 .progress-bar {
   height: 8px;
   width: 100%;

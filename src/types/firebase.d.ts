@@ -1,4 +1,5 @@
 import { Loader } from "./loader";
+import { MDX } from "./mdx";
 
 interface FirebaseApi {
   init(): Promise<void>;
@@ -31,6 +32,7 @@ declare global {
   interface Window {
     Firebase: FirebaseApi;
     Loader: Loader;
+    MDX: MDX;
   }
 }
 
